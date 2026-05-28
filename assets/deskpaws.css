@@ -225,12 +225,18 @@ em { font-style: italic; }
   transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Overlay state: dark semi-transparent background, white text */
+/* Overlay state: floating rounded pill, white text */
 .header--overlay {
-  background: rgba(44, 26, 17, 0.72);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: transparent;
   color: var(--color-white);
+}
+.header--overlay .header__inner {
+  background: rgba(44, 26, 17, 0.52);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 0.875rem;
+  margin-inline: 1.25rem;
+  padding-inline: 1.75rem;
 }
 .header--overlay .header__logo-text { color: var(--color-white); }
 .header--overlay .header__logo-paws { color: var(--color-white); font-style: italic; }
@@ -245,7 +251,15 @@ em { font-style: italic; }
   color: var(--color-brown);
 }
 
-/* Scrolled state */
+/* Scrolled state — reset inner pill back to full-width */
+.header.is-scrolled .header__inner {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-radius: 0;
+  margin-inline: 0;
+  padding-inline: var(--container-inset);
+}
 .header.is-scrolled {
   background: var(--color-white);
   color: var(--color-brown);
@@ -280,7 +294,7 @@ em { font-style: italic; }
 
 .header__nav-link {
   font-family: var(--font-sans);
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -293,7 +307,7 @@ em { font-style: italic; }
 
 .header__logo {
   font-family: var(--font-serif);
-  font-size: 1.4375rem;
+  font-size: 1.75rem;
   font-weight: 400;
   letter-spacing: -0.01em;
   line-height: 1;
