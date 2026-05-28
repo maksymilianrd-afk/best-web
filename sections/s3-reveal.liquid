@@ -1,63 +1,86 @@
-<section class="reveal section section--cream" id="reveal">
-  <div class="container">
+<section class="product-section product-section--image-left" id="how-it-works" aria-labelledby="s3-heading">
+  <div class="product-section__inner">
 
-    <div class="reveal__header">
-      <p class="t-eyebrow reveal__eyebrow" data-anim>Same cat. Same desk.</p>
-      <h2 class="t-h2 reveal__title" data-anim data-anim-delay="1">
-        Completely different day.
-      </h2>
-      <p class="t-body-lg reveal__body" data-anim data-anim-delay="2">
-        They hop into their spot the moment you sit down — close enough to pet with one hand while you type with the other. The keyboard's yours again. The call goes uninterrupted. Good cat parent <em>and</em> productive human, at the same time.
-      </p>
+    <div class="product-section__gallery">
+      <div class="product-section__slides" id="s3-slides">
+        <div class="product-section__slide">
+          {%- if section.settings.image_1 -%}
+            {{ section.settings.image_1 | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.image_1.alt | default: 'Cat relaxing in DeskPaws' }}
+          {%- else -%}
+            <img
+              src="{{ 'hero-desk.png' | asset_url }}"
+              alt="Cat relaxing in DeskPaws desk bed beside a laptop"
+              width="720"
+              height="740"
+              loading="lazy"
+            >
+          {%- endif -%}
+        </div>
+        <div class="product-section__slide">
+          {%- if section.settings.image_2 -%}
+            {{ section.settings.image_2 | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.image_2.alt | default: 'DeskPaws clamp detail' }}
+          {%- else -%}
+            <img
+              src="{{ 'clamp-detail.jpeg' | asset_url }}"
+              alt="Close-up of the DeskPaws padded G-clamp mechanism"
+              width="720"
+              height="740"
+              loading="lazy"
+            >
+          {%- endif -%}
+        </div>
+      </div>
+      <div class="product-section__controls" aria-label="Gallery navigation">
+        <button class="btn-arrow btn-arrow--left" data-slides="s3-slides" data-dir="-1" aria-label="Previous image">
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none" aria-hidden="true"><path d="M19 6H1M6 1L1 6l5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="btn-arrow" data-slides="s3-slides" data-dir="1" aria-label="Next image">
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none" aria-hidden="true"><path d="M1 6h18M14 1l5 5-5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
     </div>
 
-    <!-- Hero image / video -->
-    <div class="reveal__media" data-anim="scale">
-      {%- if section.settings.lifestyle_image -%}
-        {{ section.settings.lifestyle_image | image_url: width: 1400 | image_tag: loading: 'lazy', alt: section.settings.lifestyle_image.alt | default: 'Cat relaxing in DeskPaws desk bed while owner works' }}
-      {%- else -%}
-        <img
-          src="{{ 'hero-desk.png' | asset_url }}"
-          alt="Gray cat comfortably settled in DeskPaws desk bed next to a working laptop"
-          width="1200"
-          height="580"
-          loading="lazy"
-          style="width:100%;object-fit:cover;object-position:center 30%;max-height:560px;"
-        >
-      {%- endif -%}
-    </div>
+    <div class="product-section__body">
+      <div class="product-section__group">
+        <p class="text-subtitle">Same cat. Same desk.</p>
+        <h2 class="h2" id="s3-heading">Completely different day.</h2>
+        <p class="text-paragraph">
+          They hop into their spot the moment you sit down &mdash; close enough to pet with one hand while you type with the other. The keyboard&rsquo;s yours again. The call goes uninterrupted. Good cat parent <em>and</em> productive human, at the same time.
+        </p>
+      </div>
 
-    <!-- Pull quote -->
-    <div class="reveal__pullquote container--narrow" data-anim>
-      <blockquote>
+      <ol class="steps-list">
+        <li>
+          <span class="steps-list__num">01</span>
+          <div class="steps-list__text">
+            <strong>Clamp it on</strong> &mdash; Padded G-clamp grips any desk edge, twist tight by hand. No tools, no drilling, 60 seconds.
+          </div>
+        </li>
+        <li>
+          <span class="steps-list__num">02</span>
+          <div class="steps-list__text">
+            <strong>Add a pinch of catnip</strong> &mdash; Most cats claim it within a day. The deep bowl shape does the rest &mdash; they&rsquo;re wired for it.
+          </div>
+        </li>
+        <li>
+          <span class="steps-list__num">03</span>
+          <div class="steps-list__text">
+            <strong>Get back to work</strong> &mdash; Glance over. They&rsquo;re already curled up and purring. Your keyboard is yours again.
+          </div>
+        </li>
+      </ol>
+
+      <blockquote class="pull-quote">
         {{ section.settings.pullquote | default: "She naps in it all day while I work and completely ignores my desk now. Best purchase I've made for working from home." }}
+        <cite>{{ section.settings.pullquote_author | default: "Sarah C. & Mochi — verified buyer" }}</cite>
       </blockquote>
-      <cite>{{ section.settings.pullquote_author | default: "Sarah C. &amp; Mochi — verified buyer" }}</cite>
-    </div>
 
-    <!-- 3-step row -->
-    <div class="steps">
-      <div class="step-card" data-anim data-anim-delay="1">
-        <div class="step-num">1</div>
-        <div class="step-title">Clamp it on</div>
-        <p class="step-body">Padded G-clamp grips any desk edge, twist tight by hand. No tools, no drilling, 60 seconds.</p>
+      <div class="product-section__cta">
+        <a href="{{ section.settings.cta_url | default: routes.root_url | append: 'products/deskpaws' }}" class="btn btn--secondary">
+          {{ section.settings.cta_label | default: "I Want That Workday" }}
+          <svg width="16" height="10" viewBox="0 0 16 10" fill="none" aria-hidden="true"><path d="M0 5h13.5M10 1l4.5 4-4.5 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
       </div>
-      <div class="step-card" data-anim data-anim-delay="2">
-        <div class="step-num">2</div>
-        <div class="step-title">Add a pinch of catnip</div>
-        <p class="step-body">Most cats claim it within a day. The deep bowl shape does the rest — they're wired for it.</p>
-      </div>
-      <div class="step-card" data-anim data-anim-delay="3">
-        <div class="step-num">3</div>
-        <div class="step-title">Get back to work</div>
-        <p class="step-body">Glance over. They're already curled up and purring. Your keyboard is yours again.</p>
-      </div>
-    </div>
-
-    <div class="reveal__cta" data-anim>
-      <a href="{{ section.settings.cta_url | default: routes.root_url | append: 'products/deskpaws' }}" class="btn btn--primary btn--lg">
-        {{ section.settings.cta_label | default: "I Want That Workday →" }}
-      </a>
     </div>
 
   </div>
@@ -65,18 +88,23 @@
 
 {% schema %}
 {
-  "name": "3 — Reveal + How It Works",
+  "name": "3 — How It Works",
   "tag": "section",
   "settings": [
     {
       "type": "image_picker",
-      "id": "lifestyle_image",
-      "label": "Lifestyle image (or video thumbnail)"
+      "id": "image_1",
+      "label": "Gallery image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Gallery image 2"
     },
     {
       "type": "textarea",
       "id": "pullquote",
-      "label": "Pull quote text",
+      "label": "Pull quote",
       "default": "She naps in it all day while I work and completely ignores my desk now. Best purchase I've made for working from home."
     },
     {
@@ -89,7 +117,7 @@
       "type": "text",
       "id": "cta_label",
       "label": "CTA button text",
-      "default": "I Want That Workday →"
+      "default": "I Want That Workday"
     },
     {
       "type": "url",
@@ -99,7 +127,7 @@
   ],
   "presets": [
     {
-      "name": "Reveal + How It Works"
+      "name": "How It Works"
     }
   ]
 }

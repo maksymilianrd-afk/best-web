@@ -1,31 +1,45 @@
-<footer class="site-footer" role="contentinfo">
-  <div class="container">
-    <div class="site-footer__inner">
+<footer class="footer" role="contentinfo">
+  <div class="footer__top">
+    <div class="footer__columns">
 
-      <a href="{{ routes.root_url }}" class="site-footer__logo" aria-label="{{ shop.name }} — home">
-        Desk<span class="accent">Paws</span>
-      </a>
+      <div class="footer__col">
+        <span class="footer__col-label">Shop</span>
+        <ul class="footer__links">
+          <li><a href="{{ routes.root_url }}products/deskpaws">DeskPaws Bed</a></li>
+          <li><a href="{{ routes.cart_url }}">Cart</a></li>
+        </ul>
+      </div>
 
-      <ul class="footer-links" aria-label="Footer navigation">
-        <li><a href="{{ routes.root_url }}pages/about">About</a></li>
-        <li><a href="{{ routes.root_url }}pages/faq">FAQ</a></li>
-        <li><a href="{{ routes.root_url }}pages/shipping-policy">Shipping</a></li>
-        <li><a href="{{ routes.root_url }}pages/return-policy">Returns</a></li>
-        <li><a href="{{ routes.root_url }}pages/contact">Contact</a></li>
-      </ul>
+      <div class="footer__col">
+        <span class="footer__col-label">Help</span>
+        <ul class="footer__links">
+          <li><a href="{{ routes.root_url }}pages/faq">FAQ</a></li>
+          <li><a href="{{ routes.root_url }}pages/shipping-policy">Shipping</a></li>
+          <li><a href="{{ routes.root_url }}pages/return-policy">Returns</a></li>
+        </ul>
+      </div>
 
-      <div class="site-footer__right">
-        <div class="footer-payments" aria-label="Accepted payment methods">
-          <span class="payment-badge">Visa</span>
-          <span class="payment-badge">Mastercard</span>
-          <span class="payment-badge">PayPal</span>
-          <span class="payment-badge">Amex</span>
-        </div>
-        <p class="site-footer__copy">
-          &copy; {{ 'now' | date: '%Y' }} DeskPaws &mdash; Made with 🐾 for WFH cat parents
+      <div class="footer__col">
+        <span class="footer__col-label">Contact</span>
+        <p class="footer__contact-line">
+          <a href="mailto:{{ settings.support_email }}">{{ settings.support_email }}</a><br>
+          Mon–Fri, 9am–5pm EST
         </p>
       </div>
 
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <a href="{{ routes.root_url }}" class="footer__logo">
+      Desk<span class="footer__logo-paws">Paws</span>
+    </a>
+    <p class="footer__copy">&copy; {{ 'now' | date: '%Y' }} DeskPaws</p>
+    <div class="footer__payments">
+      <span class="footer__payment-badge">Visa</span>
+      <span class="footer__payment-badge">MC</span>
+      <span class="footer__payment-badge">PayPal</span>
+      <span class="footer__payment-badge">Amex</span>
     </div>
   </div>
 </footer>

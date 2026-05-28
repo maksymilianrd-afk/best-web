@@ -1,77 +1,72 @@
-<section class="proof section section--cream" id="proof">
-  <div class="container">
+<section class="product-section product-section--image-left" id="reviews" aria-labelledby="s5-heading">
+  <div class="product-section__inner">
 
-    <div class="proof__header">
-      <p class="t-eyebrow proof__eyebrow" data-anim>Real cats. Real desks. Real relief.</p>
-      <h2 class="t-h2 proof__title" data-anim data-anim-delay="1">
-        Cats claim it faster<br>than their owners expect.
-      </h2>
-
-      <div class="proof__stat-bar" data-anim data-anim-delay="2">
-        <span class="proof__stars">★★★★★</span>
-        <span class="proof__rating">4.8</span>
-        <span class="proof__dot">·</span>
-        <span class="proof__meta">Most cats settle in within a day</span>
+    <div class="product-section__gallery">
+      <div class="product-section__slides" id="s5-slides">
+        <div class="product-section__slide">
+          {%- if section.settings.ugc_image_1 -%}
+            {{ section.settings.ugc_image_1 | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.ugc_image_1.alt | default: 'Happy cat in DeskPaws' }}
+          {%- else -%}
+            <div class="ugc-placeholder">
+              <span style="font-size:2.5rem;line-height:1;">&#x1F431;</span>
+              <p>Upload a real customer photo here</p>
+            </div>
+          {%- endif -%}
+        </div>
+        <div class="product-section__slide">
+          {%- if section.settings.ugc_image_2 -%}
+            {{ section.settings.ugc_image_2 | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.ugc_image_2.alt | default: 'Customer cat photo' }}
+          {%- else -%}
+            <img
+              src="{{ 'cat-curled.png' | asset_url }}"
+              alt="Cat settled in DeskPaws desk bed"
+              width="720"
+              height="740"
+              loading="lazy"
+            >
+          {%- endif -%}
+        </div>
+      </div>
+      <div class="product-section__controls" aria-label="Gallery navigation">
+        <button class="btn-arrow btn-arrow--left" data-slides="s5-slides" data-dir="-1" aria-label="Previous image">
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none" aria-hidden="true"><path d="M19 6H1M6 1L1 6l5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="btn-arrow" data-slides="s5-slides" data-dir="1" aria-label="Next image">
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none" aria-hidden="true"><path d="M1 6h18M14 1l5 5-5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
       </div>
     </div>
 
-    <!-- Review cards -->
-    <div class="reviews-grid">
+    <div class="product-section__body">
+      <div class="product-section__group">
+        <p class="text-subtitle">Real cats. Real desks. Real relief.</p>
+        <h2 class="h2" id="s5-heading">Cats claim it faster than their owners expect.</h2>
+      </div>
 
-      <!-- Review 1 -->
-      <article class="review-card" data-anim data-anim-delay="1">
-        <div class="review-card__photo">
-          {%- if section.settings.review_1_image -%}
-            {{ section.settings.review_1_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: 'Customer review photo' }}
-          {%- else -%}
-            <div class="review-photo-placeholder">🐱</div>
-          {%- endif -%}
-        </div>
-        <div class="review-card__body">
-          <div class="review-card__stars">★★★★★</div>
-          <p class="review-card__quote">
-            "{{ section.settings.review_1_text | default: "She claimed it within an hour of me setting it up. I honestly didn't expect it to work this fast. Now I find her there before I even clock in for the day." }}"
-          </p>
-          <span class="review-card__author">{{ section.settings.review_1_author | default: "[Your name & cat's name here]" }}</span>
-        </div>
-      </article>
+      <div class="stat-bar">
+        <span class="stat-bar__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span class="stat-bar__rating">4.8</span>
+        <span class="stat-bar__sep"></span>
+        <span class="stat-bar__meta">Most cats settle in within 24 hours</span>
+      </div>
 
-      <!-- Review 2 -->
-      <article class="review-card" data-anim data-anim-delay="2">
-        <div class="review-card__photo">
-          {%- if section.settings.review_2_image -%}
-            {{ section.settings.review_2_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: 'Customer review photo' }}
-          {%- else -%}
-            <div class="review-photo-placeholder">😸</div>
-          {%- endif -%}
+      <div class="review-list">
+        <div class="review-item">
+          <p class="review-item__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+          <p class="review-item__quote">&ldquo;{{ section.settings.review_1_text | default: "She claimed it within an hour of me setting it up. I honestly didn't expect it to work this fast. Now I find her there before I even clock in for the day." }}&rdquo;</p>
+          <p class="review-item__author">{{ section.settings.review_1_author | default: "Sarah &amp; Mochi" }}</p>
         </div>
-        <div class="review-card__body">
-          <div class="review-card__stars">★★★★★</div>
-          <p class="review-card__quote">
-            "{{ section.settings.review_2_text | default: "My 18 lb Maine Coon fits perfectly and it doesn't budge. The clamp is rock solid. I was worried about my desk but there's not a single mark." }}"
-          </p>
-          <span class="review-card__author">{{ section.settings.review_2_author | default: "[Your name & cat's name here]" }}</span>
+        <div class="review-item">
+          <p class="review-item__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+          <p class="review-item__quote">&ldquo;{{ section.settings.review_2_text | default: "My 18 lb Maine Coon fits perfectly and it doesn't budge. The clamp is rock solid. I was worried about my desk but there's not a single mark." }}&rdquo;</p>
+          <p class="review-item__author">{{ section.settings.review_2_author | default: "Rachel &amp; Chairman Floof" }}</p>
         </div>
-      </article>
-
-      <!-- Review 3 -->
-      <article class="review-card" data-anim data-anim-delay="3">
-        <div class="review-card__photo">
-          {%- if section.settings.review_3_image -%}
-            {{ section.settings.review_3_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: 'Customer review photo' }}
-          {%- else -%}
-            <div class="review-photo-placeholder">🐾</div>
-          {%- endif -%}
+        <div class="review-item">
+          <p class="review-item__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+          <p class="review-item__quote">&ldquo;{{ section.settings.review_3_text | default: "Bought this as a gift for my sister who works from home. She texted me a photo within 24 hours — cat completely settled in, keyboard completely free." }}&rdquo;</p>
+          <p class="review-item__author">{{ section.settings.review_3_author | default: "Jamie &mdash; gift buyer" }}</p>
         </div>
-        <div class="review-card__body">
-          <div class="review-card__stars">★★★★★</div>
-          <p class="review-card__quote">
-            "{{ section.settings.review_3_text | default: "Bought this as a gift for my sister who works from home. She texted me a photo within 24 hours — cat completely settled in, keyboard completely free. She said it's the best gift she's ever received." }}"
-          </p>
-          <span class="review-card__author">{{ section.settings.review_3_author | default: "[Your name & cat's name here]" }}</span>
-        </div>
-      </article>
-
+      </div>
     </div>
 
   </div>
@@ -79,17 +74,22 @@
 
 {% schema %}
 {
-  "name": "5 — Social Proof",
+  "name": "5 — Reviews",
   "tag": "section",
   "settings": [
     {
-      "type": "header",
-      "content": "Review 1"
+      "type": "image_picker",
+      "id": "ugc_image_1",
+      "label": "UGC photo 1"
     },
     {
       "type": "image_picker",
-      "id": "review_1_image",
-      "label": "Photo (real UGC — cat on desk)"
+      "id": "ugc_image_2",
+      "label": "UGC photo 2"
+    },
+    {
+      "type": "header",
+      "content": "Review 1"
     },
     {
       "type": "textarea",
@@ -100,17 +100,12 @@
     {
       "type": "text",
       "id": "review_1_author",
-      "label": "Author (First name & cat name)",
+      "label": "Author",
       "default": "Sarah & Mochi"
     },
     {
       "type": "header",
       "content": "Review 2"
-    },
-    {
-      "type": "image_picker",
-      "id": "review_2_image",
-      "label": "Photo"
     },
     {
       "type": "textarea",
@@ -129,11 +124,6 @@
       "content": "Review 3"
     },
     {
-      "type": "image_picker",
-      "id": "review_3_image",
-      "label": "Photo"
-    },
-    {
       "type": "textarea",
       "id": "review_3_text",
       "label": "Review text",
@@ -148,7 +138,7 @@
   ],
   "presets": [
     {
-      "name": "Social Proof"
+      "name": "Reviews"
     }
   ]
 }

@@ -1,71 +1,48 @@
-<section class="hero section--cream" id="hero">
-  <div class="container">
-    <div class="hero__grid">
+<section class="hero" id="hero">
 
-      <!-- Copy column -->
-      <div class="hero__copy">
-        <p class="t-eyebrow hero__eyebrow" data-anim data-anim-delay="1">
-          {{ section.settings.eyebrow | default: "The WFH cat problem, solved." }}
-        </p>
+  <div class="hero__background">
+    {%- if section.settings.hero_image -%}
+      {{ section.settings.hero_image | image_url: width: 2000 | image_tag: loading: 'eager', fetchpriority: 'high', alt: section.settings.hero_image.alt | default: 'Cat relaxing in DeskPaws desk bed' }}
+    {%- else -%}
+      <img
+        src="{{ 'hero-desk.png' | asset_url }}"
+        alt="Cat relaxing in DeskPaws bed clamped to a wooden desk"
+        width="2000"
+        height="1200"
+        loading="eager"
+        fetchpriority="high"
+      >
+    {%- endif -%}
+  </div>
 
-        <h1 class="hero__headline" data-anim data-anim-delay="2">
-          {%- if section.settings.headline != blank -%}
-            {{ section.settings.headline }}
-          {%- else -%}
-            Finally &mdash; a truce with your <em>feline coworker.</em>
-          {%- endif -%}
-        </h1>
+  <div class="hero__overlay"></div>
 
-        <p class="hero__sub" data-anim data-anim-delay="3">
-          {{ section.settings.subheadline | default: "The clamp-on desk bed that gives your cat their own space — right next to yours. No drilling. No drama. Just a very happy cat." }}
-        </p>
+  <div class="hero__container">
+    <h1 class="h1 hero__title">
+      {%- if section.settings.headline != blank -%}
+        {{ section.settings.headline }}
+      {%- else -%}
+        Finally &mdash; a truce with your <em>feline coworker.</em>
+      {%- endif -%}
+    </h1>
 
-        <div class="hero__cta-group" data-anim data-anim-delay="4">
-          <a href="{{ section.settings.cta_url | default: routes.root_url | append: 'products/deskpaws' }}" class="btn btn--primary btn--lg">
-            {{ section.settings.cta_label | default: "Claim My Cat's Spot — $79" }}
-          </a>
+    <p class="hero__description">
+      {{ section.settings.subheadline | default: "The clamp-on desk bed that gives your cat their own space — right next to yours. No drilling. No drama. Just a very happy cat." }}
+    </p>
 
-          <div class="hero__trust">
-            <span class="hero__trust-item">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              30-day happy-cat guarantee
-            </span>
-            <span class="hero__trust-item">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              Free shipping
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Image column -->
-      <div class="hero__media" data-anim="scale" data-anim-delay="1">
-        <div class="hero__img-wrap">
-          {%- if section.settings.hero_image -%}
-            {{ section.settings.hero_image | image_url: width: 1000 | image_tag: loading: 'eager', fetchpriority: 'high', alt: section.settings.hero_image.alt | default: 'Cat relaxing in DeskPaws bed on a desk' }}
-          {%- else -%}
-            <img
-              src="{{ 'hero-desk.png' | asset_url }}"
-              alt="Cat relaxing in DeskPaws bed clamped to a wooden desk"
-              width="720"
-              height="860"
-              loading="eager"
-              fetchpriority="high"
-            >
-          {%- endif -%}
-        </div>
-
-        <div class="hero__badge" data-anim data-anim-delay="5">
-          <span class="hero__badge-icon">😻</span>
-          <span class="hero__badge-text">
-            <strong>Most cats claim it</strong>
-            within 24 hours
-          </span>
-        </div>
-      </div>
-
+    <div class="hero__buttons">
+      <a href="{{ section.settings.cta_url | default: routes.root_url | append: 'products/deskpaws' }}" class="btn btn--primary-fill">
+        {{ section.settings.cta_label | default: "Claim My Cat's Spot — $79" }}
+      </a>
+      <a href="#the-bed" class="btn btn--text btn--white">
+        See how it works
+        <svg width="16" height="10" viewBox="0 0 16 10" fill="none" aria-hidden="true">
+          <path d="M0 5h13.5M10 1l4.5 4-4.5 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
     </div>
   </div>
+
 </section>
 
 {% schema %}
@@ -74,15 +51,9 @@
   "tag": "section",
   "settings": [
     {
-      "type": "text",
-      "id": "eyebrow",
-      "label": "Eyebrow label",
-      "default": "The WFH cat problem, solved."
-    },
-    {
       "type": "textarea",
       "id": "headline",
-      "label": "Headline (HTML allowed for <em> italics)",
+      "label": "Headline (use <em> for italics)",
       "default": "Finally — a truce with your feline coworker."
     },
     {
@@ -105,7 +76,7 @@
     {
       "type": "image_picker",
       "id": "hero_image",
-      "label": "Hero lifestyle image"
+      "label": "Hero image"
     }
   ],
   "presets": [
