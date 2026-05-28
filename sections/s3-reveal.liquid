@@ -1,134 +1,98 @@
-<section class="product-section product-section--image-left" id="how-it-works" aria-labelledby="s3-heading">
-  <div class="product-section__inner">
+<section class="benefits-section" id="benefits" aria-labelledby="s3-heading">
 
-    <div class="product-section__gallery">
-      <div class="product-section__slides" id="s3-slides">
-        <div class="product-section__slide">
-          {%- if section.settings.image_1 -%}
-            {{ section.settings.image_1 | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.image_1.alt | default: 'Cat relaxing in DeskPaws' }}
-          {%- else -%}
-            <img
-              src="{{ 'hero-desk.png' | asset_url }}"
-              alt="Cat relaxing in DeskPaws desk bed beside a laptop"
-              width="720"
-              height="740"
-              loading="lazy"
-            >
-          {%- endif -%}
-        </div>
-        <div class="product-section__slide">
-          {%- if section.settings.image_2 -%}
-            {{ section.settings.image_2 | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.image_2.alt | default: 'DeskPaws clamp detail' }}
-          {%- else -%}
-            <img
-              src="{{ 'clamp-detail.jpeg' | asset_url }}"
-              alt="Close-up of the DeskPaws padded G-clamp mechanism"
-              width="720"
-              height="740"
-              loading="lazy"
-            >
-          {%- endif -%}
-        </div>
-      </div>
-      <div class="product-section__controls" aria-label="Gallery navigation">
-        <button class="btn-arrow btn-arrow--left" data-slides="s3-slides" data-dir="-1" aria-label="Previous image">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/></svg>
-        </button>
-        <button class="btn-arrow" data-slides="s3-slides" data-dir="1" aria-label="Next image">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/></svg>
-        </button>
-      </div>
+  <div class="benefits-section__header">
+    <p class="text-subtitle">{{ section.settings.eyebrow | default: "Why it works" }}</p>
+    <h2 class="h2" id="s3-heading">{{ section.settings.heading | default: "Six ways DeskPaws changes your workday." }}</h2>
+    <p class="text-paragraph" style="margin-top:1rem;">
+      {{ section.settings.subhead | default: "Not specs. Benefits. The ones you feel at 9am on a Tuesday when you&rsquo;re on a deadline and your cat is purring six inches from your hand." }}
+    </p>
+  </div>
+
+  <div class="benefits-grid">
+
+    <div class="benefit-card">
+      <span class="benefit-card__icon">&#x1F43E;</span>
+      <h3 class="benefit-card__title">{{ section.settings.card_1_title | default: "Closeness without chaos" }}</h3>
+      <p class="benefit-card__body">{{ section.settings.card_1_body | default: "Your cat stays at arm&rsquo;s reach all day. You can reach over and scratch an ear between emails. They feel close. Your screen stays clear." }}</p>
     </div>
 
-    <div class="product-section__body">
-      <div class="product-section__group">
-        <p class="text-subtitle">Same cat. Same desk.</p>
-        <h2 class="h2" id="s3-heading">Completely different day.</h2>
-        <p class="text-paragraph">
-          They hop into their spot the moment you sit down &mdash; close enough to pet with one hand while you type with the other. The keyboard&rsquo;s yours again. The call goes uninterrupted. Good cat parent <em>and</em> productive human, at the same time.
-        </p>
-      </div>
+    <div class="benefit-card">
+      <span class="benefit-card__icon">&#x2328;&#xFE0F;</span>
+      <h3 class="benefit-card__title">{{ section.settings.card_2_title | default: "Your keyboard is yours again" }}</h3>
+      <p class="benefit-card__body">{{ section.settings.card_2_body | default: "No more &ldquo;asdfjkl;&rdquo; in the middle of a Slack message. No more apologising to clients. Your cat has their spot &mdash; and you have yours." }}</p>
+    </div>
 
-      <ol class="steps-list">
-        <li>
-          <span class="steps-list__num">01</span>
-          <div class="steps-list__text">
-            <strong>Clamp it on</strong> &mdash; Padded G-clamp grips any desk edge, twist tight by hand. No tools, no drilling, 60 seconds.
-          </div>
-        </li>
-        <li>
-          <span class="steps-list__num">02</span>
-          <div class="steps-list__text">
-            <strong>Add a pinch of catnip</strong> &mdash; Most cats claim it within a day. The deep bowl shape does the rest &mdash; they&rsquo;re wired for it.
-          </div>
-        </li>
-        <li>
-          <span class="steps-list__num">03</span>
-          <div class="steps-list__text">
-            <strong>Get back to work</strong> &mdash; Glance over. They&rsquo;re already curled up and purring. Your keyboard is yours again.
-          </div>
-        </li>
-      </ol>
+    <div class="benefit-card">
+      <span class="benefit-card__icon">&#x1F33F;</span>
+      <h3 class="benefit-card__title">{{ section.settings.card_3_title | default: "Cats take to it naturally" }}</h3>
+      <p class="benefit-card__body">{{ section.settings.card_3_body | default: "The deep bowl mimics the enclosed dens cats instinctively seek. Add a pinch of catnip on day one. Most cats are settled in within 24 hours." }}</p>
+    </div>
 
-      <blockquote class="pull-quote">
-        {{ section.settings.pullquote | default: "She naps in it all day while I work and completely ignores my desk now. Best purchase I've made for working from home." }}
-        <cite>{{ section.settings.pullquote_author | default: "Sarah C. & Mochi — verified buyer" }}</cite>
-      </blockquote>
+    <div class="benefit-card">
+      <span class="benefit-card__icon">&#x26A1;</span>
+      <h3 class="benefit-card__title">{{ section.settings.card_4_title | default: "On in 60 seconds, no tools" }}</h3>
+      <p class="benefit-card__body">{{ section.settings.card_4_body | default: "Padded G-clamp grips the edge of your desk by hand. No drilling, no screws, no YouTube tutorial. Just clamp and you&rsquo;re done." }}</p>
+    </div>
 
-      <div class="product-section__cta">
-        <a href="{{ section.settings.cta_url | default: routes.root_url | append: 'products/deskpaws' }}" class="btn btn--secondary">
-          {{ section.settings.cta_label | default: "I Want That Workday" }}
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/></svg>
-        </a>
-      </div>
+    <div class="benefit-card">
+      <span class="benefit-card__icon">&#x1FA91;</span>
+      <h3 class="benefit-card__title">{{ section.settings.card_5_title | default: "Fits any desk surface" }}</h3>
+      <p class="benefit-card__body">{{ section.settings.card_5_body | default: "Solid wood, wooden panel, marble, metal &mdash; if it has a straight edge up to 2&Prime; thick, DeskPaws clamps to it. Rubber pads protect every surface." }}</p>
+    </div>
+
+    <div class="benefit-card">
+      <span class="benefit-card__icon">&#x1F4AA;</span>
+      <h3 class="benefit-card__title">{{ section.settings.card_6_title | default: "Holds the chonkiest cat" }}</h3>
+      <p class="benefit-card__body">{{ section.settings.card_6_body | default: "Powder-coated steel frame rated to 50 lbs. Maine Coons, Ragdolls, your suspiciously heavy rescue included. Zero wobble on impact landing." }}</p>
     </div>
 
   </div>
+
+  <div class="buy-block">
+    <div class="buy-block__price">
+      <span class="price-anchor">$150&ndash;$179</span>
+      <span class="price-main">$79</span>
+    </div>
+    <p class="buy-block__shipping">Free shipping &middot; Ships in 1&ndash;2 business days</p>
+    <a href="{{ section.settings.cta_url | default: routes.root_url | append: 'products/deskpaws' }}" class="btn btn--primary-fill">
+      {{ section.settings.cta_label | default: "Claim My Cat&rsquo;s Spot &mdash; $79" }}
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/></svg>
+    </a>
+    <p class="trust-line">&#x1F512; Secure checkout &middot; Visa / Mastercard / PayPal &middot; 30-day guarantee</p>
+  </div>
+
 </section>
 
 {% schema %}
 {
-  "name": "3 — How It Works",
+  "name": "3 — Features & Benefits",
   "tag": "section",
   "settings": [
-    {
-      "type": "image_picker",
-      "id": "image_1",
-      "label": "Gallery image 1"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_2",
-      "label": "Gallery image 2"
-    },
-    {
-      "type": "textarea",
-      "id": "pullquote",
-      "label": "Pull quote",
-      "default": "She naps in it all day while I work and completely ignores my desk now. Best purchase I've made for working from home."
-    },
-    {
-      "type": "text",
-      "id": "pullquote_author",
-      "label": "Quote attribution",
-      "default": "Sarah C. & Mochi — verified buyer"
-    },
-    {
-      "type": "text",
-      "id": "cta_label",
-      "label": "CTA button text",
-      "default": "I Want That Workday"
-    },
-    {
-      "type": "url",
-      "id": "cta_url",
-      "label": "CTA button link"
-    }
+    { "type": "text",     "id": "eyebrow",      "label": "Eyebrow",   "default": "Why it works" },
+    { "type": "text",     "id": "heading",      "label": "Heading",   "default": "Six ways DeskPaws changes your workday." },
+    { "type": "textarea", "id": "subhead",      "label": "Subheading" },
+    { "type": "header",   "content": "Card 1" },
+    { "type": "text",     "id": "card_1_title", "label": "Title",     "default": "Closeness without chaos" },
+    { "type": "textarea", "id": "card_1_body",  "label": "Body" },
+    { "type": "header",   "content": "Card 2" },
+    { "type": "text",     "id": "card_2_title", "label": "Title",     "default": "Your keyboard is yours again" },
+    { "type": "textarea", "id": "card_2_body",  "label": "Body" },
+    { "type": "header",   "content": "Card 3" },
+    { "type": "text",     "id": "card_3_title", "label": "Title",     "default": "Cats take to it naturally" },
+    { "type": "textarea", "id": "card_3_body",  "label": "Body" },
+    { "type": "header",   "content": "Card 4" },
+    { "type": "text",     "id": "card_4_title", "label": "Title",     "default": "On in 60 seconds, no tools" },
+    { "type": "textarea", "id": "card_4_body",  "label": "Body" },
+    { "type": "header",   "content": "Card 5" },
+    { "type": "text",     "id": "card_5_title", "label": "Title",     "default": "Fits any desk surface" },
+    { "type": "textarea", "id": "card_5_body",  "label": "Body" },
+    { "type": "header",   "content": "Card 6" },
+    { "type": "text",     "id": "card_6_title", "label": "Title",     "default": "Holds the chonkiest cat" },
+    { "type": "textarea", "id": "card_6_body",  "label": "Body" },
+    { "type": "header",   "content": "Buy block" },
+    { "type": "text",     "id": "cta_label",    "label": "CTA text",  "default": "Claim My Cat's Spot — $79" },
+    { "type": "url",      "id": "cta_url",      "label": "CTA link" }
   ],
-  "presets": [
-    {
-      "name": "How It Works"
-    }
-  ]
+  "presets": [{ "name": "Features & Benefits" }]
 }
 {% endschema %}

@@ -4,38 +4,53 @@
       "type": "s1-hero",
       "settings": {}
     },
-    "products_nav": {
-      "type": "products-nav",
-      "settings": {}
-    },
-    "problem": {
+    "meet": {
       "type": "s2-problem",
       "settings": {}
     },
-    "reveal": {
+    "benefits": {
       "type": "s3-reveal",
       "settings": {}
     },
-    "why": {
+    "objection": {
       "type": "s4-why",
       "settings": {}
     },
-    "proof": {
+    "how_it_works": {
       "type": "s5-proof",
       "settings": {}
     },
-    "faq_cta": {
+    "before_after": {
       "type": "s6-faq-cta",
+      "settings": {}
+    },
+    "reviews": {
+      "type": "s7-reviews",
+      "settings": {}
+    },
+    "comparison": {
+      "type": "s8-comparison",
+      "settings": {}
+    },
+    "guarantee": {
+      "type": "s9-guarantee",
+      "settings": {}
+    },
+    "final_cta": {
+      "type": "s10-final-cta",
       "settings": {}
     }
   },
   "order": [
     "hero",
-    "products_nav",
-    "problem",
-    "reveal",
-    "why",
-    "proof",
-    "faq_cta"
+    "meet",
+    "benefits",
+    "objection",
+    "how_it_works",
+    "before_after",
+    "reviews",
+    "comparison",
+    "guarantee",
+    "final_cta"
   ]
 }

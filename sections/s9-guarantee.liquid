@@ -1,0 +1,139 @@
+<section class="guarantee-section" id="guarantee" aria-labelledby="s9-heading">
+  <div class="guarantee-section__inner">
+
+    <div class="guarantee-hero">
+      <div class="guarantee-hero__badge">&#x1F6E1;</div>
+      <h2 class="guarantee-hero__heading" id="s9-heading">
+        {{ section.settings.guarantee_heading | default: "30-day happy-cat guarantee." }}
+      </h2>
+      <p class="guarantee-hero__body">
+        {{ section.settings.guarantee_body | default: "If your cat genuinely snubs it and you&rsquo;re not happy, return it within 30 days for a full refund. You keep the bed. No questions. No forms. No haggling. We&rsquo;re confident enough to bet $79 on it." }}
+      </p>
+      <div class="guarantee-hero__cta">
+        <a href="{{ section.settings.cta_url | default: routes.root_url | append: 'products/deskpaws' }}" class="btn btn--secondary" style="border-color:rgba(255,255,255,0.5);color:var(--color-white);">
+          {{ section.settings.cta_label | default: "Claim My Cat&rsquo;s Spot &mdash; $79" }}
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/></svg>
+        </a>
+        <p style="font-size:0.8125rem;color:rgba(255,255,255,0.45);margin-top:0.75rem;">&#x1F512; Secure checkout &middot; Free shipping &middot; Ships in 1&ndash;2 days</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="product-section__group" style="margin-bottom:2rem;">
+        <p class="text-subtitle">{{ section.settings.faq_eyebrow | default: "Got questions?" }}</p>
+        <h3 class="h3">{{ section.settings.faq_heading | default: "We&rsquo;ve got answers." }}</h3>
+      </div>
+
+      <div class="faq-list" role="list">
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-item__trigger" aria-expanded="false">
+            <span class="faq-item__question">{{ section.settings.faq_1_q | default: "Will my cat actually use it?" }}</span>
+            <span class="faq-item__icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg>
+            </span>
+          </button>
+          <div class="faq-item__answer">
+            <p class="faq-item__body">{{ section.settings.faq_1_a | default: "Most cats claim it within 24 hours. Place it at desk height where they already like to sit, add a pinch of catnip, and let them investigate at their own pace. The deep bowl naturally appeals to cats that seek enclosed spaces &mdash; which is almost all cats. If yours is the exception, our 30-day guarantee has you covered." }}</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-item__trigger" aria-expanded="false">
+            <span class="faq-item__question">{{ section.settings.faq_2_q | default: "What desks does it fit?" }}</span>
+            <span class="faq-item__icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg>
+            </span>
+          </button>
+          <div class="faq-item__answer">
+            <p class="faq-item__body">{{ section.settings.faq_2_a | default: "Works on solid wood, wooden panel, marble, and metal desks with a straight edge up to ~2 inches (5 cm) thick. Not ideal for thin glass or desks with unusual lips or curves. Not sure? Email hello@deskpaws.com — we'll tell you straight." }}</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-item__trigger" aria-expanded="false">
+            <span class="faq-item__question">{{ section.settings.faq_3_q | default: "Will it scratch or mark my desk?" }}</span>
+            <span class="faq-item__icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg>
+            </span>
+          </button>
+          <div class="faq-item__answer">
+            <p class="faq-item__body">{{ section.settings.faq_3_a | default: "No. The G-clamp has soft rubber padding on every contact point — top, bottom, and sides. We've tested it on wood, marble, and metal. Zero marks." }}</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-item__trigger" aria-expanded="false">
+            <span class="faq-item__question">{{ section.settings.faq_4_q | default: "Is it stable? My cat is a jumper." }}</span>
+            <span class="faq-item__icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg>
+            </span>
+          </button>
+          <div class="faq-item__answer">
+            <p class="faq-item__body">{{ section.settings.faq_4_a | default: "The steel G-clamp locks tight — once hand-tightened, it doesn't shift. The frame supports up to 50 lbs and the woven base distributes weight evenly. Zero reports of wobble from an impact landing." }}</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-item__trigger" aria-expanded="false">
+            <span class="faq-item__question">{{ section.settings.faq_5_q | default: "How do I clean it?" }}</span>
+            <span class="faq-item__icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg>
+            </span>
+          </button>
+          <div class="faq-item__answer">
+            <p class="faq-item__body">{{ section.settings.faq_5_a | default: "Remove the sherpa cushion cover, hand-wash in cold water with mild detergent, air dry. Don't tumble-dry. The metal frame just needs a wipe down." }}</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-item__trigger" aria-expanded="false">
+            <span class="faq-item__question">{{ section.settings.faq_6_q | default: "How long does shipping take?" }}</span>
+            <span class="faq-item__icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg>
+            </span>
+          </button>
+          <div class="faq-item__answer">
+            <p class="faq-item__body">{{ section.settings.faq_6_a | default: "We ship within 1–2 business days. Delivery to US addresses takes approximately 10 days. You'll receive a tracking number the moment it ships." }}</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "9 — Guarantee + FAQ",
+  "tag": "section",
+  "settings": [
+    { "type": "text",     "id": "guarantee_heading", "label": "Guarantee heading", "default": "30-day happy-cat guarantee." },
+    { "type": "textarea", "id": "guarantee_body",    "label": "Guarantee body" },
+    { "type": "text",     "id": "cta_label",         "label": "CTA text",          "default": "Claim My Cat's Spot — $79" },
+    { "type": "url",      "id": "cta_url",           "label": "CTA link" },
+    { "type": "text",     "id": "faq_eyebrow",       "label": "FAQ eyebrow",       "default": "Got questions?" },
+    { "type": "text",     "id": "faq_heading",       "label": "FAQ heading",       "default": "We've got answers." },
+    { "type": "header",   "content": "FAQ 1" },
+    { "type": "text",     "id": "faq_1_q",           "label": "Question" },
+    { "type": "textarea", "id": "faq_1_a",           "label": "Answer" },
+    { "type": "header",   "content": "FAQ 2" },
+    { "type": "text",     "id": "faq_2_q",           "label": "Question" },
+    { "type": "textarea", "id": "faq_2_a",           "label": "Answer" },
+    { "type": "header",   "content": "FAQ 3" },
+    { "type": "text",     "id": "faq_3_q",           "label": "Question" },
+    { "type": "textarea", "id": "faq_3_a",           "label": "Answer" },
+    { "type": "header",   "content": "FAQ 4" },
+    { "type": "text",     "id": "faq_4_q",           "label": "Question" },
+    { "type": "textarea", "id": "faq_4_a",           "label": "Answer" },
+    { "type": "header",   "content": "FAQ 5" },
+    { "type": "text",     "id": "faq_5_q",           "label": "Question" },
+    { "type": "textarea", "id": "faq_5_a",           "label": "Answer" },
+    { "type": "header",   "content": "FAQ 6" },
+    { "type": "text",     "id": "faq_6_q",           "label": "Question" },
+    { "type": "textarea", "id": "faq_6_a",           "label": "Answer" }
+  ],
+  "presets": [{ "name": "Guarantee + FAQ" }]
+}
+{% endschema %}

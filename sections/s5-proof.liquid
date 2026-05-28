@@ -1,29 +1,20 @@
-<section class="product-section product-section--image-left" id="reviews" aria-labelledby="s5-heading">
+<section class="product-section product-section--image-left" id="how-it-works" aria-labelledby="s5-heading">
   <div class="product-section__inner">
 
     <div class="product-section__gallery">
       <div class="product-section__slides" id="s5-slides">
         <div class="product-section__slide">
-          {%- if section.settings.ugc_image_1 -%}
-            {{ section.settings.ugc_image_1 | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.ugc_image_1.alt | default: 'Happy cat in DeskPaws' }}
+          {%- if section.settings.image_1 -%}
+            {{ section.settings.image_1 | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.image_1.alt | default: 'DeskPaws clamp detail' }}
           {%- else -%}
-            <div class="ugc-placeholder">
-              <span style="font-size:2.5rem;line-height:1;">&#x1F431;</span>
-              <p>Upload a real customer photo here</p>
-            </div>
+            <img src="{{ 'clamp-detail.jpeg' | asset_url }}" alt="Close-up of the padded G-clamp gripping a desk edge" width="720" height="740" loading="lazy">
           {%- endif -%}
         </div>
         <div class="product-section__slide">
-          {%- if section.settings.ugc_image_2 -%}
-            {{ section.settings.ugc_image_2 | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.ugc_image_2.alt | default: 'Customer cat photo' }}
+          {%- if section.settings.image_2 -%}
+            {{ section.settings.image_2 | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.image_2.alt | default: 'DeskPaws desk compatibility' }}
           {%- else -%}
-            <img
-              src="{{ 'cat-curled.png' | asset_url }}"
-              alt="Cat settled in DeskPaws desk bed"
-              width="720"
-              height="740"
-              loading="lazy"
-            >
+            <img src="{{ 'product-floating-2.png' | asset_url }}" alt="DeskPaws product floating view" width="720" height="740" loading="lazy">
           {%- endif -%}
         </div>
       </div>
@@ -39,33 +30,43 @@
 
     <div class="product-section__body">
       <div class="product-section__group">
-        <p class="text-subtitle">Real cats. Real desks. Real relief.</p>
-        <h2 class="h2" id="s5-heading">Cats claim it faster than their owners expect.</h2>
+        <p class="text-subtitle">{{ section.settings.eyebrow | default: "Setup" }}</p>
+        <h2 class="h2" id="s5-heading">{{ section.settings.heading | default: "Three steps. Sixty seconds." }}</h2>
+        <p class="text-paragraph">
+          {{ section.settings.body | default: "No tools. No drilling. No reading a manual at midnight." }}
+        </p>
       </div>
 
-      <div class="stat-bar">
-        <span class="stat-bar__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        <span class="stat-bar__rating">4.8</span>
-        <span class="stat-bar__sep"></span>
-        <span class="stat-bar__meta">Most cats settle in within 24 hours</span>
-      </div>
+      <ol class="steps-list">
+        <li>
+          <span class="steps-list__num">01</span>
+          <div class="steps-list__text">
+            <strong>{{ section.settings.step_1_title | default: "Clamp it on" }}</strong> &mdash;
+            {{ section.settings.step_1_body | default: "Padded G-clamp grips any straight desk edge. Hand-tighten by twisting the knob &mdash; no tools needed. Done in 60 seconds." }}
+          </div>
+        </li>
+        <li>
+          <span class="steps-list__num">02</span>
+          <div class="steps-list__text">
+            <strong>{{ section.settings.step_2_title | default: "Add a pinch of catnip" }}</strong> &mdash;
+            {{ section.settings.step_2_body | default: "Place it at desk height where your cat already likes to hang out. Sprinkle a little catnip. Let them investigate at their own pace." }}
+          </div>
+        </li>
+        <li>
+          <span class="steps-list__num">03</span>
+          <div class="steps-list__text">
+            <strong>{{ section.settings.step_3_title | default: "Get back to work" }}</strong> &mdash;
+            {{ section.settings.step_3_body | default: "Cat settled. Keyboard clear. One hand free to reach over and scratch an ear whenever you want." }}
+          </div>
+        </li>
+      </ol>
 
-      <div class="review-list">
-        <div class="review-item">
-          <p class="review-item__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-          <p class="review-item__quote">&ldquo;{{ section.settings.review_1_text | default: "She claimed it within an hour of me setting it up. I honestly didn't expect it to work this fast. Now I find her there before I even clock in for the day." }}&rdquo;</p>
-          <p class="review-item__author">{{ section.settings.review_1_author | default: "Sarah &amp; Mochi" }}</p>
-        </div>
-        <div class="review-item">
-          <p class="review-item__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-          <p class="review-item__quote">&ldquo;{{ section.settings.review_2_text | default: "My 18 lb Maine Coon fits perfectly and it doesn't budge. The clamp is rock solid. I was worried about my desk but there's not a single mark." }}&rdquo;</p>
-          <p class="review-item__author">{{ section.settings.review_2_author | default: "Rachel &amp; Chairman Floof" }}</p>
-        </div>
-        <div class="review-item">
-          <p class="review-item__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-          <p class="review-item__quote">&ldquo;{{ section.settings.review_3_text | default: "Bought this as a gift for my sister who works from home. She texted me a photo within 24 hours — cat completely settled in, keyboard completely free." }}&rdquo;</p>
-          <p class="review-item__author">{{ section.settings.review_3_author | default: "Jamie &mdash; gift buyer" }}</p>
-        </div>
+      <div class="product-section__group">
+        <p class="text-small" style="color:var(--color-text-muted);">
+          &#10003; Solid wood &nbsp;&middot;&nbsp; &#10003; Wooden panel &nbsp;&middot;&nbsp; &#10003; Marble &nbsp;&middot;&nbsp; &#10003; Metal &nbsp;&middot;&nbsp; &#10003; Up to 2&Prime; thick
+          <br>Not suitable for thin glass or desks with unusual curved lips.
+          <a href="mailto:hello@deskpaws.com" style="color:var(--color-gold);text-decoration:underline;text-underline-offset:2px;">Not sure? Email us.</a>
+        </p>
       </div>
     </div>
 
@@ -74,72 +75,24 @@
 
 {% schema %}
 {
-  "name": "5 — Reviews",
+  "name": "5 — How It Works",
   "tag": "section",
   "settings": [
-    {
-      "type": "image_picker",
-      "id": "ugc_image_1",
-      "label": "UGC photo 1"
-    },
-    {
-      "type": "image_picker",
-      "id": "ugc_image_2",
-      "label": "UGC photo 2"
-    },
-    {
-      "type": "header",
-      "content": "Review 1"
-    },
-    {
-      "type": "textarea",
-      "id": "review_1_text",
-      "label": "Review text",
-      "default": "She claimed it within an hour of me setting it up. I honestly didn't expect it to work this fast. Now I find her there before I even clock in for the day."
-    },
-    {
-      "type": "text",
-      "id": "review_1_author",
-      "label": "Author",
-      "default": "Sarah & Mochi"
-    },
-    {
-      "type": "header",
-      "content": "Review 2"
-    },
-    {
-      "type": "textarea",
-      "id": "review_2_text",
-      "label": "Review text",
-      "default": "My 18 lb Maine Coon fits perfectly and it doesn't budge. The clamp is rock solid. I was worried about my desk but there's not a single mark."
-    },
-    {
-      "type": "text",
-      "id": "review_2_author",
-      "label": "Author",
-      "default": "Rachel & Chairman Floof"
-    },
-    {
-      "type": "header",
-      "content": "Review 3"
-    },
-    {
-      "type": "textarea",
-      "id": "review_3_text",
-      "label": "Review text",
-      "default": "Bought this as a gift for my sister who works from home. She texted me a photo within 24 hours — cat completely settled in, keyboard completely free."
-    },
-    {
-      "type": "text",
-      "id": "review_3_author",
-      "label": "Author",
-      "default": "Jamie — gift buyer"
-    }
+    { "type": "image_picker", "id": "image_1",      "label": "Gallery image 1" },
+    { "type": "image_picker", "id": "image_2",      "label": "Gallery image 2" },
+    { "type": "text",     "id": "eyebrow",          "label": "Eyebrow",   "default": "Setup" },
+    { "type": "text",     "id": "heading",          "label": "Heading",   "default": "Three steps. Sixty seconds." },
+    { "type": "textarea", "id": "body",             "label": "Intro text" },
+    { "type": "header",   "content": "Step 1" },
+    { "type": "text",     "id": "step_1_title",     "label": "Title",     "default": "Clamp it on" },
+    { "type": "textarea", "id": "step_1_body",      "label": "Body" },
+    { "type": "header",   "content": "Step 2" },
+    { "type": "text",     "id": "step_2_title",     "label": "Title",     "default": "Add a pinch of catnip" },
+    { "type": "textarea", "id": "step_2_body",      "label": "Body" },
+    { "type": "header",   "content": "Step 3" },
+    { "type": "text",     "id": "step_3_title",     "label": "Title",     "default": "Get back to work" },
+    { "type": "textarea", "id": "step_3_body",      "label": "Body" }
   ],
-  "presets": [
-    {
-      "name": "Reviews"
-    }
-  ]
+  "presets": [{ "name": "How It Works" }]
 }
 {% endschema %}

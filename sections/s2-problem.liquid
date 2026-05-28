@@ -1,62 +1,20 @@
-<section class="product-section product-section--image-right" id="the-bed" aria-labelledby="s2-heading">
+<section class="product-section product-section--image-left" id="meet-deskpaws" aria-labelledby="s2-heading">
   <div class="product-section__inner">
-
-    <div class="product-section__body">
-      <div class="product-section__group">
-        <p class="text-subtitle">The daily chaos</p>
-        <h2 class="h2" id="s2-heading">You know&nbsp;the&nbsp;routine.</h2>
-        <p class="text-paragraph">
-          You sit down, open the laptop, and within two minutes there they are &mdash; strolling across the keyboard, parking between you and the monitor, &ldquo;helping&rdquo; you send <code style="background:rgba(44,26,17,0.07);padding:1px 5px;font-size:0.85em;">TGFFFF8F4$$</code> to the group chat.
-        </p>
-      </div>
-
-      <ul class="fails-list">
-        <li><span class="fail-icon">&mdash;</span> <s>Floor bed &mdash; they ignore it</s></li>
-        <li><span class="fail-icon">&mdash;</span> <s>Closed door &mdash; the guilt is unbearable</s></li>
-        <li><span class="fail-icon">&mdash;</span> <s>Lap &mdash; try typing like that</s></li>
-      </ul>
-
-      <div class="product-section__group">
-        <p class="text-paragraph">
-          Moving them off the desk doesn&rsquo;t feel like winning. It feels like turning your friend away. They just want to be near you &mdash; which is why nothing you&rsquo;ve tried has worked.
-        </p>
-        <p class="text-paragraph">
-          So we stopped trying to keep cats off the desk. We built them a better place to be.
-        </p>
-      </div>
-
-      <blockquote class="pull-quote">
-        <em>Meowcro management</em> &mdash; happening 6&ndash;10&times; before noon.
-        <cite>Every WFH cat parent, ever</cite>
-      </blockquote>
-    </div>
 
     <div class="product-section__gallery">
       <div class="product-section__slides" id="s2-slides">
         <div class="product-section__slide">
           {%- if section.settings.image_1 -%}
-            {{ section.settings.image_1 | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.image_1.alt | default: 'Cat in DeskPaws bed' }}
+            {{ section.settings.image_1 | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.image_1.alt | default: 'DeskPaws desk cat bed' }}
           {%- else -%}
-            <img
-              src="{{ 'cat-curled.png' | asset_url }}"
-              alt="Fluffy cat curled up in DeskPaws desk bed"
-              width="720"
-              height="740"
-              loading="lazy"
-            >
+            <img src="{{ 'product-floating.png' | asset_url }}" alt="DeskPaws deep sherpa nest clamped to a desk" width="720" height="740" loading="lazy">
           {%- endif -%}
         </div>
         <div class="product-section__slide">
           {%- if section.settings.image_2 -%}
             {{ section.settings.image_2 | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.image_2.alt | default: 'DeskPaws on desk' }}
           {%- else -%}
-            <img
-              src="{{ 'product-on-desk.png' | asset_url }}"
-              alt="DeskPaws bed clamped on a dark wooden desk"
-              width="720"
-              height="740"
-              loading="lazy"
-            >
+            <img src="{{ 'product-on-desk.png' | asset_url }}" alt="DeskPaws clamped to a real desk with a cat inside" width="720" height="740" loading="lazy">
           {%- endif -%}
         </div>
       </div>
@@ -70,29 +28,53 @@
       </div>
     </div>
 
+    <div class="product-section__body">
+      <div class="product-section__group">
+        <p class="text-subtitle">{{ section.settings.eyebrow | default: "Meet DeskPaws" }}</p>
+        <h2 class="h2" id="s2-heading">{{ section.settings.heading | default: "A nest that belongs on your desk." }}</h2>
+        <p class="text-paragraph">
+          {{ section.settings.body | default: "DeskPaws is a deep, sherpa-lined bowl that clamps flush to your desk edge. Your cat gets an enclosed, cozy perch right at your elbow &mdash; close enough to touch without touching your keyboard." }}
+        </p>
+      </div>
+
+      <div class="product-section__group">
+        <p class="text-paragraph">
+          {{ section.settings.body_2 | default: "Most desk beds are flat mesh hammocks. Cats instinctively avoid open, exposed surfaces &mdash; they seek enclosed, nest-like hideaways. The deep bowl shape works with that instinct, not against it. That&rsquo;s why cats actually stay in it." }}
+        </p>
+      </div>
+
+      <blockquote class="pull-quote">
+        {{ section.settings.pullquote | default: "I genuinely didn&rsquo;t think it would work. She was in it within two hours. Now I have to remind myself to pet her because she&rsquo;s not on my keyboard." }}
+        <cite>{{ section.settings.pullquote_author | default: "Amanda K. &amp; Biscuit &mdash; verified buyer" }}</cite>
+      </blockquote>
+
+      <div class="product-section__cta">
+        <a href="{{ section.settings.cta_url | default: routes.root_url | append: 'products/deskpaws' }}" class="btn btn--secondary">
+          {{ section.settings.cta_label | default: "See It Up Close" }}
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/></svg>
+        </a>
+      </div>
+    </div>
+
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "2 — The Problem",
+  "name": "2 — Meet DeskPaws",
   "tag": "section",
   "settings": [
-    {
-      "type": "image_picker",
-      "id": "image_1",
-      "label": "Gallery image 1"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_2",
-      "label": "Gallery image 2"
-    }
+    { "type": "image_picker", "id": "image_1", "label": "Gallery image 1" },
+    { "type": "image_picker", "id": "image_2", "label": "Gallery image 2" },
+    { "type": "text",     "id": "eyebrow",          "label": "Eyebrow",    "default": "Meet DeskPaws" },
+    { "type": "text",     "id": "heading",           "label": "Heading",    "default": "A nest that belongs on your desk." },
+    { "type": "textarea", "id": "body",              "label": "Body paragraph 1" },
+    { "type": "textarea", "id": "body_2",            "label": "Body paragraph 2" },
+    { "type": "textarea", "id": "pullquote",         "label": "Pull quote" },
+    { "type": "text",     "id": "pullquote_author",  "label": "Quote attribution", "default": "Amanda K. & Biscuit — verified buyer" },
+    { "type": "text",     "id": "cta_label",         "label": "CTA text",   "default": "See It Up Close" },
+    { "type": "url",      "id": "cta_url",           "label": "CTA link" }
   ],
-  "presets": [
-    {
-      "name": "The Problem"
-    }
-  ]
+  "presets": [{ "name": "Meet DeskPaws" }]
 }
 {% endschema %}

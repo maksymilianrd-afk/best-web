@@ -1,0 +1,101 @@
+<section class="reviews-section" id="reviews" aria-labelledby="s7-heading">
+
+  <div class="reviews-section__header">
+    <p class="text-subtitle">{{ section.settings.eyebrow | default: "Real cats. Real desks." }}</p>
+    <h2 class="h2" id="s7-heading">{{ section.settings.heading | default: "What happens when the keyboard is finally yours again." }}</h2>
+  </div>
+
+  <div class="stat-bar" style="justify-content:center;margin-bottom:clamp(2.5rem,4vw,3.5rem);">
+    <span class="stat-bar__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+    <span class="stat-bar__rating">4.8</span>
+    <span class="stat-bar__sep"></span>
+    <span class="stat-bar__meta">{{ section.settings.stat_meta | default: "Over 400 verified reviews" }}</span>
+  </div>
+
+  <div class="reviews-grid">
+
+    <div class="review-card">
+      <p class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+      <p class="review-card__quote">&ldquo;{{ section.settings.review_1 | default: "She was in it within an hour of setup. I genuinely didn&rsquo;t expect it to work that fast. Now I find her already settled in every morning before I even sit down." }}&rdquo;</p>
+      <p class="review-card__author">{{ section.settings.review_1_author | default: "Sarah M. &amp; Biscuit" }}</p>
+    </div>
+
+    <div class="review-card">
+      <p class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+      <p class="review-card__quote">&ldquo;{{ section.settings.review_2 | default: "My 18 lb Maine Coon fits perfectly. The clamp is rock solid &mdash; zero wobble even when he jumps in. Not a single mark on my desk." }}&rdquo;</p>
+      <p class="review-card__author">{{ section.settings.review_2_author | default: "Rachel T. &amp; Chairman Floof" }}</p>
+    </div>
+
+    <div class="review-card">
+      <p class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+      <p class="review-card__quote">&ldquo;{{ section.settings.review_3 | default: "I bought this as a gift. My sister texted me a photo within 24 hours &mdash; cat completely settled, keyboard completely clear. It actually works." }}&rdquo;</p>
+      <p class="review-card__author">{{ section.settings.review_3_author | default: "Jamie L. &mdash; gift buyer" }}</p>
+    </div>
+
+    <div class="review-card">
+      <p class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+      <p class="review-card__quote">&ldquo;{{ section.settings.review_4 | default: "I was on six calls this week and didn&rsquo;t have to apologise for my cat once. That alone was worth $79 to me." }}&rdquo;</p>
+      <p class="review-card__author">{{ section.settings.review_4_author | default: "Priya K. &amp; Mango" }}</p>
+    </div>
+
+    <div class="review-card">
+      <p class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+      <p class="review-card__quote">&ldquo;{{ section.settings.review_5 | default: "Set it up Sunday night. Monday morning she was in it before my coffee was ready. I actually teared up a little. Ridiculous but true." }}&rdquo;</p>
+      <p class="review-card__author">{{ section.settings.review_5_author | default: "Leah R. &amp; Duchess" }}</p>
+    </div>
+
+    <div class="review-card">
+      <p class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+      <p class="review-card__quote">&ldquo;{{ section.settings.review_6 | default: "The sherpa cushion is so soft even I want to sleep in it. Removes easily for washing. Genuinely great product." }}&rdquo;</p>
+      <p class="review-card__author">{{ section.settings.review_6_author | default: "Dana W. &amp; Gnocchi" }}</p>
+    </div>
+
+  </div>
+
+  <div class="reviews-cta">
+    <div class="price-row">
+      <span class="price-anchor">$150&ndash;$179</span>
+      <span class="price-main">$79</span>
+    </div>
+    <a href="{{ section.settings.cta_url | default: routes.root_url | append: 'products/deskpaws' }}" class="btn btn--primary-fill">
+      {{ section.settings.cta_label | default: "Join Them &mdash; Claim Your Spot" }}
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/></svg>
+    </a>
+    <p class="trust-line">&#x1F512; Secure checkout &middot; Free shipping &middot; 30-day guarantee</p>
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "7 — Reviews",
+  "tag": "section",
+  "settings": [
+    { "type": "text",     "id": "eyebrow",        "label": "Eyebrow",     "default": "Real cats. Real desks." },
+    { "type": "text",     "id": "heading",        "label": "Heading",     "default": "What happens when the keyboard is finally yours again." },
+    { "type": "text",     "id": "stat_meta",      "label": "Stat label",  "default": "Over 400 verified reviews" },
+    { "type": "header",   "content": "Review 1" },
+    { "type": "textarea", "id": "review_1",       "label": "Quote" },
+    { "type": "text",     "id": "review_1_author","label": "Author",      "default": "Sarah M. & Biscuit" },
+    { "type": "header",   "content": "Review 2" },
+    { "type": "textarea", "id": "review_2",       "label": "Quote" },
+    { "type": "text",     "id": "review_2_author","label": "Author",      "default": "Rachel T. & Chairman Floof" },
+    { "type": "header",   "content": "Review 3" },
+    { "type": "textarea", "id": "review_3",       "label": "Quote" },
+    { "type": "text",     "id": "review_3_author","label": "Author",      "default": "Jamie L. — gift buyer" },
+    { "type": "header",   "content": "Review 4" },
+    { "type": "textarea", "id": "review_4",       "label": "Quote" },
+    { "type": "text",     "id": "review_4_author","label": "Author",      "default": "Priya K. & Mango" },
+    { "type": "header",   "content": "Review 5" },
+    { "type": "textarea", "id": "review_5",       "label": "Quote" },
+    { "type": "text",     "id": "review_5_author","label": "Author",      "default": "Leah R. & Duchess" },
+    { "type": "header",   "content": "Review 6" },
+    { "type": "textarea", "id": "review_6",       "label": "Quote" },
+    { "type": "text",     "id": "review_6_author","label": "Author",      "default": "Dana W. & Gnocchi" },
+    { "type": "header",   "content": "CTA" },
+    { "type": "text",     "id": "cta_label",      "label": "CTA text",    "default": "Join Them — Claim Your Spot" },
+    { "type": "url",      "id": "cta_url",        "label": "CTA link" }
+  ],
+  "presets": [{ "name": "Reviews" }]
+}
+{% endschema %}

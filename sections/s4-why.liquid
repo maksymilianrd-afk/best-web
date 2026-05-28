@@ -1,90 +1,55 @@
-<section class="product-section product-section--image-right" id="why-it-works" aria-labelledby="s4-heading">
+<section class="product-section product-section--image-right" id="will-my-cat-use-it" aria-labelledby="s4-heading">
   <div class="product-section__inner">
 
     <div class="product-section__body">
       <div class="product-section__group">
-        <p class="text-subtitle">Built for how cats actually behave</p>
-        <h2 class="h2" id="s4-heading">Most desk beds are flat. Cats hate flat.</h2>
+        <p class="text-subtitle">{{ section.settings.eyebrow | default: "The #1 question we get" }}</p>
+        <h2 class="h2" id="s4-heading">{{ section.settings.heading | default: "Will my cat actually use it?" }}</h2>
         <p class="text-paragraph">
-          Flat hammocks leave your cat exposed &mdash; so half the time they ignore it and climb right back onto your keyboard. DeskPaws is a deep, wrap-around nest. Cats are wired to seek cozy, enclosed spaces, so they sink in and stay. The shape isn&rsquo;t a style choice &mdash; it&rsquo;s <em>why your cat will actually use it.</em>
+          {{ section.settings.body | default: "Most cats claim it within 24 hours. The deep bowl shape isn&rsquo;t a design choice &mdash; it mimics the enclosed, nest-like hideaways cats instinctively seek. Place it at desk height where your cat already likes to sit. Add a pinch of catnip on day one. Then step back." }}
         </p>
       </div>
 
-      <div class="specs-table">
-        <div class="spec-row">
-          <span class="spec-row__key">Weight limit</span>
-          <span class="spec-row__divider">&mdash;</span>
-          <span class="spec-row__value">Up to 50 lbs (22 kg)</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-row__key">Clamp range</span>
-          <span class="spec-row__divider">&mdash;</span>
-          <span class="spec-row__value">Up to 2&Prime; (5 cm) thick</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-row__key">Bed size</span>
-          <span class="spec-row__divider">&mdash;</span>
-          <span class="spec-row__value">12&Prime; &times; 12&Prime; (30 &times; 30 cm)</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-row__key">Frame</span>
-          <span class="spec-row__divider">&mdash;</span>
-          <span class="spec-row__value">Powder-coated steel</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-row__key">Cushion</span>
-          <span class="spec-row__divider">&mdash;</span>
-          <span class="spec-row__value">Removable sherpa cover</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-row__key">Desk pads</span>
-          <span class="spec-row__divider">&mdash;</span>
-          <span class="spec-row__value">Soft rubber, no scratches</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-row__key">Cleaning</span>
-          <span class="spec-row__divider">&mdash;</span>
-          <span class="spec-row__value">Hand-wash cover, air dry</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-row__key">Setup</span>
-          <span class="spec-row__divider">&mdash;</span>
-          <span class="spec-row__value">60 seconds, no tools</span>
-        </div>
+      <div class="tip-callout">
+        <p class="tip-callout__label">The catnip tip</p>
+        <p class="tip-callout__text">{{ section.settings.tip | default: "Sprinkle a small pinch of catnip inside the bowl when you first set it up. It signals familiarity and safety. Most cats investigate within minutes and settle in by end of day. After that, they find their own way back &mdash; every morning." }}</p>
       </div>
 
-      <p class="text-paragraph-small">
-        Works on solid wood, wooden panel, marble, and metal desks with a straight edge up to ~2&Prime; thick. Not ideal for thin glass or unusually curved desk lips.
-        <a href="mailto:hello@deskpaws.com" style="color:var(--color-gold);text-decoration:underline;text-underline-offset:2px;">Not sure? Email us.</a>
-      </p>
+      <div class="product-section__group">
+        <p class="text-paragraph">
+          {{ section.settings.body_2 | default: "And if your cat is the rare exception who doesn&rsquo;t take to it? You have 30 days to return it for a full refund. You keep the bed. We&rsquo;re that confident." }}
+        </p>
+      </div>
+
+      <div class="guarantee-strip">
+        <span class="guarantee-strip__icon">&#x1F6E1;</span>
+        <p class="guarantee-strip__text">
+          <strong>30-day happy-cat guarantee.</strong> {{ section.settings.guarantee | default: "If your cat snubs it, return it for a full refund &mdash; no questions, no hassle, and you keep the bed." }}
+        </p>
+      </div>
+
+      <div class="product-section__cta">
+        <a href="{{ section.settings.cta_url | default: routes.root_url | append: 'products/deskpaws' }}" class="btn btn--secondary">
+          {{ section.settings.cta_label | default: "Try It Risk-Free" }}
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/></svg>
+        </a>
+      </div>
     </div>
 
     <div class="product-section__gallery">
       <div class="product-section__slides" id="s4-slides">
         <div class="product-section__slide">
           {%- if section.settings.image_1 -%}
-            {{ section.settings.image_1 | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.image_1.alt | default: 'DeskPaws deep nest' }}
+            {{ section.settings.image_1 | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.image_1.alt | default: 'Cat settled in DeskPaws' }}
           {%- else -%}
-            <img
-              src="{{ 'product-floating.png' | asset_url }}"
-              alt="DeskPaws bed — side view showing deep nest shape"
-              width="720"
-              height="740"
-              loading="lazy"
-            >
+            <img src="{{ 'cat-curled.png' | asset_url }}" alt="Cat curled and settled in DeskPaws desk bed" width="720" height="740" loading="lazy">
           {%- endif -%}
         </div>
         <div class="product-section__slide">
           {%- if section.settings.image_2 -%}
-            {{ section.settings.image_2 | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.image_2.alt | default: 'DeskPaws texture' }}
+            {{ section.settings.image_2 | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.image_2.alt | default: 'DeskPaws top-down view' }}
           {%- else -%}
-            <img
-              src="{{ 'texture-detail.png' | asset_url }}"
-              alt="Close-up of DeskPaws sherpa texture"
-              width="720"
-              height="740"
-              loading="lazy"
-            >
+            <img src="{{ 'product-topdown.png' | asset_url }}" alt="DeskPaws top-down view showing the deep nest shape" width="720" height="740" loading="lazy">
           {%- endif -%}
         </div>
       </div>
@@ -103,24 +68,20 @@
 
 {% schema %}
 {
-  "name": "4 — Why It Works",
+  "name": "4 — Will My Cat Use It?",
   "tag": "section",
   "settings": [
-    {
-      "type": "image_picker",
-      "id": "image_1",
-      "label": "Gallery image 1"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_2",
-      "label": "Gallery image 2"
-    }
+    { "type": "image_picker", "id": "image_1",         "label": "Gallery image 1" },
+    { "type": "image_picker", "id": "image_2",         "label": "Gallery image 2" },
+    { "type": "text",     "id": "eyebrow",             "label": "Eyebrow",    "default": "The #1 question we get" },
+    { "type": "text",     "id": "heading",             "label": "Heading",    "default": "Will my cat actually use it?" },
+    { "type": "textarea", "id": "body",                "label": "Body paragraph 1" },
+    { "type": "textarea", "id": "tip",                 "label": "Catnip tip text" },
+    { "type": "textarea", "id": "body_2",              "label": "Body paragraph 2" },
+    { "type": "textarea", "id": "guarantee",           "label": "Guarantee text" },
+    { "type": "text",     "id": "cta_label",           "label": "CTA text",   "default": "Try It Risk-Free" },
+    { "type": "url",      "id": "cta_url",             "label": "CTA link" }
   ],
-  "presets": [
-    {
-      "name": "Why It Works"
-    }
-  ]
+  "presets": [{ "name": "Will My Cat Use It?" }]
 }
 {% endschema %}

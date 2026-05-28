@@ -1,0 +1,91 @@
+<section class="comparison-section" id="comparison" aria-labelledby="s8-heading">
+
+  <div class="comparison-section__header">
+    <p class="text-subtitle">{{ section.settings.eyebrow | default: "The smart-money pick" }}</p>
+    <h2 class="h2" id="s8-heading">{{ section.settings.heading | default: "Why not the $179 one?" }}</h2>
+    <p class="text-paragraph" style="margin-top:1rem;">
+      {{ section.settings.subhead | default: "Same idea. Same closeness. Except DeskPaws is $100 less, ships faster, sets up in 60 seconds, and comes with a 30-day guarantee the other one doesn&rsquo;t." }}
+    </p>
+  </div>
+
+  <div class="comparison-wrap">
+    <table class="comparison-table" role="table">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col" class="col-deskpaws">DeskPaws</th>
+          <th scope="col">DeskNest ($179)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-highlight">
+          <td>Price</td>
+          <td class="col-deskpaws"><strong>$79</strong></td>
+          <td>$179</td>
+        </tr>
+        <tr>
+          <td>Bowl depth</td>
+          <td class="col-deskpaws">Deep nest &mdash; cats stay</td>
+          <td>Flat hammock</td>
+        </tr>
+        <tr>
+          <td>Setup time</td>
+          <td class="col-deskpaws">60 seconds, no tools</td>
+          <td>Assembly required</td>
+        </tr>
+        <tr>
+          <td>Weight capacity</td>
+          <td class="col-deskpaws">50 lbs</td>
+          <td>30 lbs</td>
+        </tr>
+        <tr>
+          <td>Desk compatibility</td>
+          <td class="col-deskpaws">Wood, marble, metal, up to 2&Prime;</td>
+          <td>Specific sizes only</td>
+        </tr>
+        <tr>
+          <td>Cushion cover</td>
+          <td class="col-deskpaws">Removable sherpa, hand-wash</td>
+          <td>Fixed, spot-clean only</td>
+        </tr>
+        <tr>
+          <td>Free shipping</td>
+          <td class="col-deskpaws"><span class="comparison-check">&#10003;</span></td>
+          <td><span class="comparison-cross">&#10005;</span></td>
+        </tr>
+        <tr class="row-highlight">
+          <td>Return guarantee</td>
+          <td class="col-deskpaws">30-day full refund, keep the bed</td>
+          <td>14-day, limited</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="comparison-cta">
+      <p class="text-paragraph" style="max-width:38ch;text-align:center;">
+        {{ section.settings.cta_copy | default: "Same cat. Same desk. Same outcome. Except you&rsquo;re $100 richer." }}
+      </p>
+      <a href="{{ section.settings.cta_url | default: routes.root_url | append: 'products/deskpaws' }}" class="btn btn--primary-fill">
+        {{ section.settings.cta_label | default: "Get DeskPaws for $79" }}
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/></svg>
+      </a>
+    </div>
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "8 — Comparison",
+  "tag": "section",
+  "settings": [
+    { "type": "text",     "id": "eyebrow",   "label": "Eyebrow",    "default": "The smart-money pick" },
+    { "type": "text",     "id": "heading",   "label": "Heading",    "default": "Why not the $179 one?" },
+    { "type": "textarea", "id": "subhead",   "label": "Subheading" },
+    { "type": "textarea", "id": "cta_copy",  "label": "CTA copy" },
+    { "type": "text",     "id": "cta_label", "label": "CTA text",   "default": "Get DeskPaws for $79" },
+    { "type": "url",      "id": "cta_url",   "label": "CTA link" }
+  ],
+  "presets": [{ "name": "Comparison" }]
+}
+{% endschema %}
