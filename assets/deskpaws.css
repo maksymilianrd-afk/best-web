@@ -225,9 +225,11 @@ em { font-style: italic; }
   transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Overlay state: transparent, white text */
+/* Overlay state: dark semi-transparent background, white text */
 .header--overlay {
-  background: transparent;
+  background: rgba(44, 26, 17, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   color: var(--color-white);
 }
 .header--overlay .header__logo-text { color: var(--color-white); }
