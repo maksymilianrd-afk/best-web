@@ -273,7 +273,8 @@ em { font-style: italic; }
   padding-inline: 2rem;
   padding-block: 1rem;
   align-self: center;
-  transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+  transition: background 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
               border-radius 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .header--overlay .header__logo-text { color: var(--color-white); }
@@ -289,24 +290,29 @@ em { font-style: italic; }
   color: var(--color-brown);
 }
 
-/* Scrolled state — reset inner pill back to full-width */
+/* Scrolled state — pill turns white, stays floating */
 .header.is-scrolled .header__inner {
-  background: transparent;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  border-radius: 0;
-  margin-inline: 0;
-  padding-inline: var(--container-inset);
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 4px 32px rgba(44, 26, 17, 0.1), 0 1px 4px rgba(44, 26, 17, 0.06);
 }
 .header.is-scrolled {
-  background: var(--color-white);
+  background: transparent;
   color: var(--color-brown);
-  box-shadow: 0 1px 0 var(--color-border);
 }
 .header.is-scrolled .header__logo-text { color: var(--color-brown); }
 .header.is-scrolled .header__logo-paws { color: var(--color-gold); font-style: italic; }
 .header.is-scrolled .header__nav-link { color: var(--color-brown); }
 .header.is-scrolled .header__cart { color: var(--color-brown); }
+.header.is-scrolled .btn--secondary {
+  border-color: var(--color-brown);
+  color: var(--color-brown);
+}
+.header.is-scrolled .btn--secondary:hover {
+  background: var(--color-brown);
+  color: var(--color-white);
+}
 
 .header__inner {
   display: grid;
