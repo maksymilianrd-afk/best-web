@@ -1,0 +1,38 @@
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="site-footer__inner">
+
+      <a href="{{ routes.root_url }}" class="site-footer__logo" aria-label="{{ shop.name }} — home">
+        Desk<span class="accent">Paws</span>
+      </a>
+
+      <ul class="footer-links" aria-label="Footer navigation">
+        <li><a href="{{ routes.root_url }}pages/about">About</a></li>
+        <li><a href="{{ routes.root_url }}pages/faq">FAQ</a></li>
+        <li><a href="{{ routes.root_url }}pages/shipping-policy">Shipping</a></li>
+        <li><a href="{{ routes.root_url }}pages/return-policy">Returns</a></li>
+        <li><a href="{{ routes.root_url }}pages/contact">Contact</a></li>
+      </ul>
+
+      <div class="site-footer__right">
+        <div class="footer-payments" aria-label="Accepted payment methods">
+          <span class="payment-badge">Visa</span>
+          <span class="payment-badge">Mastercard</span>
+          <span class="payment-badge">PayPal</span>
+          <span class="payment-badge">Amex</span>
+        </div>
+        <p class="site-footer__copy">
+          &copy; {{ 'now' | date: '%Y' }} DeskPaws &mdash; Made with 🐾 for WFH cat parents
+        </p>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": []
+}
+{% endschema %}

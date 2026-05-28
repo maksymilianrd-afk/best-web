@@ -1,0 +1,102 @@
+<section class="why section section--sand" id="why">
+  <div class="container">
+
+    <div class="why__header">
+      <p class="t-eyebrow why__eyebrow" data-anim>Built for how cats actually behave</p>
+      <h2 class="t-h2 why__title" data-anim data-anim-delay="1">
+        Most desk beds are flat.<br>Cats hate flat.
+      </h2>
+      <p class="t-body-lg why__intro" data-anim data-anim-delay="2">
+        Flat hammocks leave your cat exposed — so half the time they ignore it and climb right back onto your keyboard. DeskPaws is a deep, wrap-around nest. Cats are wired to seek cozy, enclosed spaces, so they sink in and stay. The shape isn't a style choice — it's <em>why your cat will actually use it.</em>
+      </p>
+    </div>
+
+    <!-- Flat vs Nest comparison -->
+    <div class="comparison" data-anim>
+      <div class="cmp-card cmp-card--bad">
+        <div class="cmp-card__img">
+          <!-- Placeholder: add a flat hammock photo -->
+          <div style="width:100%;height:100%;background:var(--sand-dark);display:flex;align-items:center;justify-content:center;padding:24px;text-align:center;">
+            <span style="font-size:0.8125rem;color:var(--clay);line-height:1.5;">[PLACEHOLDER]<br>Flat competitor tray<br><em style="font-size:0.75rem">Upload a flat hammock image</em></span>
+          </div>
+        </div>
+        <div class="cmp-card__footer">
+          <span style="font-size:1.25rem">✗</span>
+          <span class="cmp-verdict">Flat tray</span>
+          <span class="cmp-label">Cat ignores it</span>
+        </div>
+      </div>
+
+      <div class="cmp-card cmp-card--good">
+        <div class="cmp-card__img">
+          {%- if section.settings.nest_image -%}
+            {{ section.settings.nest_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: 'DeskPaws deep nest shape' }}
+          {%- else -%}
+            <img
+              src="{{ 'cat-curled.png' | asset_url }}"
+              alt="Cat curled up in DeskPaws deep nest — they love it"
+              width="600"
+              height="450"
+              loading="lazy"
+              style="width:100%;height:100%;object-fit:cover;"
+            >
+          {%- endif -%}
+        </div>
+        <div class="cmp-card__footer">
+          <span style="font-size:1.25rem">✓</span>
+          <span class="cmp-verdict">DeskPaws deep nest</span>
+          <span class="cmp-label">Cat claims it in hours</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spec tiles -->
+    <div class="specs">
+      <div class="spec-tile" data-anim data-anim-delay="1">
+        <span class="spec-icon">💪</span>
+        <div class="spec-title">Holds up to 50 lbs</div>
+        <p class="spec-body">Handles even the chonkiest coworker. Metal frame, zero wobble.</p>
+      </div>
+      <div class="spec-tile" data-anim data-anim-delay="2">
+        <span class="spec-icon">🪵</span>
+        <div class="spec-title">Won't scratch your desk</div>
+        <p class="spec-body">Soft rubber pads on every contact point. No marks, no damage.</p>
+      </div>
+      <div class="spec-tile" data-anim data-anim-delay="3">
+        <span class="spec-icon">🔒</span>
+        <div class="spec-title">Locks on, stays on</div>
+        <p class="spec-body">Metal G-clamp grips tight. Once it's on, it's on — even when they jump.</p>
+      </div>
+      <div class="spec-tile" data-anim data-anim-delay="4">
+        <span class="spec-icon">🫧</span>
+        <div class="spec-title">Hand-washable</div>
+        <p class="spec-body">Pop off the sherpa cover, hand-wash with mild soap, air dry. Done.</p>
+      </div>
+    </div>
+
+    <!-- Desk compatibility note -->
+    <p class="why__fit-note" data-anim>
+      <strong>Works on:</strong> solid wood, wooden panel, marble, metal desks (up to ~5 cm / 2&Prime; thick edge). ⚠ Not ideal for thin glass or unusually curved desk lips. <a href="{{ routes.root_url }}pages/faq">Not sure? Message us</a> — we'll tell you straight before you buy.
+    </p>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "4 — Why It Works + Safe",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "nest_image",
+      "label": "DeskPaws nest image (for comparison)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why It Works + Safe"
+    }
+  ]
+}
+{% endschema %}

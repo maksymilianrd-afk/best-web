@@ -1,0 +1,36 @@
+{
+  "sections": {
+    "hero": {
+      "type": "s1-hero",
+      "settings": {}
+    },
+    "problem": {
+      "type": "s2-problem",
+      "settings": {}
+    },
+    "reveal": {
+      "type": "s3-reveal",
+      "settings": {}
+    },
+    "why": {
+      "type": "s4-why",
+      "settings": {}
+    },
+    "proof": {
+      "type": "s5-proof",
+      "settings": {}
+    },
+    "faq_cta": {
+      "type": "s6-faq-cta",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "problem",
+    "reveal",
+    "why",
+    "proof",
+    "faq_cta"
+  ]
+}

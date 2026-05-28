@@ -1,0 +1,55 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "DeskPaws",
+    "theme_version": "1.0.0",
+    "theme_author": "DeskPaws",
+    "theme_documentation_url": "",
+    "theme_support_url": "mailto:hello@deskpaws.com"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Primary (Terracotta CTA)",
+        "default": "#C8744F"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Base background (Cream)",
+        "default": "#FAF6EF"
+      },
+      {
+        "type": "color",
+        "id": "color_background_alt",
+        "label": "Alternate background (Sand)",
+        "default": "#EFE6D8"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Body text (Charcoal)",
+        "default": "#2B2722"
+      }
+    ]
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image (optional — overrides text logo)"
+      },
+      {
+        "type": "text",
+        "id": "support_email",
+        "label": "Support email",
+        "default": "hello@deskpaws.com"
+      }
+    ]
+  }
+]

@@ -1,0 +1,187 @@
+{%- assign current_product = product -%}
+
+<div class="product-page">
+  <div class="container">
+    <div class="product-layout">
+
+      <!-- ── Image Gallery ── -->
+      <div class="product-gallery" data-anim="fade">
+        <div class="gallery-main" id="gallery-main">
+          {%- if current_product.featured_image -%}
+            <img
+              id="main-product-img"
+              src="{{ current_product.featured_image | image_url: width: 900 }}"
+              alt="{{ current_product.featured_image.alt | default: current_product.title }}"
+              width="900"
+              height="900"
+              loading="eager"
+              fetchpriority="high"
+            >
+          {%- else -%}
+            <img
+              id="main-product-img"
+              src="{{ 'product-on-desk.png' | asset_url }}"
+              alt="{{ current_product.title }}"
+              width="900"
+              height="900"
+              loading="eager"
+              fetchpriority="high"
+            >
+          {%- endif -%}
+        </div>
+
+        <div class="gallery-thumbs">
+          {%- if current_product.images.size > 0 -%}
+            {%- for image in current_product.images limit: 8 -%}
+              <button
+                class="thumb{% if forloop.first %} active{% endif %}"
+                data-src="{{ image | image_url: width: 900 }}"
+                aria-label="View {{ image.alt | default: current_product.title }} image {{ forloop.index }}"
+              >
+                <img
+                  src="{{ image | image_url: width: 200 }}"
+                  alt="{{ image.alt | default: current_product.title }}"
+                  loading="lazy"
+                  width="200"
+                  height="200"
+                >
+              </button>
+            {%- endfor -%}
+          {%- else -%}
+            <!-- Fallback theme asset thumbnails until product images are uploaded -->
+            {%- assign fallback_images = 'hero-desk.png,cat-curled.png,product-floating.png,clamp-detail.jpeg' | split: ',' -%}
+            {%- for img_name in fallback_images -%}
+              <button class="thumb{% if forloop.first %} active{% endif %}" data-src="{{ img_name | asset_url }}" aria-label="Product view {{ forloop.index }}">
+                <img src="{{ img_name | asset_url }}" alt="DeskPaws product view {{ forloop.index }}" loading="lazy" width="200" height="200">
+              </button>
+            {%- endfor -%}
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- ── Product Info ── -->
+      <div class="product-info" data-anim data-anim-delay="1">
+        <p class="t-eyebrow product-info__eyebrow">The desk bed your cat will actually use</p>
+
+        <h1 class="product-info__title">
+          {{ current_product.title | default: "DeskPaws — Clamp-On Cozy Cat Desk Bed" }}
+        </h1>
+
+        <div class="price-row">
+          {%- if current_product.compare_at_price and current_product.compare_at_price > current_product.price -%}
+            <span class="price-current">{{ current_product.price | money }}</span>
+            <span class="price-compare">{{ current_product.compare_at_price | money }}</span>
+            <span class="price-save">Save {{ current_product.compare_at_price | minus: current_product.price | money }}</span>
+          {%- else -%}
+            <span class="price-current">{{ current_product.price | money | default: "$79.00" }}</span>
+          {%- endif -%}
+        </div>
+
+        <p class="product-short-desc">
+          {{ section.settings.short_description | default: "Your cat is going to sit on your desk anyway. Give them a better spot — right next to you, without taking over your keyboard." }}
+        </p>
+
+        <ul class="benefits-list">
+          <li><span class="benefit-check">✓</span><span><strong>Stays close, out of your way</strong> — close enough to pet between emails, out of the keyboard zone.</span></li>
+          <li><span class="benefit-check">✓</span><span><strong>Your cat will actually use it</strong> — deep nest shape is instinctively appealing. Most claim it within 24 hours.</span></li>
+          <li><span class="benefit-check">✓</span><span><strong>Clamps on in 60 seconds</strong> — no tools, no drilling. Padded G-clamp protects your desk surface.</span></li>
+          <li><span class="benefit-check">✓</span><span><strong>Built to last</strong> — solid metal frame, tested to 50 lbs, hand-washable sherpa cushion.</span></li>
+          <li><span class="benefit-check">✓</span><span><strong>Your keyboard is yours again</strong> — no more deleted drafts, accidental Slack messages, or muted Zoom calls.</span></li>
+        </ul>
+
+        {%- form 'product', current_product, class: 'atc-form', id: 'product-form' -%}
+          <input type="hidden" name="id" value="{{ current_product.selected_or_first_available_variant.id }}">
+
+          <button
+            type="submit"
+            class="btn btn--primary atc-btn"
+            {%- unless current_product.available -%}disabled{%- endunless -%}
+          >
+            {%- if current_product.available -%}
+              Add to Cart — {{ current_product.price | money }}
+            {%- else -%}
+              Sold Out
+            {%- endif -%}
+          </button>
+        {%- endform -%}
+
+        <!-- Trust badges -->
+        <div class="trust-badges">
+          <div class="trust-badge">
+            <span class="trust-badge__icon">🛡️</span>
+            <span class="trust-badge__text">30-Day Guarantee</span>
+          </div>
+          <div class="trust-badge">
+            <span class="trust-badge__icon">📦</span>
+            <span class="trust-badge__text">Free Shipping</span>
+          </div>
+          <div class="trust-badge">
+            <span class="trust-badge__icon">⚡</span>
+            <span class="trust-badge__text">Ships in 1–2 Days</span>
+          </div>
+        </div>
+
+        <!-- Product description accordion -->
+        <div class="product-accordion accordion">
+          <div class="accordion__item">
+            <button class="accordion__trigger">
+              <span class="accordion__q">Product details &amp; specs</span>
+              <span class="accordion__icon">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg>
+              </span>
+            </button>
+            <div class="accordion__answer">
+              <p class="accordion__a">
+                Diameter: 39 cm / 15.4 inches &nbsp;·&nbsp;
+                Material: premium faux-sherpa with cotton interior &nbsp;·&nbsp;
+                Frame: powder-coated iron &nbsp;·&nbsp;
+                Weight capacity: 50 lbs / 23 kg &nbsp;·&nbsp;
+                Clamp range: up to ~5 cm / 2&Prime; edge &nbsp;·&nbsp;
+                Colour: cream / white &nbsp;·&nbsp;
+                Cushion: hand-washable, air dry
+              </p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__trigger">
+              <span class="accordion__q">Shipping &amp; delivery</span>
+              <span class="accordion__icon">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg>
+              </span>
+            </button>
+            <div class="accordion__answer">
+              <p class="accordion__a">Free shipping to the US, Canada, and UK. Orders ship within 1–2 business days. Estimated delivery: 8–12 days to the US. You'll receive a tracking number by email the day your order ships.</p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__trigger">
+              <span class="accordion__q">Returns &amp; our guarantee</span>
+              <span class="accordion__icon">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg>
+              </span>
+            </button>
+            <div class="accordion__answer">
+              <p class="accordion__a">30-day satisfaction guarantee. If your cat snubs it and you're not happy, email us at <a href="mailto:hello@deskpaws.com">hello@deskpaws.com</a> for a full refund — you keep the bed. We want every cat parent (and their cat) to be happy.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Page",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "short_description",
+      "label": "Short description (above benefits list)",
+      "default": "Your cat is going to sit on your desk anyway. Give them a better spot — right next to you, without taking over your keyboard."
+    }
+  ]
+}
+{% endschema %}

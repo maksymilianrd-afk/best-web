@@ -1,0 +1,106 @@
+<section class="reveal section section--cream" id="reveal">
+  <div class="container">
+
+    <div class="reveal__header">
+      <p class="t-eyebrow reveal__eyebrow" data-anim>Same cat. Same desk.</p>
+      <h2 class="t-h2 reveal__title" data-anim data-anim-delay="1">
+        Completely different day.
+      </h2>
+      <p class="t-body-lg reveal__body" data-anim data-anim-delay="2">
+        They hop into their spot the moment you sit down — close enough to pet with one hand while you type with the other. The keyboard's yours again. The call goes uninterrupted. Good cat parent <em>and</em> productive human, at the same time.
+      </p>
+    </div>
+
+    <!-- Hero image / video -->
+    <div class="reveal__media" data-anim="scale">
+      {%- if section.settings.lifestyle_image -%}
+        {{ section.settings.lifestyle_image | image_url: width: 1400 | image_tag: loading: 'lazy', alt: section.settings.lifestyle_image.alt | default: 'Cat relaxing in DeskPaws desk bed while owner works' }}
+      {%- else -%}
+        <img
+          src="{{ 'hero-desk.png' | asset_url }}"
+          alt="Gray cat comfortably settled in DeskPaws desk bed next to a working laptop"
+          width="1200"
+          height="580"
+          loading="lazy"
+          style="width:100%;object-fit:cover;object-position:center 30%;max-height:560px;"
+        >
+      {%- endif -%}
+    </div>
+
+    <!-- Pull quote -->
+    <div class="reveal__pullquote container--narrow" data-anim>
+      <blockquote>
+        {{ section.settings.pullquote | default: "She naps in it all day while I work and completely ignores my desk now. Best purchase I've made for working from home." }}
+      </blockquote>
+      <cite>{{ section.settings.pullquote_author | default: "Sarah C. &amp; Mochi — verified buyer" }}</cite>
+    </div>
+
+    <!-- 3-step row -->
+    <div class="steps">
+      <div class="step-card" data-anim data-anim-delay="1">
+        <div class="step-num">1</div>
+        <div class="step-title">Clamp it on</div>
+        <p class="step-body">Padded G-clamp grips any desk edge, twist tight by hand. No tools, no drilling, 60 seconds.</p>
+      </div>
+      <div class="step-card" data-anim data-anim-delay="2">
+        <div class="step-num">2</div>
+        <div class="step-title">Add a pinch of catnip</div>
+        <p class="step-body">Most cats claim it within a day. The deep bowl shape does the rest — they're wired for it.</p>
+      </div>
+      <div class="step-card" data-anim data-anim-delay="3">
+        <div class="step-num">3</div>
+        <div class="step-title">Get back to work</div>
+        <p class="step-body">Glance over. They're already curled up and purring. Your keyboard is yours again.</p>
+      </div>
+    </div>
+
+    <div class="reveal__cta" data-anim>
+      <a href="{{ section.settings.cta_url | default: routes.root_url | append: 'products/deskpaws' }}" class="btn btn--primary btn--lg">
+        {{ section.settings.cta_label | default: "I Want That Workday →" }}
+      </a>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "3 — Reveal + How It Works",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "lifestyle_image",
+      "label": "Lifestyle image (or video thumbnail)"
+    },
+    {
+      "type": "textarea",
+      "id": "pullquote",
+      "label": "Pull quote text",
+      "default": "She naps in it all day while I work and completely ignores my desk now. Best purchase I've made for working from home."
+    },
+    {
+      "type": "text",
+      "id": "pullquote_author",
+      "label": "Quote attribution",
+      "default": "Sarah C. & Mochi — verified buyer"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA button text",
+      "default": "I Want That Workday →"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reveal + How It Works"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,155 @@
+<section class="proof section section--cream" id="proof">
+  <div class="container">
+
+    <div class="proof__header">
+      <p class="t-eyebrow proof__eyebrow" data-anim>Real cats. Real desks. Real relief.</p>
+      <h2 class="t-h2 proof__title" data-anim data-anim-delay="1">
+        Cats claim it faster<br>than their owners expect.
+      </h2>
+
+      <div class="proof__stat-bar" data-anim data-anim-delay="2">
+        <span class="proof__stars">★★★★★</span>
+        <span class="proof__rating">4.8</span>
+        <span class="proof__dot">·</span>
+        <span class="proof__meta">Most cats settle in within a day</span>
+      </div>
+    </div>
+
+    <!-- Review cards -->
+    <div class="reviews-grid">
+
+      <!-- Review 1 -->
+      <article class="review-card" data-anim data-anim-delay="1">
+        <div class="review-card__photo">
+          {%- if section.settings.review_1_image -%}
+            {{ section.settings.review_1_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: 'Customer review photo' }}
+          {%- else -%}
+            <div class="review-photo-placeholder">🐱</div>
+          {%- endif -%}
+        </div>
+        <div class="review-card__body">
+          <div class="review-card__stars">★★★★★</div>
+          <p class="review-card__quote">
+            "{{ section.settings.review_1_text | default: "She claimed it within an hour of me setting it up. I honestly didn't expect it to work this fast. Now I find her there before I even clock in for the day." }}"
+          </p>
+          <span class="review-card__author">{{ section.settings.review_1_author | default: "[Your name & cat's name here]" }}</span>
+        </div>
+      </article>
+
+      <!-- Review 2 -->
+      <article class="review-card" data-anim data-anim-delay="2">
+        <div class="review-card__photo">
+          {%- if section.settings.review_2_image -%}
+            {{ section.settings.review_2_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: 'Customer review photo' }}
+          {%- else -%}
+            <div class="review-photo-placeholder">😸</div>
+          {%- endif -%}
+        </div>
+        <div class="review-card__body">
+          <div class="review-card__stars">★★★★★</div>
+          <p class="review-card__quote">
+            "{{ section.settings.review_2_text | default: "My 18 lb Maine Coon fits perfectly and it doesn't budge. The clamp is rock solid. I was worried about my desk but there's not a single mark." }}"
+          </p>
+          <span class="review-card__author">{{ section.settings.review_2_author | default: "[Your name & cat's name here]" }}</span>
+        </div>
+      </article>
+
+      <!-- Review 3 -->
+      <article class="review-card" data-anim data-anim-delay="3">
+        <div class="review-card__photo">
+          {%- if section.settings.review_3_image -%}
+            {{ section.settings.review_3_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: 'Customer review photo' }}
+          {%- else -%}
+            <div class="review-photo-placeholder">🐾</div>
+          {%- endif -%}
+        </div>
+        <div class="review-card__body">
+          <div class="review-card__stars">★★★★★</div>
+          <p class="review-card__quote">
+            "{{ section.settings.review_3_text | default: "Bought this as a gift for my sister who works from home. She texted me a photo within 24 hours — cat completely settled in, keyboard completely free. She said it's the best gift she's ever received." }}"
+          </p>
+          <span class="review-card__author">{{ section.settings.review_3_author | default: "[Your name & cat's name here]" }}</span>
+        </div>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "5 — Social Proof",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Review 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "review_1_image",
+      "label": "Photo (real UGC — cat on desk)"
+    },
+    {
+      "type": "textarea",
+      "id": "review_1_text",
+      "label": "Review text",
+      "default": "She claimed it within an hour of me setting it up. I honestly didn't expect it to work this fast. Now I find her there before I even clock in for the day."
+    },
+    {
+      "type": "text",
+      "id": "review_1_author",
+      "label": "Author (First name & cat name)",
+      "default": "Sarah & Mochi"
+    },
+    {
+      "type": "header",
+      "content": "Review 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "review_2_image",
+      "label": "Photo"
+    },
+    {
+      "type": "textarea",
+      "id": "review_2_text",
+      "label": "Review text",
+      "default": "My 18 lb Maine Coon fits perfectly and it doesn't budge. The clamp is rock solid. I was worried about my desk but there's not a single mark."
+    },
+    {
+      "type": "text",
+      "id": "review_2_author",
+      "label": "Author",
+      "default": "Rachel & Chairman Floof"
+    },
+    {
+      "type": "header",
+      "content": "Review 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "review_3_image",
+      "label": "Photo"
+    },
+    {
+      "type": "textarea",
+      "id": "review_3_text",
+      "label": "Review text",
+      "default": "Bought this as a gift for my sister who works from home. She texted me a photo within 24 hours — cat completely settled in, keyboard completely free."
+    },
+    {
+      "type": "text",
+      "id": "review_3_author",
+      "label": "Author",
+      "default": "Jamie — gift buyer"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Social Proof"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="{{ request.locale.iso_code }}" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#FAF6EF">
+  <meta name="format-detection" content="telephone=no">
+
+  {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+  {%- endif -%}
+
+  <title>
+    {%- if template == 'index' -%}
+      {{ shop.name }} — The Desk Bed Your Cat Actually Uses
+    {%- elsif page_title -%}
+      {{ page_title }} — {{ shop.name }}
+    {%- else -%}
+      {{ shop.name }}
+    {%- endif -%}
+  </title>
+
+  {{ content_for_header }}
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  {{ 'deskpaws.css' | asset_url | stylesheet_tag }}
+
+  <script>document.documentElement.classList.remove('no-js');</script>
+</head>
+
+<body class="template-{{ template.name | replace: '.', '-' | downcase }}">
+
+  {% section 'header' %}
+
+  <main id="main-content" role="main" tabindex="-1">
+    {{ content_for_layout }}
+  </main>
+
+  {% section 'footer' %}
+
+  {%- if template.name == 'index' or template.name == 'product' -%}
+  <div class="sticky-mobile-cta" id="sticky-cta" aria-hidden="true">
+    <span class="sticky-mobile-cta__price">$79</span>
+    <a href="{{ routes.root_url }}products/deskpaws" class="btn btn--primary btn--full">
+      Claim My Cat's Spot
+    </a>
+  </div>
+  {%- endif -%}
+
+  {{ 'deskpaws.js' | asset_url | script_tag }}
+
+</body>
+</html>

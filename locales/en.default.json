@@ -1,0 +1,23 @@
+{
+  "general": {
+    "shop_name": "DeskPaws",
+    "meta_description": "The clamp-on desk bed that keeps your cat close without destroying your workday. No drilling, no drama — just a very happy cat.",
+    "404": {
+      "title": "Page not found",
+      "subtext": "The page you were looking for does not exist."
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to Cart",
+      "sold_out": "Sold Out",
+      "unavailable": "Unavailable"
+    }
+  },
+  "cart": {
+    "title": "Your Cart",
+    "empty": "Your cart is currently empty.",
+    "checkout": "Check Out",
+    "update": "Update Cart"
+  }
+}

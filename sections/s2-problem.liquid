@@ -1,0 +1,75 @@
+<section class="problem section section--sand" id="problem">
+  <div class="container">
+    <div class="problem__grid">
+
+      <!-- Copy column -->
+      <div class="problem__copy">
+        <p class="t-eyebrow problem__label" data-anim>The daily chaos</p>
+
+        <h2 class="t-h2 problem__title" data-anim data-anim-delay="1">
+          You know&nbsp;the&nbsp;routine.
+        </h2>
+
+        <p class="problem__body" data-anim data-anim-delay="2">
+          You sit down, open the laptop, and within two minutes there they are — strolling across the keyboard, parking between you and the monitor, "helping" you send <code style="background:rgba(43,39,34,.08);padding:1px 5px;border-radius:4px;font-size:0.85em;">TGFFFF8F4$$</code> to the group chat. You move them. They come back. The Zoom call starts.
+        </p>
+
+        <ul class="fails-list" data-anim data-anim-delay="2">
+          <li><span class="fail-x">❌</span> <s>Floor bed — they ignore it</s></li>
+          <li><span class="fail-x">❌</span> <s>Closed door — the guilt is unbearable</s></li>
+          <li><span class="fail-x">❌</span> <s>Lap — try typing like that</s></li>
+        </ul>
+
+        <p class="problem__turn" data-anim data-anim-delay="3">
+          And here's the part nobody says out loud: moving them off the desk doesn't feel like winning. It feels like turning your friend away. They just want to be near you — which is why nothing you've tried has worked.
+        </p>
+
+        <p class="problem__transition" data-anim data-anim-delay="4">
+          So we stopped trying to keep cats off the desk.<br>
+          We built them a better place to be.
+        </p>
+      </div>
+
+      <!-- Image column -->
+      <div class="problem__media" data-anim="scale" data-anim-delay="2">
+        <div class="problem__img-wrap">
+          {%- if section.settings.image -%}
+            {{ section.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', alt: section.settings.image.alt | default: 'Cat sitting in DeskPaws desk bed' }}
+          {%- else -%}
+            <img
+              src="{{ 'cat-curled.png' | asset_url }}"
+              alt="Fluffy cat curled up sleeping peacefully in the DeskPaws desk bed"
+              width="600"
+              height="750"
+              loading="lazy"
+            >
+          {%- endif -%}
+        </div>
+
+        <div class="problem__float-tag" data-anim data-anim-delay="4">
+          <em>Meowcro management</em> — happening 6–10&times; before noon.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "2 — Problem + Guilt",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Cat photo (works great with top-down or cozy shot)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Problem + Guilt"
+    }
+  ]
+}
+{% endschema %}
