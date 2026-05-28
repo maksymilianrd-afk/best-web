@@ -218,6 +218,32 @@ em { font-style: italic; }
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* ─── Scroll Reveal ─────────────────────────────────────── */
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(2rem); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes revealLeft {
+  from { opacity: 0; transform: translateX(-2.5rem); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes revealRight {
+  from { opacity: 0; transform: translateX(2.5rem); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.reveal { opacity: 0; }
+.reveal.in {
+  animation: revealUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0s) both;
+}
+.reveal--left.in  { animation-name: revealLeft; }
+.reveal--right.in { animation-name: revealRight; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal.in { animation: none !important; opacity: 1 !important; transform: none !important; }
+}
+
+
 .header {
   position: fixed;
   top: 0;

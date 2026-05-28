@@ -117,4 +117,54 @@
     });
   });
 
+  /* ── Scroll reveal ──────────────────────────────────────── */
+  (function () {
+    // Stagger a group of elements: each gets an incremental delay based on
+    // its index among siblings matched by the same selector within the same parent.
+    function markList(selector, step) {
+      var groups = new Map();
+      document.querySelectorAll(selector).forEach(function (el) {
+        var p = el.parentElement;
+        if (!groups.has(p)) groups.set(p, []);
+        groups.get(p).push(el);
+      });
+      groups.forEach(function (items) {
+        items.forEach(function (el, i) {
+          el.classList.add('reveal');
+          if (i > 0) el.style.setProperty('--reveal-delay', (i * (step || 0.1)) + 's');
+        });
+      });
+    }
+
+    // Galleries slide in from their natural reading side
+    document.querySelectorAll('.product-section__gallery').forEach(function (el) {
+      var section = el.closest('.product-section');
+      var dir = section && section.classList.contains('product-section--image-left') ? 'left' : 'right';
+      el.classList.add('reveal', 'reveal--' + dir);
+    });
+
+    // Body children with stagger
+    markList('.product-section__group', 0.12);
+    markList('.steps-list li', 0.1);
+    markList('.review-item', 0.1);
+    markList('.spec-row', 0.07);
+
+    // One-off elements
+    ['.pull-quote', '.stat-bar', '.price-row', '.guarantee-strip', '.product-section__cta']
+      .forEach(function (sel) {
+        document.querySelectorAll(sel).forEach(function (el) { el.classList.add('reveal'); });
+      });
+
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
+  })();
+
 })();
