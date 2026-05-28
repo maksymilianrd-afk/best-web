@@ -65,6 +65,8 @@ em { font-style: italic; }
   font-size: 0.8125rem;
   line-height: 1.6;
   color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
 }
 
 .h1 {
@@ -230,7 +232,16 @@ em { font-style: italic; }
 }
 .header--overlay .header__logo-text { color: var(--color-white); }
 .header--overlay .header__logo-paws { color: var(--color-white); font-style: italic; }
+.header--overlay .header__nav-link { color: var(--color-white); }
 .header--overlay .header__cart { color: var(--color-white); }
+.header--overlay .btn--secondary {
+  border-color: rgba(255,255,255,0.7);
+  color: var(--color-white);
+}
+.header--overlay .btn--secondary:hover {
+  background: var(--color-white);
+  color: var(--color-brown);
+}
 
 /* Scrolled state */
 .header.is-scrolled {
@@ -240,15 +251,43 @@ em { font-style: italic; }
 }
 .header.is-scrolled .header__logo-text { color: var(--color-brown); }
 .header.is-scrolled .header__logo-paws { color: var(--color-gold); font-style: italic; }
+.header.is-scrolled .header__nav-link { color: var(--color-brown); }
 .header.is-scrolled .header__cart { color: var(--color-brown); }
 
 .header__inner {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
+  gap: 1.5rem;
   width: 100%;
   padding-inline: var(--container-inset);
 }
+
+.header__nav-left {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.header__nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  justify-content: flex-end;
+}
+
+.header__nav-link {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+.header__nav-link:hover { opacity: 0.65; }
 
 .header__logo {
   font-family: var(--font-serif);
@@ -259,6 +298,7 @@ em { font-style: italic; }
   text-decoration: none;
   display: flex;
   align-items: baseline;
+  justify-content: center;
   gap: 0;
 }
 .header__logo-text { font-style: normal; }
@@ -345,11 +385,22 @@ em { font-style: italic; }
 .hero__description {
   color: rgba(255, 255, 255, 0.82);
   margin: 0;
-  max-width: 52ch;
+  max-width: 62ch;
   opacity: 0;
   animation: heroFadeUp 0.9s ease 0.5s forwards;
-  font-size: 1.0625rem;
-  line-height: 1.75;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+.hero__button {
+  display: inline-flex;
+  opacity: 0;
+  animation: heroFadeUp 0.9s ease 0.7s forwards;
+}
+.hero__button + .hero__button {
+  animation-delay: 0.9s;
 }
 
 .hero__buttons {
@@ -1285,6 +1336,20 @@ em { font-style: italic; }
 /* ═══════════════════════════════════════════════════════════
    RESPONSIVE BREAKPOINTS
 ═══════════════════════════════════════════════════════════ */
+
+/* Header: collapse nav on small screens */
+@media (max-width: 767px) {
+  .header__inner {
+    grid-template-columns: 1fr auto;
+  }
+  .header__nav-left { display: none; }
+  .header__nav-right {
+    gap: 0.75rem;
+  }
+  .header__nav-right .header__nav-link { display: none; }
+  .header__nav-right .btn--secondary { display: none; }
+}
+
 @media (max-width: 767px) {
   .footer__bottom {
     flex-direction: column;
