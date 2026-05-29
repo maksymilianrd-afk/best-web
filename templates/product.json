@@ -3,14 +3,9 @@
     "product_main": {
       "type": "product-template",
       "settings": {}
-    },
-    "faq_cta": {
-      "type": "s6-faq-cta",
-      "settings": {}
     }
   },
   "order": [
-    "product_main",
-    "faq_cta"
+    "product_main"
   ]
 }

@@ -1,4 +1,5 @@
 {%- assign current_product = product -%}
+{%- assign current_variant = current_product.selected_or_first_available_variant -%}
 
 <div class="product-page">
   <div class="product-page__inner">
@@ -36,7 +37,7 @@
               <button
                 class="product-thumb{% if forloop.first %} active{% endif %}"
                 data-src="{{ image | image_url: width: 900 }}"
-                aria-label="View {{ image.alt | default: current_product.title }} image {{ forloop.index }}"
+                aria-label="View image {{ forloop.index }}"
               >
                 <img
                   src="{{ image | image_url: width: 200 }}"
@@ -61,18 +62,20 @@
       <!-- ── Product Info ── -->
       <div class="product-info-wrap">
         <div class="product-info">
+
           <p class="text-subtitle">The desk bed your cat will actually use</p>
 
           <h1 class="product-info__title">
-            {{ current_product.title | default: "DeskPaws &mdash; Clamp-On Cozy Cat Desk Bed" }}
+            {{ current_product.title | default: "DeskPaws &mdash; Clamp-On Desk Cat Bed" }}
           </h1>
 
-          <p class="product-price">
-            {%- if current_product.compare_at_price and current_product.compare_at_price > current_product.price -%}
-              <s style="font-size:1rem;font-weight:300;color:var(--color-text-muted);font-family:var(--font-sans);margin-right:0.5rem;">{{ current_product.compare_at_price | money }}</s>
+          <!-- Price -->
+          <div class="product-price-row">
+            {%- if current_variant.compare_at_price > current_variant.price -%}
+              <s class="product-price--compare">{{ current_variant.compare_at_price | money }}</s>
             {%- endif -%}
-            {{ current_product.price | money | default: "$79.00" }}
-          </p>
+            <span class="product-price" id="product-price">{{ current_variant.price | money }}</span>
+          </div>
 
           <p class="product-short-desc">
             {{ section.settings.short_description | default: "Your cat is going to sit on your desk anyway. Give them a better spot — right next to you, without taking over your keyboard." }}
@@ -83,27 +86,69 @@
             <li><span class="benefit-check">&#10003;</span><span><strong>Your cat will actually use it</strong> &mdash; deep nest shape is instinctively appealing. Most claim it within 24 hours.</span></li>
             <li><span class="benefit-check">&#10003;</span><span><strong>Clamps on in 60 seconds</strong> &mdash; no tools, no drilling. Padded G-clamp protects your desk surface.</span></li>
             <li><span class="benefit-check">&#10003;</span><span><strong>Built to last</strong> &mdash; solid metal frame, tested to 50 lbs, hand-washable sherpa cushion.</span></li>
-            <li><span class="benefit-check">&#10003;</span><span><strong>Your keyboard is yours again</strong> &mdash; no more deleted drafts, accidental Slack messages, or muted Zoom calls.</span></li>
+            <li><span class="benefit-check">&#10003;</span><span><strong>Your keyboard is yours again</strong> &mdash; no more deleted drafts, accidental Slack messages, or muted calls.</span></li>
           </ul>
 
+          <!-- Product form -->
           {%- form 'product', current_product, class: 'atc-form', id: 'product-form' -%}
-            <input type="hidden" name="id" value="{{ current_product.selected_or_first_available_variant.id }}">
 
-            <button
-              type="submit"
-              class="btn btn--primary-fill atc-btn"
-              {%- unless current_product.available -%}disabled{%- endunless -%}
-            >
+            {%- if current_product.variants.size > 1 -%}
+              <div class="variant-wrap">
+                <label class="variant-label" for="variant-select">{{ current_product.options.first }}</label>
+                <select
+                  id="variant-select"
+                  name="id"
+                  class="variant-select"
+                  aria-label="Select variant"
+                >
+                  {%- for variant in current_product.variants -%}
+                    <option
+                      value="{{ variant.id }}"
+                      {%- if variant == current_variant %} selected{%- endif -%}
+                      {%- unless variant.available %} disabled{%- endunless -%}
+                      data-price="{{ variant.price | money }}"
+                      data-compare-price="{{ variant.compare_at_price | money }}"
+                    >
+                      {{ variant.title }}{%- unless variant.available %} &mdash; Sold out{%- endunless -%}
+                    </option>
+                  {%- endfor -%}
+                </select>
+              </div>
+            {%- else -%}
+              <input type="hidden" name="id" value="{{ current_variant.id }}">
+            {%- endif -%}
+
+            <div class="atc-actions">
+              <button
+                type="submit"
+                class="btn-butter atc-btn"
+                id="atc-btn"
+                {%- unless current_product.available -%}disabled{%- endunless -%}
+              >
+                {%- if current_product.available -%}
+                  Add to Cart &mdash; {{ current_variant.price | money }}
+                  <span class="btn-butter__arr" aria-hidden="true">&#x2192;</span>
+                {%- else -%}
+                  Sold Out
+                {%- endif -%}
+              </button>
+
               {%- if current_product.available -%}
-                Add to Cart &mdash; {{ current_product.price | money }}
-              {%- else -%}
-                Sold Out
+                <a
+                  href="/checkout?variant={{ current_variant.id }}&quantity=1"
+                  class="btn-checkout"
+                  id="checkout-btn"
+                >
+                  Buy it now
+                </a>
               {%- endif -%}
-            </button>
+            </div>
+
           {%- endform -%}
 
           <p class="product-trust">&#x1F6E1; 30-Day Guarantee &nbsp;&middot;&nbsp; &#x1F4E6; Free Shipping &nbsp;&middot;&nbsp; &#x26A1; Ships in 1&ndash;2 Days</p>
 
+          <!-- Accordion -->
           <div class="product-accordion faq-list">
 
             <div class="faq-item">
@@ -115,12 +160,12 @@
               </button>
               <div class="faq-item__answer">
                 <p class="faq-item__body">
-                  Diameter: 39 cm / 15.4 inches &nbsp;&middot;&nbsp;
-                  Material: premium faux-sherpa with cotton interior &nbsp;&middot;&nbsp;
+                  Diameter: 39 cm / 15.4&Prime; &nbsp;&middot;&nbsp;
+                  Material: premium faux-sherpa &nbsp;&middot;&nbsp;
                   Frame: powder-coated iron &nbsp;&middot;&nbsp;
                   Weight capacity: 50 lbs / 23 kg &nbsp;&middot;&nbsp;
                   Clamp range: up to ~5 cm / 2&Prime; edge &nbsp;&middot;&nbsp;
-                  Colour: cream / white &nbsp;&middot;&nbsp;
+                  Colour: cream/white &nbsp;&middot;&nbsp;
                   Cushion: hand-washable, air dry
                 </p>
               </div>
@@ -134,7 +179,7 @@
                 </span>
               </button>
               <div class="faq-item__answer">
-                <p class="faq-item__body">Free shipping to the US, Canada, and UK. Orders ship within 1&ndash;2 business days. Estimated delivery: 8&ndash;12 days to the US. You&rsquo;ll receive a tracking number by email the day your order ships.</p>
+                <p class="faq-item__body">Free shipping to the US, Canada, and UK. Orders ship within 1&ndash;2 business days. Estimated delivery: 8&ndash;12 days to the US. Tracking number sent by email on shipment day.</p>
               </div>
             </div>
 
@@ -146,7 +191,7 @@
                 </span>
               </button>
               <div class="faq-item__answer">
-                <p class="faq-item__body">30-day satisfaction guarantee. If your cat snubs it and you&rsquo;re not happy, email us at <a href="mailto:hello@deskpaws.com">hello@deskpaws.com</a> for a full refund &mdash; you keep the bed. We want every cat parent (and their cat) to be happy.</p>
+                <p class="faq-item__body">30-day satisfaction guarantee. If your cat snubs it, email <a href="mailto:hello@deskpaws.com" style="color:var(--color-gold);">hello@deskpaws.com</a> for a full refund &mdash; you keep the bed.</p>
               </div>
             </div>
 
@@ -167,7 +212,7 @@
     {
       "type": "textarea",
       "id": "short_description",
-      "label": "Short description (above benefits list)",
+      "label": "Short description",
       "default": "Your cat is going to sit on your desk anyway. Give them a better spot — right next to you, without taking over your keyboard."
     }
   ]

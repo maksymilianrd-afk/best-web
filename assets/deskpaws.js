@@ -50,6 +50,30 @@
     firstFaq.querySelector('.faq-item__trigger')?.setAttribute('aria-expanded', 'true');
   }
 
+  /* ── Product variant price update ────────────────────── */
+  const variantSelect = document.getElementById('variant-select');
+  const priceEl       = document.getElementById('product-price');
+  const atcBtn        = document.getElementById('atc-btn');
+  const checkoutBtn   = document.getElementById('checkout-btn');
+
+  if (variantSelect && priceEl) {
+    variantSelect.addEventListener('change', function () {
+      const selected = variantSelect.options[variantSelect.selectedIndex];
+      if (selected.dataset.price) {
+        priceEl.textContent = selected.dataset.price;
+      }
+      if (atcBtn && selected.dataset.price) {
+        const arr = atcBtn.querySelector('.btn-butter__arr');
+        atcBtn.textContent = 'Add to Cart — ' + selected.dataset.price + ' ';
+        if (arr) atcBtn.appendChild(arr);
+      }
+      if (checkoutBtn) {
+        const variantId = variantSelect.value;
+        checkoutBtn.href = '/checkout?variant=' + variantId + '&quantity=1';
+      }
+    });
+  }
+
   /* ── Product page gallery thumbs ──────────────────────── */
   const mainImg = document.querySelector('.gallery-main img');
   const thumbs  = document.querySelectorAll('.product-thumb');
