@@ -458,7 +458,7 @@ em { font-style: italic; }
   flex-direction: column;
   justify-content: space-between;
   min-height: 100svh;
-  padding-bottom: 3rem;
+  padding-bottom: 8rem;
   padding-top: calc(var(--header-height) + 2rem);
   padding-inline: var(--container-inset);
   position: relative;
@@ -467,7 +467,7 @@ em { font-style: italic; }
 
 @media (width >= 1024px) {
   .hero__container {
-    padding-bottom: 4rem;
+    padding-bottom: 9rem;
   }
 }
 
@@ -487,7 +487,14 @@ em { font-style: italic; }
 .hero__bottom {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2.5rem;
+}
+
+/* heading → description gap */
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .hero__title {
