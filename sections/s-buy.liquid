@@ -4,40 +4,40 @@
   {%- assign buy_variant = buy_product.selected_or_first_available_variant -%}
 {%- endunless -%}
 
+{%- comment -%} Collect section-level images the merchant uploaded in the customizer {%- endcomment -%}
+{%- assign section_images = '' | split: '' -%}
+{%- if section.settings.image_1 -%}{%- assign section_images = section_images | concat: section.settings.image_1 -%}{%- endif -%}
+{%- if section.settings.image_2 -%}{%- assign section_images = section_images | concat: section.settings.image_2 -%}{%- endif -%}
+{%- if section.settings.image_3 -%}{%- assign section_images = section_images | concat: section.settings.image_3 -%}{%- endif -%}
+{%- if section.settings.image_4 -%}{%- assign section_images = section_images | concat: section.settings.image_4 -%}{%- endif -%}
+{%- assign use_section_images = false -%}
+{%- if section_images.size > 0 -%}{%- assign use_section_images = true -%}{%- endif -%}
+
 <section class="buy-section" id="buy" aria-label="Add to cart">
   <div class="buy-section__inner">
 
     <!-- Gallery -->
     <div class="buy-section__gallery">
       <div class="gallery-main" id="buy-gallery-main">
-        {%- if buy_product != empty and buy_product.featured_image -%}
-          <img
-            id="buy-main-img"
-            src="{{ buy_product.featured_image | image_url: width: 900 }}"
-            alt="{{ buy_product.featured_image.alt | default: buy_product.title }}"
-            width="900" height="900"
-            loading="lazy"
-          >
+        {%- if use_section_images -%}
+          <img id="buy-main-img" src="{{ section_images[0] | image_url: width: 900 }}" alt="{{ section_images[0].alt | default: 'DeskPaws clamp-on desk cat bed' }}" width="900" height="900" loading="lazy">
+        {%- elsif buy_product != empty and buy_product.featured_image -%}
+          <img id="buy-main-img" src="{{ buy_product.featured_image | image_url: width: 900 }}" alt="{{ buy_product.featured_image.alt | default: buy_product.title }}" width="900" height="900" loading="lazy">
         {%- else -%}
-          <img
-            id="buy-main-img"
-            src="{{ 'product-on-desk.png' | asset_url }}"
-            alt="DeskPaws clamp-on desk cat bed"
-            width="900" height="900"
-            loading="lazy"
-          >
+          <img id="buy-main-img" src="{{ 'product-on-desk.png' | asset_url }}" alt="DeskPaws clamp-on desk cat bed" width="900" height="900" loading="lazy">
         {%- endif -%}
       </div>
 
       <div class="gallery-thumbs">
-        {%- if buy_product != empty and buy_product.images.size > 0 -%}
+        {%- if use_section_images -%}
+          {%- for image in section_images -%}
+            <button class="product-thumb{% if forloop.first %} active{% endif %}" data-target="buy-main-img" data-src="{{ image | image_url: width: 900 }}" aria-label="View image {{ forloop.index }}">
+              <img src="{{ image | image_url: width: 200 }}" alt="{{ image.alt | default: 'DeskPaws view' }}" loading="lazy" width="200" height="200">
+            </button>
+          {%- endfor -%}
+        {%- elsif buy_product != empty and buy_product.images.size > 0 -%}
           {%- for image in buy_product.images limit: 8 -%}
-            <button
-              class="product-thumb{% if forloop.first %} active{% endif %}"
-              data-target="buy-main-img"
-              data-src="{{ image | image_url: width: 900 }}"
-              aria-label="View image {{ forloop.index }}"
-            >
+            <button class="product-thumb{% if forloop.first %} active{% endif %}" data-target="buy-main-img" data-src="{{ image | image_url: width: 900 }}" aria-label="View image {{ forloop.index }}">
               <img src="{{ image | image_url: width: 200 }}" alt="{{ image.alt | default: buy_product.title }}" loading="lazy" width="200" height="200">
             </button>
           {%- endfor -%}
@@ -159,8 +159,15 @@
       "id": "product_handle",
       "label": "Product handle",
       "default": "deskpaws",
-      "info": "The URL handle of the product in your Shopify admin (e.g. 'deskpaws')"
+      "info": "The URL handle of your product (find it in Shopify admin › Products › your product › URL handle)"
     },
+    { "type": "header", "content": "Gallery images" },
+    { "type": "paragraph", "content": "Upload up to 4 images here to override the product images. Leave blank to use the images from your Shopify product." },
+    { "type": "image_picker", "id": "image_1", "label": "Image 1" },
+    { "type": "image_picker", "id": "image_2", "label": "Image 2" },
+    { "type": "image_picker", "id": "image_3", "label": "Image 3" },
+    { "type": "image_picker", "id": "image_4", "label": "Image 4" },
+    { "type": "header", "content": "Text" },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Add to your desk" },
     { "type": "text", "id": "heading", "label": "Heading (fallback if no product)", "default": "DeskPaws — Clamp-On Desk Cat Bed" },
     { "type": "text", "id": "atc_label", "label": "Button label", "default": "Claim My Cat's Spot" }
