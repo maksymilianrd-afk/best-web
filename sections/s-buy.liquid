@@ -1,4 +1,4 @@
-{%- assign _handle = section.settings.product_handle | default: 'deskpaws' -%}
+{%- assign _handle = section.settings.product_handle | default: 'desk-paws-place-for-your-cat-co-worker' -%}
 {%- assign buy_product = all_products[_handle] -%}
 {%- unless buy_product == empty -%}
   {%- assign buy_variant = buy_product.selected_or_first_available_variant -%}
@@ -137,7 +137,7 @@
 
         {%- endform -%}
       {%- else -%}
-        <a href="/products/deskpaws-cat-bed" class="btn-butter atc-btn" style="justify-content:center;">
+        <a href="/products/desk-paws-place-for-your-cat-co-worker" class="btn-butter atc-btn" style="justify-content:center;">
           {{ section.settings.atc_label | default: "Claim My Cat&rsquo;s Spot" }} &mdash; $79
           <span class="btn-butter__arr" aria-hidden="true">&#x2192;</span>
         </a>
@@ -158,7 +158,7 @@
       "type": "text",
       "id": "product_handle",
       "label": "Product handle",
-      "default": "deskpaws-cat-bed",
+      "default": "desk-paws-place-for-your-cat-co-worker",
       "info": "The URL handle of your product (find it in Shopify admin › Products › your product › URL handle)"
     },
     { "type": "header", "content": "Gallery images" },
