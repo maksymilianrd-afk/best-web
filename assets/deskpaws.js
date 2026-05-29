@@ -120,13 +120,15 @@
   });
 
   /* ── Smooth scroll for anchor links ────────────────────── */
-  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+  document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach((link) => {
     link.addEventListener('click', (e) => {
-      const target = document.querySelector(link.getAttribute('href'));
+      var href = link.getAttribute('href');
+      var hash = href.charAt(0) === '/' ? href.slice(1) : href;
+      var target = document.querySelector(hash);
       if (target) {
         e.preventDefault();
-        const top = target.getBoundingClientRect().top + window.scrollY - 80;
-        window.scrollTo({ top, behavior: 'smooth' });
+        var top = target.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top: top, behavior: 'smooth' });
       }
     });
   });
