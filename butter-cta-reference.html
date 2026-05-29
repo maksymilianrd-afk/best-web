@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeskPaws — Butter CTA Button Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --brown:   #2c1a11;
+    --gold:    #C8744F;
+    --white:   #ffffff;
+    --cream:   #f7f3ee;
+    /* Butter button tokens */
+    --butter:        #F2CB78;
+    --butter-border: #C4A14E;
+    --butter-press:  #E8BE68;
+    --butter-text:   #2c1a11;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f0ece6;
+    color: var(--brown);
+  }
+
+  /* ─── Section labels ───────────────────────────────────── */
+  .panel {
+    padding: 3.5rem 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  .panel--dark {
+    background: #1e0f07;
+    background-image: radial-gradient(ellipse 80% 60% at 60% 40%, #3a200f, #1a0d05);
+  }
+  .panel--mid  { background: var(--cream); }
+  .panel--light { background: #ffffff; }
+
+  .label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(44,26,17,0.38);
+    border-bottom: 1px solid rgba(44,26,17,0.1);
+    padding-bottom: 0.75rem;
+  }
+  .label--light { color: rgba(255,255,255,0.28); border-color: rgba(255,255,255,0.1); }
+  .row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .col { display: flex; flex-direction: column; gap: 0.625rem; align-items: flex-start; }
+  .caption {
+    font-size: 0.6875rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(44,26,17,0.38);
+  }
+  .caption--light { color: rgba(255,255,255,0.3); }
+
+  /* ════════════════════════════════════════════════════════
+     THE BUTTER BUTTON
+  ════════════════════════════════════════════════════════ */
+  .btn-butter {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    background: var(--butter);
+    color: var(--butter-text);
+    border: 1.5px solid var(--butter-border);
+    border-bottom-width: 2.5px;          /* subtle 3-D press lip */
+    border-radius: 100px;
+    padding: 0.875rem 1.875rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+    transition:
+      background   0.18s ease,
+      box-shadow   0.18s ease,
+      transform    0.18s cubic-bezier(0.34,1.56,0.64,1),
+      border-color 0.18s ease;
+    box-shadow:
+      0 2px 12px rgba(194,161,78,0.25),
+      0 1px 3px  rgba(0,0,0,0.08);
+  }
+  .btn-butter:hover {
+    background: #F6D688;
+    border-color: #B8953F;
+    box-shadow:
+      0 4px 20px rgba(194,161,78,0.35),
+      0 2px 6px  rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+  }
+  .btn-butter:active {
+    background: var(--butter-press);
+    border-bottom-width: 1.5px;
+    transform: translateY(1px);
+    box-shadow: 0 1px 6px rgba(194,161,78,0.2);
+  }
+
+  /* Size variants */
+  .btn-butter--sm {
+    font-size: 0.8125rem;
+    padding: 0.625rem 1.375rem;
+  }
+  .btn-butter--lg {
+    font-size: 1.0625rem;
+    padding: 1.125rem 2.5rem;
+    letter-spacing: 0.005em;
+  }
+
+  /* Arrow  */
+  .btn-butter .arr {
+    font-style: normal;
+    font-size: 1.1em;
+    transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+    display: inline-block;
+  }
+  .btn-butter:hover .arr { transform: translateX(4px); }
+
+  /* ── Current btn for comparison ────────────────────────── */
+  .btn-current {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    border: 1px solid rgba(255,255,255,0.6);
+    color: #fff;
+    border-radius: 100px;
+    padding: 0.875rem 1.875rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.25s ease;
+  }
+  .btn-current:hover { background: rgba(255,255,255,0.12); }
+
+  /* ── Hero mock ──────────────────────────────────────────── */
+  .hero-mock {
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 3rem;
+    background:
+      radial-gradient(ellipse 90% 80% at 60% 40%, #3a200f 0%, #1a0d05 100%);
+  }
+  .hero-mock__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg,
+      rgba(18,10,5,0.85) 0%,
+      rgba(18,10,5,0.55) 45%,
+      transparent 100%
+    );
+  }
+  .hero-mock__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 60%;
+  }
+  .hero-mock__title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.75rem;
+    font-weight: 300;
+    line-height: 1.08;
+    color: #fff;
+  }
+  .hero-mock__title em { font-style: italic; color: rgba(255,255,255,0.65); }
+  .hero-mock__desc {
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.7;
+  }
+  .hero-mock__ctas {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+  .hero-mock__secondary {
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+    padding-bottom: 2px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .hero-mock__secondary:hover { color: #fff; border-color: rgba(255,255,255,0.6); }
+
+  /* ── Comparison strip ───────────────────────────────────── */
+  .compare-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(44,26,17,0.12);
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+  .compare-cell {
+    background: #fff;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .compare-cell__label {
+    font-size: 0.625rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(44,26,17,0.35);
+  }
+  .compare-cell--new { background: var(--cream); }
+
+  /* ── Colour chip ─────────────────────────────────────────── */
+  .chip-row { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+  .chip {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: 1.5px solid rgba(0,0,0,0.1);
+    flex-shrink: 0;
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.5);
+  }
+  .chip-meta { font-size: 0.8125rem; color: rgba(44,26,17,0.55); line-height: 1.5; }
+  .chip-meta strong { display: block; color: var(--brown); font-size: 0.875rem; }
+
+  /* ── Annotation list ─────────────────────────────────────── */
+  .note-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 2rem;
+    background: var(--cream);
+    border-radius: 0.875rem;
+  }
+  .note-list li {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: rgba(44,26,17,0.7);
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(44,26,17,0.08);
+  }
+  .note-list li:last-child { border-bottom: none; padding-bottom: 0; }
+  .note-num {
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    flex-shrink: 0;
+    padding-top: 0.2rem;
+    min-width: 1.5rem;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  HERO CONTEXT — see it where it actually lives          -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="panel panel--dark">
+  <p class="label label--light">Hero context</p>
+
+  <div class="hero-mock">
+    <div class="hero-mock__overlay"></div>
+    <div class="hero-mock__content">
+      <p style="font-size:0.6875rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#C8744F;">The desk cat bed</p>
+      <h1 class="hero-mock__title">
+        Finally — a truce with your <em>feline coworker.</em>
+      </h1>
+      <p class="hero-mock__desc">
+        The clamp-on desk bed. No drilling. No drama.<br>
+        Just a very happy cat.
+      </p>
+      <div class="hero-mock__ctas">
+        <!-- NEW BUTTER BUTTON -->
+        <a href="#" class="btn-butter">
+          Claim my cat's spot — $79 <span class="arr">→</span>
+        </a>
+        <a href="#" class="hero-mock__secondary">
+          See how it works →
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  BEFORE / AFTER COMPARISON                             -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="panel panel--light">
+  <p class="label">Before vs after</p>
+
+  <div class="compare-strip">
+    <div class="compare-cell">
+      <p class="compare-cell__label">Current — outlined white</p>
+      <div style="background:#1e0f07;padding:2rem;border-radius:0.75rem;display:inline-flex;">
+        <a href="#" class="btn-current">
+          Claim my cat's spot — $79
+          <svg width="20" height="10" viewBox="0 0 24 12" fill="none"><path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/></svg>
+        </a>
+      </div>
+      <p style="font-size:0.8125rem;color:rgba(44,26,17,0.5);line-height:1.6;max-width:32ch;">
+        Disappears against light backgrounds. High contrast on dark only. Feels cold next to a warm cat photo.
+      </p>
+    </div>
+    <div class="compare-cell compare-cell--new">
+      <p class="compare-cell__label">New — butter pill</p>
+      <a href="#" class="btn-butter">
+        Claim my cat's spot — $79 <span class="arr">→</span>
+      </a>
+      <p style="font-size:0.8125rem;color:rgba(44,26,17,0.5);line-height:1.6;max-width:32ch;">
+        Warm honey-yellow reads on both dark and light. Feels tactile and inviting. Tone matches the sherpa product.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  ALL SIZES + STATES                                     -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="panel panel--mid">
+  <p class="label">Sizes</p>
+  <div class="row">
+    <div class="col">
+      <a href="#" class="btn-butter btn-butter--sm">Get it — $79 <span class="arr">→</span></a>
+      <span class="caption">Small — in-line / card CTAs</span>
+    </div>
+    <div class="col">
+      <a href="#" class="btn-butter">Claim my cat's spot — $79 <span class="arr">→</span></a>
+      <span class="caption">Default — hero primary</span>
+    </div>
+    <div class="col">
+      <a href="#" class="btn-butter btn-butter--lg">Claim my cat's spot — $79 <span class="arr">→</span></a>
+      <span class="caption">Large — final CTA section</span>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel--light">
+  <p class="label">On light backgrounds (sections 3, 7, 8, 10)</p>
+  <div class="row">
+    <div class="col">
+      <a href="#" class="btn-butter">Claim my cat's spot — $79 <span class="arr">→</span></a>
+      <span class="caption">White bg — reads cleanly</span>
+    </div>
+    <div class="col">
+      <a href="#" class="btn-butter">Join them — $79 <span class="arr">→</span></a>
+      <span class="caption">Cream bg — still warm</span>
+    </div>
+    <div class="col">
+      <a href="#" class="btn-butter btn-butter--lg">Work peacefully — $79 <span class="arr">→</span></a>
+      <span class="caption">Final CTA size</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  COLOUR RECIPE                                          -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="panel panel--light">
+  <p class="label">Colour recipe</p>
+  <div class="chip-row">
+    <div class="chip" style="background:#F2CB78;"></div>
+    <div class="chip-meta">
+      <strong>Fill — #F2CB78</strong>
+      Warm butter / honey — base state
+    </div>
+  </div>
+  <div class="chip-row">
+    <div class="chip" style="background:#F6D688;"></div>
+    <div class="chip-meta">
+      <strong>Hover fill — #F6D688</strong>
+      10% lighter, pops on mouse-over
+    </div>
+  </div>
+  <div class="chip-row">
+    <div class="chip" style="background:#E8BE68;"></div>
+    <div class="chip-meta">
+      <strong>Active/press — #E8BE68</strong>
+      Slightly darker, sells the click feel
+    </div>
+  </div>
+  <div class="chip-row">
+    <div class="chip" style="background:#C4A14E;"></div>
+    <div class="chip-meta">
+      <strong>Border — #C4A14E</strong>
+      Bottom border 2.5px (3-D press lip), sides/top 1.5px
+    </div>
+  </div>
+  <div class="chip-row">
+    <div class="chip" style="background:#2c1a11;border-color:#ccc;"></div>
+    <div class="chip-meta">
+      <strong>Text — #2c1a11 (existing --color-brown)</strong>
+      Same token — zero new variables needed for text
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  DESIGN NOTES                                           -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="panel panel--light">
+  <p class="label">Design decisions</p>
+  <ul class="note-list">
+    <li>
+      <span class="note-num">01</span>
+      <span><strong style="color:var(--brown);">Warm tone matches the product.</strong> The sherpa bed is the same warm honey-cream. The CTA echoes the product's texture — before the customer even sees it up close, the button is already priming the association.</span>
+    </li>
+    <li>
+      <span class="note-num">02</span>
+      <span><strong style="color:var(--brown);">Works on both dark and light backgrounds.</strong> The current white-outline button disappears on light sections (buy block, reviews, final CTA). Butter is visible everywhere without a second button variant.</span>
+    </li>
+    <li>
+      <span class="note-num">03</span>
+      <span><strong style="color:var(--brown);">Bottom border lip = tactile click affordance.</strong> 2.5px border-bottom vs 1.5px everywhere else. Subconsciously reads as a physical object you press down. The :active state collapses it to 1.5px and adds translateY(1px) so it genuinely feels like pressing a button.</span>
+    </li>
+    <li>
+      <span class="note-num">04</span>
+      <span><strong style="color:var(--brown);">Arrow shifts right on hover.</strong> The → translates 4px right with a spring overshoot (cubic-bezier 0.34,1.56). Directional energy — points toward the cart without screaming urgency.</span>
+    </li>
+    <li>
+      <span class="note-num">05</span>
+      <span><strong style="color:var(--brown);">Simple → instead of split-tail SVG.</strong> On the outlined ghost button, the Mily split-tail arrow adds geometric weight that balances a thin border. On a filled button the split-tail competes with the fill. A plain → reads cleaner and feels friendlier.</span>
+    </li>
+    <li>
+      <span class="note-num">06</span>
+      <span><strong style="color:var(--brown);">Zero new CSS variables.</strong> --butter, --butter-border, --butter-press, --butter-text — all four are additive. The text token reuses existing --color-brown. Drop-in replacement for .btn--primary-fill.</span>
+    </li>
+  </ul>
+</div>
+
+</body>
+</html>
