@@ -12,62 +12,9 @@
     "product_main": {
       "type": "product-template",
       "settings": {}
-    },
-    "product_reviews": {
-      "type": "product-reviews",
-      "blocks": {
-        "review_1": {
-          "type": "review",
-          "settings": {
-            "country": "🇺🇸 United States",
-            "rating": 5,
-            "reviewer_name": "Damian S.",
-            "date": "05/25/2026",
-            "title": "My cat claimed it in 10 minutes",
-            "body": "I was honestly skeptical — my cat ignores everything I buy for him. Set this up on my desk, sprinkled a little catnip, and he was in it before I finished lunch. He's been there every workday since. Zero keyboard interruptions.",
-            "variant": "DeskPaws — Walnut / Standard"
-          }
-        },
-        "review_2": {
-          "type": "review",
-          "settings": {
-            "country": "🇨🇦 Canada",
-            "rating": 5,
-            "reviewer_name": "Thom H.",
-            "date": "05/13/2026",
-            "title": "Best work-from-home purchase I've made",
-            "body": "My cat used to walk across my keyboard at least four times a day. I work in finance — that's not a small problem. DeskPaws fixed it completely. She's right there with me but has zero interest in the keyboard now. Solid build, great quality.",
-            "variant": "DeskPaws — Walnut / Standard"
-          }
-        },
-        "review_3": {
-          "type": "review",
-          "settings": {
-            "country": "🇬🇧 United Kingdom",
-            "rating": 5,
-            "reviewer_name": "Sophie M.",
-            "date": "04/28/2026",
-            "title": "The guilt-free workday",
-            "body": "I used to feel terrible shutting my office door on my cat. Now she has her own spot right next to me and I can reach over and pet her between calls. She purrs most of the day. The clamp took literally 60 seconds. Cannot recommend this enough.",
-            "variant": "DeskPaws — Walnut / Standard"
-          }
-        }
-      },
-      "block_order": ["review_1", "review_2", "review_3"],
-      "settings": {
-        "heading": "Customer Reviews",
-        "average_rating": "5.0",
-        "total_reviews": 59,
-        "stars_5": 58,
-        "stars_4": 1,
-        "stars_3": 0,
-        "stars_2": 0,
-        "stars_1": 0
-      }
     }
   },
   "order": [
-    "product_main",
-    "product_reviews"
+    "product_main"
   ]
 }
