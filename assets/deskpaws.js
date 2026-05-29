@@ -71,7 +71,7 @@
   wireVariantSelect('variant-select',     'product-price', 'atc-btn',     'checkout-btn');
   wireVariantSelect('buy-variant-select', 'buy-price',     'buy-atc-btn', 'buy-checkout-btn');
 
-  /* ── PDP thumbnail strip ─────────────────────────────── */
+  /* ── PDP thumbnail strip + arrows ───────────────────── */
   document.querySelectorAll('.pdp__thumb').forEach(function (thumb) {
     thumb.addEventListener('click', function () {
       var mainImg = document.getElementById('pdp-main-img');
@@ -83,6 +83,50 @@
       }
       document.querySelectorAll('.pdp__thumb').forEach(function (t) { t.classList.remove('active'); });
       thumb.classList.add('active');
+    });
+  });
+  var thumbTrack = document.getElementById('pdp-thumb-track');
+  if (thumbTrack) {
+    var btnPrev = document.getElementById('pdp-thumb-prev');
+    var btnNext = document.getElementById('pdp-thumb-next');
+    if (btnPrev) btnPrev.addEventListener('click', function () { thumbTrack.scrollBy({ left: -200, behavior: 'smooth' }); });
+    if (btnNext) btnNext.addEventListener('click', function () { thumbTrack.scrollBy({ left: 200, behavior: 'smooth' }); });
+  }
+
+  /* ── PDP variant tiles ───────────────────────────────── */
+  document.querySelectorAll('.pdp__variant-tile').forEach(function (tile) {
+    tile.addEventListener('click', function () {
+      if (tile.disabled) return;
+      var variantId  = tile.dataset.variantId;
+      var price      = tile.dataset.price;
+      var imgSrc     = tile.dataset.imageSrc;
+      var name       = tile.dataset.variantName;
+
+      var hiddenInput = document.getElementById('variant-id-input');
+      if (hiddenInput) hiddenInput.value = variantId;
+
+      var priceEl = document.getElementById('product-price');
+      if (priceEl && price) priceEl.textContent = price;
+
+      var atcPriceEl = document.getElementById('pdp-atc-price');
+      if (atcPriceEl && price) atcPriceEl.textContent = price;
+
+      var checkBtn = document.getElementById('checkout-btn');
+      if (checkBtn) checkBtn.href = '/checkout?variant=' + variantId + '&quantity=1';
+
+      var subtitle = document.getElementById('pdp-variant-name');
+      if (subtitle && name) subtitle.textContent = name;
+
+      if (imgSrc) {
+        var mainImg = document.getElementById('pdp-main-img');
+        if (mainImg) {
+          mainImg.style.opacity = '0';
+          setTimeout(function () { mainImg.src = imgSrc; mainImg.style.opacity = '1'; }, 160);
+        }
+      }
+
+      document.querySelectorAll('.pdp__variant-tile').forEach(function (t) { t.classList.remove('active'); });
+      tile.classList.add('active');
     });
   });
 
