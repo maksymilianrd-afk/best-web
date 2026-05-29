@@ -18,38 +18,41 @@
   <div class="hero__overlay"></div>
 
   <div class="hero__container">
-    <div class="hero__content">
-      <h1 class="h1 hero__title">
-        {%- if section.settings.headline != blank -%}
-          {{ section.settings.headline }}
-        {%- else -%}
-          Finally &mdash; a truce with your <em>feline coworker.</em>
-        {%- endif -%}
-      </h1>
 
-      <p class="hero__description">
-        {{ section.settings.subheadline | default: "The clamp-on desk bed that gives your cat their own space — right next to yours. No drilling. No drama. Just a very happy cat." }}
-      </p>
+    <p class="hero__eyebrow">{{ section.settings.eyebrow | default: "The desk cat bed" }}</p>
+
+    <div class="hero__bottom">
+      <div class="hero__content">
+        <h1 class="hero__title">
+          {%- if section.settings.headline != blank -%}
+            {{ section.settings.headline }}
+          {%- else -%}
+            Finally &mdash; a truce with your <em>feline coworker.</em>
+          {%- endif -%}
+        </h1>
+        <p class="hero__description">
+          {{ section.settings.subheadline | default: "The clamp-on desk bed that gives your cat their own space — right next to yours. No drilling. No drama. Just a very happy cat." }}
+        </p>
+      </div>
+
+      <div class="hero__buttons">
+        <span class="hero__button">
+          <a href="{{ section.settings.cta_url | default: routes.root_url | append: 'products/deskpaws' }}" class="btn-butter">
+            {{ section.settings.cta_label | default: "Claim my cat's spot &mdash; $79" }}
+            <span class="btn-butter__arr" aria-hidden="true">&#x2192;</span>
+          </a>
+        </span>
+        <span class="hero__button">
+          <a href="#meet-deskpaws" class="btn btn--text btn--white">
+            {{ section.settings.secondary_label | default: "See how it works" }}
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true">
+              <path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/>
+            </svg>
+          </a>
+        </span>
+      </div>
     </div>
 
-    <div class="hero__buttons">
-      <span class="hero__button">
-        <a href="{{ section.settings.cta_url | default: routes.root_url | append: 'products/deskpaws' }}" class="btn btn--text btn--white">
-          {{ section.settings.cta_label | default: "Claim My Cat's Spot — $79" }}
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true">
-            <path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/>
-          </svg>
-        </a>
-      </span>
-      <span class="hero__button">
-        <a href="#the-bed" class="btn btn--text btn--white">
-          {{ section.settings.secondary_label | default: "See how it works" }}
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true">
-            <path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/>
-          </svg>
-        </a>
-      </span>
-    </div>
   </div>
 
 </section>
@@ -59,45 +62,14 @@
   "name": "1 — Hero",
   "tag": "section",
   "settings": [
-    {
-      "type": "textarea",
-      "id": "headline",
-      "label": "Headline (use <em> for italics)",
-      "default": "Finally — a truce with your feline coworker."
-    },
-    {
-      "type": "textarea",
-      "id": "subheadline",
-      "label": "Subheadline",
-      "default": "The clamp-on desk bed that gives your cat their own space — right next to yours. No drilling. No drama. Just a very happy cat."
-    },
-    {
-      "type": "text",
-      "id": "cta_label",
-      "label": "Primary CTA text",
-      "default": "Claim My Cat's Spot — $79"
-    },
-    {
-      "type": "url",
-      "id": "cta_url",
-      "label": "Primary CTA link"
-    },
-    {
-      "type": "text",
-      "id": "secondary_label",
-      "label": "Secondary CTA text",
-      "default": "See how it works"
-    },
-    {
-      "type": "image_picker",
-      "id": "hero_image",
-      "label": "Hero image"
-    }
+    { "type": "text",     "id": "eyebrow",         "label": "Eyebrow",              "default": "The desk cat bed" },
+    { "type": "textarea", "id": "headline",         "label": "Headline (use <em>)",  "default": "Finally — a truce with your feline coworker." },
+    { "type": "textarea", "id": "subheadline",      "label": "Subheadline" },
+    { "type": "text",     "id": "cta_label",        "label": "Primary CTA text",     "default": "Claim my cat's spot — $79" },
+    { "type": "url",      "id": "cta_url",          "label": "Primary CTA link" },
+    { "type": "text",     "id": "secondary_label",  "label": "Secondary CTA text",   "default": "See how it works" },
+    { "type": "image_picker", "id": "hero_image",   "label": "Hero image" }
   ],
-  "presets": [
-    {
-      "name": "Hero"
-    }
-  ]
+  "presets": [{ "name": "Hero" }]
 }
 {% endschema %}
