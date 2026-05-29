@@ -71,6 +71,21 @@
   wireVariantSelect('variant-select',     'product-price', 'atc-btn',     'checkout-btn');
   wireVariantSelect('buy-variant-select', 'buy-price',     'buy-atc-btn', 'buy-checkout-btn');
 
+  /* ── PDP thumbnail strip ─────────────────────────────── */
+  document.querySelectorAll('.pdp__thumb').forEach(function (thumb) {
+    thumb.addEventListener('click', function () {
+      var mainImg = document.getElementById('pdp-main-img');
+      if (!mainImg) return;
+      var src = thumb.dataset.src;
+      if (src) {
+        mainImg.style.opacity = '0';
+        setTimeout(function () { mainImg.src = src; mainImg.style.opacity = '1'; }, 160);
+      }
+      document.querySelectorAll('.pdp__thumb').forEach(function (t) { t.classList.remove('active'); });
+      thumb.classList.add('active');
+    });
+  });
+
   /* ── Gallery thumb click (product page + buy section) ─── */
   document.querySelectorAll('.product-thumb').forEach(function (thumb) {
     thumb.addEventListener('click', function () {
