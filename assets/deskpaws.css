@@ -1487,6 +1487,48 @@ em { font-style: italic; }
 }
 
 /* ═══════════════════════════════════════════════════════════
+   BUY SECTION  (embedded product form on landing page)
+═══════════════════════════════════════════════════════════ */
+.buy-section {
+  padding-block: clamp(4rem, 8vw, 7rem);
+  background: var(--color-white);
+}
+.buy-section__inner {
+  padding-inline: var(--container-inset);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+@media (width >= 1024px) {
+  .buy-section__inner {
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: var(--grid-gap);
+    align-items: start;
+  }
+  .buy-section__gallery {
+    grid-column: 1 / span 6;
+    position: sticky;
+    top: calc(var(--header-height) + 2rem);
+  }
+  .buy-section__info {
+    grid-column: 8 / span 5;
+  }
+}
+.buy-section__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 300;
+  color: var(--color-brown);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+.buy-section__info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ═══════════════════════════════════════════════════════════
    GENERIC PAGES (404, cart, page)
 ═══════════════════════════════════════════════════════════ */
 .page-wrap {

@@ -1,0 +1,169 @@
+{%- assign buy_product = all_products[section.settings.product_handle | default: 'deskpaws'] -%}
+{%- unless buy_product == empty -%}
+  {%- assign buy_variant = buy_product.selected_or_first_available_variant -%}
+{%- endunless -%}
+
+<section class="buy-section" id="buy" aria-label="Add to cart">
+  <div class="buy-section__inner">
+
+    <!-- Gallery -->
+    <div class="buy-section__gallery">
+      <div class="gallery-main" id="buy-gallery-main">
+        {%- if buy_product != empty and buy_product.featured_image -%}
+          <img
+            id="buy-main-img"
+            src="{{ buy_product.featured_image | image_url: width: 900 }}"
+            alt="{{ buy_product.featured_image.alt | default: buy_product.title }}"
+            width="900" height="900"
+            loading="lazy"
+          >
+        {%- else -%}
+          <img
+            id="buy-main-img"
+            src="{{ 'product-on-desk.png' | asset_url }}"
+            alt="DeskPaws clamp-on desk cat bed"
+            width="900" height="900"
+            loading="lazy"
+          >
+        {%- endif -%}
+      </div>
+
+      <div class="gallery-thumbs">
+        {%- if buy_product != empty and buy_product.images.size > 0 -%}
+          {%- for image in buy_product.images limit: 8 -%}
+            <button
+              class="product-thumb{% if forloop.first %} active{% endif %}"
+              data-target="buy-main-img"
+              data-src="{{ image | image_url: width: 900 }}"
+              aria-label="View image {{ forloop.index }}"
+            >
+              <img src="{{ image | image_url: width: 200 }}" alt="{{ image.alt | default: buy_product.title }}" loading="lazy" width="200" height="200">
+            </button>
+          {%- endfor -%}
+        {%- else -%}
+          {%- assign fallback = 'hero-desk.png,cat-curled.png,product-floating.png,clamp-detail.jpeg' | split: ',' -%}
+          {%- for img_name in fallback -%}
+            <button class="product-thumb{% if forloop.first %} active{% endif %}" data-target="buy-main-img" data-src="{{ img_name | asset_url }}" aria-label="View {{ forloop.index }}">
+              <img src="{{ img_name | asset_url }}" alt="DeskPaws view {{ forloop.index }}" loading="lazy" width="200" height="200">
+            </button>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    </div>
+
+    <!-- Info + form -->
+    <div class="buy-section__info">
+
+      <p class="text-subtitle">{{ section.settings.eyebrow | default: "Add to your desk" }}</p>
+
+      <h2 class="buy-section__title">
+        {%- if buy_product != empty -%}
+          {{ buy_product.title }}
+        {%- else -%}
+          {{ section.settings.heading | default: "DeskPaws &mdash; Clamp-On Desk Cat Bed" }}
+        {%- endif -%}
+      </h2>
+
+      <!-- Price -->
+      <div class="product-price-row">
+        {%- if buy_product != empty and buy_variant -%}
+          {%- if buy_variant.compare_at_price > buy_variant.price -%}
+            <s class="product-price--compare">{{ buy_variant.compare_at_price | money }}</s>
+          {%- endif -%}
+          <span class="product-price" id="buy-price">{{ buy_variant.price | money }}</span>
+        {%- else -%}
+          <span class="product-price">$79</span>
+        {%- endif -%}
+      </div>
+
+      <ul class="benefits-list">
+        <li><span class="benefit-check">&#10003;</span><span><strong>Stays close, out of your way</strong> &mdash; close enough to pet between emails, out of the keyboard zone.</span></li>
+        <li><span class="benefit-check">&#10003;</span><span><strong>Your cat will actually use it</strong> &mdash; deep nest shape. Most claim it within 24 hours.</span></li>
+        <li><span class="benefit-check">&#10003;</span><span><strong>Clamps on in 60 seconds</strong> &mdash; no tools, no drilling. Padded clamp protects your desk.</span></li>
+        <li><span class="benefit-check">&#10003;</span><span><strong>Built to last</strong> &mdash; solid metal frame, tested to 50 lbs, hand-washable sherpa cushion.</span></li>
+      </ul>
+
+      <!-- Form -->
+      {%- if buy_product != empty -%}
+        {%- form 'product', buy_product, class: 'atc-form', id: 'buy-form' -%}
+
+          {%- if buy_product.variants.size > 1 -%}
+            <div class="variant-wrap">
+              <label class="variant-label" for="buy-variant-select">{{ buy_product.options.first }}</label>
+              <select id="buy-variant-select" name="id" class="variant-select" aria-label="Select variant">
+                {%- for variant in buy_product.variants -%}
+                  <option
+                    value="{{ variant.id }}"
+                    {%- if variant == buy_variant %} selected{%- endif -%}
+                    {%- unless variant.available %} disabled{%- endunless -%}
+                    data-price="{{ variant.price | money }}"
+                    data-compare-price="{{ variant.compare_at_price | money }}"
+                  >
+                    {{ variant.title }}{%- unless variant.available %} &mdash; Sold out{%- endunless -%}
+                  </option>
+                {%- endfor -%}
+              </select>
+            </div>
+          {%- else -%}
+            <input type="hidden" name="id" value="{{ buy_variant.id }}">
+          {%- endif -%}
+
+          <div class="atc-actions">
+            <button
+              type="submit"
+              class="btn-butter atc-btn"
+              id="buy-atc-btn"
+              {%- unless buy_product.available -%}disabled{%- endunless -%}
+            >
+              {%- if buy_product.available -%}
+                {{ section.settings.atc_label | default: "Claim My Cat&rsquo;s Spot" }} &mdash; {{ buy_variant.price | money }}
+                <span class="btn-butter__arr" aria-hidden="true">&#x2192;</span>
+              {%- else -%}
+                Sold Out
+              {%- endif -%}
+            </button>
+
+            {%- if buy_product.available -%}
+              <a
+                href="/checkout?variant={{ buy_variant.id }}&quantity=1"
+                class="btn-checkout"
+                id="buy-checkout-btn"
+              >
+                Buy it now
+              </a>
+            {%- endif -%}
+          </div>
+
+        {%- endform -%}
+      {%- else -%}
+        <a href="/products/deskpaws" class="btn-butter atc-btn" style="justify-content:center;">
+          {{ section.settings.atc_label | default: "Claim My Cat&rsquo;s Spot" }} &mdash; $79
+          <span class="btn-butter__arr" aria-hidden="true">&#x2192;</span>
+        </a>
+      {%- endif -%}
+
+      <p class="product-trust">&#x1F6E1; 30-Day Guarantee &nbsp;&middot;&nbsp; &#x1F4E6; Free Shipping &nbsp;&middot;&nbsp; &#x26A1; Ships in 1&ndash;2 Days</p>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Buy Section",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "product_handle",
+      "label": "Product handle",
+      "default": "deskpaws",
+      "info": "The URL handle of the product in your Shopify admin (e.g. 'deskpaws')"
+    },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Add to your desk" },
+    { "type": "text", "id": "heading", "label": "Heading (fallback if no product)", "default": "DeskPaws — Clamp-On Desk Cat Bed" },
+    { "type": "text", "id": "atc_label", "label": "Button label", "default": "Claim My Cat's Spot" }
+  ],
+  "presets": [{ "name": "Buy Section" }]
+}
+{% endschema %}

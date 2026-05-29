@@ -50,54 +50,44 @@
     firstFaq.querySelector('.faq-item__trigger')?.setAttribute('aria-expanded', 'true');
   }
 
-  /* ── Product variant price update ────────────────────── */
-  const variantSelect = document.getElementById('variant-select');
-  const priceEl       = document.getElementById('product-price');
-  const atcBtn        = document.getElementById('atc-btn');
-  const checkoutBtn   = document.getElementById('checkout-btn');
-
-  if (variantSelect && priceEl) {
-    variantSelect.addEventListener('change', function () {
-      const selected = variantSelect.options[variantSelect.selectedIndex];
-      if (selected.dataset.price) {
-        priceEl.textContent = selected.dataset.price;
-      }
-      if (atcBtn && selected.dataset.price) {
-        const arr = atcBtn.querySelector('.btn-butter__arr');
-        atcBtn.textContent = 'Add to Cart — ' + selected.dataset.price + ' ';
+  /* ── Variant price update (product page + buy section) ─ */
+  function wireVariantSelect(selectId, priceId, atcBtnId, checkoutBtnId) {
+    var sel      = document.getElementById(selectId);
+    var priceEl  = document.getElementById(priceId);
+    var atcBtn   = document.getElementById(atcBtnId);
+    var checkBtn = document.getElementById(checkoutBtnId);
+    if (!sel || !priceEl) return;
+    sel.addEventListener('change', function () {
+      var opt = sel.options[sel.selectedIndex];
+      if (opt.dataset.price) priceEl.textContent = opt.dataset.price;
+      if (atcBtn && opt.dataset.price) {
+        var arr = atcBtn.querySelector('.btn-butter__arr');
+        atcBtn.textContent = atcBtn.textContent.replace(/\$[\d,.]+/, opt.dataset.price);
         if (arr) atcBtn.appendChild(arr);
       }
-      if (checkoutBtn) {
-        const variantId = variantSelect.value;
-        checkoutBtn.href = '/checkout?variant=' + variantId + '&quantity=1';
+      if (checkBtn) checkBtn.href = '/checkout?variant=' + sel.value + '&quantity=1';
+    });
+  }
+  wireVariantSelect('variant-select',     'product-price', 'atc-btn',     'checkout-btn');
+  wireVariantSelect('buy-variant-select', 'buy-price',     'buy-atc-btn', 'buy-checkout-btn');
+
+  /* ── Gallery thumb click (product page + buy section) ─── */
+  document.querySelectorAll('.product-thumb').forEach(function (thumb) {
+    thumb.addEventListener('click', function () {
+      var targetId = thumb.dataset.target || 'main-product-img';
+      var mainImg  = document.getElementById(targetId) || document.querySelector('.gallery-main img');
+      if (!mainImg) return;
+      mainImg.style.transition = 'opacity 0.18s ease';
+      var src = thumb.dataset.src;
+      if (src) {
+        mainImg.style.opacity = '0';
+        setTimeout(function () { mainImg.src = src; mainImg.style.opacity = '1'; }, 160);
       }
+      var gallery = thumb.closest('.gallery-thumbs');
+      if (gallery) gallery.querySelectorAll('.product-thumb').forEach(function (t) { t.classList.remove('active'); });
+      thumb.classList.add('active');
     });
-  }
-
-  /* ── Product page gallery thumbs ──────────────────────── */
-  const mainImg = document.querySelector('.gallery-main img');
-  const thumbs  = document.querySelectorAll('.product-thumb');
-
-  if (mainImg && thumbs.length) {
-    mainImg.style.transition = 'opacity 0.18s ease';
-
-    thumbs.forEach((thumb) => {
-      thumb.addEventListener('click', () => {
-        const src = thumb.dataset.src;
-        if (src) {
-          mainImg.style.opacity = '0';
-          setTimeout(() => {
-            mainImg.src = src;
-            mainImg.style.opacity = '1';
-          }, 160);
-        }
-        thumbs.forEach((t) => t.classList.remove('active'));
-        thumb.classList.add('active');
-      });
-    });
-
-    if (thumbs[0]) thumbs[0].classList.add('active');
-  }
+  });
 
   /* ── Sticky mobile CTA: show after hero leaves ─────────── */
   const stickyCta    = document.querySelector('.sticky-cta');
