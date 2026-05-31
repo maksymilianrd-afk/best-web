@@ -1,20 +1,162 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "product_main": {
       "type": "product-template",
       "settings": {}
+    },
+    "product_reviews": {
+      "type": "product-reviews",
+      "settings": {
+        "heading": "Customer Reviews"
+      },
+      "blocks": {
+        "r1": {
+          "type": "review",
+          "settings": {
+            "country": "🇺🇸 United States",
+            "rating": 5,
+            "reviewer_name": "Damian S.",
+            "date": "05/25/2026",
+            "title": "My cat claimed it in 10 minutes",
+            "body": "I was skeptical at first — my cat ignores everything I buy for him. Set this up on my desk, added a pinch of catnip, and he was settled in before I finished my coffee. He has been there every single workday since. Zero keyboard interruptions.",
+            "variant": "DeskPaws — Standard"
+          }
+        },
+        "r2": {
+          "type": "review",
+          "settings": {
+            "country": "🇨🇦 Canada",
+            "rating": 5,
+            "reviewer_name": "Thom H.",
+            "date": "05/13/2026",
+            "title": "Best WFH purchase I have made",
+            "body": "My cat walked across my keyboard at least four times a day. I work in finance — that is not a small problem. DeskPaws fixed it completely. She is right there with me all day but has zero interest in the keyboard now. Solid build, ships fast.",
+            "variant": "DeskPaws — Standard"
+          }
+        },
+        "r3": {
+          "type": "review",
+          "settings": {
+            "country": "🇬🇧 United Kingdom",
+            "rating": 5,
+            "reviewer_name": "Sophie M.",
+            "date": "04/28/2026",
+            "title": "The guilt-free workday",
+            "body": "I used to feel terrible shutting my office door on my cat. Now she has her own spot right next to me and I can reach over and pet her between calls. She purrs most of the day. The clamp took literally 60 seconds to attach. Cannot recommend this enough.",
+            "variant": "DeskPaws — Standard"
+          }
+        },
+        "r4": {
+          "type": "review",
+          "settings": {
+            "country": "🇺🇸 United States",
+            "rating": 5,
+            "reviewer_name": "Jake R.",
+            "date": "04/15/2026",
+            "title": "Solved a two-year problem",
+            "body": "For two years my cat would jump on my desk and sit on my laptop the second I opened it. Tried everything. Bought this out of desperation. Within a day she moved in and has not bothered my laptop since. I genuinely cannot believe it worked this well.",
+            "variant": "DeskPaws — Standard"
+          }
+        },
+        "r5": {
+          "type": "review",
+          "settings": {
+            "country": "🇦🇺 Australia",
+            "rating": 5,
+            "reviewer_name": "Emma K.",
+            "date": "04/10/2026",
+            "title": "Worth every cent",
+            "body": "My cat is 6 kg and I was worried about stability. Zero wobble. He jumped in, turned around three times, and went straight to sleep. The clamp grip is solid and the cushion is genuinely plush. My only regret is not buying this sooner.",
+            "variant": "DeskPaws — Standard"
+          }
+        },
+        "r6": {
+          "type": "review",
+          "settings": {
+            "country": "🇺🇸 United States",
+            "rating": 5,
+            "reviewer_name": "Sarah T.",
+            "date": "04/03/2026",
+            "title": "Both of us got our space back",
+            "body": "My cat has always wanted to be on the desk but I could never let her because she would step all over everything. Now she has her own real estate right next to me. She loves it. I love it. My keyboard is finally safe.",
+            "variant": "DeskPaws — Standard"
+          }
+        },
+        "r7": {
+          "type": "review",
+          "settings": {
+            "country": "🇩🇪 Germany",
+            "rating": 5,
+            "reviewer_name": "Marcus L.",
+            "date": "03/22/2026",
+            "title": "Surprisingly sturdy",
+            "body": "I was expecting something flimsy for this price but it is actually very well made. The steel frame feels solid, the clamp grips firmly without scratching, and my cat (5.5 kg) settled into the cushion on day one. Very happy with the quality.",
+            "variant": "DeskPaws — Standard"
+          }
+        },
+        "r8": {
+          "type": "review",
+          "settings": {
+            "country": "🇬🇧 United Kingdom",
+            "rating": 5,
+            "reviewer_name": "Chloe W.",
+            "date": "03/18/2026",
+            "title": "The only thing my cat actually uses",
+            "body": "I have a graveyard of unused cat furniture in my flat. This is the first thing she has used consistently. I think it is because she can see exactly what I am doing from up there. She is basically managing my meetings at this point.",
+            "variant": "DeskPaws — Standard"
+          }
+        },
+        "r9": {
+          "type": "review",
+          "settings": {
+            "country": "🇳🇱 Netherlands",
+            "rating": 5,
+            "reviewer_name": "Anna B.",
+            "date": "03/09/2026",
+            "title": "My cat moved in immediately",
+            "body": "I set it up while my cat watched from the floor. By the time I sat back down in my chair she was already in it testing it out. I did not even use the catnip tip. She was in it within two minutes and uses it every single day.",
+            "variant": "DeskPaws — Standard"
+          }
+        },
+        "r10": {
+          "type": "review",
+          "settings": {
+            "country": "🇨🇦 Canada",
+            "rating": 5,
+            "reviewer_name": "Robert F.",
+            "date": "02/27/2026",
+            "title": "No more keyboard interruptions",
+            "body": "My cat has sent some legendary emails on my behalf over the years. That era is officially over. He claimed the DeskPaws bed on day one and has not touched my keyboard since. Productivity is up. The cat is happy. Highly recommend.",
+            "variant": "DeskPaws — Standard"
+          }
+        },
+        "r11": {
+          "type": "review",
+          "settings": {
+            "country": "🇸🇪 Sweden",
+            "rating": 5,
+            "reviewer_name": "Henrik V.",
+            "date": "02/14/2026",
+            "title": "Works exactly as described",
+            "body": "Simple concept, excellent execution. The clamp is strong, the bowl shape works perfectly, and my cat seemed to understand what it was for immediately. Setup took about a minute. I have had it for three months and the build quality is holding up perfectly.",
+            "variant": "DeskPaws — Standard"
+          }
+        },
+        "r12": {
+          "type": "review",
+          "settings": {
+            "country": "🇺🇸 United States",
+            "rating": 5,
+            "reviewer_name": "Lisa M.",
+            "date": "02/05/2026",
+            "title": "Game changer for my home office",
+            "body": "I have two cats and they take turns in it throughout the day. The one who is not in it just sits on the floor looking up at the desk waiting for their turn. I might need a second one. Incredibly well made, the sherpa cushion is so soft, and my desk edge is completely unmarked.",
+            "variant": "DeskPaws — Standard"
+          }
+        }
+      },
+      "block_order": ["r1","r2","r3","r4","r5","r6","r7","r8","r9","r10","r11","r12"]
     }
   },
-  "order": [
-    "product_main"
-  ]
+  "order": ["product_main", "product_reviews"]
 }

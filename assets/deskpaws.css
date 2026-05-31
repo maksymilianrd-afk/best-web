@@ -2712,3 +2712,20 @@ em { font-style: italic; }
   .pdp-reviews__stars { justify-content: flex-start; }
   .pdp-review-card { grid-template-columns: 1fr; gap: 1rem; }
 }
+
+/* Review card customer photo */
+.pdp-review-card__imgs {
+  margin: 0.75rem 0;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.pdp-review-card__img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+@media (max-width: 480px) {
+  .pdp-review-card__img { width: 120px; height: 120px; }
+}

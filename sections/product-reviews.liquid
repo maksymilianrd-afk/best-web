@@ -1,86 +1,10 @@
 <div class="pdp-reviews" id="product-reviews">
 
-  <h2 class="pdp-reviews__heading">
-    {{ section.settings.heading | default: "Customer Reviews" }}
-  </h2>
+  <h2 class="pdp-reviews__heading">{{ section.settings.heading | default: "Customer Reviews" }}</h2>
 
-  <!-- Summary -->
-  {%- assign total = section.settings.total_reviews | default: 1 | plus: 0 -%}
-  {%- if total == 0 -%}{%- assign total = 1 -%}{%- endif -%}
-
-  <div class="pdp-reviews__summary">
-
-    <div class="pdp-reviews__score-block">
-      <span class="pdp-reviews__score">{{ section.settings.average_rating | default: "5.0" }}</span>
-      <div class="pdp-reviews__stars">
-        {%- assign avg_rounded = section.settings.average_rating | default: 5 | times: 1 | round -%}
-        {%- for i in (1..5) -%}
-          {%- if i <= avg_rounded -%}<span class="star star--full">&#9733;</span>{%- else -%}<span class="star star--empty">&#9734;</span>{%- endif -%}
-        {%- endfor -%}
-      </div>
-      <p class="pdp-reviews__total">Based on {{ section.settings.total_reviews | default: 0 }} Reviews</p>
-    </div>
-
-    <div class="pdp-reviews__breakdown">
-
-      {%- assign c5 = section.settings.stars_5 | default: 0 | plus: 0 -%}
-      {%- assign p5 = c5 | times: 100 | divided_by: total -%}
-      <div class="pdp-reviews__bar-row">
-        <span class="pdp-reviews__bar-label">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        <div class="pdp-reviews__bar-track"><div class="pdp-reviews__bar-fill" style="width:{{ p5 }}%"></div></div>
-        <span class="pdp-reviews__bar-count">({{ c5 }})</span>
-      </div>
-
-      {%- assign c4 = section.settings.stars_4 | default: 0 | plus: 0 -%}
-      {%- assign p4 = c4 | times: 100 | divided_by: total -%}
-      <div class="pdp-reviews__bar-row">
-        <span class="pdp-reviews__bar-label">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-        <div class="pdp-reviews__bar-track"><div class="pdp-reviews__bar-fill" style="width:{{ p4 }}%"></div></div>
-        <span class="pdp-reviews__bar-count">({{ c4 }})</span>
-      </div>
-
-      {%- assign c3 = section.settings.stars_3 | default: 0 | plus: 0 -%}
-      {%- assign p3 = c3 | times: 100 | divided_by: total -%}
-      <div class="pdp-reviews__bar-row">
-        <span class="pdp-reviews__bar-label">&#9733;&#9733;&#9733;&#9734;&#9734;</span>
-        <div class="pdp-reviews__bar-track"><div class="pdp-reviews__bar-fill" style="width:{{ p3 }}%"></div></div>
-        <span class="pdp-reviews__bar-count">({{ c3 }})</span>
-      </div>
-
-      {%- assign c2 = section.settings.stars_2 | default: 0 | plus: 0 -%}
-      {%- assign p2 = c2 | times: 100 | divided_by: total -%}
-      <div class="pdp-reviews__bar-row">
-        <span class="pdp-reviews__bar-label">&#9733;&#9733;&#9734;&#9734;&#9734;</span>
-        <div class="pdp-reviews__bar-track"><div class="pdp-reviews__bar-fill" style="width:{{ p2 }}%"></div></div>
-        <span class="pdp-reviews__bar-count">({{ c2 }})</span>
-      </div>
-
-      {%- assign c1 = section.settings.stars_1 | default: 0 | plus: 0 -%}
-      {%- assign p1 = c1 | times: 100 | divided_by: total -%}
-      <div class="pdp-reviews__bar-row">
-        <span class="pdp-reviews__bar-label">&#9733;&#9734;&#9734;&#9734;&#9734;</span>
-        <div class="pdp-reviews__bar-track"><div class="pdp-reviews__bar-fill" style="width:{{ p1 }}%"></div></div>
-        <span class="pdp-reviews__bar-count">({{ c1 }})</span>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Customer photos -->
-  {%- if section.settings.photo_1 or section.settings.photo_2 or section.settings.photo_3 or section.settings.photo_4 -%}
-  <div class="pdp-reviews__photos">
-    {%- if section.settings.photo_1 -%}<img src="{{ section.settings.photo_1 | image_url: width: 200 }}" alt="{{ section.settings.photo_1.alt | default: 'Customer photo' }}" class="pdp-reviews__photo" width="90" height="90" loading="lazy">{%- endif -%}
-    {%- if section.settings.photo_2 -%}<img src="{{ section.settings.photo_2 | image_url: width: 200 }}" alt="{{ section.settings.photo_2.alt | default: 'Customer photo' }}" class="pdp-reviews__photo" width="90" height="90" loading="lazy">{%- endif -%}
-    {%- if section.settings.photo_3 -%}<img src="{{ section.settings.photo_3 | image_url: width: 200 }}" alt="{{ section.settings.photo_3.alt | default: 'Customer photo' }}" class="pdp-reviews__photo" width="90" height="90" loading="lazy">{%- endif -%}
-    {%- if section.settings.photo_4 -%}<img src="{{ section.settings.photo_4 | image_url: width: 200 }}" alt="{{ section.settings.photo_4.alt | default: 'Customer photo' }}" class="pdp-reviews__photo" width="90" height="90" loading="lazy">{%- endif -%}
-  </div>
-  {%- endif -%}
-
-  <!-- Individual reviews -->
-  {%- if section.blocks.size > 0 -%}
   <div class="pdp-reviews__list">
     {%- for block in section.blocks -%}
-      {%- assign rating = block.settings.rating | default: 5 | times: 1 -%}
+      {%- assign r = block.settings.rating | default: 5 | plus: 0 -%}
       <div class="pdp-review-card" {{ block.shopify_attributes }}>
 
         <div class="pdp-review-card__meta">
@@ -89,10 +13,10 @@
           {%- endif -%}
           <div class="pdp-review-card__stars">
             {%- for i in (1..5) -%}
-              {%- if i <= rating -%}<span class="star star--full">&#9733;</span>{%- else -%}<span class="star star--empty">&#9734;</span>{%- endif -%}
+              {%- if i <= r -%}<span class="star star--full">&#9733;</span>{%- else -%}<span class="star star--empty">&#9734;</span>{%- endif -%}
             {%- endfor -%}
           </div>
-          <p class="pdp-review-card__name">{{ block.settings.reviewer_name | default: "Anonymous" }}</p>
+          <p class="pdp-review-card__name">{{ block.settings.reviewer_name | default: "Customer" }}</p>
           {%- if block.settings.date != blank -%}
             <p class="pdp-review-card__date">{{ block.settings.date }}</p>
           {%- endif -%}
@@ -105,6 +29,17 @@
           {%- if block.settings.body != blank -%}
             <p class="pdp-review-card__body">{{ block.settings.body }}</p>
           {%- endif -%}
+          {%- if block.settings.photo -%}
+            <div class="pdp-review-card__imgs">
+              <img
+                src="{{ block.settings.photo | image_url: width: 400 }}"
+                alt="{{ block.settings.photo.alt | default: 'Customer photo' }}"
+                class="pdp-review-card__img"
+                width="160" height="160"
+                loading="lazy"
+              >
+            </div>
+          {%- endif -%}
           {%- if block.settings.variant != blank -%}
             <p class="pdp-review-card__variant">{{ block.settings.variant }}</p>
           {%- endif -%}
@@ -113,7 +48,6 @@
       </div>
     {%- endfor -%}
   </div>
-  {%- endif -%}
 
 </div>
 
@@ -122,33 +56,21 @@
   "name": "Product Reviews",
   "tag": "div",
   "settings": [
-    { "type": "text",    "id": "heading",        "label": "Heading",        "default": "Customer Reviews" },
-    { "type": "text",    "id": "average_rating", "label": "Average rating", "default": "5.0" },
-    { "type": "number",  "id": "total_reviews",  "label": "Total reviews",  "default": 59 },
-    { "type": "header",  "content": "Rating breakdown" },
-    { "type": "number",  "id": "stars_5",        "label": "5-star count",   "default": 58 },
-    { "type": "number",  "id": "stars_4",        "label": "4-star count",   "default": 1 },
-    { "type": "number",  "id": "stars_3",        "label": "3-star count",   "default": 0 },
-    { "type": "number",  "id": "stars_2",        "label": "2-star count",   "default": 0 },
-    { "type": "number",  "id": "stars_1",        "label": "1-star count",   "default": 0 },
-    { "type": "header",  "content": "Customer photos" },
-    { "type": "image_picker", "id": "photo_1",   "label": "Photo 1" },
-    { "type": "image_picker", "id": "photo_2",   "label": "Photo 2" },
-    { "type": "image_picker", "id": "photo_3",   "label": "Photo 3" },
-    { "type": "image_picker", "id": "photo_4",   "label": "Photo 4" }
+    { "type": "text", "id": "heading", "label": "Section heading", "default": "Customer Reviews" }
   ],
   "blocks": [
     {
       "type": "review",
       "name": "Review",
       "settings": [
-        { "type": "text",     "id": "country",       "label": "Country (with flag emoji)", "default": "🇺🇸 United States" },
-        { "type": "range",    "id": "rating",        "label": "Rating", "min": 1, "max": 5, "step": 1, "default": 5 },
-        { "type": "text",     "id": "reviewer_name", "label": "Name",   "default": "Happy Customer" },
-        { "type": "text",     "id": "date",          "label": "Date",   "default": "05/25/2026" },
-        { "type": "text",     "id": "title",         "label": "Review title" },
-        { "type": "textarea", "id": "body",          "label": "Review body" },
-        { "type": "text",     "id": "variant",       "label": "Product variant purchased" }
+        { "type": "text",         "id": "country",       "label": "Country (with flag)",   "default": "🇺🇸 United States" },
+        { "type": "range",        "id": "rating",        "label": "Star rating", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "text",         "id": "reviewer_name", "label": "Reviewer name",         "default": "Happy Customer" },
+        { "type": "text",         "id": "date",          "label": "Date",                  "default": "05/25/2026" },
+        { "type": "text",         "id": "title",         "label": "Review title" },
+        { "type": "textarea",     "id": "body",          "label": "Review text" },
+        { "type": "image_picker", "id": "photo",         "label": "Customer photo (optional)" },
+        { "type": "text",         "id": "variant",       "label": "Variant purchased" }
       ]
     }
   ],
