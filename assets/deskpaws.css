@@ -2558,6 +2558,13 @@ em { font-style: italic; }
   min-width: 180px;
 }
 
+.pdp-reviews__score-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
 .pdp-reviews__score {
   display: block;
   font-size: 4rem;

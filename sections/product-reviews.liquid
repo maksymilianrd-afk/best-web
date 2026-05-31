@@ -1,7 +1,5 @@
 <div class="pdp-reviews" id="product-reviews">
 
-  <h2 class="pdp-reviews__heading">{{ section.settings.heading | default: "Customer Reviews" }}</h2>
-
   <div class="pdp-reviews__list">
     {%- for block in section.blocks -%}
       {%- assign r = block.settings.rating | default: 5 | plus: 0 -%}

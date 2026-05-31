@@ -4,6 +4,19 @@
       "type": "product-template",
       "settings": {}
     },
+    "product_reviews_header": {
+      "type": "product-reviews-header",
+      "settings": {
+        "heading": "Customer Reviews",
+        "average_rating": "4.8",
+        "total_reviews": 59,
+        "stars_5": 50,
+        "stars_4": 7,
+        "stars_3": 1,
+        "stars_2": 0,
+        "stars_1": 1
+      }
+    },
     "product_reviews": {
       "type": "product-reviews",
       "settings": {
@@ -158,5 +171,5 @@
       "block_order": ["r1","r2","r3","r4","r5","r6","r7","r8","r9","r10","r11","r12"]
     }
   },
-  "order": ["product_main", "product_reviews"]
+  "order": ["product_main", "product_reviews_header", "product_reviews"]
 }
