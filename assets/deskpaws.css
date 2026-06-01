@@ -2736,3 +2736,85 @@ em { font-style: italic; }
 @media (max-width: 480px) {
   .pdp-review-card__img { width: 120px; height: 120px; }
 }
+
+/* ── Big Image section ── */
+.big-image {
+  position: relative;
+  width: 100%;
+  min-height: 560px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.big-image__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.big-image__bg--placeholder {
+  background: #1e1a16;
+}
+
+.big-image__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.58) 0%, rgba(0,0,0,0.18) 60%, transparent 100%);
+}
+
+.big-image__content {
+  position: relative;
+  z-index: 1;
+  padding: 5rem 5rem 4.5rem;
+  max-width: 560px;
+}
+
+.big-image__heading {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.15;
+  margin: 0 0 1rem;
+  letter-spacing: -0.01em;
+}
+
+.big-image__subtext {
+  font-family: var(--font-sans);
+  font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+  color: rgba(255,255,255,0.85);
+  line-height: 1.6;
+  margin: 0 0 2rem;
+}
+
+.big-image__btn {
+  display: inline-block;
+  padding: 0.75rem 1.75rem;
+  background: #F5C842;
+  color: #1a1108;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 100px;
+  transition: background 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+
+.big-image__btn:hover {
+  background: #e8b820;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .big-image { min-height: 420px; align-items: flex-end; }
+  .big-image__overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+  }
+  .big-image__content { padding: 2.5rem 1.5rem; max-width: 100%; }
+  .big-image__heading { font-size: clamp(1.5rem, 5vw, 2rem); }
+}

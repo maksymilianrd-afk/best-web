@@ -1,0 +1,70 @@
+{%- assign img = section.settings.image -%}
+
+<div class="big-image">
+  {%- if img -%}
+    <img
+      class="big-image__bg"
+      src="{{ img | image_url: width: 2400 }}"
+      alt="{{ img.alt | default: section.settings.heading }}"
+      width="{{ img.width }}"
+      height="{{ img.height }}"
+      loading="lazy"
+    >
+  {%- else -%}
+    <div class="big-image__bg big-image__bg--placeholder"></div>
+  {%- endif -%}
+
+  <div class="big-image__overlay"></div>
+
+  <div class="big-image__content">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="big-image__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.subtext != blank -%}
+      <p class="big-image__subtext">{{ section.settings.subtext }}</p>
+    {%- endif -%}
+    {%- if section.settings.btn_label != blank -%}
+      <a class="big-image__btn" href="{{ section.settings.btn_url | default: '/products/desk-paws-place-for-your-cat-co-worker' }}">
+        {{ section.settings.btn_label }}
+      </a>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Big Image",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Hire your coworker properly."
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "The desk bed that keeps them close, comfortable, and off the keys."
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button label",
+      "default": "Meet the Nest →"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button link"
+    }
+  ],
+  "presets": [{ "name": "Big Image" }]
+}
+{% endschema %}
