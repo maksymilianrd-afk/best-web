@@ -1,54 +1,187 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "s1-hero",
-      "settings": {}
-    },
-    "buy": {
-      "type": "s-buy",
-      "settings": {}
+      "settings": {
+        "eyebrow": "The desk cat bed",
+        "headline": "Finally — a truce with your feline coworker.",
+        "subheadline": "",
+        "cta_label": "Claim my cat's spot — $79",
+        "cta_url": "",
+        "secondary_label": "See how it works"
+      }
     },
     "meet": {
       "type": "s2-problem",
-      "settings": {}
+      "settings": {
+        "eyebrow": "Meet DeskPaws",
+        "heading": "A nest that belongs on your desk.",
+        "body": "",
+        "body_2": "",
+        "pullquote": "",
+        "pullquote_author": "Amanda K. & Biscuit — verified buyer",
+        "cta_label": "See It Up Close",
+        "cta_url": ""
+      }
+    },
+    "big_image_4XmprY": {
+      "type": "big-image",
+      "name": "Big Image",
+      "settings": {
+        "image": "shopify://shop_images/Firefly_Gemini_Flash_Realistic_gray_maycoone_cat_with_his_tail_outside_of_the_basket_real_realistic_cat_t_841677.png",
+        "heading": "Hire your coworker properly.",
+        "subtext": "The desk bed that keeps them close, comfortable, and off the keys.",
+        "btn_label": "Meet the Nest →",
+        "btn_url": ""
+      }
     },
     "benefits": {
       "type": "s3-reveal",
-      "settings": {}
+      "settings": {
+        "eyebrow": "Why it works",
+        "heading": "Six ways DeskPaws changes your workday.",
+        "subhead": "",
+        "card_1_title": "Closeness without chaos",
+        "card_1_body": "",
+        "card_2_title": "Your keyboard is yours again",
+        "card_2_body": "",
+        "card_3_title": "Cats take to it naturally",
+        "card_3_body": "",
+        "card_4_title": "On in 60 seconds, no tools",
+        "card_4_body": "",
+        "card_5_title": "Fits any desk surface",
+        "card_5_body": "",
+        "card_6_title": "Holds the chonkiest cat",
+        "card_6_body": "",
+        "cta_label": "Claim My Cat's Spot — $79",
+        "cta_url": ""
+      }
     },
     "objection": {
       "type": "s4-why",
-      "settings": {}
+      "settings": {
+        "eyebrow": "The #1 question we get",
+        "heading": "Will my cat actually use it?",
+        "body": "",
+        "tip": "",
+        "body_2": "",
+        "guarantee": "",
+        "cta_label": "Try It Risk-Free",
+        "cta_url": ""
+      }
     },
     "how_it_works": {
       "type": "s5-proof",
-      "settings": {}
+      "settings": {
+        "eyebrow": "Setup",
+        "heading": "Three steps. Sixty seconds.",
+        "body": "",
+        "step_1_title": "Clamp it on",
+        "step_1_body": "",
+        "step_2_title": "Add a pinch of catnip",
+        "step_2_body": "",
+        "step_3_title": "Get back to work",
+        "step_3_body": ""
+      }
     },
     "before_after": {
       "type": "s6-faq-cta",
-      "settings": {}
+      "settings": {
+        "before_heading": "The desk you know a little too well.",
+        "before_1": "",
+        "before_2": "",
+        "before_3": "",
+        "before_4": "",
+        "before_caption": "",
+        "after_heading": "The workday you've been trying to build.",
+        "after_1": "",
+        "after_2": "",
+        "after_3": "",
+        "after_4": "",
+        "cta_label": "Get That Workday — $79",
+        "cta_url": ""
+      }
     },
     "reviews": {
       "type": "s7-reviews",
-      "settings": {}
+      "settings": {
+        "eyebrow": "Real cats. Real desks.",
+        "heading": "What happens when the keyboard is finally yours again.",
+        "stat_meta": "Over 400 verified reviews",
+        "review_1": "",
+        "review_1_author": "Sarah M. & Biscuit",
+        "review_2": "",
+        "review_2_author": "Rachel T. & Chairman Floof",
+        "review_3": "",
+        "review_3_author": "Jamie L. — gift buyer",
+        "review_4": "",
+        "review_4_author": "Priya K. & Mango",
+        "review_5": "",
+        "review_5_author": "Leah R. & Duchess",
+        "review_6": "",
+        "review_6_author": "Dana W. & Gnocchi",
+        "cta_label": "Join Them — Claim Your Spot",
+        "cta_url": ""
+      }
     },
     "comparison": {
       "type": "s8-comparison",
-      "settings": {}
+      "settings": {
+        "eyebrow": "The smart-money pick",
+        "heading": "Why not the $179 one?",
+        "subhead": "",
+        "cta_copy": "",
+        "cta_label": "Get DeskPaws for $79",
+        "cta_url": ""
+      }
     },
     "guarantee": {
       "type": "s9-guarantee",
-      "settings": {}
+      "settings": {
+        "guarantee_heading": "30-day happy-cat guarantee.",
+        "guarantee_body": "",
+        "cta_label": "Claim My Cat's Spot — $79",
+        "cta_url": "",
+        "faq_eyebrow": "Got questions?",
+        "faq_heading": "We've got answers.",
+        "faq_1_q": "",
+        "faq_1_a": "",
+        "faq_2_q": "",
+        "faq_2_a": "",
+        "faq_3_q": "",
+        "faq_3_a": "",
+        "faq_4_q": "",
+        "faq_4_a": "",
+        "faq_5_q": "",
+        "faq_5_a": "",
+        "faq_6_q": "",
+        "faq_6_a": ""
+      }
     },
     "final_cta": {
       "type": "s10-final-cta",
-      "settings": {}
+      "settings": {
+        "eyebrow": "Still scrolling?",
+        "heading": "Work peacefully. Without pushing your cat away.",
+        "subhead": "",
+        "cta_label": "Claim My Cat's Spot — $79",
+        "cta_url": ""
+      }
     }
   },
   "order": [
     "hero",
-    "buy",
     "meet",
+    "big_image_4XmprY",
     "benefits",
     "objection",
     "how_it_works",
