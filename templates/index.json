@@ -33,17 +33,6 @@
         "cta_url": ""
       }
     },
-    "big_image_4XmprY": {
-      "type": "big-image",
-      "name": "Big Image",
-      "settings": {
-        "image": "shopify://shop_images/Firefly_Gemini_Flash_Realistic_gray_maycoone_cat_with_his_tail_outside_of_the_basket_real_realistic_cat_t_841677.png",
-        "heading": "Hire your coworker properly.",
-        "subtext": "The desk bed that keeps them close, comfortable, and off the keys.",
-        "btn_label": "Meet the Nest →",
-        "btn_url": ""
-      }
-    },
     "benefits": {
       "type": "s3-reveal",
       "settings": {
@@ -64,6 +53,17 @@
         "card_6_body": "",
         "cta_label": "Claim My Cat's Spot — $79",
         "cta_url": ""
+      }
+    },
+    "big_image_4XmprY": {
+      "type": "big-image",
+      "name": "Big Image",
+      "settings": {
+        "image": "shopify://shop_images/Firefly_Gemini_Flash_Realistic_gray_maycoone_cat_with_his_tail_outside_of_the_basket_real_realistic_cat_t_841677.png",
+        "heading": "Hire your coworker properly.",
+        "subtext": "The desk bed that keeps them close, comfortable, and off the keys.",
+        "btn_label": "Meet the Nest →",
+        "btn_url": ""
       }
     },
     "objection": {
@@ -181,8 +181,8 @@
   "order": [
     "hero",
     "meet",
-    "big_image_4XmprY",
     "benefits",
+    "big_image_4XmprY",
     "objection",
     "how_it_works",
     "before_after",
