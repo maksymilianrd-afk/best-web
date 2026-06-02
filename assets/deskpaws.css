@@ -441,10 +441,10 @@ em { font-style: italic; }
   width: 100%;
 }
 
-/* Left half stays dark for text legibility; right half opens to image */
+/* Right half stays dark for text legibility; left half opens to image */
 .hero__overlay {
   background: linear-gradient(
-    to right,
+    to left,
     rgba(16, 8, 3, 0.90) 0%,
     rgba(16, 8, 3, 0.80) 35%,
     rgba(16, 8, 3, 0.40) 60%,
@@ -470,9 +470,12 @@ em { font-style: italic; }
 @media (width >= 1024px) {
   .hero__container {
     padding-bottom: 9rem;
+    align-items: flex-end;
   }
+  .hero__eyebrow,
   .hero__bottom {
     max-width: min(580px, 52%);
+    width: 100%;
   }
 }
 
@@ -2492,6 +2495,15 @@ em { font-style: italic; }
 @media (max-width: 640px) {
   .sticky-cta { display: flex; }
   body { padding-bottom: 5rem; }
+
+  .hero__overlay {
+    background: linear-gradient(
+      to top,
+      rgba(16, 8, 3, 0.92) 0%,
+      rgba(16, 8, 3, 0.70) 45%,
+      rgba(16, 8, 3, 0.45) 100%
+    );
+  }
 
   .hero__buttons {
     flex-direction: column;
