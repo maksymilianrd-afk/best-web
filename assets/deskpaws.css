@@ -441,14 +441,14 @@ em { font-style: italic; }
   width: 100%;
 }
 
-/* Cinematic gradient: left text-zone stays dark, right opens up */
+/* Left half stays dark for text legibility; right half opens to image */
 .hero__overlay {
   background: linear-gradient(
-    108deg,
-    rgba(16, 8, 3, 0.88) 0%,
-    rgba(16, 8, 3, 0.72) 28%,
-    rgba(16, 8, 3, 0.28) 58%,
-    rgba(16, 8, 3, 0.06) 100%
+    to right,
+    rgba(16, 8, 3, 0.90) 0%,
+    rgba(16, 8, 3, 0.80) 35%,
+    rgba(16, 8, 3, 0.40) 60%,
+    rgba(16, 8, 3, 0.08) 100%
   );
   inset: 0;
   position: absolute;
@@ -457,10 +457,11 @@ em { font-style: italic; }
 .hero__container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 3rem;
   min-height: 100svh;
   padding-bottom: 8rem;
-  padding-top: calc(var(--header-height) + 2rem);
+  padding-top: calc(var(--header-height) + 4rem);
   padding-inline: var(--container-inset);
   position: relative;
   z-index: 1;
@@ -469,6 +470,9 @@ em { font-style: italic; }
 @media (width >= 1024px) {
   .hero__container {
     padding-bottom: 9rem;
+  }
+  .hero__bottom {
+    max-width: min(580px, 52%);
   }
 }
 
