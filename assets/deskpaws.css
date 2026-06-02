@@ -259,27 +259,17 @@ em { font-style: italic; }
   align-items: center;
   transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1),
               color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border-bottom: 1px solid transparent;
   animation: headerEnter 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
 }
 
-/* Overlay state: floating rounded pill, white text */
+/* Overlay state: fully transparent, full-width, white text, hairline */
 .header--overlay {
   background: transparent;
   color: var(--color-white);
-}
-.header--overlay .header__inner {
-  background: rgba(44, 26, 17, 0.52);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 1rem;
-  margin-inline: 1.25rem;
-  padding-inline: 2rem;
-  padding-block: 1rem;
-  align-self: center;
-  transition: background 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-              border-radius 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border-bottom-color: rgba(255, 255, 255, 0.16);
 }
 .header--overlay .header__logo-text { color: var(--color-white); }
 .header--overlay .header__logo-paws { color: var(--color-white); font-style: italic; }
@@ -294,16 +284,14 @@ em { font-style: italic; }
   color: var(--color-brown);
 }
 
-/* Scrolled state — pill turns white, stays floating */
-.header.is-scrolled .header__inner {
+/* Scrolled state — solid white bar, brown text */
+.header.is-scrolled {
   background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 4px 32px rgba(44, 26, 17, 0.1), 0 1px 4px rgba(44, 26, 17, 0.06);
-}
-.header.is-scrolled {
-  background: transparent;
   color: var(--color-brown);
+  border-bottom-color: rgba(44, 26, 17, 0.08);
+  box-shadow: 0 4px 24px rgba(44, 26, 17, 0.06);
 }
 .header.is-scrolled .header__logo-text { color: var(--color-brown); }
 .header.is-scrolled .header__logo-paws { color: var(--color-gold); font-style: italic; }

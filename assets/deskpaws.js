@@ -2,9 +2,9 @@
 (function () {
   'use strict';
 
-  /* ── Header: overlay → scrolled on scroll ──────────────── */
+  /* ── Header: transparent → white on scroll (overlay pages only) ── */
   const header = document.getElementById('site-header');
-  if (header) {
+  if (header && header.classList.contains('header--overlay')) {
     const onScroll = () => {
       header.classList.toggle('is-scrolled', window.scrollY > 40);
     };
