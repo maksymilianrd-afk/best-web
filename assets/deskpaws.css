@@ -434,10 +434,10 @@ em { font-style: italic; }
   width: 100%;
 }
 
-/* Right half stays dark for text legibility; left half opens to image */
+/* Left half stays dark for text legibility; right half opens to image */
 .hero__overlay {
   background: linear-gradient(
-    to left,
+    to right,
     rgba(16, 8, 3, 0.90) 0%,
     rgba(16, 8, 3, 0.80) 35%,
     rgba(16, 8, 3, 0.40) 60%,
@@ -463,8 +463,7 @@ em { font-style: italic; }
 @media (width >= 1024px) {
   .hero__container {
     padding-bottom: 9rem;
-    padding-right: clamp(1.5rem, 2vw, 3rem);
-    align-items: flex-end;
+    align-items: flex-start;
   }
   .hero__eyebrow,
   .hero__bottom {
