@@ -434,14 +434,13 @@ em { font-style: italic; }
   width: 100%;
 }
 
-/* Very soft vignette — image reads clearly, text stays legible */
+/* Minimal vignette — just enough behind left text, image fully clear */
 .hero__overlay {
   background: linear-gradient(
     to right,
-    rgba(0, 0, 0, 0.52) 0%,
-    rgba(0, 0, 0, 0.32) 30%,
-    rgba(0, 0, 0, 0.06) 55%,
-    transparent 75%
+    rgba(0, 0, 0, 0.28) 0%,
+    rgba(0, 0, 0, 0.12) 28%,
+    transparent 52%
   );
   inset: 0;
   position: absolute;

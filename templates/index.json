@@ -12,12 +12,12 @@
     "hero": {
       "type": "s1-hero",
       "settings": {
-        "eyebrow": "The desk cat bed",
-        "headline": "Finally — a truce with your feline coworker.",
+        "eyebrow": "",
+        "headline": "For the cat who already owns your desk.",
         "subheadline": "",
-        "cta_label": "Claim my cat's spot — $79",
+        "cta_label": "Shop Now",
         "cta_url": "",
-        "secondary_label": "See how it works",
+        "secondary_label": "",
         "hero_image": "shopify://shop_images/Image_final2.jpg"
       }
     },
