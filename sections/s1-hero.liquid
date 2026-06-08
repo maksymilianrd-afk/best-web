@@ -19,20 +19,21 @@
 
   <div class="hero__container">
 
-    <p class="hero__eyebrow">{{ section.settings.eyebrow | default: "The desk cat bed" }}</p>
-
     <div class="hero__bottom">
       <div class="hero__content">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="hero__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
         <h1 class="hero__title">
           {%- if section.settings.headline != blank -%}
             {{ section.settings.headline }}
           {%- else -%}
-            Finally &mdash; a truce with your <em>feline coworker.</em>
+            For the cat who already owns your desk.
           {%- endif -%}
         </h1>
-        <p class="hero__description">
-          {{ section.settings.subheadline | default: "The clamp-on desk bed that gives your cat their own space — right next to yours. No drilling. No drama. Just a very happy cat." }}
-        </p>
+        {%- if section.settings.subheadline != blank -%}
+          <p class="hero__description">{{ section.settings.subheadline }}</p>
+        {%- endif -%}
       </div>
 
       <div class="hero__buttons">
@@ -42,14 +43,14 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="10" viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/></svg>
           </a>
         </span>
-        <span class="hero__button">
-          <a href="#meet-deskpaws" class="btn btn--text btn--white">
-            {{ section.settings.secondary_label | default: "See how it works" }}
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true">
-              <path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/>
-            </svg>
-          </a>
-        </span>
+        {%- if section.settings.secondary_label != blank -%}
+          <span class="hero__button">
+            <a href="#meet-deskpaws" class="btn btn--text btn--white">
+              {{ section.settings.secondary_label }}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/></svg>
+            </a>
+          </span>
+        {%- endif -%}
       </div>
     </div>
 

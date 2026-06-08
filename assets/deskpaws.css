@@ -434,14 +434,14 @@ em { font-style: italic; }
   width: 100%;
 }
 
-/* Left half stays dark for text legibility; right half opens to image */
+/* Very soft vignette — image reads clearly, text stays legible */
 .hero__overlay {
   background: linear-gradient(
     to right,
-    rgba(16, 8, 3, 0.90) 0%,
-    rgba(16, 8, 3, 0.80) 35%,
-    rgba(16, 8, 3, 0.40) 60%,
-    rgba(16, 8, 3, 0.08) 100%
+    rgba(0, 0, 0, 0.52) 0%,
+    rgba(0, 0, 0, 0.32) 30%,
+    rgba(0, 0, 0, 0.06) 55%,
+    transparent 75%
   );
   inset: 0;
   position: absolute;
@@ -450,11 +450,10 @@ em { font-style: italic; }
 .hero__container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 3rem;
+  justify-content: flex-end;
   min-height: 100svh;
   padding-bottom: 8rem;
-  padding-top: calc(var(--header-height) + 4rem);
+  padding-top: calc(var(--header-height) + 2rem);
   padding-inline: var(--container-inset);
   position: relative;
   z-index: 1;
@@ -463,12 +462,9 @@ em { font-style: italic; }
 @media (width >= 1024px) {
   .hero__container {
     padding-bottom: 9rem;
-    align-items: flex-start;
   }
-  .hero__eyebrow,
   .hero__bottom {
-    max-width: min(560px, 50%);
-    width: 100%;
+    max-width: min(520px, 46%);
   }
 }
 
@@ -507,6 +503,7 @@ em { font-style: italic; }
   color: var(--color-white);
   margin: 0;
   max-width: 14ch;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.22);
   opacity: 0;
   animation: heroFadeUp 0.9s ease 0.35s forwards;
 }
