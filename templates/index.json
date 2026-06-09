@@ -21,6 +21,22 @@
         "hero_image": "shopify://shop_images/New_Work_17.png"
       }
     },
+    "the_problem_P9dmbB": {
+      "type": "the-problem",
+      "name": "The Problem",
+      "settings": {
+        "eyebrow": "Sound familiar?",
+        "heading": "You sit down to work.\nThey have other plans.",
+        "line_1": "Within two minutes, they're there.",
+        "line_2": "On the keyboard. Between you and the screen.",
+        "line_3": "On the exact document you were about to open.",
+        "line_4": "You move them. They come back.",
+        "line_5": "You close the door. You feel terrible.",
+        "line_6": "You let them back in. They're on the keyboard again.",
+        "line_7": "You love them completely.",
+        "line_8": "You also haven't finished a sentence since 9am."
+      }
+    },
     "meet": {
       "type": "s2-problem",
       "settings": {
@@ -181,6 +197,7 @@
   },
   "order": [
     "hero",
+    "the_problem_P9dmbB",
     "meet",
     "benefits",
     "big_image_4XmprY",
