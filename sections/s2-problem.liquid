@@ -1,58 +1,69 @@
-<section class="product-section product-section--image-left" id="meet-deskpaws" aria-labelledby="s2-heading">
-  <div class="product-section__inner">
+<section class="meet" id="meet-deskpaws">
+  <div class="meet-left">
 
-    <div class="product-section__gallery">
-      <div class="product-section__slides" id="s2-slides">
-        <div class="product-section__slide">
-          {%- if section.settings.image_1 -%}
-            {{ section.settings.image_1 | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.image_1.alt | default: 'DeskPaws desk cat bed' }}
-          {%- else -%}
-            <img src="{{ 'product-floating.png' | asset_url }}" alt="DeskPaws deep sherpa nest clamped to a desk" width="720" height="740" loading="lazy">
-          {%- endif -%}
-        </div>
-        <div class="product-section__slide">
-          {%- if section.settings.image_2 -%}
-            {{ section.settings.image_2 | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.image_2.alt | default: 'DeskPaws on desk' }}
-          {%- else -%}
-            <img src="{{ 'product-on-desk.png' | asset_url }}" alt="DeskPaws clamped to a real desk with a cat inside" width="720" height="740" loading="lazy">
-          {%- endif -%}
-        </div>
+    <div class="meet-slides" id="meet-slides">
+      <div class="meet-slide meet-slide--active">
+        {%- if section.settings.image_1 -%}
+          {{ section.settings.image_1 | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.image_1.alt | default: 'DeskPaws desk cat bed' }}
+        {%- else -%}
+          <img src="{{ 'product-floating.png' | asset_url }}" alt="DeskPaws deep sherpa nest clamped to a desk" width="720" height="740" loading="lazy">
+        {%- endif -%}
       </div>
-      <div class="product-section__controls" aria-label="Gallery navigation">
-        <button class="btn-arrow btn-arrow--left" data-slides="s2-slides" data-dir="-1" aria-label="Previous image">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/></svg>
-        </button>
-        <button class="btn-arrow" data-slides="s2-slides" data-dir="1" aria-label="Next image">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/></svg>
-        </button>
+      <div class="meet-slide">
+        {%- if section.settings.image_2 -%}
+          {{ section.settings.image_2 | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.image_2.alt | default: 'DeskPaws on desk' }}
+        {%- else -%}
+          <img src="{{ 'product-on-desk.png' | asset_url }}" alt="DeskPaws clamped to a real desk with a cat inside" width="720" height="740" loading="lazy">
+        {%- endif -%}
       </div>
+      {%- if section.settings.image_3 -%}
+        <div class="meet-slide">
+          {{ section.settings.image_3 | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.image_3.alt | default: 'DeskPaws detail' }}
+        </div>
+      {%- endif -%}
     </div>
 
-    <div class="product-section__body">
-      <div class="product-section__group">
-        <p class="text-subtitle">{{ section.settings.eyebrow | default: "Meet DeskPaws" }}</p>
-        <h2 class="h2" id="s2-heading">{{ section.settings.heading | default: "A nest that belongs on your desk." }}</h2>
-        <p class="text-paragraph">
-          {{ section.settings.body | default: "DeskPaws is a deep, sherpa-lined bowl that clamps flush to your desk edge. Your cat gets an enclosed, cozy perch right at your elbow &mdash; close enough to touch without touching your keyboard." }}
-        </p>
+    <div class="meet-dots" id="meet-dots" aria-label="Gallery navigation">
+      <button class="meet-dot meet-dot--active" data-slide="0" aria-label="Image 1"></button>
+      <button class="meet-dot" data-slide="1" aria-label="Image 2"></button>
+      {%- if section.settings.image_3 -%}
+        <button class="meet-dot" data-slide="2" aria-label="Image 3"></button>
+      {%- endif -%}
+    </div>
+
+  </div>
+
+  <div class="meet-right reveal">
+
+    {%- if section.settings.eyebrow != blank -%}
+      <span class="meet-label">{{ section.settings.eyebrow }}</span>
+    {%- endif -%}
+
+    <h2 class="meet-headline">{{ section.settings.heading | default: "A nest that belongs on your desk." }}</h2>
+
+    <p class="meet-body">{{ section.settings.body | default: "A deep, sherpa-lined bowl that clamps flush to your desk edge. Your cat gets an enclosed, cozy perch right at your elbow — close enough to touch without touching your keyboard." }}</p>
+
+    <div class="meet-rule"></div>
+
+    <blockquote class="meet-quote">
+      <p>{{ section.settings.pullquote | default: "I genuinely didn't think it would work. She was in it within two hours. Now I have to remind myself to pet her — she's not on my keyboard anymore." }}</p>
+      <cite>{{ section.settings.pullquote_author | default: "Amanda K. & Biscuit — Verified buyer" }}</cite>
+    </blockquote>
+
+    <div class="meet-specs">
+      <div class="meet-spec">
+        <span class="spec-val">{{ section.settings.spec_1_val | default: "50 lbs" }}</span>
+        <span class="spec-label">{{ section.settings.spec_1_label | default: "Max load" }}</span>
       </div>
-
-      <div class="product-section__group">
-        <p class="text-paragraph">
-          {{ section.settings.body_2 | default: "Most desk beds are flat mesh hammocks. Cats instinctively avoid open, exposed surfaces &mdash; they seek enclosed, nest-like hideaways. The deep bowl shape works with that instinct, not against it. That&rsquo;s why cats actually stay in it." }}
-        </p>
+      <div class="spec-divider"></div>
+      <div class="meet-spec">
+        <span class="spec-val">{{ section.settings.spec_2_val | default: "39 cm" }}</span>
+        <span class="spec-label">{{ section.settings.spec_2_label | default: "Nest diameter" }}</span>
       </div>
-
-      <blockquote class="pull-quote">
-        {{ section.settings.pullquote | default: "I genuinely didn&rsquo;t think it would work. She was in it within two hours. Now I have to remind myself to pet her because she&rsquo;s not on my keyboard." }}
-        <cite>{{ section.settings.pullquote_author | default: "Amanda K. &amp; Biscuit &mdash; verified buyer" }}</cite>
-      </blockquote>
-
-      <div class="product-section__cta">
-        <a href="{{ section.settings.cta_url | default: '/products/desk-paws-place-for-your-cat-co-worker' }}" class="btn btn--secondary">
-          {{ section.settings.cta_label | default: "See It Up Close" }}
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/></svg>
-        </a>
+      <div class="spec-divider"></div>
+      <div class="meet-spec">
+        <span class="spec-val">{{ section.settings.spec_3_val | default: "60 sec" }}</span>
+        <span class="spec-label">{{ section.settings.spec_3_label | default: "To install" }}</span>
       </div>
     </div>
 
@@ -64,16 +75,21 @@
   "name": "2 — Meet DeskPaws",
   "tag": "section",
   "settings": [
-    { "type": "image_picker", "id": "image_1", "label": "Gallery image 1" },
-    { "type": "image_picker", "id": "image_2", "label": "Gallery image 2" },
-    { "type": "text",     "id": "eyebrow",          "label": "Eyebrow",    "default": "Meet DeskPaws" },
-    { "type": "text",     "id": "heading",           "label": "Heading",    "default": "A nest that belongs on your desk." },
-    { "type": "textarea", "id": "body",              "label": "Body paragraph 1" },
-    { "type": "textarea", "id": "body_2",            "label": "Body paragraph 2" },
-    { "type": "textarea", "id": "pullquote",         "label": "Pull quote" },
-    { "type": "text",     "id": "pullquote_author",  "label": "Quote attribution", "default": "Amanda K. & Biscuit — verified buyer" },
-    { "type": "text",     "id": "cta_label",         "label": "CTA text",   "default": "See It Up Close" },
-    { "type": "url",      "id": "cta_url",           "label": "CTA link" }
+    { "type": "image_picker", "id": "image_1",          "label": "Gallery image 1" },
+    { "type": "image_picker", "id": "image_2",          "label": "Gallery image 2" },
+    { "type": "image_picker", "id": "image_3",          "label": "Gallery image 3 (optional)" },
+    { "type": "text",         "id": "eyebrow",          "label": "Eyebrow",          "default": "Meet DeskPaws" },
+    { "type": "text",         "id": "heading",          "label": "Heading",          "default": "A nest that belongs on your desk." },
+    { "type": "textarea",     "id": "body",             "label": "Body paragraph" },
+    { "type": "textarea",     "id": "pullquote",        "label": "Pull quote" },
+    { "type": "text",         "id": "pullquote_author", "label": "Quote attribution", "default": "Amanda K. & Biscuit — Verified buyer" },
+    { "type": "header",       "content": "Specs" },
+    { "type": "text", "id": "spec_1_val",   "label": "Spec 1 value",  "default": "50 lbs" },
+    { "type": "text", "id": "spec_1_label", "label": "Spec 1 label",  "default": "Max load" },
+    { "type": "text", "id": "spec_2_val",   "label": "Spec 2 value",  "default": "39 cm" },
+    { "type": "text", "id": "spec_2_label", "label": "Spec 2 label",  "default": "Nest diameter" },
+    { "type": "text", "id": "spec_3_val",   "label": "Spec 3 value",  "default": "60 sec" },
+    { "type": "text", "id": "spec_3_label", "label": "Spec 3 label",  "default": "To install" }
   ],
   "presets": [{ "name": "Meet DeskPaws" }]
 }

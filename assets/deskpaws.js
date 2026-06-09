@@ -178,6 +178,22 @@
     });
   });
 
+  /* ── Meet section: dot navigation ──────────────────────── */
+  (function () {
+    var slides = document.querySelectorAll('#meet-slides .meet-slide');
+    var dots   = document.querySelectorAll('#meet-dots .meet-dot');
+    if (!slides.length || !dots.length) return;
+    function goTo(i) {
+      slides.forEach(function (s) { s.classList.remove('meet-slide--active'); });
+      dots.forEach(function (d) { d.classList.remove('meet-dot--active'); });
+      slides[i].classList.add('meet-slide--active');
+      dots[i].classList.add('meet-dot--active');
+    }
+    dots.forEach(function (dot) {
+      dot.addEventListener('click', function () { goTo(parseInt(dot.dataset.slide, 10)); });
+    });
+  })();
+
   /* ── Smooth scroll for anchor links ────────────────────── */
   document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach((link) => {
     link.addEventListener('click', (e) => {
