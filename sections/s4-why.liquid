@@ -10,75 +10,80 @@
 
     <div class="cat-wall__mosaic">
 
+      {%- assign t1 = section.settings.cat_1_handle | default: "Claimed in 1 day" -%}
       <div class="cwt cwt--a">
         {%- if section.settings.photo_1 -%}
           {{ section.settings.photo_1 | image_url: width: 600 | image_tag: loading: 'lazy', class: 'cwt__img', alt: section.settings.cat_1_name | default: 'Customer cat photo' }}
-          <span class="cwt__badge">Customer photo</span>
         {%- endif -%}
         <div class="cwt__overlay">
           <span class="cwt__name">{{ section.settings.cat_1_name | default: "Luna" }}</span>
-          <span class="cwt__handle">{{ section.settings.cat_1_handle | default: "@sarahm · claimed in 1 day" }}</span>
+          <span class="cwt__time{% if t1 contains 'min' or t1 contains 'hour' %} cwt__time--fast{% endif %}">{{ t1 }}</span>
         </div>
       </div>
 
+      {%- assign t2 = section.settings.cat_2_handle | default: "2 hours" -%}
       <div class="cwt cwt--b">
         {%- if section.settings.photo_2 -%}
           {{ section.settings.photo_2 | image_url: width: 600 | image_tag: loading: 'lazy', class: 'cwt__img', alt: section.settings.cat_2_name | default: 'Customer cat photo' }}
         {%- endif -%}
         <div class="cwt__overlay">
           <span class="cwt__name">{{ section.settings.cat_2_name | default: "Biscuit" }}</span>
-          <span class="cwt__handle">{{ section.settings.cat_2_handle | default: "@amandak · 2 hours" }}</span>
+          <span class="cwt__time{% if t2 contains 'min' or t2 contains 'hour' %} cwt__time--fast{% endif %}">{{ t2 }}</span>
         </div>
       </div>
 
+      {%- assign t3 = section.settings.cat_3_handle | default: "1 day" -%}
       <div class="cwt cwt--c">
         {%- if section.settings.photo_3 -%}
           {{ section.settings.photo_3 | image_url: width: 600 | image_tag: loading: 'lazy', class: 'cwt__img', alt: section.settings.cat_3_name | default: 'Customer cat photo' }}
-          <span class="cwt__badge">Customer photo</span>
         {%- endif -%}
         <div class="cwt__overlay">
           <span class="cwt__name">{{ section.settings.cat_3_name | default: "Mochi" }}</span>
-          <span class="cwt__handle">{{ section.settings.cat_3_handle | default: "@jen_wfh · 1 day" }}</span>
+          <span class="cwt__time{% if t3 contains 'min' or t3 contains 'hour' %} cwt__time--fast{% endif %}">{{ t3 }}</span>
         </div>
       </div>
 
+      {%- assign t4 = section.settings.cat_4_handle | default: "20 min" -%}
       <div class="cwt cwt--d">
         {%- if section.settings.photo_4 -%}
           {{ section.settings.photo_4 | image_url: width: 600 | image_tag: loading: 'lazy', class: 'cwt__img', alt: section.settings.cat_4_name | default: 'Customer cat photo' }}
         {%- endif -%}
         <div class="cwt__overlay">
           <span class="cwt__name">{{ section.settings.cat_4_name | default: "Gus" }}</span>
-          <span class="cwt__handle">{{ section.settings.cat_4_handle | default: "@rach · 20 min" }}</span>
+          <span class="cwt__time{% if t4 contains 'min' or t4 contains 'hour' %} cwt__time--fast{% endif %}">{{ t4 }}</span>
         </div>
       </div>
 
+      {%- assign t5 = section.settings.cat_5_handle | default: "1 day" -%}
       <div class="cwt cwt--e">
         {%- if section.settings.photo_5 -%}
           {{ section.settings.photo_5 | image_url: width: 600 | image_tag: loading: 'lazy', class: 'cwt__img', alt: section.settings.cat_5_name | default: 'Customer cat photo' }}
         {%- endif -%}
         <div class="cwt__overlay">
           <span class="cwt__name">{{ section.settings.cat_5_name | default: "Oliver" }}</span>
-          <span class="cwt__handle">{{ section.settings.cat_5_handle | default: "@maya · 1 day" }}</span>
+          <span class="cwt__time{% if t5 contains 'min' or t5 contains 'hour' %} cwt__time--fast{% endif %}">{{ t5 }}</span>
         </div>
       </div>
 
+      {%- assign t6 = section.settings.cat_6_handle | default: "45 min" -%}
       <div class="cwt cwt--f">
         {%- if section.settings.photo_6 -%}
           {{ section.settings.photo_6 | image_url: width: 600 | image_tag: loading: 'lazy', class: 'cwt__img', alt: section.settings.cat_6_name | default: 'Customer cat photo' }}
         {%- endif -%}
         <div class="cwt__overlay">
           <span class="cwt__name">{{ section.settings.cat_6_name | default: "Noodle" }}</span>
-          <span class="cwt__handle">{{ section.settings.cat_6_handle | default: "@kates · 45 min" }}</span>
+          <span class="cwt__time{% if t6 contains 'min' or t6 contains 'hour' %} cwt__time--fast{% endif %}">{{ t6 }}</span>
         </div>
       </div>
 
+      {%- assign t7 = section.settings.cat_7_handle | default: "1 day" -%}
       <div class="cwt cwt--g">
         {%- if section.settings.photo_7 -%}
           {{ section.settings.photo_7 | image_url: width: 600 | image_tag: loading: 'lazy', class: 'cwt__img', alt: section.settings.cat_7_name | default: 'Customer cat photo' }}
         {%- endif -%}
         <div class="cwt__overlay">
           <span class="cwt__name">{{ section.settings.cat_7_name | default: "Pepper" }}</span>
-          <span class="cwt__handle">{{ section.settings.cat_7_handle | default: "@lisac · 1 day" }}</span>
+          <span class="cwt__time{% if t7 contains 'min' or t7 contains 'hour' %} cwt__time--fast{% endif %}">{{ t7 }}</span>
         </div>
       </div>
 
@@ -104,7 +109,7 @@
       {%- endif -%}
     </h2>
 
-    <p class="cwr-body">{{ section.settings.body | default: "Most do — usually within the first day. Here's why the shape matters more than you'd think." }}</p>
+    <p class="cwr-body">{{ section.settings.body | default: "Most cats claim it within 24 hours. Not because we convinced them — because the shape does the convincing." }}</p>
 
     <div class="cwr-rule"></div>
 
@@ -113,24 +118,24 @@
       <div class="cwr-reason">
         <span class="cwr-reason__num">01</span>
         <div>
-          <span class="cwr-reason__title">{{ section.settings.reason_1_title | default: "Cats seek enclosed spaces by instinct" }}</span>
-          <p class="cwr-reason__body">{{ section.settings.reason_1_body | default: "The deep bowl mimics nest-like hideaways cats naturally seek. The walls wrap around them — triggering that &ldquo;I&rsquo;m staying here&rdquo; response." }}</p>
+          <span class="cwr-reason__title">{{ section.settings.reason_1_title | default: "The bowl shape works with cat psychology" }}</span>
+          <p class="cwr-reason__body">{{ section.settings.reason_1_body | default: "Cats don&rsquo;t want an open flat surface — they want walls around them. The deep nest says &ldquo;this is yours, stay here.&rdquo; They do." }}</p>
         </div>
       </div>
 
       <div class="cwr-reason">
         <span class="cwr-reason__num">02</span>
         <div>
-          <span class="cwr-reason__title">{{ section.settings.reason_2_title | default: "Desk height is the whole point" }}</span>
-          <p class="cwr-reason__body">{{ section.settings.reason_2_body | default: "They don&rsquo;t want a bed across the room. They want to be near you. This puts them exactly where they already want to be." }}</p>
+          <span class="cwr-reason__title">{{ section.settings.reason_2_title | default: "It&rsquo;s right where they want to be anyway" }}</span>
+          <p class="cwr-reason__body">{{ section.settings.reason_2_body | default: "They&rsquo;re not going to a floor bed across the room. They want you. DeskPaws gives them your presence and their own space — the exact combination that makes them stay." }}</p>
         </div>
       </div>
 
       <div class="cwr-reason">
         <span class="cwr-reason__num">03</span>
         <div>
-          <span class="cwr-reason__title">{{ section.settings.reason_3_title | default: "Still hesitant? One pinch of catnip" }}</span>
-          <p class="cwr-reason__body">{{ section.settings.reason_3_body | default: "For the stubborn ones — a small amount in the nest the first time is usually all it takes." }}</p>
+          <span class="cwr-reason__title">{{ section.settings.reason_3_title | default: "For the stubborn ones: one pinch of catnip" }}</span>
+          <p class="cwr-reason__body">{{ section.settings.reason_3_body | default: "A warm enclosed nest plus catnip on day one. We&rsquo;ve yet to meet a cat who said no to that combination." }}</p>
         </div>
       </div>
 
@@ -139,10 +144,14 @@
     <div class="cwr-guarantee">
       <span class="cwr-guarantee__icon">&#x21BA;</span>
       <p class="cwr-guarantee__text">
-        <strong>{{ section.settings.guarantee_heading | default: "30-day guarantee." }}</strong>
-        {{ section.settings.guarantee_body | default: "If your cat wants nothing to do with it, we&rsquo;ll refund you in full. No questions asked." }}
+        <strong>{{ section.settings.guarantee_heading | default: "30 days to find out." }}</strong>
+        {{ section.settings.guarantee_body | default: "If your cat ignores it completely, we&rsquo;ll refund every cent. No forms, no questions." }}
       </p>
     </div>
+
+    <a href="{{ section.settings.cta_url | default: '/products/desk-paws-place-for-your-cat-co-worker' }}" class="cwr-cta">
+      {{ section.settings.cta_label | default: "Claim Their Spot &rarr;" }}
+    </a>
 
   </div>
 
@@ -154,50 +163,53 @@
   "tag": "section",
   "settings": [
     { "type": "header",       "content": "Photo wall" },
-    { "type": "text",         "id": "photo_wall_title", "label": "Wall title",     "default": "Cats who claimed their spot" },
-    { "type": "text",         "id": "photo_wall_count", "label": "Count label",    "default": "247 & counting" },
+    { "type": "text",         "id": "photo_wall_title", "label": "Wall title",    "default": "Cats who claimed their spot" },
+    { "type": "text",         "id": "photo_wall_count", "label": "Count label",   "default": "247 & counting" },
     { "type": "header",       "content": "Photo 1 (tall left tile)" },
     { "type": "image_picker", "id": "photo_1",          "label": "Cat photo 1" },
-    { "type": "text",         "id": "cat_1_name",       "label": "Cat name",       "default": "Luna" },
-    { "type": "text",         "id": "cat_1_handle",     "label": "Handle / time",  "default": "@sarahm · claimed in 1 day" },
+    { "type": "text",         "id": "cat_1_name",       "label": "Cat name",      "default": "Luna" },
+    { "type": "text",         "id": "cat_1_handle",     "label": "Claim time",    "default": "Claimed in 1 day" },
     { "type": "header",       "content": "Photo 2 (top centre)" },
     { "type": "image_picker", "id": "photo_2",          "label": "Cat photo 2" },
-    { "type": "text",         "id": "cat_2_name",       "label": "Cat name",       "default": "Biscuit" },
-    { "type": "text",         "id": "cat_2_handle",     "label": "Handle / time",  "default": "@amandak · 2 hours" },
+    { "type": "text",         "id": "cat_2_name",       "label": "Cat name",      "default": "Biscuit" },
+    { "type": "text",         "id": "cat_2_handle",     "label": "Claim time",    "default": "2 hours" },
     { "type": "header",       "content": "Photo 3 (tall right tile)" },
     { "type": "image_picker", "id": "photo_3",          "label": "Cat photo 3" },
-    { "type": "text",         "id": "cat_3_name",       "label": "Cat name",       "default": "Mochi" },
-    { "type": "text",         "id": "cat_3_handle",     "label": "Handle / time",  "default": "@jen_wfh · 1 day" },
+    { "type": "text",         "id": "cat_3_name",       "label": "Cat name",      "default": "Mochi" },
+    { "type": "text",         "id": "cat_3_handle",     "label": "Claim time",    "default": "1 day" },
     { "type": "header",       "content": "Photo 4 (centre)" },
     { "type": "image_picker", "id": "photo_4",          "label": "Cat photo 4" },
-    { "type": "text",         "id": "cat_4_name",       "label": "Cat name",       "default": "Gus" },
-    { "type": "text",         "id": "cat_4_handle",     "label": "Handle / time",  "default": "@rach · 20 min" },
+    { "type": "text",         "id": "cat_4_name",       "label": "Cat name",      "default": "Gus" },
+    { "type": "text",         "id": "cat_4_handle",     "label": "Claim time",    "default": "20 min" },
     { "type": "header",       "content": "Photo 5 (bottom left)" },
     { "type": "image_picker", "id": "photo_5",          "label": "Cat photo 5" },
-    { "type": "text",         "id": "cat_5_name",       "label": "Cat name",       "default": "Oliver" },
-    { "type": "text",         "id": "cat_5_handle",     "label": "Handle / time",  "default": "@maya · 1 day" },
+    { "type": "text",         "id": "cat_5_name",       "label": "Cat name",      "default": "Oliver" },
+    { "type": "text",         "id": "cat_5_handle",     "label": "Claim time",    "default": "1 day" },
     { "type": "header",       "content": "Photo 6 (bottom centre)" },
     { "type": "image_picker", "id": "photo_6",          "label": "Cat photo 6" },
-    { "type": "text",         "id": "cat_6_name",       "label": "Cat name",       "default": "Noodle" },
-    { "type": "text",         "id": "cat_6_handle",     "label": "Handle / time",  "default": "@kates · 45 min" },
+    { "type": "text",         "id": "cat_6_name",       "label": "Cat name",      "default": "Noodle" },
+    { "type": "text",         "id": "cat_6_handle",     "label": "Claim time",    "default": "45 min" },
     { "type": "header",       "content": "Photo 7 (bottom right)" },
     { "type": "image_picker", "id": "photo_7",          "label": "Cat photo 7" },
-    { "type": "text",         "id": "cat_7_name",       "label": "Cat name",       "default": "Pepper" },
-    { "type": "text",         "id": "cat_7_handle",     "label": "Handle / time",  "default": "@lisac · 1 day" },
+    { "type": "text",         "id": "cat_7_name",       "label": "Cat name",      "default": "Pepper" },
+    { "type": "text",         "id": "cat_7_handle",     "label": "Claim time",    "default": "1 day" },
     { "type": "header",       "content": "Right column" },
-    { "type": "text",         "id": "eyebrow",          "label": "Eyebrow",        "default": "The question everyone asks" },
-    { "type": "textarea",     "id": "heading",          "label": "Heading (HTML ok — use <em> for italic)", "default": "Will my cat\n<em>actually</em> use it?" },
+    { "type": "text",         "id": "eyebrow",          "label": "Eyebrow",       "default": "The question everyone asks" },
+    { "type": "textarea",     "id": "heading",          "label": "Heading (use <em> for italic)" },
     { "type": "textarea",     "id": "body",             "label": "Body paragraph" },
     { "type": "header",       "content": "Reasons (01–03)" },
-    { "type": "text",         "id": "reason_1_title",   "label": "Reason 1 title", "default": "Cats seek enclosed spaces by instinct" },
+    { "type": "text",         "id": "reason_1_title",   "label": "Reason 1 title", "default": "The bowl shape works with cat psychology" },
     { "type": "textarea",     "id": "reason_1_body",    "label": "Reason 1 body" },
-    { "type": "text",         "id": "reason_2_title",   "label": "Reason 2 title", "default": "Desk height is the whole point" },
+    { "type": "text",         "id": "reason_2_title",   "label": "Reason 2 title", "default": "It's right where they want to be anyway" },
     { "type": "textarea",     "id": "reason_2_body",    "label": "Reason 2 body" },
-    { "type": "text",         "id": "reason_3_title",   "label": "Reason 3 title", "default": "Still hesitant? One pinch of catnip" },
+    { "type": "text",         "id": "reason_3_title",   "label": "Reason 3 title", "default": "For the stubborn ones: one pinch of catnip" },
     { "type": "textarea",     "id": "reason_3_body",    "label": "Reason 3 body" },
     { "type": "header",       "content": "Guarantee" },
-    { "type": "text",         "id": "guarantee_heading","label": "Guarantee heading","default": "30-day guarantee." },
-    { "type": "textarea",     "id": "guarantee_body",   "label": "Guarantee body" }
+    { "type": "text",         "id": "guarantee_heading","label": "Guarantee heading", "default": "30 days to find out." },
+    { "type": "textarea",     "id": "guarantee_body",   "label": "Guarantee body" },
+    { "type": "header",       "content": "CTA button" },
+    { "type": "text",         "id": "cta_label",        "label": "Button text",   "default": "Claim Their Spot →" },
+    { "type": "url",          "id": "cta_url",          "label": "Button link" }
   ],
   "presets": [{ "name": "Will My Cat Use It?" }]
 }

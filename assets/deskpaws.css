@@ -2106,8 +2106,8 @@ em { font-style: italic; }
 ═══════════════════════════════════════════════════════════ */
 .cat-wall {
   display: grid;
-  grid-template-columns: 52% 48%;
-  min-height: 640px;
+  grid-template-columns: 50% 50%;
+  min-height: 680px;
   background: #2d2620;
 }
 
@@ -2147,7 +2147,7 @@ em { font-style: italic; }
 .cat-wall__mosaic {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 140px 100px 140px;
+  grid-template-rows: 150px 110px 150px;
   gap: 6px;
   flex: 1;
 }
@@ -2178,28 +2178,12 @@ em { font-style: italic; }
   display: block;
 }
 
-.cwt__badge {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: rgba(232,200,74,0.15);
-  border: 0.5px solid rgba(232,200,74,0.3);
-  border-radius: 20px;
-  padding: 3px 7px;
-  font-family: var(--font-sans);
-  font-size: 0.5rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #e8c84a;
-  z-index: 3;
-}
-
 .cwt__overlay {
   position: relative;
   z-index: 2;
   width: 100%;
-  padding: 20px 8px 8px;
-  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  padding: 22px 10px 9px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.72));
 }
 
 .cwt__name {
@@ -2211,12 +2195,16 @@ em { font-style: italic; }
   line-height: 1.2;
 }
 
-.cwt__handle {
+.cwt__time {
   font-family: var(--font-sans);
   font-size: 0.5625rem;
   letter-spacing: 0.1em;
   color: #7a6a58;
   display: block;
+}
+
+.cwt__time--fast {
+  color: rgba(232, 200, 74, 0.75);
 }
 
 .cat-wall__mosaic-footer {
@@ -2351,6 +2339,28 @@ em { font-style: italic; }
 .cwr-guarantee__text strong {
   color: #d4c4b0;
   font-weight: 400;
+}
+
+.cwr-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #e8c84a;
+  color: #2d2620;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 0.9375rem 2.125rem;
+  border-radius: 40px;
+  text-decoration: none;
+  width: fit-content;
+  margin-top: 1.75rem;
+  transition: background 0.2s;
+}
+
+.cwr-cta:hover {
+  background: #f0d45a;
 }
 
 /* ── Responsive ─────────────────────────────────────────── */
