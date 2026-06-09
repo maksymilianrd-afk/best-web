@@ -2898,7 +2898,7 @@ em { font-style: italic; }
 .meet {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 600px;
+  min-height: 760px;
   background: #faf8f5;
   padding-top: clamp(3rem, 5vw, 5rem);
 }
@@ -2910,13 +2910,13 @@ em { font-style: italic; }
   justify-content: center;
   flex-direction: column;
   position: relative;
-  padding: 3rem 2.5rem 4rem;
-  min-height: 520px;
+  padding: 4rem 3rem 5rem;
+  min-height: 700px;
 }
 
 .meet-slides {
   width: 100%;
-  max-width: 300px;
+  max-width: 360px;
   aspect-ratio: 3 / 4;
   position: relative;
   border-radius: 16px;
@@ -2971,7 +2971,7 @@ em { font-style: italic; }
 }
 
 .meet-right {
-  padding: clamp(3rem, 6vw, 4.5rem) clamp(2rem, 5vw, 4rem);
+  padding: clamp(4rem, 7vw, 6rem) clamp(2rem, 5vw, 4.5rem);
   display: flex;
   flex-direction: column;
   justify-content: center;
