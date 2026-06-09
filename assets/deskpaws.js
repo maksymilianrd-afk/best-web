@@ -291,6 +291,33 @@
     });
   })();
 
+  /* ── Cart page qty stepper (AJAX) ──────────────────────── */
+  document.querySelectorAll('.cqty-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var wrap = btn.closest('.cp-item__qty');
+      if (!wrap) return;
+      var numEl = wrap.querySelector('.cqty-num');
+      var key   = wrap.dataset.key;
+      if (!numEl || !key) return;
+      var current = parseInt(numEl.textContent, 10) || 1;
+      var next    = Math.max(0, current + (btn.dataset.dir === 'up' ? 1 : -1));
+      numEl.textContent = String(next);
+      btn.disabled = true;
+
+      fetch('/cart/change.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: key, quantity: next })
+      })
+        .then(function (res) { return res.json(); })
+        .then(function () { window.location.reload(); })
+        .catch(function () {
+          numEl.textContent = String(current);
+          btn.disabled = false;
+        });
+    });
+  });
+
   /* ── Buy Drawer ─────────────────────────────────────────── */
   (function () {
     var overlay  = document.getElementById('bd-overlay');
