@@ -2822,3 +2822,74 @@ em { font-style: italic; }
   .big-image__content { padding: 2.5rem 1.5rem; max-width: 100%; }
   .big-image__heading { font-size: clamp(1.5rem, 5vw, 2rem); }
 }
+
+/* ── The Problem section ────────────────────────────────── */
+.the-problem {
+  background: #2e2820;
+  padding: 8rem 2rem 9rem;
+}
+
+.the-problem__inner {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.the-problem__eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(235, 220, 200, 0.5);
+  margin: 0 0 2.5rem;
+}
+
+.the-problem__heading {
+  font-family: var(--font-serif);
+  font-size: clamp(2.25rem, 4vw, 4rem);
+  font-weight: 300;
+  line-height: 1.15;
+  color: rgba(240, 230, 215, 0.95);
+  margin: 0 0 4rem;
+  white-space: pre-line;
+}
+
+.the-problem__lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.the-problem__line {
+  font-family: var(--font-serif);
+  font-size: clamp(1.0625rem, 1.6vw, 1.375rem);
+  font-weight: 300;
+  line-height: 1.5;
+  color: rgba(220, 208, 192, 0.72);
+  margin: 0;
+  padding: 0.85rem 0;
+}
+
+.the-problem__line--last {
+  color: rgba(235, 222, 204, 0.92);
+  margin-top: 1.5rem;
+  font-size: clamp(1.125rem, 1.7vw, 1.5rem);
+}
+
+.the-problem__line--last em {
+  font-style: italic;
+  color: rgba(240, 228, 210, 1);
+  font-weight: 400;
+}
+
+/* Tighten the reveal threshold for line-by-line feel */
+.the-problem__line.reveal.in {
+  animation-duration: 0.7s;
+}
+
+@media (max-width: 640px) {
+  .the-problem { padding: 5rem 1.5rem 6rem; }
+  .the-problem__heading { margin-bottom: 3rem; }
+  .the-problem__line { padding: 0.65rem 0; }
+}

@@ -1,0 +1,43 @@
+<section class="the-problem">
+  <div class="the-problem__inner">
+
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="the-problem__eyebrow reveal">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+
+    <h2 class="the-problem__heading reveal">{{ section.settings.heading | default: "You sit down to work.<br>They have other plans." }}</h2>
+
+    <div class="the-problem__lines">
+      {%- if section.settings.line_1 != blank -%}<p class="the-problem__line reveal">{{ section.settings.line_1 }}</p>{%- endif -%}
+      {%- if section.settings.line_2 != blank -%}<p class="the-problem__line reveal">{{ section.settings.line_2 }}</p>{%- endif -%}
+      {%- if section.settings.line_3 != blank -%}<p class="the-problem__line reveal">{{ section.settings.line_3 }}</p>{%- endif -%}
+      {%- if section.settings.line_4 != blank -%}<p class="the-problem__line reveal">{{ section.settings.line_4 }}</p>{%- endif -%}
+      {%- if section.settings.line_5 != blank -%}<p class="the-problem__line reveal">{{ section.settings.line_5 }}</p>{%- endif -%}
+      {%- if section.settings.line_6 != blank -%}<p class="the-problem__line reveal">{{ section.settings.line_6 }}</p>{%- endif -%}
+      {%- if section.settings.line_7 != blank -%}<p class="the-problem__line reveal">{{ section.settings.line_7 }}</p>{%- endif -%}
+      {%- if section.settings.line_8 != blank -%}<p class="the-problem__line the-problem__line--last reveal">{{ section.settings.line_8 }}</p>{%- endif -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "The Problem",
+  "tag": "section",
+  "settings": [
+    { "type": "text",     "id": "eyebrow",  "label": "Eyebrow",  "default": "Sound familiar?" },
+    { "type": "textarea", "id": "heading",  "label": "Heading",  "default": "You sit down to work.\nThey have other plans." },
+    { "type": "header",   "content": "Body lines (each animates in on scroll)" },
+    { "type": "text", "id": "line_1", "label": "Line 1", "default": "Within two minutes, they're there." },
+    { "type": "text", "id": "line_2", "label": "Line 2", "default": "On the keyboard. Between you and the screen." },
+    { "type": "text", "id": "line_3", "label": "Line 3", "default": "On the exact document you were about to open." },
+    { "type": "text", "id": "line_4", "label": "Line 4", "default": "You move them. They come back." },
+    { "type": "text", "id": "line_5", "label": "Line 5", "default": "You close the door. You feel terrible." },
+    { "type": "text", "id": "line_6", "label": "Line 6", "default": "You let them back in. They're on the keyboard again." },
+    { "type": "text", "id": "line_7", "label": "Line 7", "default": "You love them completely." },
+    { "type": "text", "id": "line_8", "label": "Line 8 (closing — supports HTML)", "default": "You also <em>haven't finished a sentence since 9am.</em>" }
+  ],
+  "presets": [{ "name": "The Problem" }]
+}
+{% endschema %}

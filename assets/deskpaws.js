@@ -255,7 +255,23 @@
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
 
-    document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
+    /* Tighter observer for problem lines — fires when line is well into view */
+    var obsLine = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          obsLine.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.6, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      if (el.classList.contains('the-problem__line') || el.classList.contains('the-problem__eyebrow') || el.classList.contains('the-problem__heading')) {
+        obsLine.observe(el);
+      } else {
+        obs.observe(el);
+      }
+    });
   })();
 
 })();
