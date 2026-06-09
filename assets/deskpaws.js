@@ -245,7 +245,7 @@
     markList('.steps-list li', 0.1);
     markList('.review-item', 0.1);
     markList('.spec-row', 0.07);
-    markList('.benefit-card', 0.08);
+    markList('.benefit-col', 0.08);
     markList('.review-card', 0.08);
     markList('.before-after__item', 0.09);
     markList('.comparison-table tbody tr', 0.06);
@@ -254,7 +254,8 @@
     [
       '.pull-quote', '.stat-bar', '.price-row', '.guarantee-strip',
       '.product-section__cta', '.buy-block', '.tip-callout',
-      '.benefits-section__header', '.reviews-section__header',
+      '.benefits-top-rule', '.benefits-section-label', '.benefits-bottom',
+      '.reviews-section__header',
       '.comparison-section__header', '.reviews-cta', '.comparison-cta',
       '.guarantee-hero', '.before-after__heading', '.before-after__label',
       '.final-cta__eyebrow', '.final-cta__heading', '.final-cta__sub'
