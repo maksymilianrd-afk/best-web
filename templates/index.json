@@ -54,19 +54,14 @@
         "eyebrow": "Meet DeskPaws",
         "heading": "A nest that belongs on your desk.",
         "body": "",
-        "body_2": "",
         "pullquote": "",
-        "pullquote_author": "Amanda K. & Biscuit — verified buyer",
-        "cta_label": "See It Up Close",
-        "cta_url": ""
+        "pullquote_author": "Amanda K. & Biscuit — verified buyer"
       }
     },
     "benefits": {
       "type": "s3-reveal",
       "settings": {
         "eyebrow": "Why it works",
-        "heading": "Six ways DeskPaws changes your workday.",
-        "subhead": "",
         "card_1_title": "Closeness without chaos",
         "card_1_body": "",
         "card_2_title": "Your keyboard is yours again",
@@ -89,9 +84,6 @@
         "eyebrow": "The #1 question we get",
         "heading": "Will my cat actually use it?",
         "body": "",
-        "tip": "",
-        "body_2": "",
-        "guarantee": "",
         "cta_label": "Try It Risk-Free",
         "cta_url": ""
       }
@@ -150,17 +142,6 @@
         "cta_url": ""
       }
     },
-    "comparison": {
-      "type": "s8-comparison",
-      "settings": {
-        "eyebrow": "The smart-money pick",
-        "heading": "Why not the $179 one?",
-        "subhead": "",
-        "cta_copy": "",
-        "cta_label": "Get DeskPaws for $79",
-        "cta_url": ""
-      }
-    },
     "guarantee": {
       "type": "s9-guarantee",
       "settings": {
@@ -205,7 +186,6 @@
     "how_it_works",
     "before_after",
     "reviews",
-    "comparison",
     "guarantee",
     "final_cta"
   ]
