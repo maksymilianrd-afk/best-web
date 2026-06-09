@@ -1,69 +1,151 @@
-<section class="product-section product-section--image-right" id="will-my-cat-use-it" aria-labelledby="s4-heading">
-  <div class="product-section__inner">
+<section class="cat-wall" id="will-my-cat-use-it">
 
-    <div class="product-section__body">
-      <div class="product-section__group">
-        <p class="text-subtitle">{{ section.settings.eyebrow | default: "The #1 question we get" }}</p>
-        <h2 class="h2" id="s4-heading">{{ section.settings.heading | default: "Will my cat actually use it?" }}</h2>
-        <p class="text-paragraph">
-          {{ section.settings.body | default: "Most cats claim it within 24 hours. The deep bowl shape isn&rsquo;t a design choice &mdash; it mimics the enclosed, nest-like hideaways cats instinctively seek. Place it at desk height where your cat already likes to sit. Add a pinch of catnip on day one. Then step back." }}
-        </p>
-      </div>
+  <!-- LEFT: photo mosaic -->
+  <div class="cat-wall__left">
 
-      <div class="tip-callout">
-        <p class="tip-callout__label">The catnip tip</p>
-        <p class="tip-callout__text">{{ section.settings.tip | default: "Sprinkle a small pinch of catnip inside the bowl when you first set it up. It signals familiarity and safety. Most cats investigate within minutes and settle in by end of day. After that, they find their own way back &mdash; every morning." }}</p>
-      </div>
-
-      <div class="product-section__group">
-        <p class="text-paragraph">
-          {{ section.settings.body_2 | default: "And if your cat is the rare exception who doesn&rsquo;t take to it? You have 30 days to return it for a full refund. You keep the bed. We&rsquo;re that confident." }}
-        </p>
-      </div>
-
-      <div class="guarantee-strip">
-        <span class="guarantee-strip__icon">&#x1F6E1;</span>
-        <p class="guarantee-strip__text">
-          <strong>30-day happy-cat guarantee.</strong> {{ section.settings.guarantee | default: "If your cat snubs it, return it for a full refund &mdash; no questions, no hassle, and you keep the bed." }}
-        </p>
-      </div>
-
-      <div class="product-section__cta">
-        <a href="{{ section.settings.cta_url | default: '/products/desk-paws-place-for-your-cat-co-worker' }}" class="btn btn--secondary">
-          {{ section.settings.cta_label | default: "Try It Risk-Free" }}
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/></svg>
-        </a>
-      </div>
+    <div class="cat-wall__mosaic-header">
+      <span class="cwm-title">{{ section.settings.photo_wall_title | default: "Cats who claimed their spot" }}</span>
+      <span class="cwm-count">{{ section.settings.photo_wall_count | default: "247 &amp; counting" }}</span>
     </div>
 
-    <div class="product-section__gallery">
-      <div class="product-section__slides" id="s4-slides">
-        <div class="product-section__slide">
-          {%- if section.settings.image_1 -%}
-            {{ section.settings.image_1 | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.image_1.alt | default: 'Cat settled in DeskPaws' }}
-          {%- else -%}
-            <img src="{{ 'cat-curled.png' | asset_url }}" alt="Cat curled and settled in DeskPaws desk bed" width="720" height="740" loading="lazy">
-          {%- endif -%}
-        </div>
-        <div class="product-section__slide">
-          {%- if section.settings.image_2 -%}
-            {{ section.settings.image_2 | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.image_2.alt | default: 'DeskPaws top-down view' }}
-          {%- else -%}
-            <img src="{{ 'product-topdown.png' | asset_url }}" alt="DeskPaws top-down view showing the deep nest shape" width="720" height="740" loading="lazy">
-          {%- endif -%}
+    <div class="cat-wall__mosaic">
+
+      <div class="cwt cwt--a">
+        {%- if section.settings.photo_1 -%}
+          {{ section.settings.photo_1 | image_url: width: 600 | image_tag: loading: 'lazy', class: 'cwt__img', alt: section.settings.cat_1_name | default: 'Customer cat photo' }}
+          <span class="cwt__badge">Customer photo</span>
+        {%- endif -%}
+        <div class="cwt__overlay">
+          <span class="cwt__name">{{ section.settings.cat_1_name | default: "Luna" }}</span>
+          <span class="cwt__handle">{{ section.settings.cat_1_handle | default: "@sarahm · claimed in 1 day" }}</span>
         </div>
       </div>
-      <div class="product-section__controls" aria-label="Gallery navigation">
-        <button class="btn-arrow btn-arrow--left" data-slides="s4-slides" data-dir="-1" aria-label="Previous image">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/></svg>
-        </button>
-        <button class="btn-arrow" data-slides="s4-slides" data-dir="1" aria-label="Next image">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/></svg>
-        </button>
+
+      <div class="cwt cwt--b">
+        {%- if section.settings.photo_2 -%}
+          {{ section.settings.photo_2 | image_url: width: 600 | image_tag: loading: 'lazy', class: 'cwt__img', alt: section.settings.cat_2_name | default: 'Customer cat photo' }}
+        {%- endif -%}
+        <div class="cwt__overlay">
+          <span class="cwt__name">{{ section.settings.cat_2_name | default: "Biscuit" }}</span>
+          <span class="cwt__handle">{{ section.settings.cat_2_handle | default: "@amandak · 2 hours" }}</span>
+        </div>
       </div>
+
+      <div class="cwt cwt--c">
+        {%- if section.settings.photo_3 -%}
+          {{ section.settings.photo_3 | image_url: width: 600 | image_tag: loading: 'lazy', class: 'cwt__img', alt: section.settings.cat_3_name | default: 'Customer cat photo' }}
+          <span class="cwt__badge">Customer photo</span>
+        {%- endif -%}
+        <div class="cwt__overlay">
+          <span class="cwt__name">{{ section.settings.cat_3_name | default: "Mochi" }}</span>
+          <span class="cwt__handle">{{ section.settings.cat_3_handle | default: "@jen_wfh · 1 day" }}</span>
+        </div>
+      </div>
+
+      <div class="cwt cwt--d">
+        {%- if section.settings.photo_4 -%}
+          {{ section.settings.photo_4 | image_url: width: 600 | image_tag: loading: 'lazy', class: 'cwt__img', alt: section.settings.cat_4_name | default: 'Customer cat photo' }}
+        {%- endif -%}
+        <div class="cwt__overlay">
+          <span class="cwt__name">{{ section.settings.cat_4_name | default: "Gus" }}</span>
+          <span class="cwt__handle">{{ section.settings.cat_4_handle | default: "@rach · 20 min" }}</span>
+        </div>
+      </div>
+
+      <div class="cwt cwt--e">
+        {%- if section.settings.photo_5 -%}
+          {{ section.settings.photo_5 | image_url: width: 600 | image_tag: loading: 'lazy', class: 'cwt__img', alt: section.settings.cat_5_name | default: 'Customer cat photo' }}
+        {%- endif -%}
+        <div class="cwt__overlay">
+          <span class="cwt__name">{{ section.settings.cat_5_name | default: "Oliver" }}</span>
+          <span class="cwt__handle">{{ section.settings.cat_5_handle | default: "@maya · 1 day" }}</span>
+        </div>
+      </div>
+
+      <div class="cwt cwt--f">
+        {%- if section.settings.photo_6 -%}
+          {{ section.settings.photo_6 | image_url: width: 600 | image_tag: loading: 'lazy', class: 'cwt__img', alt: section.settings.cat_6_name | default: 'Customer cat photo' }}
+        {%- endif -%}
+        <div class="cwt__overlay">
+          <span class="cwt__name">{{ section.settings.cat_6_name | default: "Noodle" }}</span>
+          <span class="cwt__handle">{{ section.settings.cat_6_handle | default: "@kates · 45 min" }}</span>
+        </div>
+      </div>
+
+      <div class="cwt cwt--g">
+        {%- if section.settings.photo_7 -%}
+          {{ section.settings.photo_7 | image_url: width: 600 | image_tag: loading: 'lazy', class: 'cwt__img', alt: section.settings.cat_7_name | default: 'Customer cat photo' }}
+        {%- endif -%}
+        <div class="cwt__overlay">
+          <span class="cwt__name">{{ section.settings.cat_7_name | default: "Pepper" }}</span>
+          <span class="cwt__handle">{{ section.settings.cat_7_handle | default: "@lisac · 1 day" }}</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cat-wall__mosaic-footer">
+      <span class="cwm-dot"></span>
+      <span class="cwm-footer-text">All photos from verified buyers</span>
     </div>
 
   </div>
+
+  <!-- RIGHT: content -->
+  <div class="cat-wall__right">
+
+    <p class="cwr-lbl">{{ section.settings.eyebrow | default: "The question everyone asks" }}</p>
+
+    <h2 class="cwr-hdl">
+      {%- if section.settings.heading != blank -%}
+        {{ section.settings.heading }}
+      {%- else -%}
+        Will my cat<br><em>actually</em> use it?
+      {%- endif -%}
+    </h2>
+
+    <p class="cwr-body">{{ section.settings.body | default: "Most do — usually within the first day. Here's why the shape matters more than you'd think." }}</p>
+
+    <div class="cwr-rule"></div>
+
+    <div class="cwr-reasons">
+
+      <div class="cwr-reason">
+        <span class="cwr-reason__num">01</span>
+        <div>
+          <span class="cwr-reason__title">{{ section.settings.reason_1_title | default: "Cats seek enclosed spaces by instinct" }}</span>
+          <p class="cwr-reason__body">{{ section.settings.reason_1_body | default: "The deep bowl mimics nest-like hideaways cats naturally seek. The walls wrap around them — triggering that &ldquo;I&rsquo;m staying here&rdquo; response." }}</p>
+        </div>
+      </div>
+
+      <div class="cwr-reason">
+        <span class="cwr-reason__num">02</span>
+        <div>
+          <span class="cwr-reason__title">{{ section.settings.reason_2_title | default: "Desk height is the whole point" }}</span>
+          <p class="cwr-reason__body">{{ section.settings.reason_2_body | default: "They don&rsquo;t want a bed across the room. They want to be near you. This puts them exactly where they already want to be." }}</p>
+        </div>
+      </div>
+
+      <div class="cwr-reason">
+        <span class="cwr-reason__num">03</span>
+        <div>
+          <span class="cwr-reason__title">{{ section.settings.reason_3_title | default: "Still hesitant? One pinch of catnip" }}</span>
+          <p class="cwr-reason__body">{{ section.settings.reason_3_body | default: "For the stubborn ones — a small amount in the nest the first time is usually all it takes." }}</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cwr-guarantee">
+      <span class="cwr-guarantee__icon">&#x21BA;</span>
+      <p class="cwr-guarantee__text">
+        <strong>{{ section.settings.guarantee_heading | default: "30-day guarantee." }}</strong>
+        {{ section.settings.guarantee_body | default: "If your cat wants nothing to do with it, we&rsquo;ll refund you in full. No questions asked." }}
+      </p>
+    </div>
+
+  </div>
+
 </section>
 
 {% schema %}
@@ -71,16 +153,51 @@
   "name": "4 — Will My Cat Use It?",
   "tag": "section",
   "settings": [
-    { "type": "image_picker", "id": "image_1",         "label": "Gallery image 1" },
-    { "type": "image_picker", "id": "image_2",         "label": "Gallery image 2" },
-    { "type": "text",     "id": "eyebrow",             "label": "Eyebrow",    "default": "The #1 question we get" },
-    { "type": "text",     "id": "heading",             "label": "Heading",    "default": "Will my cat actually use it?" },
-    { "type": "textarea", "id": "body",                "label": "Body paragraph 1" },
-    { "type": "textarea", "id": "tip",                 "label": "Catnip tip text" },
-    { "type": "textarea", "id": "body_2",              "label": "Body paragraph 2" },
-    { "type": "textarea", "id": "guarantee",           "label": "Guarantee text" },
-    { "type": "text",     "id": "cta_label",           "label": "CTA text",   "default": "Try It Risk-Free" },
-    { "type": "url",      "id": "cta_url",             "label": "CTA link" }
+    { "type": "header",       "content": "Photo wall" },
+    { "type": "text",         "id": "photo_wall_title", "label": "Wall title",     "default": "Cats who claimed their spot" },
+    { "type": "text",         "id": "photo_wall_count", "label": "Count label",    "default": "247 & counting" },
+    { "type": "header",       "content": "Photo 1 (tall left tile)" },
+    { "type": "image_picker", "id": "photo_1",          "label": "Cat photo 1" },
+    { "type": "text",         "id": "cat_1_name",       "label": "Cat name",       "default": "Luna" },
+    { "type": "text",         "id": "cat_1_handle",     "label": "Handle / time",  "default": "@sarahm · claimed in 1 day" },
+    { "type": "header",       "content": "Photo 2 (top centre)" },
+    { "type": "image_picker", "id": "photo_2",          "label": "Cat photo 2" },
+    { "type": "text",         "id": "cat_2_name",       "label": "Cat name",       "default": "Biscuit" },
+    { "type": "text",         "id": "cat_2_handle",     "label": "Handle / time",  "default": "@amandak · 2 hours" },
+    { "type": "header",       "content": "Photo 3 (tall right tile)" },
+    { "type": "image_picker", "id": "photo_3",          "label": "Cat photo 3" },
+    { "type": "text",         "id": "cat_3_name",       "label": "Cat name",       "default": "Mochi" },
+    { "type": "text",         "id": "cat_3_handle",     "label": "Handle / time",  "default": "@jen_wfh · 1 day" },
+    { "type": "header",       "content": "Photo 4 (centre)" },
+    { "type": "image_picker", "id": "photo_4",          "label": "Cat photo 4" },
+    { "type": "text",         "id": "cat_4_name",       "label": "Cat name",       "default": "Gus" },
+    { "type": "text",         "id": "cat_4_handle",     "label": "Handle / time",  "default": "@rach · 20 min" },
+    { "type": "header",       "content": "Photo 5 (bottom left)" },
+    { "type": "image_picker", "id": "photo_5",          "label": "Cat photo 5" },
+    { "type": "text",         "id": "cat_5_name",       "label": "Cat name",       "default": "Oliver" },
+    { "type": "text",         "id": "cat_5_handle",     "label": "Handle / time",  "default": "@maya · 1 day" },
+    { "type": "header",       "content": "Photo 6 (bottom centre)" },
+    { "type": "image_picker", "id": "photo_6",          "label": "Cat photo 6" },
+    { "type": "text",         "id": "cat_6_name",       "label": "Cat name",       "default": "Noodle" },
+    { "type": "text",         "id": "cat_6_handle",     "label": "Handle / time",  "default": "@kates · 45 min" },
+    { "type": "header",       "content": "Photo 7 (bottom right)" },
+    { "type": "image_picker", "id": "photo_7",          "label": "Cat photo 7" },
+    { "type": "text",         "id": "cat_7_name",       "label": "Cat name",       "default": "Pepper" },
+    { "type": "text",         "id": "cat_7_handle",     "label": "Handle / time",  "default": "@lisac · 1 day" },
+    { "type": "header",       "content": "Right column" },
+    { "type": "text",         "id": "eyebrow",          "label": "Eyebrow",        "default": "The question everyone asks" },
+    { "type": "textarea",     "id": "heading",          "label": "Heading (HTML ok — use <em> for italic)", "default": "Will my cat\n<em>actually</em> use it?" },
+    { "type": "textarea",     "id": "body",             "label": "Body paragraph" },
+    { "type": "header",       "content": "Reasons (01–03)" },
+    { "type": "text",         "id": "reason_1_title",   "label": "Reason 1 title", "default": "Cats seek enclosed spaces by instinct" },
+    { "type": "textarea",     "id": "reason_1_body",    "label": "Reason 1 body" },
+    { "type": "text",         "id": "reason_2_title",   "label": "Reason 2 title", "default": "Desk height is the whole point" },
+    { "type": "textarea",     "id": "reason_2_body",    "label": "Reason 2 body" },
+    { "type": "text",         "id": "reason_3_title",   "label": "Reason 3 title", "default": "Still hesitant? One pinch of catnip" },
+    { "type": "textarea",     "id": "reason_3_body",    "label": "Reason 3 body" },
+    { "type": "header",       "content": "Guarantee" },
+    { "type": "text",         "id": "guarantee_heading","label": "Guarantee heading","default": "30-day guarantee." },
+    { "type": "textarea",     "id": "guarantee_body",   "label": "Guarantee body" }
   ],
   "presets": [{ "name": "Will My Cat Use It?" }]
 }
