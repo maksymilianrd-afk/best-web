@@ -102,24 +102,6 @@
         "step_3_body": ""
       }
     },
-    "before_after": {
-      "type": "s6-faq-cta",
-      "settings": {
-        "before_heading": "The desk you know a little too well.",
-        "before_1": "",
-        "before_2": "",
-        "before_3": "",
-        "before_4": "",
-        "before_caption": "",
-        "after_heading": "The workday you've been trying to build.",
-        "after_1": "",
-        "after_2": "",
-        "after_3": "",
-        "after_4": "",
-        "cta_label": "Get That Workday — $79",
-        "cta_url": ""
-      }
-    },
     "reviews": {
       "type": "s7-reviews",
       "settings": {
@@ -184,7 +166,6 @@
     "benefits",
     "objection",
     "how_it_works",
-    "before_after",
     "reviews",
     "guarantee",
     "final_cta"
