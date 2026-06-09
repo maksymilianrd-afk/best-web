@@ -141,14 +141,6 @@
 
     </div>
 
-    <div class="cwr-guarantee">
-      <span class="cwr-guarantee__icon">&#x21BA;</span>
-      <p class="cwr-guarantee__text">
-        <strong>{{ section.settings.guarantee_heading | default: "30 days to find out." }}</strong>
-        {{ section.settings.guarantee_body | default: "If your cat ignores it completely, we&rsquo;ll refund every cent. No forms, no questions." }}
-      </p>
-    </div>
-
     <a href="{{ section.settings.cta_url | default: '/products/desk-paws-place-for-your-cat-co-worker' }}" class="cwr-cta">
       {{ section.settings.cta_label | default: "Claim Their Spot &rarr;" }}
     </a>
@@ -204,9 +196,6 @@
     { "type": "textarea",     "id": "reason_2_body",    "label": "Reason 2 body" },
     { "type": "text",         "id": "reason_3_title",   "label": "Reason 3 title", "default": "For the stubborn ones: one pinch of catnip" },
     { "type": "textarea",     "id": "reason_3_body",    "label": "Reason 3 body" },
-    { "type": "header",       "content": "Guarantee" },
-    { "type": "text",         "id": "guarantee_heading","label": "Guarantee heading", "default": "30 days to find out." },
-    { "type": "textarea",     "id": "guarantee_body",   "label": "Guarantee body" },
     { "type": "header",       "content": "CTA button" },
     { "type": "text",         "id": "cta_label",        "label": "Button text",   "default": "Claim Their Spot →" },
     { "type": "url",          "id": "cta_url",          "label": "Button link" }

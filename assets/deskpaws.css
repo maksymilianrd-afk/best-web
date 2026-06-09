@@ -2147,13 +2147,13 @@ em { font-style: italic; }
 .cat-wall__mosaic {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 150px 110px 150px;
+  grid-template-rows: 200px 140px 200px;
   gap: 6px;
   flex: 1;
 }
 
 .cwt {
-  border-radius: 4px;
+  border-radius: 14px;
   position: relative;
   overflow: hidden;
   display: flex;
