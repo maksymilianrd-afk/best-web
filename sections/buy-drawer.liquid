@@ -1,0 +1,150 @@
+{%- assign dp = all_products[section.settings.product_handle] -%}
+{%- assign first_v = dp.variants.first -%}
+
+<div class="bd-overlay" id="bd-overlay" aria-hidden="true"></div>
+
+<aside class="buy-drawer" id="buy-drawer" role="dialog" aria-modal="true" aria-labelledby="bd-title-text" aria-hidden="true">
+
+  <div class="bd-header">
+    <h2 class="bd-title" id="bd-title-text">{{ section.settings.drawer_title | default: "Give them their spot" }}</h2>
+    <button class="bd-close" id="bd-close" aria-label="Close drawer">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="bd-scroller">
+
+    {%- if dp.featured_image -%}
+      <div class="bd-image-wrap">
+        {{ dp.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'bd-image', alt: dp.title }}
+      </div>
+    {%- else -%}
+      <div class="bd-image-wrap bd-image-wrap--empty">
+        <span>{{ dp.title | default: "DeskPaws bed" }}</span>
+      </div>
+    {%- endif -%}
+
+    <div class="bd-price-block">
+      <span class="bd-price-current" id="bd-price-display">
+        {{- first_v.price | money_without_trailing_zeros | default: "$79" -}}
+      </span>
+      {%- if first_v.compare_at_price > first_v.price -%}
+        <span class="bd-price-compare" id="bd-compare-display">{{ first_v.compare_at_price | money_without_trailing_zeros }}</span>
+        <span class="bd-save-badge" id="bd-save-display">Save {{ first_v.compare_at_price | minus: first_v.price | money_without_trailing_zeros }}</span>
+      {%- endif -%}
+    </div>
+
+    <div class="bd-stars-row">
+      <span class="bd-stars">★★★★★</span>
+      <span class="bd-rating">{{ section.settings.rating | default: "4.9" }}</span>
+      <span class="bd-stars-sep">·</span>
+      <span class="bd-review-count">{{ section.settings.review_count | default: "2,184" }} reviews</span>
+    </div>
+
+    <p class="bd-pack-label">Choose your pack</p>
+
+    <div class="bd-variants" id="bd-variants">
+      {%- if dp != blank and dp.variants.size > 0 -%}
+        {%- for variant in dp.variants -%}
+          {%- assign sub_key = 'pack_' | append: forloop.index | append: '_subtitle' -%}
+          {%- assign subtitle = section.settings[sub_key] -%}
+          <label class="bd-variant-card{% if forloop.first %} bd-variant-card--selected{% endif %}"
+            data-variant-id="{{ variant.id }}"
+            data-price="{{ variant.price | money_without_trailing_zeros }}"
+            data-compare="{{ variant.compare_at_price | money_without_trailing_zeros }}"
+            data-save="{% if variant.compare_at_price > variant.price %}Save {{ variant.compare_at_price | minus: variant.price | money_without_trailing_zeros }}{% endif %}">
+            <input type="radio" name="bd-variant" value="{{ variant.id }}"{% if forloop.first %} checked{% endif %} class="bd-variant-radio">
+            <div class="bd-variant-info">
+              <span class="bd-variant-name">{{ variant.title }}</span>
+              {%- if subtitle != blank -%}
+                <span class="bd-variant-sub">{{ subtitle }}</span>
+              {%- endif -%}
+            </div>
+            <div class="bd-variant-prices">
+              <span class="bd-variant-price">{{ variant.price | money_without_trailing_zeros }}</span>
+              {%- if variant.compare_at_price > variant.price -%}
+                <span class="bd-variant-compare">{{ variant.compare_at_price | money_without_trailing_zeros }}</span>
+              {%- endif -%}
+            </div>
+            {%- if section.settings.popular_variant == forloop.index -%}
+              <span class="bd-popular-badge">Popular</span>
+            {%- endif -%}
+          </label>
+        {%- endfor -%}
+      {%- else -%}
+        <label class="bd-variant-card bd-variant-card--selected" data-variant-id="" data-price="$79" data-compare="$99" data-save="Save $20">
+          <input type="radio" name="bd-variant" checked class="bd-variant-radio">
+          <div class="bd-variant-info">
+            <span class="bd-variant-name">One DeskPaws</span>
+            <span class="bd-variant-sub">{{ section.settings.pack_1_subtitle | default: "For one lucky cat" }}</span>
+          </div>
+          <div class="bd-variant-prices"><span class="bd-variant-price">$79</span></div>
+        </label>
+      {%- endif -%}
+    </div>
+
+    <div class="bd-qty-row">
+      <span class="bd-qty-label">Quantity</span>
+      <div class="bd-qty-stepper">
+        <button class="bd-qty-btn" data-dir="down" aria-label="Decrease quantity">−</button>
+        <span class="bd-qty-display" id="bd-qty">1</span>
+        <button class="bd-qty-btn" data-dir="up" aria-label="Increase quantity">+</button>
+      </div>
+    </div>
+
+    <button class="bd-atc-btn" id="bd-atc-btn" type="button">
+      Add to cart &mdash; <span id="bd-atc-price">{{ first_v.price | money_without_trailing_zeros | default: "$79" }}</span>
+    </button>
+
+    <ul class="bd-trust">
+      <li class="bd-trust-item">
+        <svg class="bd-trust-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M8 1.5 2 4.5v4c0 3.2 2.5 6.1 6 7 3.5-.9 6-3.8 6-7v-4L8 1.5z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+          <path d="M5.5 8l2 2 3-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        {{ section.settings.trust_1 | default: "30-day happy-cat guarantee, or your money back" }}
+      </li>
+      <li class="bd-trust-item">
+        <svg class="bd-trust-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M1 5h9v6H1V5zM10 8h3.5L15 10v1h-5V8z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+          <circle cx="4" cy="12" r="1.2" stroke="currentColor" stroke-width="1.2"/>
+          <circle cx="12" cy="12" r="1.2" stroke="currentColor" stroke-width="1.2"/>
+        </svg>
+        {{ section.settings.trust_2 | default: "Free shipping over $50 · ships in 3–5 days" }}
+      </li>
+      <li class="bd-trust-item">
+        <svg class="bd-trust-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M10.5 2a3.5 3.5 0 0 1 .9 6.8L5 15a1.4 1.4 0 0 1-2-2l6.3-6.4A3.5 3.5 0 0 1 10.5 2z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+          <circle cx="10.5" cy="5.5" r="1" fill="currentColor"/>
+        </svg>
+        {{ section.settings.trust_3 | default: "No tools — sets up in about 60 seconds" }}
+      </li>
+    </ul>
+
+  </div><!-- /.bd-scroller -->
+
+</aside>
+
+{% schema %}
+{
+  "name": "Buy Drawer",
+  "settings": [
+    { "type": "text",   "id": "product_handle",  "label": "Product handle",      "default": "desk-paws-place-for-your-cat-co-worker" },
+    { "type": "text",   "id": "drawer_title",     "label": "Drawer title",        "default": "Give them their spot" },
+    { "type": "header", "content": "Pack subtitles" },
+    { "type": "text",   "id": "pack_1_subtitle",  "label": "Pack 1 subtitle",     "default": "For one lucky cat" },
+    { "type": "text",   "id": "pack_2_subtitle",  "label": "Pack 2 subtitle",     "default": "Save 12% — most popular" },
+    { "type": "text",   "id": "pack_3_subtitle",  "label": "Pack 3 subtitle",     "default": "Save 20% + free catnip" },
+    { "type": "number", "id": "popular_variant",  "label": "Popular badge on variant # (1-based)", "default": 2 },
+    { "type": "header", "content": "Reviews summary" },
+    { "type": "text",   "id": "rating",           "label": "Star rating",         "default": "4.9" },
+    { "type": "text",   "id": "review_count",     "label": "Review count",        "default": "2,184" },
+    { "type": "header", "content": "Trust badges" },
+    { "type": "text",   "id": "trust_1",          "label": "Trust line 1",        "default": "30-day happy-cat guarantee, or your money back" },
+    { "type": "text",   "id": "trust_2",          "label": "Trust line 2",        "default": "Free shipping over $50 · ships in 3–5 days" },
+    { "type": "text",   "id": "trust_3",          "label": "Trust line 3",        "default": "No tools — sets up in about 60 seconds" }
+  ]
+}
+{% endschema %}

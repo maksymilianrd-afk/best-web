@@ -291,4 +291,122 @@
     });
   })();
 
+  /* ── Buy Drawer ─────────────────────────────────────────── */
+  (function () {
+    var overlay  = document.getElementById('bd-overlay');
+    var drawer   = document.getElementById('buy-drawer');
+    var closeBtn = document.getElementById('bd-close');
+    if (!overlay || !drawer) return;
+
+    function openDrawer() {
+      document.body.classList.add('bd-open');
+      drawer.setAttribute('aria-hidden', 'false');
+      overlay.setAttribute('aria-hidden', 'false');
+      if (closeBtn) closeBtn.focus();
+    }
+
+    function closeDrawer() {
+      document.body.classList.remove('bd-open');
+      drawer.setAttribute('aria-hidden', 'true');
+      overlay.setAttribute('aria-hidden', 'true');
+    }
+
+    var buySelectors = '.btn-benefits-cta, .cwr-cta, .reviews-cta__btn, .sticky-cta__btn, .hero__button a, [data-buy-drawer]';
+    document.addEventListener('click', function (e) {
+      if (e.target.closest(buySelectors)) {
+        e.preventDefault();
+        openDrawer();
+      }
+    });
+
+    overlay.addEventListener('click', closeDrawer);
+    if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && document.body.classList.contains('bd-open')) {
+        closeDrawer();
+      }
+    });
+
+    /* Variant card selection */
+    var variantsEl = document.getElementById('bd-variants');
+    if (variantsEl) {
+      variantsEl.addEventListener('click', function (e) {
+        var card = e.target.closest('.bd-variant-card');
+        if (!card) return;
+        variantsEl.querySelectorAll('.bd-variant-card').forEach(function (c) {
+          c.classList.remove('bd-variant-card--selected');
+          var r = c.querySelector('.bd-variant-radio');
+          if (r) r.checked = false;
+        });
+        card.classList.add('bd-variant-card--selected');
+        var radio = card.querySelector('.bd-variant-radio');
+        if (radio) radio.checked = true;
+
+        var priceEl   = document.getElementById('bd-price-display');
+        var compareEl = document.getElementById('bd-compare-display');
+        var saveEl    = document.getElementById('bd-save-display');
+        var atcPrice  = document.getElementById('bd-atc-price');
+
+        if (priceEl)  priceEl.textContent  = card.dataset.price  || '';
+        if (atcPrice) atcPrice.textContent = card.dataset.price  || '';
+        if (compareEl) {
+          var hasCompare = card.dataset.compare && card.dataset.compare !== card.dataset.price;
+          compareEl.textContent   = card.dataset.compare || '';
+          compareEl.style.display = hasCompare ? '' : 'none';
+        }
+        if (saveEl) {
+          saveEl.textContent   = card.dataset.save || '';
+          saveEl.style.display = card.dataset.save ? '' : 'none';
+        }
+      });
+    }
+
+    /* Quantity stepper */
+    var qtyDisplay = document.getElementById('bd-qty');
+    document.querySelectorAll('.bd-qty-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (!qtyDisplay) return;
+        var val = parseInt(qtyDisplay.textContent, 10) || 1;
+        qtyDisplay.textContent = String(Math.max(1, val + (btn.dataset.dir === 'up' ? 1 : -1)));
+      });
+    });
+
+    /* Add to cart → checkout */
+    var atcBtn = document.getElementById('bd-atc-btn');
+    if (atcBtn) {
+      atcBtn.addEventListener('click', function () {
+        var selectedCard = variantsEl ? variantsEl.querySelector('.bd-variant-card--selected') : null;
+        var variantId    = selectedCard ? selectedCard.dataset.variantId : '';
+        var qty          = parseInt((qtyDisplay && qtyDisplay.textContent) || '1', 10) || 1;
+
+        if (!variantId) {
+          window.location.href = '/products/desk-paws-place-for-your-cat-co-worker';
+          return;
+        }
+
+        var originalHTML = atcBtn.innerHTML;
+        atcBtn.classList.add('bd-atc-btn--loading');
+        atcBtn.textContent = 'Adding…';
+
+        fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: parseInt(variantId, 10), quantity: qty })
+        })
+          .then(function (res) {
+            if (!res.ok) throw new Error('add failed');
+            return res.json();
+          })
+          .then(function () {
+            window.location.href = '/checkout';
+          })
+          .catch(function () {
+            atcBtn.classList.remove('bd-atc-btn--loading');
+            atcBtn.innerHTML = originalHTML;
+          });
+      });
+    }
+  })();
+
 })();
