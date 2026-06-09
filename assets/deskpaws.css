@@ -2899,6 +2899,8 @@ em { font-style: italic; }
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 600px;
+  background: #faf8f5;
+  padding-top: clamp(3rem, 5vw, 5rem);
 }
 
 .meet-left {
@@ -2906,16 +2908,20 @@ em { font-style: italic; }
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   position: relative;
-  overflow: hidden;
+  padding: 3rem 2.5rem 4rem;
   min-height: 520px;
 }
 
 .meet-slides {
   width: 100%;
-  height: 100%;
-  position: absolute;
-  inset: 0;
+  max-width: 300px;
+  aspect-ratio: 3 / 4;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(44,26,17,0.14);
 }
 
 .meet-slide {
@@ -2938,8 +2944,9 @@ em { font-style: italic; }
 
 .meet-dots {
   position: absolute;
-  bottom: 2rem;
-  right: 2.5rem;
+  bottom: 1.75rem;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   gap: 6px;
   align-items: center;
@@ -3069,9 +3076,14 @@ em { font-style: italic; }
 @media (max-width: 768px) {
   .meet {
     grid-template-columns: 1fr;
+    padding-top: 3rem;
   }
   .meet-left {
-    min-height: 360px;
+    padding: 2.5rem 2rem 3.5rem;
+    min-height: unset;
+  }
+  .meet-slides {
+    max-width: 260px;
   }
   .meet-right {
     padding: 2.5rem 1.5rem;
