@@ -2990,9 +2990,9 @@ em { font-style: italic; }
 
 .meet-headline {
   font-family: var(--font-serif);
-  font-size: clamp(1.875rem, 3vw, 2.625rem);
-  font-weight: 400;
-  line-height: 1.18;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.12;
   color: #2d2620;
   margin: 0 0 1.75rem;
   letter-spacing: -0.02em;
@@ -3000,12 +3000,12 @@ em { font-style: italic; }
 
 .meet-body {
   font-family: var(--font-sans);
-  font-size: 1rem;
+  font-size: 1.0625rem;
   font-weight: 400;
   line-height: 1.85;
-  color: #6a5c50;
+  color: #5a4e44;
   margin: 0;
-  max-width: 400px;
+  max-width: 420px;
 }
 
 .meet-rule {
@@ -3024,7 +3024,7 @@ em { font-style: italic; }
 
 .meet-quote p {
   font-family: var(--font-serif);
-  font-size: 0.9375rem;
+  font-size: 1.0625rem;
   font-style: italic;
   color: #4a3e34;
   line-height: 1.7;
@@ -3033,7 +3033,7 @@ em { font-style: italic; }
 
 .meet-quote cite {
   font-family: var(--font-sans);
-  font-size: 0.625rem;
+  font-size: 0.6875rem;
   font-style: normal;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -3054,8 +3054,8 @@ em { font-style: italic; }
 
 .meet-specs .spec-val {
   font-family: var(--font-serif);
-  font-size: 1.25rem;
-  font-weight: 400;
+  font-size: 1.5rem;
+  font-weight: 500;
   color: #2d2620;
 }
 
