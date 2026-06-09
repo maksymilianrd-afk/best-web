@@ -2377,6 +2377,235 @@ em { font-style: italic; }
 }
 
 /* ═══════════════════════════════════════════════════════════
+   SETUP / HOW IT WORKS  (Section 5)
+═══════════════════════════════════════════════════════════ */
+.setup-section {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  min-height: 680px;
+  background: #faf8f5;
+}
+
+/* ── Left panel ─────────────────────────────────────────── */
+.setup-left {
+  background: #ede7de;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 3.25rem;
+  gap: 1.25rem;
+}
+
+.setup-img-card {
+  width: 100%;
+  max-width: 320px;
+  height: 380px;
+  border-radius: 2px;
+  overflow: hidden;
+  background: #e4ddd4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.setup-img-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.setup-img-placeholder {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #b0a090;
+  text-align: center;
+  line-height: 2.4;
+}
+
+.setup-thumbs {
+  display: flex;
+  gap: 8px;
+}
+
+.setup-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 2px;
+  overflow: hidden;
+  border: 1px solid transparent;
+  background: #e4ddd4;
+  padding: 0;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  flex-shrink: 0;
+}
+
+.setup-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.setup-thumb.active,
+.setup-thumb:hover {
+  border-color: #3a3028;
+}
+
+.setup-thumb--empty {
+  cursor: default;
+}
+
+/* ── Right panel ────────────────────────────────────────── */
+.setup-right {
+  padding: 4rem 4rem 4rem 3.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.setup-lbl {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #8a7a6a;
+  margin-bottom: 1.125rem;
+}
+
+.setup-hdl {
+  font-family: var(--font-serif);
+  font-size: clamp(2.25rem, 3.8vw, 3rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: #2d2620;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.setup-subhdl {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-style: italic;
+  color: #8a7a6a;
+  margin-bottom: 2.5rem;
+  line-height: 1.5;
+}
+
+.setup-steps {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2.25rem;
+}
+
+.setup-step {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 0 1.25rem;
+  padding: 1.5rem 0;
+  border-bottom: 0.5px solid #ddd5c8;
+  align-items: start;
+}
+
+.setup-step:first-child { padding-top: 0; }
+.setup-step:last-child  { border-bottom: none; padding-bottom: 0; }
+
+.setup-step__num {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  color: #b0a090;
+  padding-top: 3px;
+}
+
+.setup-step__title {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 400;
+  color: #2d2620;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.setup-step__body {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.78;
+  color: #6a5c50;
+}
+
+.setup-step__body em {
+  font-style: italic;
+  color: #4a3e34;
+}
+
+/* ── Compatibility ──────────────────────────────────────── */
+.setup-compat {
+  padding-top: 1.5rem;
+  border-top: 0.5px solid #ddd5c8;
+}
+
+.setup-compat__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 0;
+  margin-bottom: 0.625rem;
+}
+
+.setup-compat__item {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8a7a6a;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.setup-compat__item::after {
+  content: '·';
+  margin-left: 6px;
+  color: #c9b9a8;
+}
+
+.setup-compat__item:last-child::after { display: none; }
+
+.setup-compat__check { color: #7a9a70; font-size: 0.6875rem; }
+
+.setup-compat__warning {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  color: #9a8a78;
+  line-height: 1.65;
+}
+
+.setup-compat__link {
+  color: #b08060;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+}
+
+.setup-compat__link:hover { text-decoration: underline; text-underline-offset: 2px; }
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .setup-section {
+    grid-template-columns: 1fr;
+  }
+  .setup-img-card {
+    height: 300px;
+  }
+  .setup-right {
+    padding: 2.5rem 1.5rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
    BENEFIT COLUMNS  (Section 3)
 ═══════════════════════════════════════════════════════════ */
 .benefits-section {
