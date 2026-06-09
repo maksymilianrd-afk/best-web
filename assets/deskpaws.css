@@ -2204,7 +2204,7 @@ em { font-style: italic; }
 }
 
 .cwt__time--fast {
-  color: rgba(232, 200, 74, 0.75);
+  color: rgba(232, 217, 136, 0.85);
 }
 
 .cat-wall__mosaic-footer {
@@ -2218,7 +2218,7 @@ em { font-style: italic; }
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: #e8c84a;
+  background: #e8d988;
   opacity: 0.5;
   flex-shrink: 0;
 }
@@ -2323,7 +2323,7 @@ em { font-style: italic; }
 }
 
 .cwr-guarantee__icon {
-  color: #e8c84a;
+  color: #e8d988;
   font-size: 0.875rem;
   padding-top: 1px;
   flex-shrink: 0;
@@ -2345,7 +2345,7 @@ em { font-style: italic; }
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: #e8c84a;
+  background: #e8d988;
   color: #2d2620;
   font-family: var(--font-sans);
   font-size: 0.875rem;
@@ -2360,7 +2360,7 @@ em { font-style: italic; }
 }
 
 .cwr-cta:hover {
-  background: #f0d45a;
+  background: #f0e4a0;
 }
 
 /* ── Responsive ─────────────────────────────────────────── */
@@ -2704,7 +2704,7 @@ em { font-style: italic; }
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #e8c84a;
+  background: #e8d988;
   color: #2d2620;
   font-family: var(--font-sans);
   font-size: 0.8125rem;
@@ -2719,7 +2719,7 @@ em { font-style: italic; }
 }
 
 .btn-benefits-cta:hover {
-  background: #f0d45a;
+  background: #f0e4a0;
 }
 
 /* ─── Buy block ─────────────────────────────────────────── */
@@ -3011,7 +3011,7 @@ em { font-style: italic; }
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: #e8c84a;
+  background: #e8d988;
   color: #2d2620;
   font-family: var(--font-sans);
   font-size: 0.9375rem;
@@ -3024,7 +3024,7 @@ em { font-style: italic; }
   transition: background 0.2s;
 }
 
-.reviews-cta__btn:hover { background: #f0d45a; }
+.reviews-cta__btn:hover { background: #f0e4a0; }
 
 .reviews-cta__trust {
   display: flex;
