@@ -3001,6 +3001,27 @@ a, button, label, [role="button"] { touch-action: manipulation; }
   color: rgba(44, 26, 17, 0.38);
 }
 
+/* Optional photo — bleeds to card edges, sits above stars */
+.rv-card__img-wrap {
+  margin: -2.125rem -1.875rem 1.5rem;
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: #e8e0d5;
+}
+
+.rv-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s ease;
+}
+
+.rv-card:hover .rv-card__img {
+  transform: scale(1.04);
+}
+
 /* ── CTA ─────────────────────────────────────────────────── */
 .rv-cta {
   padding: clamp(3rem, 5vw, 4.5rem) var(--container-inset);
@@ -3079,6 +3100,7 @@ a, button, label, [role="button"] { touch-action: manipulation; }
     border-radius: 8px;
   }
   .rv-card:hover { transform: none; box-shadow: 0 1px 3px rgba(44, 26, 17, 0.05); }
+  .rv-card__img-wrap { margin: -1.75rem -1.5rem 1.25rem; border-radius: 8px 8px 0 0; }
   .rv-cta { padding: 2.5rem 0 3rem; }
   .rv-cta__price { font-size: 2.125rem; }
   .rv-cta__btn { width: 100%; justify-content: center; padding: 1rem 1.5rem; }
