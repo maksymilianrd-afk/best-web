@@ -23,7 +23,7 @@
   --container-inset: clamp(1.25rem, 1.25rem + 140*(100vw - 430px)/2130, 6.25rem);
   --spacing-section:  clamp(5rem, 5rem + 48*(100vw - 430px)/2130, 8rem);
   --grid-gap:         2rem;
-  --header-height:    7rem;
+  --header-height:    5.5rem;
 }
 
 /* ─── Reset ────────────────────────────────────────────────── */
@@ -42,6 +42,37 @@ img, video { max-width: 100%; height: auto; display: block; }
 button { font-family: inherit; }
 a { color: inherit; text-decoration: none; }
 em { font-style: italic; }
+
+/* ─── Skip link (keyboard accessibility) ───────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  background: var(--color-brown);
+  color: #fff;
+  padding: 0.625rem 1.25rem;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  border-radius: 0 0 4px 4px;
+  transition: top 0.2s ease;
+}
+.skip-link:focus { top: 0; outline: none; }
+
+/* ─── Focus visible ─────────────────────────────────────────── */
+* { outline: none; }
+*:focus-visible {
+  outline: 2px solid var(--color-brown);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.header--overlay *:focus-visible { outline-color: rgba(255,255,255,0.9); }
+
+/* ─── Touch performance ─────────────────────────────────────── */
+a, button, label, [role="button"] { touch-action: manipulation; }
 
 /* ─── Typography Classes ───────────────────────────────────── */
 .text-subtitle {
@@ -111,8 +142,9 @@ em { font-style: italic; }
   background: none;
   font-family: var(--font-sans);
   text-decoration: none;
-  transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
 }
+.btn:active { transform: scale(0.97); }
 
 .btn--secondary {
   border: 1px solid var(--color-brown);
@@ -238,7 +270,7 @@ em { font-style: italic; }
 
 .reveal { opacity: 0; }
 .reveal.in {
-  animation: revealUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0s) both;
+  animation: revealUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0s) both;
 }
 .reveal--left.in  { animation-name: revealLeft; }
 .reveal--right.in { animation-name: revealRight; }
@@ -1109,7 +1141,7 @@ em { font-style: italic; }
   z-index: 200;
   background: var(--color-white);
   border-top: 1px solid var(--color-border);
-  padding: 0.75rem 1.25rem 1rem;
+  padding: 0.75rem 1.25rem max(1rem, env(safe-area-inset-bottom));
   gap: 0.75rem;
   align-items: center;
 }
@@ -1567,7 +1599,7 @@ em { font-style: italic; }
   font-size: 0.9375rem; color: var(--color-brown); cursor: pointer;
   transition: border-color 0.2s ease; width: 100%;
 }
-.variant-select:focus { outline: none; border-color: var(--color-brown); }
+.variant-select:focus-visible { border-color: var(--color-brown); }
 
 /* Page layout */
 .pdp__inner {
@@ -3208,7 +3240,7 @@ em { font-style: italic; }
 
 @media (max-width: 640px) {
   .sticky-cta { display: flex; }
-  body { padding-bottom: 5rem; }
+  body { padding-bottom: max(5rem, calc(4rem + env(safe-area-inset-bottom))); }
 
   .hero__overlay {
     background: linear-gradient(
@@ -4206,7 +4238,7 @@ body.bd-open .buy-drawer {
   background: #c8744f;
   color: #fff;
   border: none;
-  border-radius: 12px;
+  border-radius: 8px;
   font-family: var(--font-sans);
   font-size: 0.9375rem;
   font-weight: 600;
