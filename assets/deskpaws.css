@@ -2855,221 +2855,234 @@ a, button, label, [role="button"] { touch-action: manipulation; }
 .before-after__cta { margin-top: 0.5rem; }
 
 /* ═══════════════════════════════════════════════════════════
-   REVIEWS GRID  (Section 7)
+   REVIEWS SECTION  (Section 7)   — stagger entrance + hover lift
+   Animation: driven by existing markList('.review-card', 0.08) in
+   deskpaws.js which adds .reveal + --reveal-delay per card, then
+   IntersectionObserver adds .in → triggers revealUp keyframe.
 ═══════════════════════════════════════════════════════════ */
-.reviews-section {
+.rv-section {
   background: #faf8f5;
-  padding: clamp(4rem, 6vw, 5rem) clamp(3rem, 7vw, 7rem) 0;
+  padding: clamp(4rem, 6vw, 6rem) clamp(1.25rem, 5vw, 5rem) 0;
 }
 
-.reviews-header {
+/* ── Header ──────────────────────────────────────────────── */
+.rv-header {
   text-align: center;
-  margin-bottom: 3.25rem;
+  max-width: 760px;
+  margin: 0 auto clamp(2.5rem, 4vw, 4rem);
 }
 
-.reviews-eyebrow {
+.rv-eyebrow {
   font-family: var(--font-sans);
   font-size: 0.625rem;
+  font-weight: 600;
   letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: #8a7a6a;
+  color: var(--color-text-muted);
   margin-bottom: 1rem;
   display: block;
 }
 
-.reviews-hdl {
+.rv-hdl {
   font-family: var(--font-serif);
-  font-size: clamp(2rem, 3.8vw, 3rem);
+  font-size: clamp(1.875rem, 3.5vw, 2.875rem);
   font-weight: 400;
-  color: #2d2620;
-  line-height: 1.12;
+  color: var(--color-brown);
+  line-height: 1.15;
   letter-spacing: -0.02em;
   max-width: 680px;
   margin: 0 auto 1.75rem;
 }
 
-.reviews-stars-row {
+.rv-score {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.rv-score__stars {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
+  gap: 2px;
+  color: var(--color-gold);
 }
 
-.reviews-stars { color: #c08050; font-size: 1rem; letter-spacing: 2px; }
-
-.reviews-rating-num {
-  font-family: var(--font-serif);
-  font-size: 1.125rem;
-  font-weight: 400;
-  color: #2d2620;
-}
-
-.reviews-rating-divider {
-  width: 0.5px;
-  height: 16px;
-  background: #c9b9a8;
-}
-
-.reviews-rating-count {
+.rv-score__meta {
   font-family: var(--font-sans);
   font-size: 0.8125rem;
-  color: #8a7a6a;
+  color: var(--color-text-muted);
   letter-spacing: 0.04em;
 }
 
-/* Cards */
-.reviews-grid {
+/* ── Grid ────────────────────────────────────────────────── */
+.rv-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: 1.125rem;
   margin-bottom: 1rem;
 }
 
-.review-card {
-  background: #f3ede4;
-  border-radius: 4px;
-  padding: 2rem 1.75rem;
+/* ── Cards ───────────────────────────────────────────────── */
+.rv-card {
+  background: #f5f1ea;
+  border-radius: 10px;
+  padding: 2.125rem 1.875rem 1.875rem;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 1px 3px rgba(44, 26, 17, 0.05), 0 1px 2px rgba(44, 26, 17, 0.03);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+  will-change: transform;
 }
 
-.review-card__stars {
-  color: #c08050;
-  font-size: 0.8125rem;
-  letter-spacing: 2px;
-  margin-bottom: 1.125rem;
+.rv-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 36px rgba(44, 26, 17, 0.09), 0 3px 10px rgba(44, 26, 17, 0.05);
 }
 
-.review-card__quote {
+.rv-card__stars {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  color: var(--color-gold);
+  margin-bottom: 1.25rem;
+}
+
+/* Large decorative opening quotation mark */
+.rv-card__quote {
   font-family: var(--font-serif);
   font-size: 0.9375rem;
+  font-style: italic;
   line-height: 1.78;
   color: #3a3028;
   flex: 1;
-  margin-bottom: 1.5rem;
-  font-style: italic;
+  margin: 0 0 1.625rem;
+  position: relative;
+  padding-top: 2.5rem;
 }
 
-.review-card__rule {
-  width: 32px;
-  height: 0.5px;
-  background: #c9b9a8;
-  margin-bottom: 0.875rem;
-  flex-shrink: 0;
+.rv-card__quote::before {
+  content: '\201C';
+  position: absolute;
+  top: -0.5rem;
+  left: -0.125rem;
+  font-family: var(--font-serif);
+  font-style: normal;
+  font-size: 4.5rem;
+  line-height: 1;
+  color: rgba(44, 26, 17, 0.08);
+  pointer-events: none;
 }
 
-.review-card__author {
+.rv-card__quote p { margin: 0; }
+
+/* Separator rule */
+.rv-card__foot {
+  border-top: 0.5px solid rgba(44, 26, 17, 0.1);
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.rv-card__author {
   font-family: var(--font-sans);
   font-size: 0.625rem;
+  font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #8a7a6a;
+  color: var(--color-text-muted);
 }
 
-.review-card__tag {
-  display: inline-block;
+.rv-card__tag {
   font-family: var(--font-sans);
   font-size: 0.5625rem;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #b09080;
-  border: 0.5px solid #c9b9a8;
-  border-radius: 20px;
-  padding: 3px 8px;
-  margin-top: 6px;
-  width: fit-content;
+  color: rgba(44, 26, 17, 0.38);
 }
 
-/* CTA section */
-.reviews-cta {
-  margin-top: 4rem;
-  padding: 3.25rem 3rem 4rem;
+/* ── CTA ─────────────────────────────────────────────────── */
+.rv-cta {
+  padding: clamp(3rem, 5vw, 4.5rem) var(--container-inset);
   text-align: center;
-  border-top: 0.5px solid #ddd5c8;
+  border-top: 0.5px solid rgba(44, 26, 17, 0.1);
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0;
 }
 
-.reviews-cta__closing {
+.rv-cta__closing {
   font-family: var(--font-serif);
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   font-style: italic;
-  letter-spacing: 0.04em;
-  color: #8a7a6a;
-  margin-bottom: 0.5rem;
+  letter-spacing: 0.03em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.625rem;
 }
 
-.reviews-cta__hdl {
+.rv-cta__hdl {
   font-family: var(--font-serif);
-  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-size: clamp(1.625rem, 2.8vw, 2.25rem);
   font-weight: 400;
-  color: #2d2620;
+  color: var(--color-brown);
   line-height: 1.2;
   letter-spacing: -0.02em;
-  margin-bottom: 2rem;
+  margin-bottom: 1.875rem;
 }
 
-.reviews-cta__price-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.875rem;
+.rv-cta__price {
+  font-family: var(--font-serif);
+  font-size: 2.625rem;
+  font-weight: 400;
+  color: var(--color-brown);
+  letter-spacing: -0.02em;
+  line-height: 1;
   margin-bottom: 1.5rem;
 }
 
-.reviews-cta__price-competitor {
-  font-family: var(--font-sans);
-  font-size: 0.8125rem;
-  color: #a09080;
-  letter-spacing: 0.04em;
-}
-
-.reviews-cta__price-divider {
-  width: 0.5px;
-  height: 18px;
-  background: #c9b9a8;
-}
-
-.reviews-cta__price-main {
-  font-family: var(--font-serif);
-  font-size: 2.375rem;
-  font-weight: 400;
-  color: #2d2620;
-}
-
-.reviews-cta__btn {
+/* Inherits .reviews-cta__btn selector for buy-drawer JS interception */
+.rv-cta__btn {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  background: #e8d988;
-  color: #2d2620;
+  gap: 0.75rem;
+  background: var(--butter);
+  color: var(--color-brown);
   font-family: var(--font-sans);
   font-size: 0.9375rem;
   font-weight: 500;
-  letter-spacing: 0.02em;
-  padding: 1.0625rem 2.625rem;
-  border-radius: 40px;
+  letter-spacing: 0.01em;
+  padding: 1rem 2.5rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
   text-decoration: none;
-  margin-bottom: 1.125rem;
-  transition: background 0.2s;
+  margin-bottom: 1.25rem;
+  transition: background 0.2s ease, transform 0.1s ease;
+  touch-action: manipulation;
 }
 
-.reviews-cta__btn:hover { background: #f0e4a0; }
+.rv-cta__btn:hover { background: var(--butter-hover); }
+.rv-cta__btn:active { transform: scale(0.97); background: var(--butter-press); }
 
-.reviews-cta__trust {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
+.rv-cta__trust {
   font-family: var(--font-sans);
   font-size: 0.75rem;
-  color: #9a8a78;
-  letter-spacing: 0.04em;
+  color: rgba(44, 26, 17, 0.45);
+  letter-spacing: 0.05em;
 }
 
-.reviews-cta__trust-dot { color: #c9b9a8; }
+@media (max-width: 640px) {
+  .rv-card {
+    padding: 1.75rem 1.5rem 1.625rem;
+    border-radius: 8px;
+  }
+  .rv-card:hover { transform: none; box-shadow: 0 1px 3px rgba(44, 26, 17, 0.05); }
+  .rv-cta { padding: 2.5rem 0 3rem; }
+  .rv-cta__price { font-size: 2.125rem; }
+  .rv-cta__btn { width: 100%; justify-content: center; padding: 1rem 1.5rem; }
+}
 
 /* ═══════════════════════════════════════════════════════════
    COMPARISON TABLE  (Section 8)
@@ -3289,7 +3302,7 @@ a, button, label, [role="button"] { touch-action: manipulation; }
     padding-right: 0;
     margin-right: 0;
   }
-  .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+  .rv-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 767px) {
   .benefits-section {
@@ -3316,7 +3329,7 @@ a, button, label, [role="button"] { touch-action: manipulation; }
     flex-direction: column;
     align-items: flex-start;
   }
-  .reviews-grid { grid-template-columns: 1fr; }
+  .rv-grid { grid-template-columns: 1fr; }
   .before-after  { grid-template-columns: 1fr; min-height: auto; }
   .guarantee-section__inner { grid-template-columns: 1fr; }
   .comparison-table thead th,

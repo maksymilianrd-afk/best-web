@@ -1,113 +1,119 @@
-<section class="reviews-section" id="reviews">
+<section class="rv-section" id="reviews">
 
-  <div class="reviews-header">
-    <span class="reviews-eyebrow">{{ section.settings.eyebrow | default: "Real cats. Real desks." }}</span>
-    <h2 class="reviews-hdl">{{ section.settings.heading | default: "What happens when the keyboard is finally yours again." }}</h2>
-    <div class="reviews-stars-row">
-      <span class="reviews-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-      <span class="reviews-rating-num">4.8</span>
-      <div class="reviews-rating-divider"></div>
-      <span class="reviews-rating-count">{{ section.settings.stat_meta | default: "Verified buyers" }}</span>
+  <div class="rv-header">
+    <p class="rv-eyebrow">{{ section.settings.eyebrow | default: "Real cats. Real desks." }}</p>
+    <h2 class="rv-hdl">{{ section.settings.heading | default: "What happens when the keyboard is finally yours again." }}</h2>
+    <div class="rv-score" aria-label="Five-star rated">
+      <div class="rv-score__stars" aria-hidden="true">
+        {%- for i in (1..5) -%}<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{%- endfor -%}
+      </div>
+      <span class="rv-score__meta">{{ section.settings.stat_meta | default: "From our customers" }}</span>
     </div>
   </div>
 
-  <div class="reviews-grid">
+  <div class="rv-grid">
 
-    <div class="review-card">
-      <div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <p class="review-card__quote">&ldquo;{{ section.settings.review_1 | default: "She was in it within an hour of setup. I genuinely didn&rsquo;t expect it to work that fast. Now I find her already settled in every morning before I even sit down." }}&rdquo;</p>
-      <div class="review-card__rule"></div>
-      <span class="review-card__author">{{ section.settings.review_1_author | default: "Sarah M. &amp; Biscuit" }}</span>
-      {%- if section.settings.review_1_tag != blank -%}
-        <span class="review-card__tag">{{ section.settings.review_1_tag }}</span>
-      {%- else -%}
-        <span class="review-card__tag">Claimed in 1 hour</span>
-      {%- endif -%}
-    </div>
+    <article class="review-card rv-card">
+      <div class="rv-card__stars" aria-label="5 out of 5 stars">
+        {%- for i in (1..5) -%}<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{%- endfor -%}
+      </div>
+      <blockquote class="rv-card__quote">
+        <p>{{ section.settings.review_1 | default: "She was in it within an hour of setup. I genuinely didn&rsquo;t expect it to work that fast. Now I find her already settled in every morning before I even sit down." }}</p>
+      </blockquote>
+      <footer class="rv-card__foot">
+        <p class="rv-card__author">{{ section.settings.review_1_author | default: "Sarah M. &amp; Biscuit" }}</p>
+        <p class="rv-card__tag">
+          {%- if section.settings.review_1_tag != blank -%}{{ section.settings.review_1_tag }}{%- else -%}Claimed in 1 hour{%- endif -%}
+        </p>
+      </footer>
+    </article>
 
-    <div class="review-card">
-      <div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <p class="review-card__quote">&ldquo;{{ section.settings.review_2 | default: "My 18 lb Maine Coon fits perfectly. The clamp is rock solid &mdash; zero wobble even when he jumps in. Not a single mark on my desk." }}&rdquo;</p>
-      <div class="review-card__rule"></div>
-      <span class="review-card__author">{{ section.settings.review_2_author | default: "Rachel T. &amp; Chairman Floof" }}</span>
-      {%- if section.settings.review_2_tag != blank -%}
-        <span class="review-card__tag">{{ section.settings.review_2_tag }}</span>
-      {%- else -%}
-        <span class="review-card__tag">Large cat owner</span>
-      {%- endif -%}
-    </div>
+    <article class="review-card rv-card">
+      <div class="rv-card__stars" aria-label="5 out of 5 stars">
+        {%- for i in (1..5) -%}<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{%- endfor -%}
+      </div>
+      <blockquote class="rv-card__quote">
+        <p>{{ section.settings.review_2 | default: "My 18 lb Maine Coon fits perfectly. The clamp is rock solid &mdash; zero wobble even when he jumps in. Not a single mark on my desk." }}</p>
+      </blockquote>
+      <footer class="rv-card__foot">
+        <p class="rv-card__author">{{ section.settings.review_2_author | default: "Rachel T. &amp; Chairman Floof" }}</p>
+        <p class="rv-card__tag">
+          {%- if section.settings.review_2_tag != blank -%}{{ section.settings.review_2_tag }}{%- else -%}Large cat owner{%- endif -%}
+        </p>
+      </footer>
+    </article>
 
-    <div class="review-card">
-      <div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <p class="review-card__quote">&ldquo;{{ section.settings.review_3 | default: "I bought this as a gift. My sister texted me a photo within 24 hours &mdash; cat completely settled, keyboard completely clear. It actually works." }}&rdquo;</p>
-      <div class="review-card__rule"></div>
-      <span class="review-card__author">{{ section.settings.review_3_author | default: "Jamie L." }}</span>
-      {%- if section.settings.review_3_tag != blank -%}
-        <span class="review-card__tag">{{ section.settings.review_3_tag }}</span>
-      {%- else -%}
-        <span class="review-card__tag">Gift buyer</span>
-      {%- endif -%}
-    </div>
+    <article class="review-card rv-card">
+      <div class="rv-card__stars" aria-label="5 out of 5 stars">
+        {%- for i in (1..5) -%}<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{%- endfor -%}
+      </div>
+      <blockquote class="rv-card__quote">
+        <p>{{ section.settings.review_3 | default: "I bought this as a gift. My sister texted me a photo within 24 hours &mdash; cat completely settled, keyboard completely clear. It actually works." }}</p>
+      </blockquote>
+      <footer class="rv-card__foot">
+        <p class="rv-card__author">{{ section.settings.review_3_author | default: "Jamie L." }}</p>
+        <p class="rv-card__tag">
+          {%- if section.settings.review_3_tag != blank -%}{{ section.settings.review_3_tag }}{%- else -%}Gift buyer{%- endif -%}
+        </p>
+      </footer>
+    </article>
 
-    <div class="review-card">
-      <div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <p class="review-card__quote">&ldquo;{{ section.settings.review_4 | default: "I was on six calls this week and didn&rsquo;t have to apologise for my cat once. That alone was worth $79 to me." }}&rdquo;</p>
-      <div class="review-card__rule"></div>
-      <span class="review-card__author">{{ section.settings.review_4_author | default: "Priya K. &amp; Mango" }}</span>
-      {%- if section.settings.review_4_tag != blank -%}
-        <span class="review-card__tag">{{ section.settings.review_4_tag }}</span>
-      {%- else -%}
-        <span class="review-card__tag">Work from home</span>
-      {%- endif -%}
-    </div>
+    <article class="review-card rv-card">
+      <div class="rv-card__stars" aria-label="5 out of 5 stars">
+        {%- for i in (1..5) -%}<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{%- endfor -%}
+      </div>
+      <blockquote class="rv-card__quote">
+        <p>{{ section.settings.review_4 | default: "I was on six calls this week and didn&rsquo;t have to apologise for my cat once. That alone was worth $79 to me." }}</p>
+      </blockquote>
+      <footer class="rv-card__foot">
+        <p class="rv-card__author">{{ section.settings.review_4_author | default: "Priya K. &amp; Mango" }}</p>
+        <p class="rv-card__tag">
+          {%- if section.settings.review_4_tag != blank -%}{{ section.settings.review_4_tag }}{%- else -%}Work from home{%- endif -%}
+        </p>
+      </footer>
+    </article>
 
-    <div class="review-card">
-      <div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <p class="review-card__quote">&ldquo;{{ section.settings.review_5 | default: "Set it up Sunday night. Monday morning she was in it before my coffee was ready. I actually teared up a little. Ridiculous but true." }}&rdquo;</p>
-      <div class="review-card__rule"></div>
-      <span class="review-card__author">{{ section.settings.review_5_author | default: "Leah R. &amp; Duchess" }}</span>
-      {%- if section.settings.review_5_tag != blank -%}
-        <span class="review-card__tag">{{ section.settings.review_5_tag }}</span>
-      {%- else -%}
-        <span class="review-card__tag">Claimed overnight</span>
-      {%- endif -%}
-    </div>
+    <article class="review-card rv-card">
+      <div class="rv-card__stars" aria-label="5 out of 5 stars">
+        {%- for i in (1..5) -%}<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{%- endfor -%}
+      </div>
+      <blockquote class="rv-card__quote">
+        <p>{{ section.settings.review_5 | default: "Set it up Sunday night. Monday morning she was in it before my coffee was ready. I actually teared up a little. Ridiculous but true." }}</p>
+      </blockquote>
+      <footer class="rv-card__foot">
+        <p class="rv-card__author">{{ section.settings.review_5_author | default: "Leah R. &amp; Duchess" }}</p>
+        <p class="rv-card__tag">
+          {%- if section.settings.review_5_tag != blank -%}{{ section.settings.review_5_tag }}{%- else -%}Claimed overnight{%- endif -%}
+        </p>
+      </footer>
+    </article>
 
-    <div class="review-card">
-      <div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <p class="review-card__quote">&ldquo;{{ section.settings.review_6 | default: "The sherpa cushion is so soft even I want to sleep in it. Removes easily for washing. Genuinely great product." }}&rdquo;</p>
-      <div class="review-card__rule"></div>
-      <span class="review-card__author">{{ section.settings.review_6_author | default: "Dana W. &amp; Gnocchi" }}</span>
-      {%- if section.settings.review_6_tag != blank -%}
-        <span class="review-card__tag">{{ section.settings.review_6_tag }}</span>
-      {%- else -%}
-        <span class="review-card__tag">Verified buyer</span>
-      {%- endif -%}
-    </div>
+    <article class="review-card rv-card">
+      <div class="rv-card__stars" aria-label="5 out of 5 stars">
+        {%- for i in (1..5) -%}<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{%- endfor -%}
+      </div>
+      <blockquote class="rv-card__quote">
+        <p>{{ section.settings.review_6 | default: "The sherpa cushion is so soft even I want to sleep in it. Removes easily for washing. Genuinely great product." }}</p>
+      </blockquote>
+      <footer class="rv-card__foot">
+        <p class="rv-card__author">{{ section.settings.review_6_author | default: "Dana W. &amp; Gnocchi" }}</p>
+        <p class="rv-card__tag">
+          {%- if section.settings.review_6_tag != blank -%}{{ section.settings.review_6_tag }}{%- else -%}Washable liner{%- endif -%}
+        </p>
+      </footer>
+    </article>
 
   </div>
 
-  <div class="reviews-cta">
-    <p class="reviews-cta__closing">{{ section.settings.cta_closing | default: "You&rsquo;re a good cat parent and a functional human. Simultaneously." }}</p>
-    <h3 class="reviews-cta__hdl">{{ section.settings.cta_heading | default: "Your desk. Their spot.<br>Everyone wins." }}</h3>
-
-    <div class="reviews-cta__price-row">
-      <span class="reviews-cta__price-competitor">{{ section.settings.competitor_price | default: "Premium alternatives: $150&ndash;$179" }}</span>
-      <div class="reviews-cta__price-divider"></div>
-      <span class="reviews-cta__price-main">$79</span>
-    </div>
-
-    <a href="{{ section.settings.cta_url | default: '/products/desk-paws-place-for-your-cat-co-worker' }}" class="reviews-cta__btn">
-      {{ section.settings.cta_label | default: "Give Them Their Spot &rarr;" }}
+  <div class="reviews-cta rv-cta">
+    <p class="rv-cta__closing">{{ section.settings.cta_closing | default: "You&rsquo;re a good cat parent and a functional human. Simultaneously." }}</p>
+    <h3 class="rv-cta__hdl">{{ section.settings.cta_heading | default: "Your desk. Their spot. Everyone wins." }}</h3>
+    <p class="rv-cta__price">$79</p>
+    <a href="{{ section.settings.cta_url | default: '/products/desk-paws-place-for-your-cat-co-worker' }}" class="reviews-cta__btn rv-cta__btn" data-buy-drawer>
+      {{ section.settings.cta_label | default: "Give Them Their Spot" }}
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="10" viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/></svg>
     </a>
-
-    <div class="reviews-cta__trust">
-      <span>&#x1F512; Secure checkout</span>
-      <span class="reviews-cta__trust-dot">&middot;</span>
-      <span>Free shipping</span>
-      <span class="reviews-cta__trust-dot">&middot;</span>
-      <span>30-day guarantee</span>
-    </div>
+    <p class="rv-cta__trust">Free shipping &middot; 30-day guarantee &middot; Secure checkout</p>
   </div>
 
 </section>
@@ -119,7 +125,7 @@
   "settings": [
     { "type": "text",     "id": "eyebrow",           "label": "Eyebrow",          "default": "Real cats. Real desks." },
     { "type": "text",     "id": "heading",           "label": "Heading",          "default": "What happens when the keyboard is finally yours again." },
-    { "type": "text",     "id": "stat_meta",         "label": "Rating label",     "default": "Verified buyers" },
+    { "type": "text",     "id": "stat_meta",         "label": "Rating label",     "default": "From our customers" },
     { "type": "header",   "content": "Review 1" },
     { "type": "textarea", "id": "review_1",          "label": "Quote" },
     { "type": "text",     "id": "review_1_author",   "label": "Author",           "default": "Sarah M. & Biscuit" },
@@ -143,12 +149,11 @@
     { "type": "header",   "content": "Review 6" },
     { "type": "textarea", "id": "review_6",          "label": "Quote" },
     { "type": "text",     "id": "review_6_author",   "label": "Author",           "default": "Dana W. & Gnocchi" },
-    { "type": "text",     "id": "review_6_tag",      "label": "Tag",              "default": "Verified buyer" },
+    { "type": "text",     "id": "review_6_tag",      "label": "Tag",              "default": "Washable liner" },
     { "type": "header",   "content": "CTA section" },
     { "type": "textarea", "id": "cta_closing",       "label": "Closing italic line" },
     { "type": "text",     "id": "cta_heading",       "label": "CTA heading",      "default": "Your desk. Their spot. Everyone wins." },
-    { "type": "text",     "id": "competitor_price",  "label": "Competitor price label", "default": "Premium alternatives: $150–$179" },
-    { "type": "text",     "id": "cta_label",         "label": "Button text",      "default": "Give Them Their Spot →" },
+    { "type": "text",     "id": "cta_label",         "label": "Button text",      "default": "Give Them Their Spot" },
     { "type": "url",      "id": "cta_url",           "label": "Button link" }
   ],
   "presets": [{ "name": "Reviews" }]
