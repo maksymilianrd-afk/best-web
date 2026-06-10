@@ -2855,7 +2855,7 @@ a, button, label, [role="button"] { touch-action: manipulation; }
 .before-after__cta { margin-top: 0.5rem; }
 
 /* ═══════════════════════════════════════════════════════════
-   REVIEWS SECTION  (Section 7)   — stagger entrance + hover lift
+   REVIEWS SECTION  (Section 7)  v2 — stagger entrance + hover lift
    Animation: driven by existing markList('.review-card', 0.08) in
    deskpaws.js which adds .reveal + --reveal-delay per card, then
    IntersectionObserver adds .in → triggers revealUp keyframe.
