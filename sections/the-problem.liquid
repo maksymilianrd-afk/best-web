@@ -1,25 +1,168 @@
-<section class="the-problem">
-  <div class="the-problem__inner">
+{%- comment -%}The Problem — typographic art 2026-06-11{%- endcomment -%}
+<section class="pbl" id="theProblem">
 
-    {%- if section.settings.eyebrow != blank -%}
-      <p class="the-problem__eyebrow reveal">{{ section.settings.eyebrow }}</p>
-    {%- endif -%}
+  <div class="pbl__box" id="pblBox">
 
-    <h2 class="the-problem__heading reveal">{{ section.settings.heading | default: "You sit down to work.<br>They have other plans." }}</h2>
-
-    <div class="the-problem__lines">
-      {%- if section.settings.line_1 != blank -%}<p class="the-problem__line reveal">{{ section.settings.line_1 }}</p>{%- endif -%}
-      {%- if section.settings.line_2 != blank -%}<p class="the-problem__line reveal">{{ section.settings.line_2 }}</p>{%- endif -%}
-      {%- if section.settings.line_3 != blank -%}<p class="the-problem__line reveal">{{ section.settings.line_3 }}</p>{%- endif -%}
-      {%- if section.settings.line_4 != blank -%}<p class="the-problem__line reveal">{{ section.settings.line_4 }}</p>{%- endif -%}
-      {%- if section.settings.line_5 != blank -%}<p class="the-problem__line reveal">{{ section.settings.line_5 }}</p>{%- endif -%}
-      {%- if section.settings.line_6 != blank -%}<p class="the-problem__line reveal">{{ section.settings.line_6 }}</p>{%- endif -%}
-      {%- if section.settings.line_7 != blank -%}<p class="the-problem__line reveal">{{ section.settings.line_7 }}</p>{%- endif -%}
-      {%- if section.settings.line_8 != blank -%}<p class="the-problem__line the-problem__line--last reveal">{{ section.settings.line_8 }}</p>{%- endif -%}
+    <div class="pbl__bg" aria-hidden="true">
+      <div class="pbl__row"><span class="pbl__ri pbl__ri--0" id="pblR0"></span></div>
+      <div class="pbl__row"><span class="pbl__ri pbl__ri--1" id="pblR1"></span></div>
+      <div class="pbl__row"><span class="pbl__ri pbl__ri--2" id="pblR2"></span></div>
+      <div class="pbl__row"><span class="pbl__ri pbl__ri--3" id="pblR3"></span></div>
     </div>
 
+    <div class="pbl__layer" id="pblSp" aria-hidden="true"></div>
+    <div class="pbl__layer" id="pblSt" aria-hidden="true"></div>
+    <div class="pbl__layer" id="pblPl" aria-hidden="true"></div>
+
   </div>
+
+  <div class="pbl__sr">
+    {%- if section.settings.eyebrow != blank -%}<p>{{ section.settings.eyebrow }}</p>{%- endif -%}
+    {%- for i in (1..8) -%}
+      {%- assign lk = 'line_' | append: i -%}
+      {%- if section.settings[lk] != blank -%}<p>{{ section.settings[lk] }}</p>{%- endif -%}
+    {%- endfor -%}
+  </div>
+
 </section>
+
+<script>
+(function(){
+  var T={
+    ey:{{ section.settings.eyebrow | default: 'Sound familiar?' | json }},
+    l1:{{ section.settings.line_1 | default: "Within two minutes, they're there." | json }},
+    l2:{{ section.settings.line_2 | default: "On the keyboard. Between you and the screen." | json }},
+    l3:{{ section.settings.line_3 | default: "On the exact document you were about to open." | json }},
+    l4:{{ section.settings.line_4 | default: "You move them. They come back." | json }},
+    l5:{{ section.settings.line_5 | default: "You close the door. You feel terrible." | json }},
+    l6:{{ section.settings.line_6 | default: "You let them back in. They're on the keyboard again." | json }},
+    l7:{{ section.settings.line_7 | default: "You love them completely." | json }},
+    l8:{{ section.settings.line_8 | default: "You also haven't finished a sentence since 9am." | json }}
+  };
+  function init(){
+    var box=document.getElementById('pblBox');
+    if(!box)return;
+    var W=box.getBoundingClientRect().width||800;
+    var H=box.getBoundingClientRect().height||800;
+    var BF="font-family:'Cormorant Garamond',Georgia,serif;color:#2c1a11;position:absolute;pointer-events:none;";
+
+    [['pblR0','ow.   '],['pblR1','eow.   Meow.   '],
+     ['pblR2','w.   Meow.   '],['pblR3','Meow.   ']
+    ].forEach(function(p){
+      var el=document.getElementById(p[0]);
+      if(el)el.textContent=p[1]+'Meow.   '.repeat(30);
+    });
+
+    function mk(txt,css){
+      var el=document.createElement('span');
+      el.textContent=txt;
+      el.style.cssText=BF+css;
+      return el;
+    }
+    var spEl=document.getElementById('pblSp');
+    var stEl=document.getElementById('pblSt');
+    var plEl=document.getElementById('pblPl');
+    if(!spEl||!stEl||!plEl)return;
+
+    // spiral — Meow. arcing down the right side, rotating and shrinking
+    [[.620,.300,2,52,.84],[.673,.376,16,45,.78],[.706,.456,31,38,.72],
+     [.718,.540,48,31,.65],[.706,.622,63,25,.58],[.672,.702,77,19,.52],
+     [.620,.780,89,14,.46]
+    ].forEach(function(a){
+      spEl.appendChild(mk('Meow.',
+        'left:'+~~(a[0]*W)+'px;top:'+~~(a[1]*H)+'px;font-size:'+a[3]+'px;opacity:'+a[4]+';'+
+        'transform:rotate('+a[2]+'deg);transform-origin:0 50%;font-weight:400;white-space:nowrap'));
+    });
+
+    // trail letters connecting spiral to pile
+    [['M',.628,.822,103,22,.40],['e',.647,.850,117,18,.34],
+     ['o',.660,.876,131,14,.28],['w',.669,.900,144,11,.22]
+    ].forEach(function(a){
+      spEl.appendChild(mk(a[0],
+        'left:'+~~(a[1]*W)+'px;top:'+~~(a[2]*H)+'px;font-size:'+a[4]+'px;opacity:'+a[5]+';'+
+        'transform:rotate('+a[3]+'deg);font-weight:400'));
+    });
+
+    // story lines
+    function pl(html,x,y,fs){
+      var el=document.createElement('p');
+      el.innerHTML=html;
+      el.style.cssText=BF+
+        'left:'+~~(x*W)+'px;top:'+~~(y*H)+'px;'+
+        'font-size:'+fs+'px;font-weight:400;font-style:normal;'+
+        'white-space:nowrap;line-height:1;margin:0';
+      stEl.appendChild(el);
+    }
+    var MX=.130;
+    pl('<span style="font-family:Inter,sans-serif;font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;opacity:0.45">'+T.ey+'</span>',MX,.120,10);
+    pl(T.l1, MX,  .225, 15);
+    pl(T.l2, .110,.278, 14);
+    pl(T.l3, .100,.330, 14);
+    pl(T.l4, .132,.382, 14);
+    pl(T.l5, MX,  .430, 14);
+    pl(T.l6, .100,.480, 14);
+    pl(T.l7, .150,.530, 14);
+
+    // scattered letters — textural bridge before the fall
+    var MYO=[0,-3,2,-2,3,-1,4,-4];
+    var mx=~~(.130*W);
+    'meowwwww'.split('').forEach(function(c,i){
+      stEl.appendChild(mk(c,
+        'left:'+mx+'px;top:'+(~~(.562*H)+MYO[i])+'px;'+
+        'font-size:14px;font-weight:400;font-style:normal'));
+      mx+=i===0?20:15;
+    });
+
+    // falling last line — each word tilts progressively
+    var FBX=~~(.130*W),FBY=~~(.598*H);
+    var fallWords=T.l8.replace(/<[^>]*>/g,'').split(' ');
+    var falls=[
+      [0,   0,   0,  1.00, 14],
+      [35,  1,   2,  1.00, 14],
+      [80,  5,   9,  0.97, 14],
+      [160, 13,  19, 0.93, 13],
+      [250, 25,  31, 0.86, 13],
+      [272, 44,  48, 0.74, 12],
+      [370, 70,  64, 0.56, 11],
+      [428, 105, 80, 0.40, 10]
+    ];
+    fallWords.forEach(function(w,i){
+      if(i>=falls.length)return;
+      var d=falls[i];
+      var el=document.createElement('span');
+      el.textContent=w;
+      el.style.cssText=BF+
+        'left:'+(FBX+d[0])+'px;top:'+(FBY+d[1])+'px;'+
+        'font-size:'+d[4]+'px;opacity:'+d[3]+';'+
+        'transform:rotate('+d[2]+'deg);transform-origin:0 bottom;'+
+        'font-weight:400;font-style:normal;white-space:nowrap';
+      stEl.appendChild(el);
+    });
+
+    // pile — dense cluster of letters bottom-right
+    function rng(s){var n=s;return function(){n=(n*1664525+1013904223)|0;return(n>>>0)/4294967295;};}
+    var R=rng(42);
+    var PC='MeowMiewMeowMiouMeowMiewwwueMieMiouMeowM';
+    var CX=~~(W*.72),CY=~~(H*.878),RX=~~(W*.21),RY=~~(H*.128);
+    for(var i=0;i<78;i++){
+      var c=PC[i%PC.length];
+      var x2=CX+(R()-.5)*RX*2;
+      var y2=CY+(R()-.5)*RY*2;
+      var r2=(R()-.5)*360;
+      var f2=~~(8+R()*34);
+      var o2=.35+R()*.65;
+      plEl.appendChild(mk(c,
+        'left:'+~~x2+'px;top:'+~~y2+'px;font-size:'+f2+'px;opacity:'+o2+';'+
+        'transform:rotate('+r2+'deg);font-style:normal;font-weight:400'));
+    }
+  }
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',init);
+  }else{
+    init();
+  }
+})();
+</script>
 
 {% schema %}
 {
@@ -28,7 +171,7 @@
   "settings": [
     { "type": "text",     "id": "eyebrow",  "label": "Eyebrow",  "default": "Sound familiar?" },
     { "type": "textarea", "id": "heading",  "label": "Heading",  "default": "You sit down to work.\nThey have other plans." },
-    { "type": "header",   "content": "Body lines (each animates in on scroll)" },
+    { "type": "header",   "content": "Body lines" },
     { "type": "text", "id": "line_1", "label": "Line 1", "default": "Within two minutes, they're there." },
     { "type": "text", "id": "line_2", "label": "Line 2", "default": "On the keyboard. Between you and the screen." },
     { "type": "text", "id": "line_3", "label": "Line 3", "default": "On the exact document you were about to open." },
@@ -36,7 +179,7 @@
     { "type": "text", "id": "line_5", "label": "Line 5", "default": "You close the door. You feel terrible." },
     { "type": "text", "id": "line_6", "label": "Line 6", "default": "You let them back in. They're on the keyboard again." },
     { "type": "text", "id": "line_7", "label": "Line 7", "default": "You love them completely." },
-    { "type": "text", "id": "line_8", "label": "Line 8 (closing — supports HTML)", "default": "You also <em>haven't finished a sentence since 9am.</em>" }
+    { "type": "text", "id": "line_8", "label": "Line 8 (closing)", "default": "You also haven't finished a sentence since 9am." }
   ],
   "presets": [{ "name": "The Problem" }]
 }

@@ -3991,80 +3991,70 @@ a, button, label, [role="button"] { touch-action: manipulation; }
   .big-image__heading { font-size: clamp(1.5rem, 5vw, 2rem); }
 }
 
-/* ── The Problem section ────────────────────────────────── */
-.the-problem {
-  background: #f3ede6;
-  padding: clamp(2.5rem, 4vw, 4rem) clamp(1.25rem, 4vw, 4rem);
+/* ── The Problem — typographic art ─────────────────────── */
+.pbl {
+  background: #f5f0e8;
+  overflow: hidden;
 }
 
-.the-problem__inner {
-  max-width: 1040px;
-  margin: 0 auto;
-  text-align: center;
-  background: linear-gradient(160deg, #332e27 0%, #2e2820 60%);
-  border-radius: 1.75rem;
-  padding: clamp(2.25rem, 4.5vw, 4rem) clamp(2rem, 5vw, 5rem);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 12px 60px rgba(30, 20, 10, 0.18), 0 2px 8px rgba(30, 20, 10, 0.1);
+.pbl__box {
+  height: 800px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
 }
 
-.the-problem__eyebrow {
-  font-family: var(--font-sans);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: rgba(235, 220, 200, 0.6);
-  margin: 0 0 2.5rem;
-}
-
-.the-problem__heading {
-  font-family: var(--font-serif);
-  font-size: clamp(2.25rem, 4vw, 4rem);
-  font-weight: 400;
-  line-height: 1.15;
-  color: rgba(245, 235, 220, 1);
-  margin: 0 0 2.5rem;
-  white-space: pre-line;
-}
-
-.the-problem__lines {
+.pbl__bg {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 18px;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 8px;
 }
 
-.the-problem__line {
-  font-family: var(--font-serif);
-  font-size: clamp(1.0625rem, 1.6vw, 1.375rem);
+.pbl__row {
+  line-height: 1.05;
+  overflow: hidden;
+}
+
+.pbl__ri {
+  color: #2c1a11;
+  display: block;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 52px;
+  font-style: normal;
   font-weight: 400;
-  line-height: 1.5;
-  color: rgba(242, 230, 212, 1);
-  margin: 0;
-  padding: 0.65rem 0;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
 }
 
-.the-problem__line--last {
-  color: #f5e8d0;
-  margin-top: 1.5rem;
-  font-size: clamp(1.125rem, 1.7vw, 1.5rem);
+.pbl__ri--0 { opacity: 0.09; }
+.pbl__ri--1 { opacity: 0.82; }
+.pbl__ri--2 { opacity: 0.23; }
+.pbl__ri--3 { opacity: 0.11; }
+
+.pbl__layer {
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
 }
 
-.the-problem__line--last em {
-  font-style: italic;
-  color: #f0e4cc;
-  font-weight: 600;
+.pbl__sr {
+  clip: rect(0,0,0,0);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
 
-/* Tighten the reveal threshold for line-by-line feel */
-.the-problem__line.reveal.in {
-  animation-duration: 0.7s;
-}
-
-@media (max-width: 640px) {
-  .the-problem { padding: 2rem 0.875rem; }
-  .the-problem__inner { border-radius: 1rem; padding: 2rem 1.5rem; }
-  .the-problem__heading { margin-bottom: 2rem; }
-  .the-problem__line { padding: 0.5rem 0; }
+@media (max-width: 768px) {
+  .pbl__box { height: 680px; }
+  .pbl__ri  { font-size: 38px; }
+  .pbl__bg  { gap: 12px; }
 }
 
 /* ── Meet DeskPaws section ──────────────────────────────── */
