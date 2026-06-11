@@ -436,6 +436,21 @@
     }
   })();
 
+  /* ── Footer reveal (sticky clip + stagger) ─────────────── */
+  (function () {
+    var ftOuter = document.getElementById('site-footer-outer');
+    if (!ftOuter) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          ftOuter.classList.add('ft-active');
+          io.unobserve(ftOuter);
+        }
+      });
+    }, { threshold: 0.05 });
+    io.observe(ftOuter);
+  })();
+
   /* ── Reviews carousel (Section 7 v3) ───────────────────── */
   (function () {
     var section = document.querySelector('.rv2-section');

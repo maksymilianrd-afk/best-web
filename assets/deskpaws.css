@@ -1162,127 +1162,306 @@ a, button, label, [role="button"] { touch-action: manipulation; }
 }
 
 /* ═══════════════════════════════════════════════════════════
-   FOOTER
+   FOOTER  v2 — deep espresso + sticky reveal + stagger entrance
+   Technique: clip-path outer (620px) + sticky inner + negative-top
+   spacer. Footer slides up as user reaches page bottom. Columns
+   stagger in from left via IntersectionObserver on ft-outer.
 ═══════════════════════════════════════════════════════════ */
+:root { --ft-h: 620px; }
+
+/* Clip window — establishes the visible 620px footer region */
+.ft-outer {
+  position: relative;
+  height: var(--ft-h);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* Height expander + upward offset — gives the sticky element room to travel */
+.ft-pin {
+  position: relative;
+  height: calc(100vh + var(--ft-h));
+  top: -100vh;
+}
+
+/* Sticky footer — snaps into the clip window as user scrolls to bottom */
 .footer {
-  border-top: 1px solid var(--color-border);
-  margin-top: var(--spacing-section);
+  position: sticky;
+  top: max(0px, calc(100vh - var(--ft-h)));
+  height: var(--ft-h);
+  background: #190d04;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
 }
 
-.footer__top {
-  padding: 3.5rem var(--container-inset) 2.5rem;
+/* Inner layout: nav on top, bottom bar at bottom */
+.ft-inner {
+  width: 100%;
+  padding: clamp(2.75rem, 4vw, 3.5rem) clamp(1.5rem, 5vw, 5rem) clamp(2rem, 3vw, 2.75rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
 }
 
-.footer__columns {
+/* ── Ambient blobs ────────────────────────────────────────── */
+.ft-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ft-blob--1 {
+  width: 560px;
+  height: 560px;
+  top: -180px;
+  right: -140px;
+  background: radial-gradient(circle, rgba(200, 116, 79, 0.15) 0%, transparent 70%);
+  animation: ft-pulse 4.5s ease-in-out infinite;
+}
+
+.ft-blob--2 {
+  width: 420px;
+  height: 420px;
+  bottom: -120px;
+  left: -100px;
+  background: radial-gradient(circle, rgba(242, 203, 120, 0.11) 0%, transparent 70%);
+  animation: ft-pulse 5.5s ease-in-out infinite;
+  animation-delay: -2.5s;
+}
+
+@keyframes ft-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.22); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ft-blob { animation: none !important; }
+}
+
+/* ── Navigation columns ──────────────────────────────────── */
+.ft-nav {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 2rem;
+  grid-template-columns: repeat(3, max-content);
+  gap: clamp(2.5rem, 6vw, 6rem);
 }
 
-@media (max-width: 767px) {
-  .footer__columns {
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem 1.5rem;
-  }
-  .footer__col:last-child {
-    grid-column: 1 / -1;
-  }
+.ft-nav__col {
+  opacity: 0;
+  transform: translateX(-16px);
+  transition:
+    opacity 0.55s ease calc(var(--col-i, 0) * 0.13s),
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--col-i, 0) * 0.13s);
 }
 
-@media (max-width: 480px) {
-  .footer__columns {
-    grid-template-columns: 1fr;
-  }
-  .footer__col:last-child {
-    grid-column: auto;
-  }
+.ft-outer.ft-active .ft-nav__col {
+  opacity: 1;
+  transform: none;
 }
 
-.footer__col-label {
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-brown);
-  margin-bottom: 1rem;
+.ft-nav__label {
   display: block;
+  font-family: var(--font-sans);
+  font-size: 0.5625rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(242, 218, 190, 0.35);
+  border-bottom: 0.5px solid rgba(242, 218, 190, 0.1);
+  padding-bottom: 0.625rem;
+  margin-bottom: 1rem;
 }
 
-.footer__links {
+.ft-nav__list {
   list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 0.625rem;
 }
 
-.footer__links a {
-  font-size: 0.75rem;
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
+.ft-nav__list a {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  letter-spacing: 0.03em;
+  color: rgba(242, 218, 190, 0.5);
   text-decoration: none;
-  transition: color 0.2s ease;
-  line-height: 1.5;
+  display: inline-block;
+  position: relative;
+  transition: color 0.22s ease, transform 0.26s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.footer__links a:hover { color: var(--color-brown); }
 
-.footer__contact-line {
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-  line-height: 1.8;
+.ft-nav__list a::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 0.5px;
+  background: rgba(242, 218, 190, 0.4);
+  transition: width 0.28s ease;
 }
-.footer__contact-line a {
-  color: var(--color-text-muted);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-.footer__contact-line a:hover { color: var(--color-brown); }
 
-.footer__bottom {
-  border-top: 1px solid var(--color-border);
-  padding: 1.25rem var(--container-inset);
+.ft-nav__list a:hover {
+  color: rgba(242, 218, 190, 0.88);
+  transform: translateX(6px);
+}
+
+.ft-nav__list a:hover::after { width: 100%; }
+
+.ft-nav__email {
+  font-size: 0.6875rem !important;
+  letter-spacing: 0.01em !important;
+}
+
+/* ── Bottom bar ──────────────────────────────────────────── */
+.ft-bottom {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
+  gap: 2rem;
 }
 
-.footer__logo {
+/* Large serif wordmark — signature visual element */
+.ft-wordmark {
   font-family: var(--font-serif);
-  font-size: 1.125rem;
+  font-size: clamp(3.25rem, 7vw, 5.75rem);
   font-weight: 400;
-  color: var(--color-brown);
+  line-height: 0.85;
+  letter-spacing: -0.03em;
   text-decoration: none;
-  letter-spacing: -0.01em;
+  display: block;
+  color: rgba(242, 218, 190, 0.82);
+  opacity: 0;
+  transform: translateX(-36px);
+  transition:
+    opacity 0.82s ease 0.8s,
+    transform 0.82s cubic-bezier(0.16, 1, 0.3, 1) 0.8s,
+    color 0.22s ease;
 }
 
-.footer__logo-paws { font-style: italic; }
-
-.footer__copy {
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
+.ft-wordmark em {
+  font-style: italic;
+  color: var(--color-gold);
+  transition: color 0.22s ease;
 }
 
-.footer__payments {
+.ft-wordmark:hover { color: rgba(242, 218, 190, 0.96); }
+.ft-wordmark:hover em { color: var(--butter); }
+
+.ft-outer.ft-active .ft-wordmark {
+  opacity: 1;
+  transform: none;
+}
+
+/* Tagline row */
+.ft-tagline {
   display: flex;
   align-items: center;
-  gap: 0.625rem;
+  gap: 1rem;
+  margin-top: 0.875rem;
 }
 
-.footer__payment-badge {
+.ft-tagline__line {
+  display: block;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(to right, rgba(200, 116, 79, 0.55), transparent);
+  transition: width 0.65s ease 1.3s;
+  flex-shrink: 0;
+}
+
+.ft-outer.ft-active .ft-tagline__line { width: 2.5rem; }
+
+.ft-tagline__text {
+  font-family: var(--font-serif);
+  font-size: 0.75rem;
+  font-style: italic;
+  letter-spacing: 0.03em;
+  color: rgba(242, 218, 190, 0.3);
+  opacity: 0;
+  transition: opacity 0.55s ease 1.55s;
+}
+
+.ft-outer.ft-active .ft-tagline__text { opacity: 1; }
+
+/* Right side */
+.ft-bottom__right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+  text-align: right;
+}
+
+.ft-copy {
+  font-family: var(--font-sans);
   font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(242, 218, 190, 0.28);
+  margin: 0;
+  opacity: 0;
+  transition: opacity 0.55s ease 1.7s;
+}
+
+.ft-outer.ft-active .ft-copy { opacity: 1; }
+
+.ft-payments {
+  display: flex;
+  gap: 0.375rem;
+  opacity: 0;
+  transition: opacity 0.55s ease 1.85s;
+}
+
+.ft-outer.ft-active .ft-payments { opacity: 1; }
+
+.ft-payment {
+  font-family: var(--font-sans);
+  font-size: 0.5rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-text-muted);
-  border: 1px solid var(--color-border);
-  padding: 0.25rem 0.5rem;
+  color: rgba(242, 218, 190, 0.3);
+  border: 0.5px solid rgba(242, 218, 190, 0.12);
+  border-radius: 3px;
+  padding: 0.25rem 0.4375rem;
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .ft-outer { height: auto; clip-path: none; }
+  .ft-pin { position: static; height: auto; top: auto; }
+  .footer { position: static; height: auto; top: auto; }
+  /* Show all animated elements immediately — no IO needed on mobile */
+  .ft-nav__col,
+  .ft-outer.ft-active .ft-nav__col { opacity: 1; transform: none; transition: none; }
+  .ft-wordmark,
+  .ft-outer.ft-active .ft-wordmark { opacity: 1; transform: none; transition: color 0.22s ease; }
+  .ft-tagline__line,
+  .ft-outer.ft-active .ft-tagline__line { width: 2.5rem; transition: none; }
+  .ft-tagline__text,
+  .ft-outer.ft-active .ft-tagline__text { opacity: 1; transition: none; }
+  .ft-copy,
+  .ft-outer.ft-active .ft-copy { opacity: 1; transition: none; }
+  .ft-payments,
+  .ft-outer.ft-active .ft-payments { opacity: 1; transition: none; }
+  .ft-inner { padding: 3rem 1.5rem 2.5rem; }
+  .ft-bottom { flex-direction: column; align-items: flex-start; gap: 2.5rem; }
+  .ft-bottom__right { text-align: left; align-items: flex-start; }
+  .ft-wordmark { font-size: clamp(2.25rem, 12vw, 3.5rem); }
+}
+
+@media (max-width: 640px) {
+  .ft-nav { grid-template-columns: 1fr 1fr; gap: 2rem 1.5rem; }
+}
+
+@media (max-width: 400px) {
+  .ft-nav { grid-template-columns: 1fr; }
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -3335,13 +3514,6 @@ a, button, label, [role="button"] { touch-action: manipulation; }
   .header__nav-right .btn--secondary { display: none; }
 }
 
-@media (max-width: 767px) {
-  .footer__bottom {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.75rem;
-  }
-}
 
 @media (max-width: 640px) {
   .sticky-cta { display: flex; }
