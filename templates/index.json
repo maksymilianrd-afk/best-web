@@ -12,12 +12,14 @@
     "hero": {
       "type": "s1-hero",
       "settings": {
-        "eyebrow": "",
-        "headline": "For the cat who already owns your desk.",
-        "subheadline": "The clamp-on desk bed that keeps your cat close — and your keyboard yours.",
-        "cta_label": "Give Them Their Spot",
+        "eyebrow": "The desk bed cats claim in under an hour",
+        "headline": "A spot that's theirs.\nA desk that's yours.",
+        "subheadline": "The clamp-on bed that keeps your cat close, comfortable, and off the keyboard.",
+        "cta_label": "Claim Their Spot — $79",
         "cta_url": "",
-        "secondary_label": "",
+        "secondary_label": "See how it works",
+        "trust_line": "Free shipping · 30-day guarantee · Ships in 2 days",
+        "strip_label": "For the work-from-home cat parent",
         "hero_image": "shopify://shop_images/New_Work_17.png"
       }
     },

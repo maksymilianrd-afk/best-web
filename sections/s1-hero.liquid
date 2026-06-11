@@ -1,59 +1,82 @@
+{%- comment -%}v2 — reference-style rounded stage + CSS stagger 2026-06-11{%- endcomment -%}
 <section class="hero" id="hero">
 
-  <div class="hero__background">
+  <!-- Rounded inset image stage — translates the reference's aspect-video inset rounded-3xl -->
+  <div class="hero__stage">
     {%- if section.settings.hero_image -%}
-      {{ section.settings.hero_image | image_url: width: 2000 | image_tag: loading: 'eager', fetchpriority: 'high', alt: section.settings.hero_image.alt | default: 'Cat relaxing in DeskPaws desk bed' }}
+      {{ section.settings.hero_image | image_url: width: 2000 | image_tag: loading: 'eager', fetchpriority: 'high', class: 'hero__img', alt: section.settings.hero_image.alt | default: 'Cat resting in DeskPaws desk bed' }}
     {%- else -%}
       <img
         src="{{ 'hero-desk.png' | asset_url }}"
         alt="Cat relaxing in DeskPaws bed clamped to a wooden desk"
+        class="hero__img"
         width="2000"
         height="1200"
         loading="eager"
         fetchpriority="high"
       >
     {%- endif -%}
+    <div class="hero__overlay"></div>
   </div>
 
-  <div class="hero__overlay"></div>
+  <!-- Content wrap — floats above the stage, sits at bottom-left -->
+  <div class="hero__wrap">
+    <div class="hero__content">
 
-  <div class="hero__container">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="hero__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
 
-    <div class="hero__bottom">
-      <div class="hero__content">
-        {%- if section.settings.eyebrow != blank -%}
-          <p class="hero__eyebrow">{{ section.settings.eyebrow }}</p>
+      <h1 class="hero__title">
+        {%- if section.settings.headline != blank -%}
+          {{ section.settings.headline | newline_to_br }}
+        {%- else -%}
+          A spot that&rsquo;s theirs.<br><em>A desk that&rsquo;s yours.</em>
         {%- endif -%}
-        <h1 class="hero__title">
-          {%- if section.settings.headline != blank -%}
-            {{ section.settings.headline }}
-          {%- else -%}
-            For the cat who already owns your desk.
-          {%- endif -%}
-        </h1>
-        {%- if section.settings.subheadline != blank -%}
-          <p class="hero__description">{{ section.settings.subheadline }}</p>
+      </h1>
+
+      {%- if section.settings.subheadline != blank -%}
+        <p class="hero__sub">{{ section.settings.subheadline }}</p>
+      {%- endif -%}
+
+      <div class="hero__btns">
+        <a
+          href="{{ section.settings.cta_url | default: '/products/desk-paws-place-for-your-cat-co-worker' }}"
+          class="hero__btn-primary"
+          data-buy-drawer
+        >
+          <span>{{ section.settings.cta_label | default: "Claim Their Spot &mdash; $79" }}</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="9" viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/></svg>
+        </a>
+        {%- if section.settings.secondary_label != blank -%}
+          <a href="#meet-deskpaws" class="hero__btn-ghost">
+            <span>{{ section.settings.secondary_label }}</span>
+          </a>
         {%- endif -%}
       </div>
 
-      <div class="hero__buttons">
-        <span class="hero__button">
-          <a href="{{ section.settings.cta_url | default: '/products/desk-paws-place-for-your-cat-co-worker' }}" class="btn btn--secondary btn--white">
-            {{ section.settings.cta_label | default: "Shop Now" }}
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="10" viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/></svg>
-          </a>
-        </span>
-        {%- if section.settings.secondary_label != blank -%}
-          <span class="hero__button">
-            <a href="#meet-deskpaws" class="btn btn--text btn--white">
-              {{ section.settings.secondary_label }}
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/></svg>
-            </a>
-          </span>
-        {%- endif -%}
+      {%- if section.settings.trust_line != blank -%}
+        <p class="hero__trust">{{ section.settings.trust_line }}</p>
+      {%- endif -%}
+
+    </div>
+  </div>
+
+  <!-- Trust strip — adapts the reference's logo-slider section into a CSS marquee -->
+  <div class="hero-strip">
+    <span class="hero-strip__label">{{ section.settings.strip_label | default: "For the work-from-home cat parent" }}</span>
+    <div class="hero-strip__track">
+      <div class="hero-strip__list" aria-label="Product features">
+        {%- assign badges = "30-Day Guarantee,Free Shipping,Ships Same Week,60-Second Setup,Supports Up to 50 lbs,Washable Liner" | split: "," -%}
+        {%- for badge in badges -%}
+          <span class="hero-strip__item">{{ badge }}</span><span class="hero-strip__dot" aria-hidden="true">&middot;</span>
+        {%- endfor -%}
+        {%- comment -%}Duplicate for seamless marquee loop{%- endcomment -%}
+        {%- for badge in badges -%}
+          <span class="hero-strip__item" aria-hidden="true">{{ badge }}</span><span class="hero-strip__dot" aria-hidden="true">&middot;</span>
+        {%- endfor -%}
       </div>
     </div>
-
   </div>
 
 </section>
@@ -63,13 +86,15 @@
   "name": "1 — Hero",
   "tag": "section",
   "settings": [
-    { "type": "text",     "id": "eyebrow",         "label": "Eyebrow",              "default": "The desk cat bed" },
-    { "type": "textarea", "id": "headline",         "label": "Headline (use <em>)",  "default": "Finally — a truce with your feline coworker." },
-    { "type": "textarea", "id": "subheadline",      "label": "Subheadline" },
-    { "type": "text",     "id": "cta_label",        "label": "Primary CTA text",     "default": "Claim my cat's spot — $79" },
-    { "type": "url",      "id": "cta_url",          "label": "Primary CTA link" },
-    { "type": "text",     "id": "secondary_label",  "label": "Secondary CTA text",   "default": "See how it works" },
-    { "type": "image_picker", "id": "hero_image",   "label": "Hero image" }
+    { "type": "text",         "id": "eyebrow",         "label": "Eyebrow",              "default": "The desk bed cats claim in under an hour" },
+    { "type": "textarea",     "id": "headline",         "label": "Headline",             "default": "A spot that's theirs.\nA desk that's yours." },
+    { "type": "textarea",     "id": "subheadline",      "label": "Subheadline",          "default": "The clamp-on bed that keeps your cat close, comfortable, and off the keyboard." },
+    { "type": "text",         "id": "cta_label",        "label": "Primary CTA text",     "default": "Claim Their Spot — $79" },
+    { "type": "url",          "id": "cta_url",          "label": "Primary CTA link" },
+    { "type": "text",         "id": "secondary_label",  "label": "Secondary CTA text",   "default": "See how it works" },
+    { "type": "text",         "id": "trust_line",       "label": "Trust microcopy",      "default": "Free shipping · 30-day guarantee · Ships in 2 days" },
+    { "type": "text",         "id": "strip_label",      "label": "Strip eyebrow label",  "default": "For the work-from-home cat parent" },
+    { "type": "image_picker", "id": "hero_image",       "label": "Hero image" }
   ],
   "presets": [{ "name": "Hero" }]
 }
