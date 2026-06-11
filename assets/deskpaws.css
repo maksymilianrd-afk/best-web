@@ -474,9 +474,9 @@ a, button, label, [role="button"] { touch-action: manipulation; }
 .hero__overlay {
   background: linear-gradient(
     to top,
-    rgba(16, 8, 3, 0.88) 0%,
-    rgba(16, 8, 3, 0.50) 40%,
-    rgba(16, 8, 3, 0.20) 70%,
+    rgba(16, 8, 3, 0.72) 0%,
+    rgba(16, 8, 3, 0.28) 38%,
+    rgba(16, 8, 3, 0.08) 62%,
     transparent 100%
   );
   inset: 0;
