@@ -436,4 +436,68 @@
     }
   })();
 
+  /* ── Reviews carousel (Section 7 v3) ───────────────────── */
+  (function () {
+    var section = document.querySelector('.rv2-section');
+    if (!section) return;
+    var cards = Array.prototype.slice.call(section.querySelectorAll('.rv2-card'));
+    var dots  = Array.prototype.slice.call(section.querySelectorAll('.rv2-dot'));
+    var stage = section.querySelector('.rv2-stage');
+    if (!cards.length) return;
+
+    var current = 0, total = cards.length, timer = null;
+    var INTERVAL = 6000;
+
+    function syncHeight() {
+      if (!stage) return;
+      var h = cards[current].offsetHeight;
+      if (h > 0) {
+        stage.style.minHeight = '0';
+        stage.style.height = h + 'px';
+      }
+    }
+
+    function show(idx) {
+      cards.forEach(function (c, i) {
+        c.setAttribute('aria-hidden', i === idx ? 'false' : 'true');
+      });
+      dots.forEach(function (d, i) {
+        d.classList.toggle('rv2-dot--active', i === idx);
+        d.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+      });
+      current = idx;
+      requestAnimationFrame(function () { requestAnimationFrame(syncHeight); });
+    }
+
+    function startTimer() {
+      clearInterval(timer);
+      timer = setInterval(function () { show((current + 1) % total); }, INTERVAL);
+    }
+
+    dots.forEach(function (dot, i) {
+      dot.addEventListener('click', function () { show(i); startTimer(); });
+    });
+
+    section.addEventListener('mouseenter', function () { clearInterval(timer); });
+    section.addEventListener('mouseleave', startTimer);
+
+    var tx = 0;
+    section.addEventListener('touchstart', function (e) {
+      tx = e.touches[0].clientX;
+      clearInterval(timer);
+    }, { passive: true });
+    section.addEventListener('touchend', function (e) {
+      var dx = tx - e.changedTouches[0].clientX;
+      if (Math.abs(dx) > 44) show(dx > 0 ? (current + 1) % total : (current - 1 + total) % total);
+      startTimer();
+    }, { passive: true });
+
+    show(0);
+    startTimer();
+
+    window.addEventListener('resize', function () {
+      requestAnimationFrame(syncHeight);
+    }, { passive: true });
+  })();
+
 })();

@@ -2855,24 +2855,28 @@ a, button, label, [role="button"] { touch-action: manipulation; }
 .before-after__cta { margin-top: 0.5rem; }
 
 /* ═══════════════════════════════════════════════════════════
-   REVIEWS SECTION  (Section 7)  v2 — stagger entrance + hover lift
-   Animation: driven by existing markList('.review-card', 0.08) in
-   deskpaws.js which adds .reveal + --reveal-delay per card, then
-   IntersectionObserver adds .in → triggers revealUp keyframe.
+   REVIEWS SECTION  (Section 7)  v3 — animated single-card carousel
 ═══════════════════════════════════════════════════════════ */
-.rv-section {
+.rv2-section {
   background: #faf8f5;
-  padding: clamp(4rem, 6vw, 6rem) clamp(1.25rem, 5vw, 5rem) 0;
+  padding: clamp(4rem, 6vw, 6rem) 0 0;
+  overflow: hidden;
 }
 
-/* ── Header ──────────────────────────────────────────────── */
-.rv-header {
-  text-align: center;
-  max-width: 760px;
-  margin: 0 auto clamp(2.5rem, 4vw, 4rem);
+.rv2-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: clamp(3rem, 6vw, 6rem);
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 5vw, 5rem);
 }
 
-.rv-eyebrow {
+/* ── Left column ─────────────────────────────────────────── */
+.rv2-lhs { max-width: 420px; }
+
+.rv2-eyebrow {
   font-family: var(--font-sans);
   font-size: 0.625rem;
   font-weight: 600;
@@ -2883,158 +2887,221 @@ a, button, label, [role="button"] { touch-action: manipulation; }
   display: block;
 }
 
-.rv-hdl {
+.rv2-hdl {
   font-family: var(--font-serif);
   font-size: clamp(1.875rem, 3.5vw, 2.875rem);
   font-weight: 400;
   color: var(--color-brown);
   line-height: 1.15;
   letter-spacing: -0.02em;
-  max-width: 680px;
-  margin: 0 auto 1.75rem;
+  margin: 0 0 1.5rem;
 }
 
-.rv-score {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.625rem;
-}
-
-.rv-score__stars {
+.rv2-stars {
   display: flex;
   align-items: center;
   gap: 2px;
   color: var(--color-gold);
+  margin-bottom: 0.625rem;
 }
 
-.rv-score__meta {
+.rv2-stat {
   font-family: var(--font-sans);
   font-size: 0.8125rem;
   color: var(--color-text-muted);
   letter-spacing: 0.04em;
+  margin: 0 0 2rem;
 }
 
-/* ── Grid ────────────────────────────────────────────────── */
-.rv-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.125rem;
-  margin-bottom: 1rem;
-}
-
-/* ── Cards ───────────────────────────────────────────────── */
-.rv-card {
-  background: #f5f1ea;
-  border-radius: 10px;
-  padding: 2.125rem 1.875rem 1.875rem;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 1px 3px rgba(44, 26, 17, 0.05), 0 1px 2px rgba(44, 26, 17, 0.03);
-  transition: transform 0.28s ease, box-shadow 0.28s ease;
-  will-change: transform;
-}
-
-.rv-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 36px rgba(44, 26, 17, 0.09), 0 3px 10px rgba(44, 26, 17, 0.05);
-}
-
-.rv-card__stars {
+/* Dot navigation */
+.rv2-dots {
   display: flex;
   align-items: center;
-  gap: 2px;
-  color: var(--color-gold);
-  margin-bottom: 1.25rem;
+  gap: 0.5rem;
 }
 
-/* Large decorative opening quotation mark */
-.rv-card__quote {
+.rv2-dot {
+  height: 10px;
+  border-radius: 99px;
+  width: 10px;
+  background: rgba(44, 26, 17, 0.2);
+  transition: width 0.35s ease, background 0.35s ease;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.rv2-dot--active {
+  width: 36px;
+  background: var(--color-brown);
+}
+
+.rv2-dot:hover:not(.rv2-dot--active) {
+  background: rgba(44, 26, 17, 0.38);
+}
+
+/* ── Right column / stage ────────────────────────────────── */
+.rv2-rhs { position: relative; }
+
+.rv2-stage {
+  position: relative;
+  min-height: 360px;
+  transition: height 0.38s ease;
+}
+
+/* ── Cards — base (inactive) ─────────────────────────────── */
+.rv2-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transform: translateX(60px) scale(0.93);
+  transition: opacity 0.52s ease-in-out, transform 0.52s ease-in-out;
+  pointer-events: none;
+  z-index: 0;
+  background: #f5f1ea;
+  border-radius: 14px;
+  padding: 2.25rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 12px rgba(44, 26, 17, 0.07), 0 1px 3px rgba(44, 26, 17, 0.04);
+}
+
+/* ── Cards — active ──────────────────────────────────────── */
+.rv2-card[aria-hidden="false"] {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  pointer-events: auto;
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rv2-card { transition: opacity 0.3s ease; transform: none !important; }
+  .rv2-card[aria-hidden="false"] { transform: none !important; }
+  .rv2-stage { transition: none; }
+}
+
+/* ── Card image (optional) ───────────────────────────────── */
+.rv2-card__img-wrap {
+  margin: -2.25rem -2rem 1.75rem;
+  border-radius: 14px 14px 0 0;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: #e8e0d5;
+  flex-shrink: 0;
+}
+
+.rv2-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Card stars ──────────────────────────────────────────── */
+.rv2-card__stars {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  color: var(--color-gold);
+  margin-bottom: 1.25rem;
+  flex-shrink: 0;
+}
+
+/* ── Quote block ─────────────────────────────────────────── */
+.rv2-card__quote {
   font-family: var(--font-serif);
-  font-size: 0.9375rem;
+  font-size: 1.0625rem;
   font-style: italic;
   line-height: 1.78;
   color: #3a3028;
   flex: 1;
-  margin: 0 0 1.625rem;
+  margin: 0 0 1.75rem;
   position: relative;
-  padding-top: 2.5rem;
+  padding-top: 2.625rem;
 }
 
-.rv-card__quote::before {
+.rv2-card__quote::before {
   content: '\201C';
   position: absolute;
-  top: -0.5rem;
+  top: -0.375rem;
   left: -0.125rem;
   font-family: var(--font-serif);
   font-style: normal;
-  font-size: 4.5rem;
+  font-size: 5rem;
   line-height: 1;
-  color: rgba(44, 26, 17, 0.08);
+  color: rgba(44, 26, 17, 0.07);
   pointer-events: none;
 }
 
-.rv-card__quote p { margin: 0; }
+.rv2-card__quote p { margin: 0; }
 
-/* Separator rule */
-.rv-card__foot {
+/* ── Footer row: avatar + name/tag ──────────────────────── */
+.rv2-card__foot {
   border-top: 0.5px solid rgba(44, 26, 17, 0.1);
-  padding-top: 1rem;
+  padding-top: 1.125rem;
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  flex-shrink: 0;
+}
+
+.rv2-avatar-fallback {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #e8ddd0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  color: rgba(44, 26, 17, 0.65);
+  flex-shrink: 0;
+}
+
+.rv2-card__meta {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
 }
 
-.rv-card__author {
+.rv2-card__author {
   font-family: var(--font-sans);
-  font-size: 0.625rem;
+  font-size: 0.6875rem;
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--color-text-muted);
+  margin: 0;
 }
 
-.rv-card__tag {
+.rv2-card__tag {
   font-family: var(--font-sans);
   font-size: 0.5625rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgba(44, 26, 17, 0.38);
+  margin: 0;
 }
 
-/* Optional photo — bleeds to card edges, sits above stars */
-.rv-card__img-wrap {
-  margin: -2.125rem -1.875rem 1.5rem;
-  border-radius: 10px 10px 0 0;
-  overflow: hidden;
-  aspect-ratio: 4 / 3;
-  background: #e8e0d5;
-}
-
-.rv-card__img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.45s ease;
-}
-
-.rv-card:hover .rv-card__img {
-  transform: scale(1.04);
-}
-
-/* ── CTA ─────────────────────────────────────────────────── */
-.rv-cta {
+/* ── CTA block ────────────────────────────────────────────── */
+.rv2-cta {
   padding: clamp(3rem, 5vw, 4.5rem) var(--container-inset);
   text-align: center;
   border-top: 0.5px solid rgba(44, 26, 17, 0.1);
-  margin-top: 1rem;
+  margin-top: 3.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0;
 }
 
-.rv-cta__closing {
+.rv2-cta__closing {
   font-family: var(--font-serif);
   font-size: 0.875rem;
   font-style: italic;
@@ -3043,7 +3110,7 @@ a, button, label, [role="button"] { touch-action: manipulation; }
   margin-bottom: 0.625rem;
 }
 
-.rv-cta__hdl {
+.rv2-cta__hdl {
   font-family: var(--font-serif);
   font-size: clamp(1.625rem, 2.8vw, 2.25rem);
   font-weight: 400;
@@ -3053,7 +3120,7 @@ a, button, label, [role="button"] { touch-action: manipulation; }
   margin-bottom: 1.875rem;
 }
 
-.rv-cta__price {
+.rv2-cta__price {
   font-family: var(--font-serif);
   font-size: 2.625rem;
   font-weight: 400;
@@ -3063,8 +3130,7 @@ a, button, label, [role="button"] { touch-action: manipulation; }
   margin-bottom: 1.5rem;
 }
 
-/* Inherits .reviews-cta__btn selector for buy-drawer JS interception */
-.rv-cta__btn {
+.rv2-cta__btn {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
@@ -3084,26 +3150,30 @@ a, button, label, [role="button"] { touch-action: manipulation; }
   touch-action: manipulation;
 }
 
-.rv-cta__btn:hover { background: var(--butter-hover); }
-.rv-cta__btn:active { transform: scale(0.97); background: var(--butter-press); }
+.rv2-cta__btn:hover { background: var(--butter-hover); }
+.rv2-cta__btn:active { transform: scale(0.97); background: var(--butter-press); }
 
-.rv-cta__trust {
+.rv2-cta__trust {
   font-family: var(--font-sans);
   font-size: 0.75rem;
   color: rgba(44, 26, 17, 0.45);
   letter-spacing: 0.05em;
 }
 
+@media (max-width: 860px) {
+  .rv2-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .rv2-lhs { max-width: 100%; text-align: center; }
+  .rv2-dots { justify-content: center; }
+  .rv2-stage { min-height: 320px; }
+}
+
 @media (max-width: 640px) {
-  .rv-card {
-    padding: 1.75rem 1.5rem 1.625rem;
-    border-radius: 8px;
-  }
-  .rv-card:hover { transform: none; box-shadow: 0 1px 3px rgba(44, 26, 17, 0.05); }
-  .rv-card__img-wrap { margin: -1.75rem -1.5rem 1.25rem; border-radius: 8px 8px 0 0; }
-  .rv-cta { padding: 2.5rem 0 3rem; }
-  .rv-cta__price { font-size: 2.125rem; }
-  .rv-cta__btn { width: 100%; justify-content: center; padding: 1rem 1.5rem; }
+  .rv2-card { padding: 1.75rem 1.5rem 1.625rem; border-radius: 10px; }
+  .rv2-card__img-wrap { margin: -1.75rem -1.5rem 1.5rem; border-radius: 10px 10px 0 0; }
+  .rv2-stage { min-height: 280px; }
+  .rv2-cta { padding: 2.5rem 0 3rem; margin-top: 2.5rem; }
+  .rv2-cta__price { font-size: 2.125rem; }
+  .rv2-cta__btn { width: 100%; justify-content: center; padding: 1rem 1.5rem; }
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -3324,7 +3394,6 @@ a, button, label, [role="button"] { touch-action: manipulation; }
     padding-right: 0;
     margin-right: 0;
   }
-  .rv-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 767px) {
   .benefits-section {
@@ -3351,7 +3420,6 @@ a, button, label, [role="button"] { touch-action: manipulation; }
     flex-direction: column;
     align-items: flex-start;
   }
-  .rv-grid { grid-template-columns: 1fr; }
   .before-after  { grid-template-columns: 1fr; min-height: auto; }
   .guarantee-section__inner { grid-template-columns: 1fr; }
   .comparison-table thead th,

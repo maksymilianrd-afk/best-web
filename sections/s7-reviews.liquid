@@ -1,138 +1,181 @@
-{%- comment -%}v2 — redesigned 2026-06-10{%- endcomment -%}
-<section class="rv-section" id="reviews">
+{%- comment -%}v3 — animated single-card carousel 2026-06-11{%- endcomment -%}
+<section class="rv2-section" id="reviews">
 
-  <div class="rv-header">
-    <p class="rv-eyebrow">{{ section.settings.eyebrow | default: "Real cats. Real desks." }}</p>
-    <h2 class="rv-hdl">{{ section.settings.heading | default: "What happens when the keyboard is finally yours again." }}</h2>
-    <div class="rv-score" aria-label="Five-star rated">
-      <div class="rv-score__stars" aria-hidden="true">
-        {%- for i in (1..5) -%}<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{%- endfor -%}
+  <div class="rv2-inner">
+
+    <!-- ── Left: eyebrow + heading + stars + dots ── -->
+    <div class="rv2-lhs">
+      <p class="rv2-eyebrow reveal">{{ section.settings.eyebrow | default: "Real cats. Real desks." }}</p>
+      <h2 class="rv2-hdl reveal" style="--reveal-delay: 0.12s">{{ section.settings.heading | default: "What happens when the keyboard is finally yours again." }}</h2>
+      <div class="rv2-stars" aria-label="Five-star rated">
+        {%- for i in (1..5) -%}<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{%- endfor -%}
       </div>
-      <span class="rv-score__meta">{{ section.settings.stat_meta | default: "From our customers" }}</span>
+      <p class="rv2-stat reveal" style="--reveal-delay: 0.22s">{{ section.settings.stat_meta | default: "From our customers" }}</p>
+      <div class="rv2-dots reveal" role="tablist" aria-label="Reviews navigation" style="--reveal-delay: 0.32s">
+        {%- for i in (1..6) -%}
+          {%- assign idx = forloop.index0 -%}
+          <button
+            class="rv2-dot{% if forloop.first %} rv2-dot--active{% endif %}"
+            role="tab"
+            aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+            aria-label="Review {{ forloop.index }}"
+            data-rv2-idx="{{ idx }}"
+          ></button>
+        {%- endfor -%}
+      </div>
     </div>
+
+    <!-- ── Right: carousel stage ── -->
+    <div class="rv2-rhs">
+      <div class="rv2-stage">
+
+        <!-- Review 1 -->
+        <article class="rv2-card" aria-hidden="false">
+          {%- if section.settings.review_1_image != blank -%}
+            <div class="rv2-card__img-wrap">
+              {{ section.settings.review_1_image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'rv2-card__img', alt: section.settings.review_1_author | default: '' }}
+            </div>
+          {%- endif -%}
+          <div class="rv2-card__stars" aria-label="5 out of 5 stars">
+            {%- for i in (1..5) -%}<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{%- endfor -%}
+          </div>
+          <blockquote class="rv2-card__quote">
+            <p>{{ section.settings.review_1 | default: "She was in it within an hour of setup. I genuinely didn&rsquo;t expect it to work that fast. Now I find her already settled in every morning before I even sit down." }}</p>
+          </blockquote>
+          <footer class="rv2-card__foot">
+            <div class="rv2-avatar-fallback" aria-hidden="true">{{ section.settings.review_1_author | default: "Sarah M. & Biscuit" | slice: 0 | upcase }}</div>
+            <div class="rv2-card__meta">
+              <p class="rv2-card__author">{{ section.settings.review_1_author | default: "Sarah M. &amp; Biscuit" }}</p>
+              <p class="rv2-card__tag">{%- if section.settings.review_1_tag != blank -%}{{ section.settings.review_1_tag }}{%- else -%}Claimed in 1 hour{%- endif -%}</p>
+            </div>
+          </footer>
+        </article>
+
+        <!-- Review 2 -->
+        <article class="rv2-card" aria-hidden="true">
+          {%- if section.settings.review_2_image != blank -%}
+            <div class="rv2-card__img-wrap">
+              {{ section.settings.review_2_image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'rv2-card__img', alt: section.settings.review_2_author | default: '' }}
+            </div>
+          {%- endif -%}
+          <div class="rv2-card__stars" aria-label="5 out of 5 stars">
+            {%- for i in (1..5) -%}<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{%- endfor -%}
+          </div>
+          <blockquote class="rv2-card__quote">
+            <p>{{ section.settings.review_2 | default: "My 18 lb Maine Coon fits perfectly. The clamp is rock solid &mdash; zero wobble even when he jumps in. Not a single mark on my desk." }}</p>
+          </blockquote>
+          <footer class="rv2-card__foot">
+            <div class="rv2-avatar-fallback" aria-hidden="true">{{ section.settings.review_2_author | default: "Rachel T. & Chairman Floof" | slice: 0 | upcase }}</div>
+            <div class="rv2-card__meta">
+              <p class="rv2-card__author">{{ section.settings.review_2_author | default: "Rachel T. &amp; Chairman Floof" }}</p>
+              <p class="rv2-card__tag">{%- if section.settings.review_2_tag != blank -%}{{ section.settings.review_2_tag }}{%- else -%}Large cat owner{%- endif -%}</p>
+            </div>
+          </footer>
+        </article>
+
+        <!-- Review 3 -->
+        <article class="rv2-card" aria-hidden="true">
+          {%- if section.settings.review_3_image != blank -%}
+            <div class="rv2-card__img-wrap">
+              {{ section.settings.review_3_image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'rv2-card__img', alt: section.settings.review_3_author | default: '' }}
+            </div>
+          {%- endif -%}
+          <div class="rv2-card__stars" aria-label="5 out of 5 stars">
+            {%- for i in (1..5) -%}<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{%- endfor -%}
+          </div>
+          <blockquote class="rv2-card__quote">
+            <p>{{ section.settings.review_3 | default: "I bought this as a gift. My sister texted me a photo within 24 hours &mdash; cat completely settled, keyboard completely clear. It actually works." }}</p>
+          </blockquote>
+          <footer class="rv2-card__foot">
+            <div class="rv2-avatar-fallback" aria-hidden="true">{{ section.settings.review_3_author | default: "Jamie L." | slice: 0 | upcase }}</div>
+            <div class="rv2-card__meta">
+              <p class="rv2-card__author">{{ section.settings.review_3_author | default: "Jamie L." }}</p>
+              <p class="rv2-card__tag">{%- if section.settings.review_3_tag != blank -%}{{ section.settings.review_3_tag }}{%- else -%}Gift buyer{%- endif -%}</p>
+            </div>
+          </footer>
+        </article>
+
+        <!-- Review 4 -->
+        <article class="rv2-card" aria-hidden="true">
+          {%- if section.settings.review_4_image != blank -%}
+            <div class="rv2-card__img-wrap">
+              {{ section.settings.review_4_image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'rv2-card__img', alt: section.settings.review_4_author | default: '' }}
+            </div>
+          {%- endif -%}
+          <div class="rv2-card__stars" aria-label="5 out of 5 stars">
+            {%- for i in (1..5) -%}<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{%- endfor -%}
+          </div>
+          <blockquote class="rv2-card__quote">
+            <p>{{ section.settings.review_4 | default: "I was on six calls this week and didn&rsquo;t have to apologise for my cat once. That alone was worth $79 to me." }}</p>
+          </blockquote>
+          <footer class="rv2-card__foot">
+            <div class="rv2-avatar-fallback" aria-hidden="true">{{ section.settings.review_4_author | default: "Priya K. & Mango" | slice: 0 | upcase }}</div>
+            <div class="rv2-card__meta">
+              <p class="rv2-card__author">{{ section.settings.review_4_author | default: "Priya K. &amp; Mango" }}</p>
+              <p class="rv2-card__tag">{%- if section.settings.review_4_tag != blank -%}{{ section.settings.review_4_tag }}{%- else -%}Work from home{%- endif -%}</p>
+            </div>
+          </footer>
+        </article>
+
+        <!-- Review 5 -->
+        <article class="rv2-card" aria-hidden="true">
+          {%- if section.settings.review_5_image != blank -%}
+            <div class="rv2-card__img-wrap">
+              {{ section.settings.review_5_image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'rv2-card__img', alt: section.settings.review_5_author | default: '' }}
+            </div>
+          {%- endif -%}
+          <div class="rv2-card__stars" aria-label="5 out of 5 stars">
+            {%- for i in (1..5) -%}<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{%- endfor -%}
+          </div>
+          <blockquote class="rv2-card__quote">
+            <p>{{ section.settings.review_5 | default: "Set it up Sunday night. Monday morning she was in it before my coffee was ready. I actually teared up a little. Ridiculous but true." }}</p>
+          </blockquote>
+          <footer class="rv2-card__foot">
+            <div class="rv2-avatar-fallback" aria-hidden="true">{{ section.settings.review_5_author | default: "Leah R. & Duchess" | slice: 0 | upcase }}</div>
+            <div class="rv2-card__meta">
+              <p class="rv2-card__author">{{ section.settings.review_5_author | default: "Leah R. &amp; Duchess" }}</p>
+              <p class="rv2-card__tag">{%- if section.settings.review_5_tag != blank -%}{{ section.settings.review_5_tag }}{%- else -%}Claimed overnight{%- endif -%}</p>
+            </div>
+          </footer>
+        </article>
+
+        <!-- Review 6 -->
+        <article class="rv2-card" aria-hidden="true">
+          {%- if section.settings.review_6_image != blank -%}
+            <div class="rv2-card__img-wrap">
+              {{ section.settings.review_6_image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'rv2-card__img', alt: section.settings.review_6_author | default: '' }}
+            </div>
+          {%- endif -%}
+          <div class="rv2-card__stars" aria-label="5 out of 5 stars">
+            {%- for i in (1..5) -%}<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{%- endfor -%}
+          </div>
+          <blockquote class="rv2-card__quote">
+            <p>{{ section.settings.review_6 | default: "The sherpa cushion is so soft even I want to sleep in it. Removes easily for washing. Genuinely great product." }}</p>
+          </blockquote>
+          <footer class="rv2-card__foot">
+            <div class="rv2-avatar-fallback" aria-hidden="true">{{ section.settings.review_6_author | default: "Dana W. & Gnocchi" | slice: 0 | upcase }}</div>
+            <div class="rv2-card__meta">
+              <p class="rv2-card__author">{{ section.settings.review_6_author | default: "Dana W. &amp; Gnocchi" }}</p>
+              <p class="rv2-card__tag">{%- if section.settings.review_6_tag != blank -%}{{ section.settings.review_6_tag }}{%- else -%}Washable liner{%- endif -%}</p>
+            </div>
+          </footer>
+        </article>
+
+      </div>
+    </div>
+
   </div>
 
-  <div class="rv-grid">
-
-    <article class="review-card rv-card">
-      {%- if section.settings.review_1_image != blank -%}
-        <div class="rv-card__img-wrap">
-          {{ section.settings.review_1_image | image_url: width: 800 | image_tag: loading: 'lazy', class: 'rv-card__img', alt: section.settings.review_1_author | default: '' }}
-        </div>
-      {%- endif -%}
-      <div class="rv-card__stars" aria-label="5 out of 5 stars">
-        {%- for i in (1..5) -%}<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{%- endfor -%}
-      </div>
-      <blockquote class="rv-card__quote">
-        <p>{{ section.settings.review_1 | default: "She was in it within an hour of setup. I genuinely didn&rsquo;t expect it to work that fast. Now I find her already settled in every morning before I even sit down." }}</p>
-      </blockquote>
-      <footer class="rv-card__foot">
-        <p class="rv-card__author">{{ section.settings.review_1_author | default: "Sarah M. &amp; Biscuit" }}</p>
-        <p class="rv-card__tag">{%- if section.settings.review_1_tag != blank -%}{{ section.settings.review_1_tag }}{%- else -%}Claimed in 1 hour{%- endif -%}</p>
-      </footer>
-    </article>
-
-    <article class="review-card rv-card">
-      {%- if section.settings.review_2_image != blank -%}
-        <div class="rv-card__img-wrap">
-          {{ section.settings.review_2_image | image_url: width: 800 | image_tag: loading: 'lazy', class: 'rv-card__img', alt: section.settings.review_2_author | default: '' }}
-        </div>
-      {%- endif -%}
-      <div class="rv-card__stars" aria-label="5 out of 5 stars">
-        {%- for i in (1..5) -%}<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{%- endfor -%}
-      </div>
-      <blockquote class="rv-card__quote">
-        <p>{{ section.settings.review_2 | default: "My 18 lb Maine Coon fits perfectly. The clamp is rock solid &mdash; zero wobble even when he jumps in. Not a single mark on my desk." }}</p>
-      </blockquote>
-      <footer class="rv-card__foot">
-        <p class="rv-card__author">{{ section.settings.review_2_author | default: "Rachel T. &amp; Chairman Floof" }}</p>
-        <p class="rv-card__tag">{%- if section.settings.review_2_tag != blank -%}{{ section.settings.review_2_tag }}{%- else -%}Large cat owner{%- endif -%}</p>
-      </footer>
-    </article>
-
-    <article class="review-card rv-card">
-      {%- if section.settings.review_3_image != blank -%}
-        <div class="rv-card__img-wrap">
-          {{ section.settings.review_3_image | image_url: width: 800 | image_tag: loading: 'lazy', class: 'rv-card__img', alt: section.settings.review_3_author | default: '' }}
-        </div>
-      {%- endif -%}
-      <div class="rv-card__stars" aria-label="5 out of 5 stars">
-        {%- for i in (1..5) -%}<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{%- endfor -%}
-      </div>
-      <blockquote class="rv-card__quote">
-        <p>{{ section.settings.review_3 | default: "I bought this as a gift. My sister texted me a photo within 24 hours &mdash; cat completely settled, keyboard completely clear. It actually works." }}</p>
-      </blockquote>
-      <footer class="rv-card__foot">
-        <p class="rv-card__author">{{ section.settings.review_3_author | default: "Jamie L." }}</p>
-        <p class="rv-card__tag">{%- if section.settings.review_3_tag != blank -%}{{ section.settings.review_3_tag }}{%- else -%}Gift buyer{%- endif -%}</p>
-      </footer>
-    </article>
-
-    <article class="review-card rv-card">
-      {%- if section.settings.review_4_image != blank -%}
-        <div class="rv-card__img-wrap">
-          {{ section.settings.review_4_image | image_url: width: 800 | image_tag: loading: 'lazy', class: 'rv-card__img', alt: section.settings.review_4_author | default: '' }}
-        </div>
-      {%- endif -%}
-      <div class="rv-card__stars" aria-label="5 out of 5 stars">
-        {%- for i in (1..5) -%}<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{%- endfor -%}
-      </div>
-      <blockquote class="rv-card__quote">
-        <p>{{ section.settings.review_4 | default: "I was on six calls this week and didn&rsquo;t have to apologise for my cat once. That alone was worth $79 to me." }}</p>
-      </blockquote>
-      <footer class="rv-card__foot">
-        <p class="rv-card__author">{{ section.settings.review_4_author | default: "Priya K. &amp; Mango" }}</p>
-        <p class="rv-card__tag">{%- if section.settings.review_4_tag != blank -%}{{ section.settings.review_4_tag }}{%- else -%}Work from home{%- endif -%}</p>
-      </footer>
-    </article>
-
-    <article class="review-card rv-card">
-      {%- if section.settings.review_5_image != blank -%}
-        <div class="rv-card__img-wrap">
-          {{ section.settings.review_5_image | image_url: width: 800 | image_tag: loading: 'lazy', class: 'rv-card__img', alt: section.settings.review_5_author | default: '' }}
-        </div>
-      {%- endif -%}
-      <div class="rv-card__stars" aria-label="5 out of 5 stars">
-        {%- for i in (1..5) -%}<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{%- endfor -%}
-      </div>
-      <blockquote class="rv-card__quote">
-        <p>{{ section.settings.review_5 | default: "Set it up Sunday night. Monday morning she was in it before my coffee was ready. I actually teared up a little. Ridiculous but true." }}</p>
-      </blockquote>
-      <footer class="rv-card__foot">
-        <p class="rv-card__author">{{ section.settings.review_5_author | default: "Leah R. &amp; Duchess" }}</p>
-        <p class="rv-card__tag">{%- if section.settings.review_5_tag != blank -%}{{ section.settings.review_5_tag }}{%- else -%}Claimed overnight{%- endif -%}</p>
-      </footer>
-    </article>
-
-    <article class="review-card rv-card">
-      {%- if section.settings.review_6_image != blank -%}
-        <div class="rv-card__img-wrap">
-          {{ section.settings.review_6_image | image_url: width: 800 | image_tag: loading: 'lazy', class: 'rv-card__img', alt: section.settings.review_6_author | default: '' }}
-        </div>
-      {%- endif -%}
-      <div class="rv-card__stars" aria-label="5 out of 5 stars">
-        {%- for i in (1..5) -%}<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{%- endfor -%}
-      </div>
-      <blockquote class="rv-card__quote">
-        <p>{{ section.settings.review_6 | default: "The sherpa cushion is so soft even I want to sleep in it. Removes easily for washing. Genuinely great product." }}</p>
-      </blockquote>
-      <footer class="rv-card__foot">
-        <p class="rv-card__author">{{ section.settings.review_6_author | default: "Dana W. &amp; Gnocchi" }}</p>
-        <p class="rv-card__tag">{%- if section.settings.review_6_tag != blank -%}{{ section.settings.review_6_tag }}{%- else -%}Washable liner{%- endif -%}</p>
-      </footer>
-    </article>
-
-  </div>
-
-  <div class="reviews-cta rv-cta">
-    <p class="rv-cta__closing">{{ section.settings.cta_closing | default: "You&rsquo;re a good cat parent and a functional human. Simultaneously." }}</p>
-    <h3 class="rv-cta__hdl">{{ section.settings.cta_heading | default: "Your desk. Their spot. Everyone wins." }}</h3>
-    <p class="rv-cta__price">$79</p>
-    <a href="{{ section.settings.cta_url | default: '/products/desk-paws-place-for-your-cat-co-worker' }}" class="reviews-cta__btn rv-cta__btn" data-buy-drawer>
+  <!-- CTA -->
+  <div class="reviews-cta rv2-cta">
+    <p class="rv2-cta__closing">{{ section.settings.cta_closing | default: "You&rsquo;re a good cat parent and a functional human. Simultaneously." }}</p>
+    <h3 class="rv2-cta__hdl">{{ section.settings.cta_heading | default: "Your desk. Their spot. Everyone wins." }}</h3>
+    <p class="rv2-cta__price">$79</p>
+    <a href="{{ section.settings.cta_url | default: '/products/desk-paws-place-for-your-cat-co-worker' }}" class="reviews-cta__btn rv2-cta__btn" data-buy-drawer>
       {{ section.settings.cta_label | default: "Give Them Their Spot" }}
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="10" viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/></svg>
     </a>
-    <p class="rv-cta__trust">Free shipping &middot; 30-day guarantee &middot; Secure checkout</p>
+    <p class="rv2-cta__trust">Free shipping &middot; 30-day guarantee &middot; Secure checkout</p>
   </div>
 
 </section>
