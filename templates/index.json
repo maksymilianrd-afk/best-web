@@ -27,16 +27,21 @@
       "type": "the-problem",
       "name": "The Problem",
       "settings": {
+        "repeat_word": "Miew.",
         "eyebrow": "Sound familiar?",
-        "heading": "You sit down to work.\nThey have other plans.",
-        "line_1": "Within two minutes, they're there.",
-        "line_2": "On the keyboard. Between you and the screen.",
-        "line_3": "On the exact document you were about to open.",
-        "line_4": "You move them. They come back.",
-        "line_5": "You close the door. You feel terrible.",
-        "line_6": "You let them back in. They're on the keyboard again.",
-        "line_7": "You love them completely.",
-        "line_8": "You also haven't finished a sentence since 9am."
+        "line_open": "You sit down to work.",
+        "line_why_1": "Not because they're naughty.",
+        "line_why_2": "Because they want you.",
+        "line_where_1": "On the keyboard.",
+        "line_where_2": "Between you and the screen.",
+        "line_where_3": "Right where your attention was supposed to be.",
+        "line_move": "You move them. They come back.",
+        "line_love": "You love them completely.",
+        "line_end": "You still haven't finished a sentence since 9am.",
+        "line_close": "So we gave them a better place to be.",
+        "micro_again": "again.",
+        "micro_1": "look at me",
+        "micro_2": "not now"
       }
     },
     "big_image_4XmprY": {

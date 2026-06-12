@@ -1,200 +1,138 @@
-{%- comment -%}The Problem — typographic art 2026-06-12{%- endcomment -%}
-<section class="pbl" id="theProblem">
+{%- comment -%}
+  The Problem — editorial typographic poem.
+  Reference: repeated-word rows, one trail breaking away on a curve,
+  story copy set in the negative space. Typography-led; no imagery.
+{%- endcomment -%}
 
-  <div class="pbl__box" id="pblBox">
+{%- assign word       = section.settings.repeat_word  | default: 'Miew.' -%}
+{%- assign bare       = word | remove: '.' -%}
+{%- assign bare_size  = bare | size -%}
+{%- assign bare_max   = bare_size | minus: 1 -%}
 
-    <div class="pbl__bg" aria-hidden="true">
-      <div class="pbl__row"><span class="pbl__ri pbl__ri--0" id="pblR0"></span></div>
-      <div class="pbl__row"><span class="pbl__ri pbl__ri--1" id="pblR1"></span></div>
-      <div class="pbl__row"><span class="pbl__ri pbl__ri--2" id="pblR2"></span></div>
-      <div class="pbl__row"><span class="pbl__ri pbl__ri--3" id="pblR3"></span></div>
+{%- assign eyebrow    = section.settings.eyebrow      | default: 'Sound familiar?' -%}
+{%- assign line_open  = section.settings.line_open    | default: 'You sit down to work.' -%}
+{%- assign line_why_1 = section.settings.line_why_1   | default: "Not because they're naughty." -%}
+{%- assign line_why_2 = section.settings.line_why_2   | default: 'Because they want you.' -%}
+{%- assign line_wh_1  = section.settings.line_where_1 | default: 'On the keyboard.' -%}
+{%- assign line_wh_2  = section.settings.line_where_2 | default: 'Between you and the screen.' -%}
+{%- assign line_wh_3  = section.settings.line_where_3 | default: 'Right where your attention was supposed to be.' -%}
+{%- assign line_move  = section.settings.line_move    | default: 'You move them. They come back.' -%}
+{%- assign micro_again = section.settings.micro_again | default: 'again.' -%}
+{%- assign line_love  = section.settings.line_love    | default: 'You love them completely.' -%}
+{%- assign line_end   = section.settings.line_end     | default: "You still haven't finished a sentence since 9am." -%}
+{%- assign line_close = section.settings.line_close   | default: 'So we gave them a better place to be.' -%}
+{%- assign micro_1    = section.settings.micro_1      | default: 'look at me' -%}
+{%- assign micro_2    = section.settings.micro_2      | default: 'not now' -%}
+
+<section class="tp" id="theProblem">
+
+  {%- comment -%} Repeated word rows — soft / strong / soft / strong-with-breakaway {%- endcomment -%}
+  <div class="tp__rows" aria-hidden="true">
+
+    <div class="tp__row tp__row--soft tp__row--first reveal">
+      <div class="tp__drift">
+        <span class="tp__rt">{% for i in (1..14) %}{{ word }}&nbsp;{% endfor %}</span>
+        <span class="tp__rt">{% for i in (1..14) %}{{ word }}&nbsp;{% endfor %}</span>
+      </div>
     </div>
 
-    <div class="pbl__layer" id="pblSp" aria-hidden="true"></div>
-    <div class="pbl__layer" id="pblSt" aria-hidden="true"></div>
-    <div class="pbl__layer" id="pblPl" aria-hidden="true"></div>
+    <div class="tp__row tp__row--strong tp__row--second reveal" style="--reveal-delay:.08s">
+      <span class="tp__rt">{% for i in (1..18) %}{{ word }} {% endfor %}</span>
+    </div>
+
+    <div class="tp__row tp__row--soft tp__row--third reveal" style="--reveal-delay:.16s">
+      <span class="tp__rt">{% for i in (1..18) %}{{ word }} {% endfor %}</span>
+    </div>
+
+    <div class="tp__row tp__row--strong tp__row--break reveal" style="--reveal-delay:.24s">
+      <span class="tp__rt">{{ word }} {{ word }} <span class="tp__w3">{{ word }} </span></span>
+      <span class="tp__spread">{% for i in (0..bare_max) %}<span>{{ bare | slice: i, 1 }}</span>{% endfor %}</span>
+      <span class="tp__arc">
+        <span class="tp__fw tp__fw--1 reveal" style="--reveal-delay:.40s">{{ bare }}</span>
+        <span class="tp__fw tp__fw--2 reveal" style="--reveal-delay:.52s">{{ bare }}</span>
+        <span class="tp__fw tp__fw--3 reveal" style="--reveal-delay:.64s">{{ bare }}</span>
+        <span class="tp__fw tp__fw--4 reveal" style="--reveal-delay:.76s">{{ bare }}</span>
+        <span class="tp__fw tp__fw--5 reveal" style="--reveal-delay:.88s">{{ bare }}</span>
+        <span class="tp__fw tp__fw--6 reveal" style="--reveal-delay:1s">{{ bare }}</span>
+        <span class="tp__fl tp__fl--1 reveal" style="--reveal-delay:1.1s">{{ bare | slice: 0, 1 }}</span>
+        <span class="tp__fl tp__fl--2 reveal" style="--reveal-delay:1.18s">{{ bare | slice: 1, 1 }}</span>
+        <span class="tp__fl tp__fl--3 reveal" style="--reveal-delay:1.26s">{{ bare | slice: 2, 1 }}</span>
+        <span class="tp__fl tp__fl--4 reveal" style="--reveal-delay:1.34s">{{ bare | slice: 3, 1 }}</span>
+      </span>
+    </div>
 
   </div>
 
-  <div class="pbl__sr">
-    {%- if section.settings.eyebrow != blank -%}<p>{{ section.settings.eyebrow }}</p>{%- endif -%}
-    {%- for i in (1..8) -%}
-      {%- assign lk = 'line_' | append: i -%}
-      {%- if section.settings[lk] != blank -%}<p>{{ section.settings[lk] }}</p>{%- endif -%}
-    {%- endfor -%}
+  <div class="tp__body">
+
+    <span class="tp__note tp__note--1 reveal" aria-hidden="true">{{ micro_1 }}</span>
+    <span class="tp__note tp__note--2 reveal" aria-hidden="true">{{ micro_2 }}</span>
+
+    <div class="tp__story">
+
+      <p class="tp__eyebrow reveal">{{ eyebrow }}</p>
+
+      <p class="tp__line tp__line--open reveal">{{ line_open }}</p>
+
+      <p class="tp__call tp__call--1 reveal">{{ word }}</p>
+      <p class="tp__call tp__call--2 reveal" style="--reveal-delay:.14s">{{ word }} {{ word }}</p>
+      <p class="tp__call tp__call--3 reveal" style="--reveal-delay:.28s">{{ word }} {{ word }} {{ word }}</p>
+
+      <p class="tp__line reveal">{{ line_why_1 }}</p>
+      <p class="tp__want reveal" style="--reveal-delay:.12s">{{ line_why_2 }}</p>
+
+      {%- assign wh1_words = line_wh_1 | split: ' ' -%}
+      <p class="tp__line tp__line--w1 reveal">
+        {%- for w in wh1_words -%}
+          {%- if forloop.last -%}
+            {%- assign w_size = w | size -%}
+            {%- assign w_max = w_size | minus: 1 -%}
+            <span class="tp__scatter">{% for i in (0..w_max) %}<span>{{ w | slice: i, 1 }}</span>{% endfor %}</span>
+          {%- else -%}
+            {{ w }}
+          {% endif -%}
+        {%- endfor -%}
+      </p>
+      <p class="tp__line tp__line--w2 reveal" style="--reveal-delay:.1s">{{ line_wh_2 }}</p>
+      <p class="tp__line tp__line--w3 reveal" style="--reveal-delay:.2s">{{ line_wh_3 }}</p>
+
+      <p class="tp__line tp__line--move reveal">{{ line_move }}</p>
+      <p class="tp__again reveal" style="--reveal-delay:.3s">{{ micro_again }}</p>
+
+      <p class="tp__love reveal">{{ line_love }}</p>
+
+      <p class="tp__line tp__line--end reveal" style="--reveal-delay:.25s">{{ line_end | replace: '9am', '<em>9am</em>' }}</p>
+
+      <p class="tp__close reveal">{{ line_close }}</p>
+
+    </div>
+
   </div>
 
 </section>
-
-<script>
-(function(){
-  var T={
-    ey:{{ section.settings.eyebrow | default: 'Sound familiar?' | json }},
-    l1:{{ section.settings.line_1 | default: "Within two minutes, they're there." | json }},
-    l2:{{ section.settings.line_2 | default: "On the keyboard. Between you and the screen." | json }},
-    l3:{{ section.settings.line_3 | default: "On the exact document you were about to open." | json }},
-    l4:{{ section.settings.line_4 | default: "You move them. They come back." | json }},
-    l5:{{ section.settings.line_5 | default: "You close the door. You feel terrible." | json }},
-    l6:{{ section.settings.line_6 | default: "You let them back in. They're on the keyboard again." | json }},
-    l7:{{ section.settings.line_7 | default: "You love them completely." | json }},
-    l8:{{ section.settings.line_8 | default: "You also haven't finished a sentence since 9am." | json }}
-  };
-
-  // add typographic breathing between clauses
-  function breath(s){
-    return s
-      .replace(/([.!?])\s+/g,'$1   ')
-      .replace(/,\s+/g,',  ');
-  }
-
-  function init(){
-    var box=document.getElementById('pblBox');
-    if(!box)return;
-    var W=box.getBoundingClientRect().width||900;
-    var H=box.getBoundingClientRect().height||900;
-    var BF="font-family:'Cormorant Garamond',Georgia,serif;color:#2c1a11;position:absolute;pointer-events:none;";
-
-    // background rows — four phases of "Meow." at staggered offsets
-    [['pblR0','ow.   '],['pblR1','eow.   Meow.   '],
-     ['pblR2','w.   Meow.   '],['pblR3','Meow.   ']
-    ].forEach(function(p){
-      var el=document.getElementById(p[0]);
-      if(el)el.textContent=p[1]+'Meow.   '.repeat(30);
-    });
-
-    function mk(txt,css){
-      var el=document.createElement('span');
-      el.textContent=txt;
-      el.style.cssText=BF+css;
-      return el;
-    }
-    var spEl=document.getElementById('pblSp');
-    var stEl=document.getElementById('pblSt');
-    var plEl=document.getElementById('pblPl');
-    if(!spEl||!stEl||!plEl)return;
-
-    // ── SPIRAL ─────────────────────────────────────────────
-    // emerges from within the background rows and arcs down the right side
-    [[.620,.300,2,52,.84],[.673,.376,16,45,.78],[.706,.456,31,38,.72],
-     [.718,.540,48,31,.65],[.706,.622,63,25,.58],[.672,.702,77,19,.52],
-     [.620,.780,89,14,.46]
-    ].forEach(function(a){
-      spEl.appendChild(mk('Meow.',
-        'left:'+~~(a[0]*W)+'px;top:'+~~(a[1]*H)+'px;font-size:'+a[3]+'px;opacity:'+a[4]+';'+
-        'transform:rotate('+a[2]+'deg);transform-origin:0 50%;font-weight:400;white-space:nowrap'));
-    });
-
-    // trail letters connecting spiral into the pile
-    [['M',.628,.822,103,22,.40],['e',.647,.850,117,18,.34],
-     ['o',.660,.876,131,14,.28],['w',.669,.900,144,11,.22]
-    ].forEach(function(a){
-      spEl.appendChild(mk(a[0],
-        'left:'+~~(a[1]*W)+'px;top:'+~~(a[2]*H)+'px;font-size:'+a[4]+'px;opacity:'+a[5]+';'+
-        'transform:rotate('+a[3]+'deg);font-weight:400'));
-    });
-
-    // ── STORY LINES ────────────────────────────────────────
-    // start BELOW the four background rows (which end at ~0.31*H)
-    function pl(html,x,y,fs){
-      var el=document.createElement('p');
-      el.innerHTML=html;
-      el.style.cssText=BF+
-        'left:'+~~(x*W)+'px;top:'+~~(y*H)+'px;'+
-        'font-size:'+fs+'px;font-weight:400;font-style:normal;'+
-        'white-space:nowrap;line-height:1;margin:0';
-      stEl.appendChild(el);
-    }
-
-    var MX=.130;
-    // first line opens bold with the eyebrow hook, then the text
-    pl('<b style="font-weight:600">'+T.ey+'</b>   '+breath(T.l1), MX,  .350, 15);
-    pl(breath(T.l2), .110, .394, 14);
-    pl(breath(T.l3), .100, .437, 14);
-    pl(breath(T.l4), .132, .478, 14);
-    pl(breath(T.l5), MX,  .517, 14);
-    pl(breath(T.l6), .100, .558, 14);
-    pl(breath(T.l7), .150, .597, 14);
-
-    // scattered letters — textural bridge before the fall
-    var MYO=[0,-3,2,-2,3,-1,4,-4];
-    var mx=~~(MX*W);
-    'meowwwww'.split('').forEach(function(c,i){
-      stEl.appendChild(mk(c,
-        'left:'+mx+'px;top:'+(~~(.627*H)+MYO[i])+'px;'+
-        'font-size:14px;font-weight:400;font-style:normal'));
-      mx+=i===0?20:15;
-    });
-
-    // ── FALLING LAST LINE ──────────────────────────────────
-    // each word tilts progressively more until 9am. is nearly vertical
-    var FBX=~~(MX*W),FBY=~~(.656*H);
-    var fallWords=T.l8.replace(/<[^>]*>/g,'').split(' ');
-    var falls=[
-      [0,   0,   0,  1.00, 14],
-      [35,  1,   2,  1.00, 14],
-      [80,  5,   9,  0.97, 14],
-      [160, 13,  19, 0.93, 13],
-      [250, 25,  31, 0.86, 13],
-      [272, 44,  48, 0.74, 12],
-      [370, 70,  64, 0.56, 11],
-      [428, 105, 80, 0.40, 10]
-    ];
-    fallWords.forEach(function(w,i){
-      if(i>=falls.length)return;
-      var d=falls[i];
-      var el=document.createElement('span');
-      el.textContent=w;
-      el.style.cssText=BF+
-        'left:'+(FBX+d[0])+'px;top:'+(FBY+d[1])+'px;'+
-        'font-size:'+d[4]+'px;opacity:'+d[3]+';'+
-        'transform:rotate('+d[2]+'deg);transform-origin:0 bottom;'+
-        'font-weight:400;font-style:normal;white-space:nowrap';
-      stEl.appendChild(el);
-    });
-
-    // ── PILE ───────────────────────────────────────────────
-    // dense cluster of letters at bottom-right
-    function rng(s){var n=s;return function(){n=(n*1664525+1013904223)|0;return(n>>>0)/4294967295;};}
-    var R=rng(42);
-    var PC='MeowMiewMeowMiouMeowMiewwwueMieMiouMeowM';
-    var CX=~~(W*.72),CY=~~(H*.878),RX=~~(W*.21),RY=~~(H*.128);
-    for(var i=0;i<78;i++){
-      var c=PC[i%PC.length];
-      var x2=CX+(R()-.5)*RX*2;
-      var y2=CY+(R()-.5)*RY*2;
-      var r2=(R()-.5)*360;
-      var f2=~~(8+R()*34);
-      var o2=.35+R()*.65;
-      plEl.appendChild(mk(c,
-        'left:'+~~x2+'px;top:'+~~y2+'px;font-size:'+f2+'px;opacity:'+o2+';'+
-        'transform:rotate('+r2+'deg);font-style:normal;font-weight:400'));
-    }
-  }
-
-  if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded',init);
-  }else{
-    init();
-  }
-})();
-</script>
 
 {% schema %}
 {
   "name": "The Problem",
   "tag": "section",
   "settings": [
-    { "type": "text",     "id": "eyebrow",  "label": "Eyebrow",  "default": "Sound familiar?" },
-    { "type": "textarea", "id": "heading",  "label": "Heading",  "default": "You sit down to work.\nThey have other plans." },
-    { "type": "header",   "content": "Body lines" },
-    { "type": "text", "id": "line_1", "label": "Line 1", "default": "Within two minutes, they're there." },
-    { "type": "text", "id": "line_2", "label": "Line 2", "default": "On the keyboard. Between you and the screen." },
-    { "type": "text", "id": "line_3", "label": "Line 3", "default": "On the exact document you were about to open." },
-    { "type": "text", "id": "line_4", "label": "Line 4", "default": "You move them. They come back." },
-    { "type": "text", "id": "line_5", "label": "Line 5", "default": "You close the door. You feel terrible." },
-    { "type": "text", "id": "line_6", "label": "Line 6", "default": "You let them back in. They're on the keyboard again." },
-    { "type": "text", "id": "line_7", "label": "Line 7", "default": "You love them completely." },
-    { "type": "text", "id": "line_8", "label": "Line 8 (closing)", "default": "You also haven't finished a sentence since 9am." }
+    { "type": "text", "id": "repeat_word",  "label": "Repeated word",            "default": "Miew." },
+    { "type": "text", "id": "eyebrow",      "label": "Eyebrow",                  "default": "Sound familiar?" },
+    { "type": "header", "content": "Story" },
+    { "type": "text", "id": "line_open",    "label": "Opening line",             "default": "You sit down to work." },
+    { "type": "text", "id": "line_why_1",   "label": "Why — line 1",             "default": "Not because they're naughty." },
+    { "type": "text", "id": "line_why_2",   "label": "Why — line 2 (emphasis)",  "default": "Because they want you." },
+    { "type": "text", "id": "line_where_1", "label": "Where — line 1 (last word scatters)", "default": "On the keyboard." },
+    { "type": "text", "id": "line_where_2", "label": "Where — line 2",           "default": "Between you and the screen." },
+    { "type": "text", "id": "line_where_3", "label": "Where — line 3",           "default": "Right where your attention was supposed to be." },
+    { "type": "text", "id": "line_move",    "label": "Move line",                "default": "You move them. They come back." },
+    { "type": "text", "id": "line_love",    "label": "Emotional line",           "default": "You love them completely." },
+    { "type": "text", "id": "line_end",     "label": "Punchline (9am gets emphasis)", "default": "You still haven't finished a sentence since 9am." },
+    { "type": "text", "id": "line_close",   "label": "Closing line",             "default": "So we gave them a better place to be." },
+    { "type": "header", "content": "Small interruptions" },
+    { "type": "text", "id": "micro_again",  "label": "After the move line",      "default": "again." },
+    { "type": "text", "id": "micro_1",      "label": "Margin note 1",            "default": "look at me" },
+    { "type": "text", "id": "micro_2",      "label": "Margin note 2",            "default": "not now" }
   ],
   "presets": [{ "name": "The Problem" }]
 }
