@@ -4009,7 +4009,8 @@ a, button, label, [role="button"] { touch-action: manipulation; }
     linear-gradient(to bottom, rgb(16 8 3 / 0.045) 0, rgb(16 8 3 / 0) clamp(5.5rem, 9vw, 9rem)),
     #f5f0e8;
   overflow: hidden;
-  padding-bottom: clamp(5rem, 9vw, 8.5rem);
+  /* bottom padding reserves the letter-pile's landing zone */
+  padding-bottom: calc(clamp(2.5rem, 5vw, 5rem) + 3.2 * var(--tp-row-fs));
   padding-top: clamp(3.5rem, 6vw, 6.5rem);
   position: relative;
 }
@@ -4072,8 +4073,7 @@ html.no-js .tp .reveal { opacity: 1; }
   width: 0;
 }
 
-.tp__fw,
-.tp__fl {
+.tp__fw {
   color: rgb(44 26 17 / var(--ao));
   font-size: calc(var(--as) * var(--tp-row-fs));
   left: calc(var(--ax) * var(--sq) * var(--tp-row-fs));
@@ -4084,20 +4084,43 @@ html.no-js .tp .reveal { opacity: 1; }
   white-space: nowrap;
 }
 
-.tp__fw--1 { --ax: 0.7;  --ay: 0.15; --ar: 12deg;  --as: 0.96; --ao: 0.88; }
-.tp__fw--2 { --ax: 2.9;  --ay: 1.3;  --ar: 27deg;  --as: 0.9;  --ao: 0.78; }
-.tp__fw--3 { --ax: 4.4;  --ay: 3.2;  --ar: 45deg;  --as: 0.84; --ao: 0.66; }
-.tp__fw--4 { --ax: 5.3;  --ay: 5.3;  --ar: 63deg;  --as: 0.76; --ao: 0.55; }
-.tp__fw--5 { --ax: 5.6;  --ay: 7.7;  --ar: 80deg;  --as: 0.66; --ao: 0.45; }
-.tp__fw--6 { --ax: 5.4;  --ay: 10.1; --ar: 92deg;  --as: 0.56; --ao: 0.36; }
-.tp__fl--1 { --ax: 5.0;  --ay: 12.3; --ar: 100deg; --as: 0.46; --ao: 0.3;  }
-.tp__fl--2 { --ax: 4.6;  --ay: 13.7; --ar: 107deg; --as: 0.4;  --ao: 0.26; }
-.tp__fl--3 { --ax: 4.3;  --ay: 14.8; --ar: 113deg; --as: 0.35; --ao: 0.22; }
-.tp__fl--4 { --ax: 4.0;  --ay: 15.8; --ar: 119deg; --as: 0.3;  --ao: 0.19; }
+.tp__fw--1 { --ax: 0.7;  --ay: 0.12; --ar: 11deg; --as: 0.96; --ao: 0.88; }
+.tp__fw--2 { --ax: 2.6;  --ay: 0.95; --ar: 25deg; --as: 0.9;  --ao: 0.8;  }
+.tp__fw--3 { --ax: 3.9;  --ay: 2.1;  --ar: 42deg; --as: 0.84; --ao: 0.7;  }
+.tp__fw--4 { --ax: 4.7;  --ay: 3.4;  --ar: 58deg; --as: 0.76; --ao: 0.6;  }
+.tp__fw--5 { --ax: 4.9;  --ay: 4.7;  --ar: 74deg; --as: 0.68; --ao: 0.5;  }
+.tp__fw--6 { --ax: 4.7;  --ay: 5.9;  --ar: 88deg; --as: 0.6;  --ao: 0.42; }
+
+/* ── The landing — letters rain down and pile up at the foot ── */
+.tp__pile {
+  bottom: clamp(1rem, 2.5vw, 2.5rem);
+  font-family: var(--font-serif);
+  height: calc(7.5 * var(--tp-row-fs));
+  max-width: 94vw;
+  pointer-events: none;
+  position: absolute;
+  right: clamp(0.5rem, 4vw, 6rem);
+  width: calc(9 * var(--tp-row-fs));
+  z-index: 1;
+}
+
+.tp__pile.reveal.in { animation-duration: 1.1s; }
+
+.tp__fl,
+.tp__pl {
+  bottom: calc(var(--pb) * var(--tp-row-fs));
+  color: rgb(44 26 17 / var(--po));
+  font-size: calc(var(--ps) * var(--tp-row-fs));
+  left: var(--px);
+  line-height: 1;
+  position: absolute;
+  rotate: var(--pr);
+  white-space: nowrap;
+}
 
 /* ── Body — story in the negative space ─────────────────── */
 .tp__body {
-  margin-top: clamp(3.5rem, 7vw, 6.5rem);
+  margin-top: clamp(2.25rem, 4vw, 4rem);
   position: relative;
 }
 
@@ -4129,7 +4152,7 @@ html.no-js .tp .reveal { opacity: 1; }
   font-size: 0.6875rem;
   font-weight: 600;
   letter-spacing: 0.22em;
-  margin: 0 0 2.5rem;
+  margin: 0 0 1.25rem;
   text-transform: uppercase;
 }
 
@@ -4153,13 +4176,13 @@ html.no-js .tp .reveal { opacity: 1; }
   font-family: var(--font-serif);
   font-style: italic;
   line-height: 1.05;
-  margin: 0 0 0.55rem;
+  margin: 0 0 0.3rem;
   word-spacing: 0.08em;
 }
 
-.tp__call--1 { font-size: clamp(1.375rem, 1.9vw, 1.75rem); margin-left: clamp(0.75rem, 3vw, 2.25rem); margin-top: 1.75rem; }
+.tp__call--1 { font-size: clamp(1.375rem, 1.9vw, 1.75rem); margin-left: clamp(0.75rem, 3vw, 2.25rem); margin-top: 1rem; }
 .tp__call--2 { font-size: clamp(1.625rem, 2.4vw, 2.25rem); margin-left: clamp(2rem, 7vw, 5.25rem); }
-.tp__call--3 { font-size: clamp(1.875rem, 2.9vw, 2.75rem); margin-bottom: 2.75rem; margin-left: clamp(3.25rem, 11vw, 8.5rem); }
+.tp__call--3 { font-size: clamp(1.875rem, 2.9vw, 2.75rem); margin-bottom: 1.5rem; margin-left: clamp(3.25rem, 11vw, 8.5rem); }
 
 .tp__want {
   color: rgb(44 26 17 / 0.92);
@@ -4167,7 +4190,7 @@ html.no-js .tp .reveal { opacity: 1; }
   font-size: clamp(1.5rem, 2.4vw, 2.25rem);
   font-style: italic;
   line-height: 1.2;
-  margin: 0.35rem 0 3rem;
+  margin: 0.25rem 0 1.75rem;
 }
 
 /* Where they land — stepping indents */
@@ -4189,14 +4212,14 @@ html.no-js .tp .reveal { opacity: 1; }
 .tp__scatter span:nth-child(8n + 7) { rotate: -3deg; translate: 0 0.08em; }
 .tp__scatter span:nth-child(8n + 8) { rotate: 5deg;  translate: 0 -0.05em; }
 
-.tp__line--move { margin-top: 2.75rem; }
+.tp__line--move { margin-top: 1.5rem; }
 
 .tp__again {
   color: rgb(44 26 17 / 0.55);
   font-family: var(--font-serif);
   font-size: clamp(1rem, 1.3vw, 1.1875rem);
   font-style: italic;
-  margin: 0.5rem 0 0 clamp(3.5rem, 9vw, 7rem);
+  margin: 0.25rem 0 0 clamp(3.5rem, 9vw, 7rem);
   rotate: -5deg;
   width: max-content;
 }
@@ -4209,7 +4232,7 @@ html.no-js .tp .reveal { opacity: 1; }
   font-style: italic;
   font-weight: 400;
   line-height: 1.15;
-  margin: 3.75rem 0 1.5rem;
+  margin: 2rem 0 0.75rem;
 }
 
 .tp__love.reveal.in { animation-duration: 1.25s; }
@@ -4231,7 +4254,7 @@ html.no-js .tp .reveal { opacity: 1; }
   font-size: clamp(1.5rem, 2.3vw, 2.25rem);
   font-weight: 400;
   line-height: 1.25;
-  margin: clamp(4rem, 8vw, 7rem) 0 0;
+  margin: clamp(2rem, 4vw, 3.5rem) 0 0;
   max-width: 24ch;
 }
 
@@ -4249,6 +4272,8 @@ html.no-js .tp .reveal { opacity: 1; }
     --sq: 0.55;
     --tp-row-fs: 2.25rem;
   }
+  /* shorten the letter rain so it stays clear of the closing line */
+  .tp__pile > .tp__fl:nth-child(-n+4) { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
