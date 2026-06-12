@@ -1,10 +1,10 @@
 <section class="comparison-section" id="comparison" aria-labelledby="s8-heading">
 
   <div class="comparison-section__header">
-    <p class="text-subtitle">{{ section.settings.eyebrow | default: "The smart-money pick" }}</p>
-    <h2 class="h2" id="s8-heading">{{ section.settings.heading | default: "Why not the $179 one?" }}</h2>
+    <p class="text-subtitle">{{ section.settings.eyebrow | default: "Why this works when nothing else did" }}</p>
+    <h2 class="h2" id="s8-heading">{{ section.settings.heading | default: "You&rsquo;ve probably tried the alternatives." }}</h2>
     <p class="text-paragraph" style="margin-top:1rem;">
-      {{ section.settings.subhead | default: "Same idea. Same closeness. Except DeskPaws is $100 less, ships faster, sets up in 60 seconds, and comes with a 30-day guarantee the other one doesn&rsquo;t." }}
+      {{ section.settings.subhead | default: "Every fix fails the same way: it asks the cat to want something different. DeskPaws is built around what they already want — being beside you, up high, in a space of their own." }}
     </p>
   </div>
 
@@ -12,61 +12,40 @@
     <table class="comparison-table" role="table">
       <thead>
         <tr>
-          <th scope="col"></th>
-          <th scope="col" class="col-deskpaws">DeskPaws</th>
-          <th scope="col">DeskNest ($179)</th>
+          <th scope="col">What you&rsquo;ve tried</th>
+          <th scope="col">How it goes</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="row-highlight">
-          <td>Price</td>
-          <td class="col-deskpaws"><strong>$79</strong></td>
-          <td>$179</td>
+        <tr>
+          <td>{{ section.settings.alt_1_name | default: "A bed on the floor" }}</td>
+          <td>{{ section.settings.alt_1_result | default: "Wrong altitude. Cats want to be where you are — and you're not down there." }}</td>
         </tr>
         <tr>
-          <td>Bowl depth</td>
-          <td class="col-deskpaws">Deep nest &mdash; cats stay</td>
-          <td>Flat hammock</td>
+          <td>{{ section.settings.alt_2_name | default: "Your lap" }}</td>
+          <td>{{ section.settings.alt_2_result | default: "Cozy for them. Impossible for typing." }}</td>
         </tr>
         <tr>
-          <td>Setup time</td>
-          <td class="col-deskpaws">60 seconds, no tools</td>
-          <td>Assembly required</td>
+          <td>{{ section.settings.alt_3_name | default: "Moving them off, again" }}</td>
+          <td>{{ section.settings.alt_3_result | default: "Works for thirty seconds. Then the guilt — and the cat — come back." }}</td>
         </tr>
         <tr>
-          <td>Weight capacity</td>
-          <td class="col-deskpaws">50 lbs</td>
-          <td>30 lbs</td>
-        </tr>
-        <tr>
-          <td>Desk compatibility</td>
-          <td class="col-deskpaws">Wood, marble, metal, up to 2&Prime;</td>
-          <td>Specific sizes only</td>
-        </tr>
-        <tr>
-          <td>Cushion cover</td>
-          <td class="col-deskpaws">Removable sherpa, hand-wash</td>
-          <td>Fixed, spot-clean only</td>
-        </tr>
-        <tr>
-          <td>Free shipping</td>
-          <td class="col-deskpaws"><span class="comparison-check">&#10003;</span></td>
-          <td><span class="comparison-cross">&#10005;</span></td>
+          <td>{{ section.settings.alt_4_name | default: "A keyboard cover" }}</td>
+          <td>{{ section.settings.alt_4_result | default: "Defends the keys. The cat is still on the desk — now sitting on plastic." }}</td>
         </tr>
         <tr class="row-highlight">
-          <td>Return guarantee</td>
-          <td class="col-deskpaws">30-day full refund, keep the bed</td>
-          <td>14-day, limited</td>
+          <td class="col-deskpaws"><strong>DeskPaws</strong></td>
+          <td class="col-deskpaws">{{ section.settings.alt_5_result | default: "Desk height, right beside you, with walls of their own. They stay — because it's the spot they wanted all along." }}</td>
         </tr>
       </tbody>
     </table>
 
     <div class="comparison-cta">
       <p class="text-paragraph" style="max-width:38ch;text-align:center;">
-        {{ section.settings.cta_copy | default: "Same cat. Same desk. Same outcome. Except you&rsquo;re $100 richer." }}
+        {{ section.settings.cta_copy | default: "They were always going to be on the desk. Give that story a better ending." }}
       </p>
-      <a href="{{ section.settings.cta_url | default: routes.root_url | append: 'products/deskpaws-cat-bed' }}" class="btn btn--primary-fill">
-        {{ section.settings.cta_label | default: "Get DeskPaws for $79" }}
+      <a href="{{ section.settings.cta_url | default: '/products/desk-paws-place-for-your-cat-co-worker' }}" class="btn btn--primary-fill" data-buy-drawer>
+        {{ section.settings.cta_label | default: "Give Them Their Spot &mdash; $79" }}
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/></svg>
       </a>
     </div>
@@ -76,16 +55,31 @@
 
 {% schema %}
 {
-  "name": "8 — Comparison",
+  "name": "8 — Why It's Different",
   "tag": "section",
   "settings": [
-    { "type": "text",     "id": "eyebrow",   "label": "Eyebrow",    "default": "The smart-money pick" },
-    { "type": "text",     "id": "heading",   "label": "Heading",    "default": "Why not the $179 one?" },
-    { "type": "textarea", "id": "subhead",   "label": "Subheading" },
-    { "type": "textarea", "id": "cta_copy",  "label": "CTA copy" },
-    { "type": "text",     "id": "cta_label", "label": "CTA text",   "default": "Get DeskPaws for $79" },
-    { "type": "url",      "id": "cta_url",   "label": "CTA link" }
+    { "type": "text",     "id": "eyebrow",      "label": "Eyebrow",    "default": "Why this works when nothing else did" },
+    { "type": "text",     "id": "heading",      "label": "Heading",    "default": "You've probably tried the alternatives." },
+    { "type": "textarea", "id": "subhead",      "label": "Subheading" },
+    { "type": "header",   "content": "Alternative 1" },
+    { "type": "text",     "id": "alt_1_name",   "label": "Name",       "default": "A bed on the floor" },
+    { "type": "textarea", "id": "alt_1_result", "label": "How it goes" },
+    { "type": "header",   "content": "Alternative 2" },
+    { "type": "text",     "id": "alt_2_name",   "label": "Name",       "default": "Your lap" },
+    { "type": "textarea", "id": "alt_2_result", "label": "How it goes" },
+    { "type": "header",   "content": "Alternative 3" },
+    { "type": "text",     "id": "alt_3_name",   "label": "Name",       "default": "Moving them off, again" },
+    { "type": "textarea", "id": "alt_3_result", "label": "How it goes" },
+    { "type": "header",   "content": "Alternative 4" },
+    { "type": "text",     "id": "alt_4_name",   "label": "Name",       "default": "A keyboard cover" },
+    { "type": "textarea", "id": "alt_4_result", "label": "How it goes" },
+    { "type": "header",   "content": "DeskPaws row" },
+    { "type": "textarea", "id": "alt_5_result", "label": "How it goes" },
+    { "type": "header",   "content": "CTA" },
+    { "type": "textarea", "id": "cta_copy",     "label": "CTA copy" },
+    { "type": "text",     "id": "cta_label",    "label": "CTA text",   "default": "Give Them Their Spot — $79" },
+    { "type": "url",      "id": "cta_url",      "label": "CTA link" }
   ],
-  "presets": [{ "name": "Comparison" }]
+  "presets": [{ "name": "Why It's Different" }]
 }
 {% endschema %}

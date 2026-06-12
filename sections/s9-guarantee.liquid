@@ -2,7 +2,7 @@
   <div class="guarantee-section__inner">
 
     <div class="guarantee-hero">
-      <div class="guarantee-hero__badge">&#x1F6E1;</div>
+      <div class="guarantee-hero__badge guarantee-hero__badge--type" aria-hidden="true">30</div>
       <h2 class="guarantee-hero__heading" id="s9-heading">
         {{ section.settings.guarantee_heading | default: "30-day happy-cat guarantee." }}
       </h2>
@@ -10,11 +10,11 @@
         {{ section.settings.guarantee_body | default: "If your cat genuinely snubs it and you&rsquo;re not happy, return it within 30 days for a full refund. You keep the bed. No questions. No forms. No haggling. We&rsquo;re confident enough to bet $79 on it." }}
       </p>
       <div class="guarantee-hero__cta">
-        <a href="{{ section.settings.cta_url | default: routes.root_url | append: 'products/deskpaws-cat-bed' }}" class="btn btn--secondary" style="border-color:rgba(255,255,255,0.5);color:var(--color-white);">
+        <a href="{{ section.settings.cta_url | default: '/products/desk-paws-place-for-your-cat-co-worker' }}" class="btn btn--secondary" style="border-color:rgba(255,255,255,0.5);color:var(--color-white);" data-buy-drawer>
           {{ section.settings.cta_label | default: "Claim My Cat&rsquo;s Spot &mdash; $79" }}
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/></svg>
         </a>
-        <p style="font-size:0.8125rem;color:rgba(255,255,255,0.45);margin-top:0.75rem;">&#x1F512; Secure checkout &middot; Free shipping &middot; Ships in 1&ndash;2 days</p>
+        <p style="font-size:0.8125rem;color:rgba(255,255,255,0.45);margin-top:0.75rem;">Secure checkout &middot; Free shipping &middot; Ships in 1&ndash;2 business days</p>
       </div>
     </div>
 
@@ -94,7 +94,7 @@
             </span>
           </button>
           <div class="faq-item__answer">
-            <p class="faq-item__body">{{ section.settings.faq_6_a | default: "We ship within 1–2 business days. Delivery to US addresses takes approximately 10 days. You'll receive a tracking number the moment it ships." }}</p>
+            <p class="faq-item__body">{{ section.settings.faq_6_a | default: "We ship within 1–2 business days, and delivery to US addresses typically takes 7–14 business days from dispatch. You'll receive a tracking number the moment it ships." }}</p>
           </div>
         </div>
 

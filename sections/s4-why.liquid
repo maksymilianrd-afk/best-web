@@ -5,12 +5,14 @@
 
     <div class="cat-wall__mosaic-header">
       <span class="cwm-title">{{ section.settings.photo_wall_title | default: "Cats who claimed their spot" }}</span>
-      <span class="cwm-count">{{ section.settings.photo_wall_count | default: "247 &amp; counting" }}</span>
+      {%- if section.settings.photo_wall_count != blank -%}
+        <span class="cwm-count">{{ section.settings.photo_wall_count }}</span>
+      {%- endif -%}
     </div>
 
     <div class="cat-wall__mosaic">
 
-      {%- assign t1 = section.settings.cat_1_handle | default: "Claimed in 1 day" -%}
+      {%- assign t1 = section.settings.cat_1_handle | default: "Chief nap officer" -%}
       <div class="cwt cwt--a">
         {%- if section.settings.photo_1 -%}
           {{ section.settings.photo_1 | image_url: width: 600 | image_tag: loading: 'lazy', class: 'cwt__img', alt: section.settings.cat_1_name | default: 'Customer cat photo' }}
@@ -21,7 +23,7 @@
         </div>
       </div>
 
-      {%- assign t2 = section.settings.cat_2_handle | default: "2 hours" -%}
+      {%- assign t2 = section.settings.cat_2_handle | default: "Meeting supervisor" -%}
       <div class="cwt cwt--b">
         {%- if section.settings.photo_2 -%}
           {{ section.settings.photo_2 | image_url: width: 600 | image_tag: loading: 'lazy', class: 'cwt__img', alt: section.settings.cat_2_name | default: 'Customer cat photo' }}
@@ -32,7 +34,7 @@
         </div>
       </div>
 
-      {%- assign t3 = section.settings.cat_3_handle | default: "1 day" -%}
+      {%- assign t3 = section.settings.cat_3_handle | default: "Senior loaf" -%}
       <div class="cwt cwt--c">
         {%- if section.settings.photo_3 -%}
           {{ section.settings.photo_3 | image_url: width: 600 | image_tag: loading: 'lazy', class: 'cwt__img', alt: section.settings.cat_3_name | default: 'Customer cat photo' }}
@@ -43,7 +45,7 @@
         </div>
       </div>
 
-      {%- assign t4 = section.settings.cat_4_handle | default: "20 min" -%}
+      {%- assign t4 = section.settings.cat_4_handle | default: "Keyboard — retired" -%}
       <div class="cwt cwt--d">
         {%- if section.settings.photo_4 -%}
           {{ section.settings.photo_4 | image_url: width: 600 | image_tag: loading: 'lazy', class: 'cwt__img', alt: section.settings.cat_4_name | default: 'Customer cat photo' }}
@@ -54,7 +56,7 @@
         </div>
       </div>
 
-      {%- assign t5 = section.settings.cat_5_handle | default: "1 day" -%}
+      {%- assign t5 = section.settings.cat_5_handle | default: "Window analyst" -%}
       <div class="cwt cwt--e">
         {%- if section.settings.photo_5 -%}
           {{ section.settings.photo_5 | image_url: width: 600 | image_tag: loading: 'lazy', class: 'cwt__img', alt: section.settings.cat_5_name | default: 'Customer cat photo' }}
@@ -65,7 +67,7 @@
         </div>
       </div>
 
-      {%- assign t6 = section.settings.cat_6_handle | default: "45 min" -%}
+      {%- assign t6 = section.settings.cat_6_handle | default: "Head of morale" -%}
       <div class="cwt cwt--f">
         {%- if section.settings.photo_6 -%}
           {{ section.settings.photo_6 | image_url: width: 600 | image_tag: loading: 'lazy', class: 'cwt__img', alt: section.settings.cat_6_name | default: 'Customer cat photo' }}
@@ -76,7 +78,7 @@
         </div>
       </div>
 
-      {%- assign t7 = section.settings.cat_7_handle | default: "1 day" -%}
+      {%- assign t7 = section.settings.cat_7_handle | default: "Currently on break" -%}
       <div class="cwt cwt--g">
         {%- if section.settings.photo_7 -%}
           {{ section.settings.photo_7 | image_url: width: 600 | image_tag: loading: 'lazy', class: 'cwt__img', alt: section.settings.cat_7_name | default: 'Customer cat photo' }}
@@ -91,7 +93,7 @@
 
     <div class="cat-wall__mosaic-footer">
       <span class="cwm-dot"></span>
-      <span class="cwm-footer-text">All photos from verified buyers</span>
+      <span class="cwm-footer-text">{{ section.settings.photo_wall_note | default: "Every cat settles in their own time — most take a day or two." }}</span>
     </div>
 
   </div>
@@ -156,35 +158,36 @@
   "settings": [
     { "type": "header",       "content": "Photo wall" },
     { "type": "text",         "id": "photo_wall_title", "label": "Wall title",    "default": "Cats who claimed their spot" },
-    { "type": "text",         "id": "photo_wall_count", "label": "Count label",   "default": "247 & counting" },
+    { "type": "text",         "id": "photo_wall_count", "label": "Count label (leave blank unless you have a real number)" },
+    { "type": "text",         "id": "photo_wall_note",  "label": "Footer note",   "default": "Every cat settles in their own time — most take a day or two." },
     { "type": "header",       "content": "Photo 1 (tall left tile)" },
     { "type": "image_picker", "id": "photo_1",          "label": "Cat photo 1" },
     { "type": "text",         "id": "cat_1_name",       "label": "Cat name",      "default": "Luna" },
-    { "type": "text",         "id": "cat_1_handle",     "label": "Claim time",    "default": "Claimed in 1 day" },
+    { "type": "text",         "id": "cat_1_handle",     "label": "Caption",       "default": "Chief nap officer" },
     { "type": "header",       "content": "Photo 2 (top centre)" },
     { "type": "image_picker", "id": "photo_2",          "label": "Cat photo 2" },
     { "type": "text",         "id": "cat_2_name",       "label": "Cat name",      "default": "Biscuit" },
-    { "type": "text",         "id": "cat_2_handle",     "label": "Claim time",    "default": "2 hours" },
+    { "type": "text",         "id": "cat_2_handle",     "label": "Caption",       "default": "Meeting supervisor" },
     { "type": "header",       "content": "Photo 3 (tall right tile)" },
     { "type": "image_picker", "id": "photo_3",          "label": "Cat photo 3" },
     { "type": "text",         "id": "cat_3_name",       "label": "Cat name",      "default": "Mochi" },
-    { "type": "text",         "id": "cat_3_handle",     "label": "Claim time",    "default": "1 day" },
+    { "type": "text",         "id": "cat_3_handle",     "label": "Caption",       "default": "Senior loaf" },
     { "type": "header",       "content": "Photo 4 (centre)" },
     { "type": "image_picker", "id": "photo_4",          "label": "Cat photo 4" },
     { "type": "text",         "id": "cat_4_name",       "label": "Cat name",      "default": "Gus" },
-    { "type": "text",         "id": "cat_4_handle",     "label": "Claim time",    "default": "20 min" },
+    { "type": "text",         "id": "cat_4_handle",     "label": "Caption",       "default": "Keyboard — retired" },
     { "type": "header",       "content": "Photo 5 (bottom left)" },
     { "type": "image_picker", "id": "photo_5",          "label": "Cat photo 5" },
     { "type": "text",         "id": "cat_5_name",       "label": "Cat name",      "default": "Oliver" },
-    { "type": "text",         "id": "cat_5_handle",     "label": "Claim time",    "default": "1 day" },
+    { "type": "text",         "id": "cat_5_handle",     "label": "Caption",       "default": "Window analyst" },
     { "type": "header",       "content": "Photo 6 (bottom centre)" },
     { "type": "image_picker", "id": "photo_6",          "label": "Cat photo 6" },
     { "type": "text",         "id": "cat_6_name",       "label": "Cat name",      "default": "Noodle" },
-    { "type": "text",         "id": "cat_6_handle",     "label": "Claim time",    "default": "45 min" },
+    { "type": "text",         "id": "cat_6_handle",     "label": "Caption",       "default": "Head of morale" },
     { "type": "header",       "content": "Photo 7 (bottom right)" },
     { "type": "image_picker", "id": "photo_7",          "label": "Cat photo 7" },
     { "type": "text",         "id": "cat_7_name",       "label": "Cat name",      "default": "Pepper" },
-    { "type": "text",         "id": "cat_7_handle",     "label": "Claim time",    "default": "1 day" },
+    { "type": "text",         "id": "cat_7_handle",     "label": "Caption",       "default": "Currently on break" },
     { "type": "header",       "content": "Right column" },
     { "type": "text",         "id": "eyebrow",          "label": "Eyebrow",       "default": "The question everyone asks" },
     { "type": "textarea",     "id": "heading",          "label": "Heading (use <em> for italic)" },

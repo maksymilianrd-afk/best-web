@@ -12,13 +12,13 @@
     "hero": {
       "type": "s1-hero",
       "settings": {
-        "eyebrow": "The desk bed cats claim in under an hour",
+        "eyebrow": "The desk nest most cats claim on day one",
         "headline": "A spot that's theirs.\nA desk that's yours.",
-        "subheadline": "The clamp-on bed that keeps your cat close, comfortable, and off the keyboard.",
+        "subheadline": "A clamp-on nest that gives your cat their own place beside you — close enough to pet between emails, without a paw on your keyboard.",
         "cta_label": "Claim Their Spot — $79",
         "cta_url": "",
         "secondary_label": "See how it works",
-        "trust_line": "Free shipping · 30-day guarantee · Ships in 2 days",
+        "trust_line": "Free shipping · 30-day happy-cat guarantee · 60-second setup",
         "strip_label": "For the work-from-home cat parent",
         "hero_image": "shopify://shop_images/New_Work_17.png"
       }
@@ -51,7 +51,7 @@
         "image": "shopify://shop_images/Firefly_Gemini_Flash_Realistic_gray_maycoone_cat_with_his_tail_outside_of_the_basket_real_realistic_cat_t_841677.png",
         "heading": "There's a better way to share a desk.",
         "subtext": "The desk bed that keeps them close, comfortable, and off the keys.",
-        "btn_label": "Give Them Their Spot→",
+        "btn_label": "Give Them Their Spot →",
         "btn_url": ""
       }
     },
@@ -62,7 +62,7 @@
         "heading": "A nest that belongs on your desk.",
         "body": "",
         "pullquote": "",
-        "pullquote_author": "Amanda K. & Biscuit — verified buyer"
+        "pullquote_author": "Amanda K. & Biscuit"
       }
     },
     "benefits": {
@@ -108,6 +108,11 @@
         "step_3_title": "Get back to work",
         "step_3_body": ""
       }
+    },
+    "why_different": {
+      "type": "s8-comparison",
+      "name": "Why It's Different",
+      "settings": {}
     },
     "reviews": {
       "type": "s7-reviews",
@@ -173,6 +178,7 @@
     "benefits",
     "objection",
     "how_it_works",
+    "why_different",
     "reviews",
     "guarantee",
     "final_cta"

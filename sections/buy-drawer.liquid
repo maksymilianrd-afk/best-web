@@ -36,12 +36,16 @@
       {%- endif -%}
     </div>
 
-    <div class="bd-stars-row">
-      <span class="bd-stars">★★★★★</span>
-      <span class="bd-rating">{{ section.settings.rating | default: "4.9" }}</span>
-      <span class="bd-stars-sep">·</span>
-      <span class="bd-review-count">{{ section.settings.review_count | default: "2,184" }} reviews</span>
-    </div>
+    {%- if section.settings.rating != blank -%}
+      <div class="bd-stars-row">
+        <span class="bd-stars">★★★★★</span>
+        <span class="bd-rating">{{ section.settings.rating }}</span>
+        {%- if section.settings.review_count != blank -%}
+          <span class="bd-stars-sep">·</span>
+          <span class="bd-review-count">{{ section.settings.review_count }} reviews</span>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
 
     <p class="bd-pack-label">Choose your pack</p>
 
@@ -74,7 +78,7 @@
           </label>
         {%- endfor -%}
       {%- else -%}
-        <label class="bd-variant-card bd-variant-card--selected" data-variant-id="" data-price="$79" data-compare="$99" data-save="Save $20">
+        <label class="bd-variant-card bd-variant-card--selected" data-variant-id="" data-price="$79" data-compare="" data-save="">
           <input type="radio" name="bd-variant" checked class="bd-variant-radio">
           <div class="bd-variant-info">
             <span class="bd-variant-name">One DeskPaws</span>
@@ -112,7 +116,7 @@
           <circle cx="4" cy="12" r="1.2" stroke="currentColor" stroke-width="1.2"/>
           <circle cx="12" cy="12" r="1.2" stroke="currentColor" stroke-width="1.2"/>
         </svg>
-        {{ section.settings.trust_2 | default: "Free shipping over $50 · ships in 3–5 days" }}
+        {{ section.settings.trust_2 | default: "Free shipping · ships in 1–2 business days" }}
       </li>
       <li class="bd-trust-item">
         <svg class="bd-trust-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -138,12 +142,12 @@
     { "type": "text",   "id": "pack_2_subtitle",  "label": "Pack 2 subtitle",     "default": "Save 12% — most popular" },
     { "type": "text",   "id": "pack_3_subtitle",  "label": "Pack 3 subtitle",     "default": "Save 20% + free catnip" },
     { "type": "number", "id": "popular_variant",  "label": "Popular badge on variant # (1-based)", "default": 2 },
-    { "type": "header", "content": "Reviews summary" },
-    { "type": "text",   "id": "rating",           "label": "Star rating",         "default": "4.9" },
-    { "type": "text",   "id": "review_count",     "label": "Review count",        "default": "2,184" },
+    { "type": "header", "content": "Reviews summary (leave blank unless you have real review data)" },
+    { "type": "text",   "id": "rating",           "label": "Star rating" },
+    { "type": "text",   "id": "review_count",     "label": "Review count" },
     { "type": "header", "content": "Trust badges" },
     { "type": "text",   "id": "trust_1",          "label": "Trust line 1",        "default": "30-day happy-cat guarantee, or your money back" },
-    { "type": "text",   "id": "trust_2",          "label": "Trust line 2",        "default": "Free shipping over $50 · ships in 3–5 days" },
+    { "type": "text",   "id": "trust_2",          "label": "Trust line 2",        "default": "Free shipping · ships in 1–2 business days" },
     { "type": "text",   "id": "trust_3",          "label": "Trust line 3",        "default": "No tools — sets up in about 60 seconds" }
   ]
 }
