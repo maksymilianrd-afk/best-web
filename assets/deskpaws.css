@@ -3993,12 +3993,11 @@ a, button, label, [role="button"] { touch-action: manipulation; }
 
 /* ── The Problem — typographic art ─────────────────────── */
 .pbl {
-  background: #f5f0e8;
-  overflow: hidden;
+  background: linear-gradient(to bottom, #100803 0%, #f5f0e8 220px);
 }
 
 .pbl__box {
-  height: 800px;
+  height: 900px;
   overflow: hidden;
   position: relative;
   width: 100%;
@@ -4052,7 +4051,7 @@ a, button, label, [role="button"] { touch-action: manipulation; }
 }
 
 @media (max-width: 768px) {
-  .pbl__box { height: 680px; }
+  .pbl__box { height: 780px; }
   .pbl__ri  { font-size: 38px; }
   .pbl__bg  { gap: 12px; }
 }

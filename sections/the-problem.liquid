@@ -1,4 +1,4 @@
-{%- comment -%}The Problem — typographic art 2026-06-11{%- endcomment -%}
+{%- comment -%}The Problem — typographic art 2026-06-12{%- endcomment -%}
 <section class="pbl" id="theProblem">
 
   <div class="pbl__box" id="pblBox">
@@ -39,13 +39,22 @@
     l7:{{ section.settings.line_7 | default: "You love them completely." | json }},
     l8:{{ section.settings.line_8 | default: "You also haven't finished a sentence since 9am." | json }}
   };
+
+  // add typographic breathing between clauses
+  function breath(s){
+    return s
+      .replace(/([.!?])\s+/g,'$1   ')
+      .replace(/,\s+/g,',  ');
+  }
+
   function init(){
     var box=document.getElementById('pblBox');
     if(!box)return;
-    var W=box.getBoundingClientRect().width||800;
-    var H=box.getBoundingClientRect().height||800;
+    var W=box.getBoundingClientRect().width||900;
+    var H=box.getBoundingClientRect().height||900;
     var BF="font-family:'Cormorant Garamond',Georgia,serif;color:#2c1a11;position:absolute;pointer-events:none;";
 
+    // background rows — four phases of "Meow." at staggered offsets
     [['pblR0','ow.   '],['pblR1','eow.   Meow.   '],
      ['pblR2','w.   Meow.   '],['pblR3','Meow.   ']
     ].forEach(function(p){
@@ -64,7 +73,8 @@
     var plEl=document.getElementById('pblPl');
     if(!spEl||!stEl||!plEl)return;
 
-    // spiral — Meow. arcing down the right side, rotating and shrinking
+    // ── SPIRAL ─────────────────────────────────────────────
+    // emerges from within the background rows and arcs down the right side
     [[.620,.300,2,52,.84],[.673,.376,16,45,.78],[.706,.456,31,38,.72],
      [.718,.540,48,31,.65],[.706,.622,63,25,.58],[.672,.702,77,19,.52],
      [.620,.780,89,14,.46]
@@ -74,7 +84,7 @@
         'transform:rotate('+a[2]+'deg);transform-origin:0 50%;font-weight:400;white-space:nowrap'));
     });
 
-    // trail letters connecting spiral to pile
+    // trail letters connecting spiral into the pile
     [['M',.628,.822,103,22,.40],['e',.647,.850,117,18,.34],
      ['o',.660,.876,131,14,.28],['w',.669,.900,144,11,.22]
     ].forEach(function(a){
@@ -83,7 +93,8 @@
         'transform:rotate('+a[3]+'deg);font-weight:400'));
     });
 
-    // story lines
+    // ── STORY LINES ────────────────────────────────────────
+    // start BELOW the four background rows (which end at ~0.31*H)
     function pl(html,x,y,fs){
       var el=document.createElement('p');
       el.innerHTML=html;
@@ -93,28 +104,30 @@
         'white-space:nowrap;line-height:1;margin:0';
       stEl.appendChild(el);
     }
+
     var MX=.130;
-    pl('<span style="font-family:Inter,sans-serif;font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;opacity:0.45">'+T.ey+'</span>',MX,.120,10);
-    pl(T.l1, MX,  .225, 15);
-    pl(T.l2, .110,.278, 14);
-    pl(T.l3, .100,.330, 14);
-    pl(T.l4, .132,.382, 14);
-    pl(T.l5, MX,  .430, 14);
-    pl(T.l6, .100,.480, 14);
-    pl(T.l7, .150,.530, 14);
+    // first line opens bold with the eyebrow hook, then the text
+    pl('<b style="font-weight:600">'+T.ey+'</b>   '+breath(T.l1), MX,  .350, 15);
+    pl(breath(T.l2), .110, .394, 14);
+    pl(breath(T.l3), .100, .437, 14);
+    pl(breath(T.l4), .132, .478, 14);
+    pl(breath(T.l5), MX,  .517, 14);
+    pl(breath(T.l6), .100, .558, 14);
+    pl(breath(T.l7), .150, .597, 14);
 
     // scattered letters — textural bridge before the fall
     var MYO=[0,-3,2,-2,3,-1,4,-4];
-    var mx=~~(.130*W);
+    var mx=~~(MX*W);
     'meowwwww'.split('').forEach(function(c,i){
       stEl.appendChild(mk(c,
-        'left:'+mx+'px;top:'+(~~(.562*H)+MYO[i])+'px;'+
+        'left:'+mx+'px;top:'+(~~(.627*H)+MYO[i])+'px;'+
         'font-size:14px;font-weight:400;font-style:normal'));
       mx+=i===0?20:15;
     });
 
-    // falling last line — each word tilts progressively
-    var FBX=~~(.130*W),FBY=~~(.598*H);
+    // ── FALLING LAST LINE ──────────────────────────────────
+    // each word tilts progressively more until 9am. is nearly vertical
+    var FBX=~~(MX*W),FBY=~~(.656*H);
     var fallWords=T.l8.replace(/<[^>]*>/g,'').split(' ');
     var falls=[
       [0,   0,   0,  1.00, 14],
@@ -139,7 +152,8 @@
       stEl.appendChild(el);
     });
 
-    // pile — dense cluster of letters bottom-right
+    // ── PILE ───────────────────────────────────────────────
+    // dense cluster of letters at bottom-right
     function rng(s){var n=s;return function(){n=(n*1664525+1013904223)|0;return(n>>>0)/4294967295;};}
     var R=rng(42);
     var PC='MeowMiewMeowMiouMeowMiewwwueMieMiouMeowM';
@@ -156,6 +170,7 @@
         'transform:rotate('+r2+'deg);font-style:normal;font-weight:400'));
     }
   }
+
   if(document.readyState==='loading'){
     document.addEventListener('DOMContentLoaded',init);
   }else{
