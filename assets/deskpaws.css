@@ -3965,7 +3965,7 @@ a, button, label, [role="button"] { touch-action: manipulation; }
    Repeated-word rows / breakaway trail / story in negative space
 ═══════════════════════════════════════════════════════════ */
 .tp {
-  --tp-row-fs: clamp(2.5rem, 6vw, 5.75rem);
+  --tp-row-fs: clamp(1.75rem, 3.5vw, 3.5rem);
   --sq: 1; /* horizontal squeeze of the breakaway trail */
   /* Flat paper continuing from the hero's matte, grounded by a
      whisper-soft shadow cast by the hero card above — depth cue,
@@ -4065,10 +4065,10 @@ html.no-js .tp .reveal { opacity: 1; }
 .tp__pile {
   bottom: clamp(0.75rem, 1.5vw, 1.5rem);
   font-family: var(--font-serif);
-  max-width: 94vw;
+  /* centred under the breakaway: zone midpoint sits at ~60% of the page */
+  left: calc(60% - 4.5 * var(--tp-row-fs));
   pointer-events: none;
   position: absolute;
-  right: clamp(0.5rem, 4vw, 6rem);
   top: calc(clamp(3.5rem, 6vw, 6.5rem) + 11.3 * var(--tp-row-fs));
   width: calc(9 * var(--tp-row-fs));
   z-index: 1;
@@ -4240,22 +4240,9 @@ html.no-js .tp .reveal { opacity: 1; }
 }
 
 @media (max-width: 480px) {
-  .tp {
-    --sq: 0.55;
-    --tp-row-fs: 2.25rem;
-  }
-  /* drift the rain right and stack the close line so they never touch */
-  .tp__fl { left: calc(var(--px) + 8%); }
+  .tp { --sq: 0.55; }
+  .tp__w2 { display: none; }
   .tp__close { max-width: 15ch; }
-}
-
-@media (min-width: 1700px) {
-  /* ultra-wide: pin the landing zone under the trail's end instead
-     of the right edge, so the fall stays connected */
-  .tp__pile {
-    left: calc(8.5 * var(--tp-row-fs));
-    right: auto;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
