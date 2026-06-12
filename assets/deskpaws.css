@@ -4010,7 +4010,7 @@ a, button, label, [role="button"] { touch-action: manipulation; }
     #f5f0e8;
   overflow: hidden;
   /* bottom padding reserves the letter-pile's landing zone */
-  padding-bottom: calc(clamp(2.5rem, 5vw, 5rem) + 3.2 * var(--tp-row-fs));
+  padding-bottom: calc(clamp(2rem, 4vw, 4rem) + 2.6 * var(--tp-row-fs));
   padding-top: clamp(3.5rem, 6vw, 6.5rem);
   position: relative;
 }
@@ -4091,15 +4091,19 @@ html.no-js .tp .reveal { opacity: 1; }
 .tp__fw--5 { --ax: 4.9;  --ay: 4.7;  --ar: 74deg; --as: 0.68; --ao: 0.5;  }
 .tp__fw--6 { --ax: 4.7;  --ay: 5.9;  --ar: 88deg; --as: 0.6;  --ao: 0.42; }
 
-/* ── The landing — letters rain down and pile up at the foot ── */
+/* ── The landing — letters rain down and pile up at the foot ──
+   The zone stretches from just below the trail's last word down to
+   the section's bottom edge: rain glyphs distribute along it in %,
+   so the fall always connects to the mound, whatever the story
+   height; the mound itself is fs-sized and sits on the floor. */
 .tp__pile {
-  bottom: clamp(1rem, 2.5vw, 2.5rem);
+  bottom: clamp(0.75rem, 1.5vw, 1.5rem);
   font-family: var(--font-serif);
-  height: calc(7.5 * var(--tp-row-fs));
   max-width: 94vw;
   pointer-events: none;
   position: absolute;
   right: clamp(0.5rem, 4vw, 6rem);
+  top: calc(clamp(3.5rem, 6vw, 6.5rem) + 11.3 * var(--tp-row-fs));
   width: calc(9 * var(--tp-row-fs));
   z-index: 1;
 }
@@ -4108,7 +4112,6 @@ html.no-js .tp .reveal { opacity: 1; }
 
 .tp__fl,
 .tp__pl {
-  bottom: calc(var(--pb) * var(--tp-row-fs));
   color: rgb(44 26 17 / var(--po));
   font-size: calc(var(--ps) * var(--tp-row-fs));
   left: var(--px);
@@ -4117,6 +4120,9 @@ html.no-js .tp .reveal { opacity: 1; }
   rotate: var(--pr);
   white-space: nowrap;
 }
+
+.tp__fl { top: var(--pt); }
+.tp__pl { bottom: calc(var(--pb) * var(--tp-row-fs)); }
 
 /* ── Body — story in the negative space ─────────────────── */
 .tp__body {
@@ -4272,8 +4278,18 @@ html.no-js .tp .reveal { opacity: 1; }
     --sq: 0.55;
     --tp-row-fs: 2.25rem;
   }
-  /* shorten the letter rain so it stays clear of the closing line */
-  .tp__pile > .tp__fl:nth-child(-n+4) { display: none; }
+  /* drift the rain right and stack the close line so they never touch */
+  .tp__fl { left: calc(var(--px) + 8%); }
+  .tp__close { max-width: 15ch; }
+}
+
+@media (min-width: 1700px) {
+  /* ultra-wide: pin the landing zone under the trail's end instead
+     of the right edge, so the fall stays connected */
+  .tp__pile {
+    left: calc(8.5 * var(--tp-row-fs));
+    right: auto;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
