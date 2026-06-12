@@ -6,6 +6,8 @@
 
 {%- assign word       = section.settings.repeat_word  | default: 'Miew.' -%}
 {%- assign bare       = word | remove: '.' -%}
+{%- assign word2      = section.settings.repeat_word_2 | default: 'Murr.' -%}
+{%- assign bare2      = word2 | remove: '.' -%}
 {%- assign bare_size  = bare | size -%}
 {%- assign bare_max   = bare_size | minus: 1 -%}
 
@@ -31,21 +33,21 @@
 
     <div class="tp__row tp__row--soft tp__row--first reveal">
       <div class="tp__drift">
-        <span class="tp__rt">{% for i in (1..22) %}{{ word }}&nbsp;{% endfor %}</span>
-        <span class="tp__rt">{% for i in (1..22) %}{{ word }}&nbsp;{% endfor %}</span>
+        <span class="tp__rt">{% for i in (1..24) %}{% cycle 'da': word, word, word2, word2 %}&nbsp;{% endfor %}</span>
+        <span class="tp__rt">{% for i in (1..24) %}{% cycle 'db': word, word, word2, word2 %}&nbsp;{% endfor %}</span>
       </div>
     </div>
 
     <div class="tp__row tp__row--strong tp__row--second reveal" style="--reveal-delay:.08s">
-      <span class="tp__rt">{% for i in (1..26) %}{{ word }} {% endfor %}</span>
+      <span class="tp__rt">{% for i in (1..28) %}{% cycle 'rb': word, word, word2, word2 %} {% endfor %}</span>
     </div>
 
     <div class="tp__row tp__row--soft tp__row--third reveal" style="--reveal-delay:.16s">
-      <span class="tp__rt">{% for i in (1..26) %}{{ word }} {% endfor %}</span>
+      <span class="tp__rt">{% for i in (1..28) %}{% cycle 'rc': word2, word, word, word2 %} {% endfor %}</span>
     </div>
 
     <div class="tp__row tp__row--strong tp__row--break reveal" style="--reveal-delay:.24s">
-      <span class="tp__rt">{{ word }} {{ word }} {{ word }} <span class="tp__w2">{{ word }} {{ word }} </span><span class="tp__w3">{{ word }} </span></span>
+      <span class="tp__rt">{{ word }} {{ word }} {{ word2 }} <span class="tp__w2">{{ word2 }} {{ word }} </span><span class="tp__w3">{{ word }} </span></span>
       <span class="tp__spread">{% for i in (0..bare_max) %}<span>{{ bare | slice: i, 1 }}</span>{% endfor %}</span>
       <span class="tp__arc">
         <span class="tp__fw tp__fw--1 reveal" style="--reveal-delay:.40s">{{ bare }}</span>
@@ -107,40 +109,40 @@
 
   {%- comment -%} The calls land — letters rain down and pile up {%- endcomment -%}
   <div class="tp__pile reveal" aria-hidden="true">
-    <span class="tp__fl reveal" style="--px:72%;--pt:0%;--ps:0.50;--pr:94deg;--po:0.52;--reveal-delay:0.15s">{{ bare | slice: 0, 1 }}</span>
-    <span class="tp__fl reveal" style="--px:60%;--pt:12%;--ps:0.44;--pr:103deg;--po:0.30;--reveal-delay:0.25s">{{ bare | slice: 1, 1 }}</span>
-    <span class="tp__fl reveal" style="--px:68%;--pt:24%;--ps:0.40;--pr:110deg;--po:0.48;--reveal-delay:0.35s">{{ bare | slice: 2, 1 }}</span>
-    <span class="tp__fl reveal" style="--px:55%;--pt:36%;--ps:0.38;--pr:117deg;--po:0.28;--reveal-delay:0.45s">{{ bare | slice: 3, 1 }}</span>
-    <span class="tp__fl reveal" style="--px:63%;--pt:48%;--ps:0.32;--pr:40deg;--po:0.42;--reveal-delay:0.55s">.</span>
-    <span class="tp__fl reveal" style="--px:50%;--pt:60%;--ps:0.36;--pr:122deg;--po:0.52;--reveal-delay:0.65s">{{ bare | slice: 0, 1 }}</span>
-    <span class="tp__fl reveal" style="--px:57%;--pt:72%;--ps:0.32;--pr:128deg;--po:0.45;--reveal-delay:0.75s">{{ bare | slice: 2, 1 }}</span>
+    <span class="tp__fl reveal" style="--px:54%;--pt:0%;--ps:0.56;--pr:94deg;--po:0.55;--reveal-delay:0.15s">{{ bare | slice: 0, 1 }}</span>
+    <span class="tp__fl reveal" style="--px:44%;--pt:12%;--ps:0.50;--pr:103deg;--po:0.30;--reveal-delay:0.25s">{{ bare | slice: 1, 1 }}</span>
+    <span class="tp__fl reveal" style="--px:56%;--pt:24%;--ps:0.46;--pr:110deg;--po:0.50;--reveal-delay:0.35s">{{ bare | slice: 2, 1 }}</span>
+    <span class="tp__fl reveal" style="--px:46%;--pt:36%;--ps:0.42;--pr:117deg;--po:0.28;--reveal-delay:0.45s">{{ bare | slice: 3, 1 }}</span>
+    <span class="tp__fl reveal" style="--px:52%;--pt:48%;--ps:0.36;--pr:40deg;--po:0.45;--reveal-delay:0.55s">.</span>
+    <span class="tp__fl reveal" style="--px:43%;--pt:60%;--ps:0.34;--pr:122deg;--po:0.32;--reveal-delay:0.65s">{{ bare | slice: 0, 1 }}</span>
+    <span class="tp__fl reveal" style="--px:50%;--pt:72%;--ps:0.30;--pr:128deg;--po:0.42;--reveal-delay:0.75s">{{ bare | slice: 2, 1 }}</span>
     <span class="tp__pl" style="--px:52.4%;--pb:1.99;--ps:0.26;--pr:-76deg;--po:0.85">{{ bare | slice: 3, 1 }}</span>
     <span class="tp__pl" style="--px:64.7%;--pb:0.01;--ps:0.49;--pr:154deg;--po:0.46">.</span>
     <span class="tp__pl" style="--px:80.4%;--pb:0.22;--ps:0.53;--pr:100deg;--po:0.3">.</span>
     <span class="tp__pl" style="--px:49.5%;--pb:0.70;--ps:0.48;--pr:-70deg;--po:0.85">{{ bare | slice: 2, 1 }}</span>
     <span class="tp__pl" style="--px:56.9%;--pb:0.36;--ps:0.44;--pr:-128deg;--po:0.97">{{ bare | slice: 2, 1 }}</span>
-    <span class="tp__pl" style="--px:60.1%;--pb:0.00;--ps:0.55;--pr:-22deg;--po:0.32">{{ bare | slice: 0, 1 }}</span>
+    <span class="tp__pl" style="--px:60.1%;--pb:0.00;--ps:0.55;--pr:-22deg;--po:0.32">{{ bare2 | slice: 1, 1 }}</span>
     <span class="tp__pl" style="--px:47.4%;--pb:0.06;--ps:0.62;--pr:33deg;--po:0.96">{{ bare | slice: 1, 1 }}</span>
-    <span class="tp__pl" style="--px:53.4%;--pb:0.01;--ps:0.50;--pr:-110deg;--po:0.9">{{ bare | slice: 0, 1 }}</span>
+    <span class="tp__pl" style="--px:53.4%;--pb:0.01;--ps:0.50;--pr:-110deg;--po:0.9">{{ bare2 | slice: 1, 1 }}</span>
     <span class="tp__pl" style="--px:36.3%;--pb:0.33;--ps:0.53;--pr:-103deg;--po:0.4">{{ bare | slice: 3, 1 }}</span>
     <span class="tp__pl" style="--px:38.1%;--pb:0.05;--ps:0.48;--pr:-15deg;--po:0.91">{{ bare | slice: 0, 1 }}</span>
     <span class="tp__pl" style="--px:40.1%;--pb:1.43;--ps:0.35;--pr:-61deg;--po:0.5">{{ bare | slice: 0, 1 }}</span>
     <span class="tp__pl" style="--px:55.0%;--pb:0.13;--ps:0.43;--pr:-46deg;--po:0.42">.</span>
-    <span class="tp__pl" style="--px:51.7%;--pb:0.02;--ps:0.55;--pr:27deg;--po:0.72">{{ bare | slice: 1, 1 }}</span>
-    <span class="tp__pl" style="--px:38.2%;--pb:0.61;--ps:0.49;--pr:113deg;--po:0.43">{{ bare | slice: 3, 1 }}</span>
+    <span class="tp__pl" style="--px:51.7%;--pb:0.02;--ps:0.55;--pr:27deg;--po:0.72">{{ bare2 | slice: 1, 1 }}</span>
+    <span class="tp__pl" style="--px:38.2%;--pb:0.61;--ps:0.49;--pr:113deg;--po:0.43">{{ bare2 | slice: 2, 1 }}</span>
     <span class="tp__pl" style="--px:66.6%;--pb:0.24;--ps:0.42;--pr:-48deg;--po:0.49">{{ bare | slice: 3, 1 }}</span>
-    <span class="tp__pl" style="--px:54.4%;--pb:0.69;--ps:0.41;--pr:-135deg;--po:0.44">{{ bare | slice: 3, 1 }}</span>
+    <span class="tp__pl" style="--px:54.4%;--pb:0.69;--ps:0.41;--pr:-135deg;--po:0.44">{{ bare2 | slice: 2, 1 }}</span>
     <span class="tp__pl" style="--px:64.4%;--pb:0.64;--ps:0.41;--pr:-162deg;--po:0.74">.</span>
-    <span class="tp__pl" style="--px:41.8%;--pb:0.00;--ps:0.49;--pr:-123deg;--po:0.96">{{ bare | slice: 3, 1 }}</span>
+    <span class="tp__pl" style="--px:41.8%;--pb:0.00;--ps:0.49;--pr:-123deg;--po:0.96">{{ bare2 | slice: 2, 1 }}</span>
     <span class="tp__pl" style="--px:71.1%;--pb:0.66;--ps:0.46;--pr:-161deg;--po:0.31">{{ bare | slice: 2, 1 }}</span>
-    <span class="tp__pl" style="--px:71.9%;--pb:0.00;--ps:0.57;--pr:-7deg;--po:0.89">{{ bare | slice: 0, 1 }}</span>
-    <span class="tp__pl" style="--px:40.6%;--pb:1.02;--ps:0.45;--pr:4deg;--po:0.88">{{ bare | slice: 3, 1 }}</span>
+    <span class="tp__pl" style="--px:71.9%;--pb:0.00;--ps:0.57;--pr:-7deg;--po:0.89">{{ bare2 | slice: 1, 1 }}</span>
+    <span class="tp__pl" style="--px:40.6%;--pb:1.02;--ps:0.45;--pr:4deg;--po:0.88">{{ bare2 | slice: 2, 1 }}</span>
     <span class="tp__pl" style="--px:75.2%;--pb:0.15;--ps:0.58;--pr:149deg;--po:0.85">{{ bare | slice: 3, 1 }}</span>
-    <span class="tp__pl" style="--px:57.7%;--pb:0.01;--ps:0.57;--pr:-1deg;--po:0.94">{{ bare | slice: 3, 1 }}</span>
+    <span class="tp__pl" style="--px:57.7%;--pb:0.01;--ps:0.57;--pr:-1deg;--po:0.94">{{ bare2 | slice: 2, 1 }}</span>
     <span class="tp__pl" style="--px:60.4%;--pb:0.01;--ps:0.59;--pr:76deg;--po:0.42">.</span>
-    <span class="tp__pl" style="--px:54.1%;--pb:1.32;--ps:0.37;--pr:18deg;--po:0.94">{{ bare | slice: 1, 1 }}</span>
+    <span class="tp__pl" style="--px:54.1%;--pb:1.32;--ps:0.37;--pr:18deg;--po:0.94">{{ bare2 | slice: 1, 1 }}</span>
     <span class="tp__pl" style="--px:60.2%;--pb:0.17;--ps:0.60;--pr:37deg;--po:0.75">{{ bare | slice: 1, 1 }}</span>
-    <span class="tp__pl" style="--px:65.1%;--pb:1.03;--ps:0.35;--pr:-8deg;--po:0.34">{{ bare | slice: 1, 1 }}</span>
+    <span class="tp__pl" style="--px:65.1%;--pb:1.03;--ps:0.35;--pr:-8deg;--po:0.34">{{ bare2 | slice: 1, 1 }}</span>
     <span class="tp__pl" style="--px:62.0%;--pb:1.47;--ps:0.35;--pr:-84deg;--po:0.76">.</span>
     <span class="tp__pl" style="--px:63.9%;--pb:1.34;--ps:0.34;--pr:149deg;--po:0.87">{{ bare | slice: 0, 1 }}</span>
     <span class="tp__pl" style="--px:55.2%;--pb:0.72;--ps:0.46;--pr:162deg;--po:0.78">{{ bare | slice: 0, 1 }}</span>
@@ -154,40 +156,40 @@
     <span class="tp__pl" style="--px:44.9%;--pb:0.10;--ps:0.61;--pr:49deg;--po:0.47">{{ bare | slice: 1, 1 }}</span>
     <span class="tp__pl" style="--px:58.6%;--pb:1.87;--ps:0.27;--pr:95deg;--po:0.94">{{ bare | slice: 3, 1 }}</span>
     <span class="tp__pl" style="--px:65.1%;--pb:1.78;--ps:0.26;--pr:-22deg;--po:0.83">{{ bare | slice: 1, 1 }}</span>
-    <span class="tp__pl" style="--px:63.0%;--pb:0.53;--ps:0.43;--pr:142deg;--po:0.93">{{ bare | slice: 1, 1 }}</span>
-    <span class="tp__pl" style="--px:66.8%;--pb:0.50;--ps:0.41;--pr:139deg;--po:0.83">{{ bare | slice: 0, 1 }}</span>
+    <span class="tp__pl" style="--px:63.0%;--pb:0.53;--ps:0.43;--pr:142deg;--po:0.93">{{ bare2 | slice: 1, 1 }}</span>
+    <span class="tp__pl" style="--px:66.8%;--pb:0.50;--ps:0.41;--pr:139deg;--po:0.83">{{ bare2 | slice: 1, 1 }}</span>
     <span class="tp__pl" style="--px:49.5%;--pb:1.40;--ps:0.35;--pr:-137deg;--po:0.88">{{ bare | slice: 3, 1 }}</span>
     <span class="tp__pl" style="--px:63.1%;--pb:1.76;--ps:0.28;--pr:52deg;--po:0.72">{{ bare | slice: 3, 1 }}</span>
     <span class="tp__pl" style="--px:41.0%;--pb:0.27;--ps:0.41;--pr:-159deg;--po:0.88">.</span>
     <span class="tp__pl" style="--px:27.0%;--pb:0.05;--ps:0.58;--pr:85deg;--po:0.82">{{ bare | slice: 0, 1 }}</span>
     <span class="tp__pl" style="--px:66.3%;--pb:0.88;--ps:0.44;--pr:154deg;--po:0.69">{{ bare | slice: 1, 1 }}</span>
     <span class="tp__pl" style="--px:64.1%;--pb:0.46;--ps:0.42;--pr:130deg;--po:0.41">{{ bare | slice: 1, 1 }}</span>
-    <span class="tp__pl" style="--px:68.3%;--pb:0.14;--ps:0.45;--pr:-71deg;--po:0.94">{{ bare | slice: 1, 1 }}</span>
+    <span class="tp__pl" style="--px:68.3%;--pb:0.14;--ps:0.45;--pr:-71deg;--po:0.94">{{ bare2 | slice: 1, 1 }}</span>
     <span class="tp__pl" style="--px:52.6%;--pb:0.08;--ps:0.58;--pr:45deg;--po:0.71">{{ bare | slice: 1, 1 }}</span>
     <span class="tp__pl" style="--px:46.9%;--pb:1.37;--ps:0.31;--pr:14deg;--po:0.78">.</span>
     <span class="tp__pl" style="--px:59.9%;--pb:0.43;--ps:0.51;--pr:-116deg;--po:0.31">.</span>
     <span class="tp__pl" style="--px:63.3%;--pb:1.67;--ps:0.30;--pr:-82deg;--po:0.32">{{ bare | slice: 2, 1 }}</span>
-    <span class="tp__pl" style="--px:52.7%;--pb:0.00;--ps:0.64;--pr:-3deg;--po:0.9">{{ bare | slice: 3, 1 }}</span>
+    <span class="tp__pl" style="--px:52.7%;--pb:0.00;--ps:0.64;--pr:-3deg;--po:0.9">{{ bare2 | slice: 2, 1 }}</span>
     <span class="tp__pl" style="--px:50.4%;--pb:0.71;--ps:0.36;--pr:-78deg;--po:0.92">{{ bare | slice: 2, 1 }}</span>
     <span class="tp__pl" style="--px:56.3%;--pb:0.05;--ps:0.46;--pr:-127deg;--po:0.68">{{ bare | slice: 3, 1 }}</span>
     <span class="tp__pl" style="--px:44.8%;--pb:0.63;--ps:0.42;--pr:-111deg;--po:0.76">{{ bare | slice: 1, 1 }}</span>
     <span class="tp__pl" style="--px:58.6%;--pb:1.77;--ps:0.31;--pr:-78deg;--po:0.9">{{ bare | slice: 1, 1 }}</span>
     <span class="tp__pl" style="--px:34.4%;--pb:0.28;--ps:0.40;--pr:149deg;--po:0.87">.</span>
-    <span class="tp__pl" style="--px:59.0%;--pb:0.13;--ps:0.46;--pr:-131deg;--po:0.73">{{ bare | slice: 3, 1 }}</span>
-    <span class="tp__pl" style="--px:62.3%;--pb:1.13;--ps:0.44;--pr:-49deg;--po:0.42">{{ bare | slice: 3, 1 }}</span>
+    <span class="tp__pl" style="--px:59.0%;--pb:0.13;--ps:0.46;--pr:-131deg;--po:0.73">{{ bare2 | slice: 2, 1 }}</span>
+    <span class="tp__pl" style="--px:62.3%;--pb:1.13;--ps:0.44;--pr:-49deg;--po:0.42">{{ bare2 | slice: 2, 1 }}</span>
     <span class="tp__pl" style="--px:60.0%;--pb:0.80;--ps:0.35;--pr:4deg;--po:0.76">{{ bare | slice: 3, 1 }}</span>
     <span class="tp__pl" style="--px:68.1%;--pb:1.81;--ps:0.29;--pr:135deg;--po:0.7">{{ bare | slice: 0, 1 }}</span>
     <span class="tp__pl" style="--px:61.8%;--pb:0.22;--ps:0.60;--pr:135deg;--po:0.84">.</span>
-    <span class="tp__pl" style="--px:63.0%;--pb:0.46;--ps:0.49;--pr:165deg;--po:0.76">{{ bare | slice: 2, 1 }}</span>
+    <span class="tp__pl" style="--px:63.0%;--pb:0.46;--ps:0.49;--pr:165deg;--po:0.76">{{ bare2 | slice: 2, 1 }}</span>
     <span class="tp__pl" style="--px:64.3%;--pb:0.00;--ps:0.60;--pr:39deg;--po:0.86">{{ bare | slice: 3, 1 }}</span>
     <span class="tp__pl" style="--px:33.0%;--pb:0.18;--ps:0.53;--pr:-56deg;--po:0.77">{{ bare | slice: 3, 1 }}</span>
     <span class="tp__pl" style="--px:52.2%;--pb:0.00;--ps:0.45;--pr:-97deg;--po:0.94">{{ bare | slice: 1, 1 }}</span>
-    <span class="tp__pl" style="--px:43.6%;--pb:0.72;--ps:0.43;--pr:100deg;--po:0.31">{{ bare | slice: 2, 1 }}</span>
+    <span class="tp__pl" style="--px:43.6%;--pb:0.72;--ps:0.43;--pr:100deg;--po:0.31">{{ bare2 | slice: 2, 1 }}</span>
     <span class="tp__pl" style="--px:55.3%;--pb:0.36;--ps:0.44;--pr:101deg;--po:0.8">{{ bare | slice: 1, 1 }}</span>
     <span class="tp__pl" style="--px:72.6%;--pb:0.05;--ps:0.45;--pr:149deg;--po:0.91">{{ bare | slice: 2, 1 }}</span>
     <span class="tp__pl" style="--px:50.7%;--pb:0.61;--ps:0.47;--pr:-73deg;--po:0.9">{{ bare | slice: 1, 1 }}</span>
     <span class="tp__pl" style="--px:30%;--pb:0.6;--ps:.3;--pr:-18deg;--po:.88">{{ bare }}</span>
-    <span class="tp__pl" style="--px:62%;--pb:0.3;--ps:.34;--pr:12deg;--po:.92">{{ bare }}</span>
+    <span class="tp__pl" style="--px:64%;--pb:0.3;--ps:.34;--pr:12deg;--po:.92">{{ bare2 }}</span>
   </div>
 
 </section>
@@ -198,6 +200,7 @@
   "tag": "section",
   "settings": [
     { "type": "text", "id": "repeat_word",  "label": "Repeated word",            "default": "Miew." },
+    { "type": "text", "id": "repeat_word_2", "label": "Second repeated word",    "default": "Murr." },
     { "type": "text", "id": "eyebrow",      "label": "Eyebrow",                  "default": "Sound familiar?" },
     { "type": "header", "content": "Story" },
     { "type": "text", "id": "line_open",    "label": "Opening line",             "default": "You sit down to work." },

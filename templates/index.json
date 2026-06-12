@@ -28,6 +28,7 @@
       "name": "The Problem",
       "settings": {
         "repeat_word": "Miew.",
+        "repeat_word_2": "Murr.",
         "eyebrow": "Sound familiar?",
         "line_open": "You sit down to work.",
         "line_why_1": "Not because they're naughty.",
@@ -162,7 +163,7 @@
     "final_cta": {
       "type": "s10-final-cta",
       "settings": {
-        "eyebrow": "Still scrolling?",
+        "eyebrow": "One desk. Two of you.",
         "heading": "Work peacefully. Without pushing your cat away.",
         "subhead": "Give your cat their spot. Give yourself your desk back.",
         "cta_label": "Claim My Cat's Spot — $79",

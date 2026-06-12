@@ -4065,8 +4065,9 @@ html.no-js .tp .reveal { opacity: 1; }
 .tp__pile {
   bottom: clamp(0.75rem, 1.5vw, 1.5rem);
   font-family: var(--font-serif);
-  /* centred under the breakaway: zone midpoint sits at ~60% of the page */
-  left: calc(60% - 4.5 * var(--tp-row-fs));
+  /* centred under the breakaway: zone midpoint sits at ~69% of the page,
+     matching the reference's full-width drop position */
+  left: calc(69% - 4.5 * var(--tp-row-fs));
   pointer-events: none;
   position: absolute;
   top: calc(clamp(3.5rem, 6vw, 6.5rem) + 11.3 * var(--tp-row-fs));
