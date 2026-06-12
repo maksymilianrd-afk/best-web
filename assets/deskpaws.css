@@ -445,7 +445,10 @@ a, button, label, [role="button"] { touch-action: manipulation; }
    HERO v2 — rounded inset stage + CSS stagger
 ═══════════════════════════════════════════════════════════ */
 .hero {
-  background: #100803;
+  /* Paper matte — the hero reads as a cinematic card mounted on the
+     same warm paper the Problem section is set on, so the scroll
+     between them is one continuous surface. */
+  background: #f5f0e8;
   min-height: 100svh;
   overflow: hidden;
   position: relative;
@@ -3997,19 +4000,17 @@ a, button, label, [role="button"] { touch-action: manipulation; }
 ═══════════════════════════════════════════════════════════ */
 .tp {
   --tp-row-fs: clamp(2.5rem, 6vw, 5.75rem);
-  --tp-fade: clamp(9rem, 14vw, 12.5rem);
   --sq: 1; /* horizontal squeeze of the breakaway trail */
-  background: linear-gradient(
-    to bottom,
-    #100803 0,
-    #241307 calc(var(--tp-fade) * 0.25),
-    #564434 calc(var(--tp-fade) * 0.55),
-    #b3a690 calc(var(--tp-fade) * 0.8),
-    #f5f0e8 var(--tp-fade)
-  );
+  /* Flat paper continuing from the hero's matte, grounded by a
+     whisper-soft shadow cast by the hero card above — depth cue,
+     not a divider. */
+  background:
+    linear-gradient(to bottom, rgb(16 8 3 / 0.09) 0, rgb(16 8 3 / 0) clamp(2.5rem, 4vw, 4rem)),
+    linear-gradient(to bottom, rgb(16 8 3 / 0.045) 0, rgb(16 8 3 / 0) clamp(5.5rem, 9vw, 9rem)),
+    #f5f0e8;
   overflow: hidden;
   padding-bottom: clamp(5rem, 9vw, 8.5rem);
-  padding-top: calc(var(--tp-fade) + clamp(2.5rem, 5vw, 4.5rem));
+  padding-top: clamp(3.5rem, 6vw, 6.5rem);
   position: relative;
 }
 
