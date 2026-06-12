@@ -32,7 +32,7 @@
         "eyebrow": "Sound familiar?",
         "line_open": "You sit down to work.",
         "line_why_1": "Not because they're naughty.",
-        "line_why_2": "Because they want you.",
+        "line_why_2": "Because they want your attention.",
         "line_where_1": "On the keyboard.",
         "line_where_2": "Between you and the screen.",
         "line_where_3": "Right where your attention was supposed to be.",
@@ -63,7 +63,13 @@
         "heading": "A nest that belongs on your desk.",
         "body": "",
         "pullquote": "",
-        "pullquote_author": "Amanda K. & Biscuit"
+        "pullquote_author": "Amanda K. & Biscuit",
+        "spec_1_val": "50 lbs",
+        "spec_1_label": "Max load",
+        "spec_2_val": "39 cm",
+        "spec_2_label": "Nest diameter",
+        "spec_3_val": "60 sec",
+        "spec_3_label": "To install"
       }
     },
     "benefits": {
@@ -82,6 +88,7 @@
         "card_5_body": "",
         "card_6_title": "Supports cats up to 50 lbs",
         "card_6_body": "",
+        "cta_copy": "\"Now I have to remind myself to pet her — because she's not on my keyboard.\"",
         "cta_label": "Claim My Cat's Spot — $79",
         "cta_url": ""
       }
@@ -89,9 +96,32 @@
     "objection": {
       "type": "s4-why",
       "settings": {
+        "photo_wall_title": "Cats who claimed their spot",
+        "photo_wall_count": "",
+        "photo_wall_note": "Every cat settles in their own time — most take a day or two.",
+        "cat_1_name": "Luna",
+        "cat_1_handle": "Chief nap officer",
+        "cat_2_name": "Biscuit",
+        "cat_2_handle": "Meeting supervisor",
+        "cat_3_name": "Mochi",
+        "cat_3_handle": "Senior loaf",
+        "cat_4_name": "Gus",
+        "cat_4_handle": "Keyboard — retired",
+        "cat_5_name": "Oliver",
+        "cat_5_handle": "Window analyst",
+        "cat_6_name": "Noodle",
+        "cat_6_handle": "Head of morale",
+        "cat_7_name": "Pepper",
+        "cat_7_handle": "Currently on break",
         "eyebrow": "The #1 question we get",
         "heading": "Will my cat actually use it?",
         "body": "",
+        "reason_1_title": "The bowl shape works with cat psychology",
+        "reason_1_body": "",
+        "reason_2_title": "It's right where they want to be anyway",
+        "reason_2_body": "",
+        "reason_3_title": "For the stubborn ones: one pinch of catnip",
+        "reason_3_body": "",
         "cta_label": "Try It Risk-Free",
         "cta_url": ""
       }
@@ -107,13 +137,32 @@
         "step_2_title": "Add a pinch of catnip",
         "step_2_body": "",
         "step_3_title": "Get back to work",
-        "step_3_body": ""
+        "step_3_body": "",
+        "compat_warning": "",
+        "contact_email": "hello@deskpaws.com",
+        "contact_label": "Email us before you order."
       }
     },
     "why_different": {
       "type": "s8-comparison",
       "name": "Why It's Different",
-      "settings": {}
+      "settings": {
+        "eyebrow": "Why this works when nothing else did",
+        "heading": "You've probably tried the alternatives.",
+        "subhead": "",
+        "alt_1_name": "A bed on the floor",
+        "alt_1_result": "",
+        "alt_2_name": "Your lap",
+        "alt_2_result": "",
+        "alt_3_name": "Moving them off, again",
+        "alt_3_result": "",
+        "alt_4_name": "A keyboard cover",
+        "alt_4_result": "",
+        "alt_5_result": "",
+        "cta_copy": "",
+        "cta_label": "Give Them Their Spot — $79",
+        "cta_url": ""
+      }
     },
     "reviews": {
       "type": "s7-reviews",
@@ -123,16 +172,24 @@
         "stat_meta": "From our customers",
         "review_1": "",
         "review_1_author": "Sarah M. & Biscuit",
+        "review_1_tag": "Claimed in 1 hour",
         "review_2": "",
         "review_2_author": "Rachel T. & Chairman Floof",
+        "review_2_tag": "Large cat owner",
         "review_3": "",
         "review_3_author": "Jamie L. — gift buyer",
+        "review_3_tag": "Gift buyer",
         "review_4": "",
         "review_4_author": "Priya K. & Mango",
+        "review_4_tag": "Work from home",
         "review_5": "",
         "review_5_author": "Leah R. & Duchess",
+        "review_5_tag": "Claimed overnight",
         "review_6": "",
         "review_6_author": "Dana W. & Gnocchi",
+        "review_6_tag": "Washable liner",
+        "cta_closing": "",
+        "cta_heading": "Your desk. Their spot. Everyone wins.",
         "cta_label": "Give Them Their Spot",
         "cta_url": ""
       }
