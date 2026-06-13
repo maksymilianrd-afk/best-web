@@ -56,59 +56,7 @@
         <span class="tp__fw tp__fw--4 reveal" style="--reveal-delay:.76s">{{ bare }}</span>
         <span class="tp__fw tp__fw--5 reveal" style="--reveal-delay:.88s">{{ bare }}</span>
         <span class="tp__fw tp__fw--6 reveal" style="--reveal-delay:1s">{{ bare }}</span>
-      </span>
-    </div>
-
-  </div>
-
-  <div class="tp__body">
-
-    <span class="tp__note tp__note--1 reveal" aria-hidden="true">{{ micro_1 }}</span>
-    <span class="tp__note tp__note--2 reveal" aria-hidden="true">{{ micro_2 }}</span>
-
-    <div class="tp__story">
-
-      <p class="tp__eyebrow reveal">{{ eyebrow }}</p>
-
-      <p class="tp__line tp__line--open reveal">{{ line_open }}</p>
-
-      <p class="tp__call tp__call--1 reveal">{{ word }}</p>
-      <p class="tp__call tp__call--2 reveal" style="--reveal-delay:.14s">{{ word }} {{ word }}</p>
-      <p class="tp__call tp__call--3 reveal" style="--reveal-delay:.28s">{{ word }} {{ word }} {{ word }}</p>
-
-      <p class="tp__line reveal">{{ line_why_1 }}</p>
-      <p class="tp__want reveal" style="--reveal-delay:.12s">{{ line_why_2 }}</p>
-
-      {%- assign wh1_words = line_wh_1 | split: ' ' -%}
-      <p class="tp__line tp__line--w1 reveal">
-        {%- for w in wh1_words -%}
-          {%- if forloop.last -%}
-            {%- assign w_size = w | size -%}
-            {%- assign w_max = w_size | minus: 1 -%}
-            <span class="tp__scatter">{% for i in (0..w_max) %}<span>{{ w | slice: i, 1 }}</span>{% endfor %}</span>
-          {%- else -%}
-            {{ w }}
-          {% endif -%}
-        {%- endfor -%}
-      </p>
-      <p class="tp__line tp__line--w2 reveal" style="--reveal-delay:.1s">{{ line_wh_2 }}</p>
-      <p class="tp__line tp__line--w3 reveal" style="--reveal-delay:.2s">{{ line_wh_3 }}</p>
-
-      <p class="tp__line tp__line--move reveal">{{ line_move }}</p>
-      <p class="tp__again reveal" style="--reveal-delay:.3s">{{ micro_again }}</p>
-
-      <p class="tp__love reveal">{{ line_love }}</p>
-
-      <p class="tp__line tp__line--end reveal" style="--reveal-delay:.25s">{{ line_end | replace: '9am', '<em>9am</em>' }}</p>
-
-      <p class="tp__close reveal">{{ line_close }}</p>
-
-    </div>
-
-  </div>
-
-  {%- comment -%} The calls land — letters rain down and pile up {%- endcomment -%}
-  <div class="tp__pile reveal" aria-hidden="true">
+        <span class="tp__pile reveal" aria-hidden="true">
     <span class="tp__fl reveal" style="--px:56%;--pt:0%;--ps:0.62;--pr:94deg;--po:0.58;--reveal-delay:0.15s">{{ bare | slice: 0, 1 }}</span>
     <span class="tp__fl reveal" style="--px:46%;--pt:10%;--ps:0.56;--pr:103deg;--po:0.32;--reveal-delay:0.24s">{{ bare | slice: 1, 1 }}</span>
     <span class="tp__fl reveal" style="--px:58%;--pt:22%;--ps:0.52;--pr:110deg;--po:0.52;--reveal-delay:0.33s">{{ bare | slice: 2, 1 }}</span>
@@ -209,7 +157,58 @@
     <span class="tp__pl" style="--px:66.6%;--pb:0.24;--ps:0.90;--pr:-99deg;--po:0.39">{{ bare | slice: 2, 1 }}</span>
     <span class="tp__pl" style="--px:24%;--pb:0.7;--ps:.42;--pr:-16deg;--po:.9">{{ bare }}</span>
     <span class="tp__pl" style="--px:66%;--pb:0.4;--ps:.46;--pr:13deg;--po:.93">{{ bare2 }}</span>
+        </span>
+      </span>
+    </div>
+
   </div>
+
+  <div class="tp__body">
+
+    <span class="tp__note tp__note--1 reveal" aria-hidden="true">{{ micro_1 }}</span>
+    <span class="tp__note tp__note--2 reveal" aria-hidden="true">{{ micro_2 }}</span>
+
+    <div class="tp__story">
+
+      <p class="tp__eyebrow reveal">{{ eyebrow }}</p>
+
+      <p class="tp__line tp__line--open reveal">{{ line_open }}</p>
+
+      <p class="tp__call tp__call--1 reveal">{{ word }}</p>
+      <p class="tp__call tp__call--2 reveal" style="--reveal-delay:.14s">{{ word }} {{ word }}</p>
+      <p class="tp__call tp__call--3 reveal" style="--reveal-delay:.28s">{{ word }} {{ word }} {{ word }}</p>
+
+      <p class="tp__line reveal">{{ line_why_1 }}</p>
+      <p class="tp__want reveal" style="--reveal-delay:.12s">{{ line_why_2 }}</p>
+
+      {%- assign wh1_words = line_wh_1 | split: ' ' -%}
+      <p class="tp__line tp__line--w1 reveal">
+        {%- for w in wh1_words -%}
+          {%- if forloop.last -%}
+            {%- assign w_size = w | size -%}
+            {%- assign w_max = w_size | minus: 1 -%}
+            <span class="tp__scatter">{% for i in (0..w_max) %}<span>{{ w | slice: i, 1 }}</span>{% endfor %}</span>
+          {%- else -%}
+            {{ w }}
+          {% endif -%}
+        {%- endfor -%}
+      </p>
+      <p class="tp__line tp__line--w2 reveal" style="--reveal-delay:.1s">{{ line_wh_2 }}</p>
+      <p class="tp__line tp__line--w3 reveal" style="--reveal-delay:.2s">{{ line_wh_3 }}</p>
+
+      <p class="tp__line tp__line--move reveal">{{ line_move }}</p>
+      <p class="tp__again reveal" style="--reveal-delay:.3s">{{ micro_again }}</p>
+
+      <p class="tp__love reveal">{{ line_love }}</p>
+
+      <p class="tp__line tp__line--end reveal" style="--reveal-delay:.25s">{{ line_end | replace: '9am', '<em>9am</em>' }}</p>
+
+      <p class="tp__close reveal">{{ line_close }}</p>
+
+    </div>
+
+  </div>
+
 
 </section>
 
