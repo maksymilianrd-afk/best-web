@@ -1,75 +1,85 @@
-<section class="benefits-section" id="benefits">
+<section class="bf" id="benefits">
 
-  <div class="bn-rule" aria-hidden="true"></div>
+  <div class="bf__inner">
 
-  <div class="bn-head">
-    <div class="bn-head__lead">
-      <span class="bn-eyebrow reveal">{{ section.settings.eyebrow | default: "Why it works" }}</span>
-      <h2 class="bn-heading reveal" style="--reveal-delay:.06s">{{ section.settings.heading | default: "Closeness, without the chaos." }}</h2>
-    </div>
-    <p class="bn-intro reveal" style="--reveal-delay:.12s">{{ section.settings.intro | default: "Every part of DeskPaws does one quiet job — keep your cat happily beside you, while your desk stays entirely yours." }}</p>
+    <aside class="bf__aside">
+      <span class="bf__eyebrow reveal">{{ section.settings.eyebrow | default: "Why it works" }}</span>
+      <h2 class="bf__heading reveal" style="--reveal-delay:.06s">{{ section.settings.heading | default: "Closeness, without the chaos." }}</h2>
+      <p class="bf__intro reveal" style="--reveal-delay:.12s">{{ section.settings.intro | default: "Every part of DeskPaws does one quiet job — keep your cat happily beside you, while your desk stays entirely yours." }}</p>
+
+      <div class="bf__meter reveal" style="--reveal-delay:.18s" aria-hidden="true">
+        <span class="bf__idx"><span class="bf__idx-now">01</span><span class="bf__idx-total">&thinsp;/&thinsp;06</span></span>
+        <span class="bf__track"><span class="bf__track-fill"></span></span>
+      </div>
+
+      <a href="{{ section.settings.cta_url | default: '/products/desk-paws-place-for-your-cat-co-worker' }}" class="btn-benefits-cta bf__cta reveal" style="--reveal-delay:.24s" data-buy-drawer>
+        {{ section.settings.cta_label | default: "Give Them Their Spot &rarr;" }}
+      </a>
+    </aside>
+
+    <ol class="bf__list">
+
+      <li class="bf__item">
+        <span class="bf__item-num" aria-hidden="true">01</span>
+        <div class="bf__item-main">
+          <span class="bf__item-tag">{{ section.settings.card_1_tag | default: "Desk-edge clamp" }}</span>
+          <h3 class="bf__item-title">{{ section.settings.card_1_title | default: "Right beside you." }}</h3>
+          <p class="bf__item-body">{{ section.settings.card_1_body | default: "They settle in at your elbow — close enough to pet, never on the keys." }}</p>
+        </div>
+      </li>
+
+      <li class="bf__item">
+        <span class="bf__item-num" aria-hidden="true">02</span>
+        <div class="bf__item-main">
+          <span class="bf__item-tag">{{ section.settings.card_2_tag | default: "Keyboard, cleared" }}</span>
+          <h3 class="bf__item-title">{{ section.settings.card_2_title | default: "Your desk stays yours." }}</h3>
+          <p class="bf__item-body">{{ section.settings.card_2_body | default: "Keys, notes, and mouse stay clear. Their spot is the nest — not your workspace." }}</p>
+        </div>
+      </li>
+
+      <li class="bf__item">
+        <span class="bf__item-num" aria-hidden="true">03</span>
+        <div class="bf__item-main">
+          <span class="bf__item-tag">{{ section.settings.card_3_tag | default: "Deep sherpa nest" }}</span>
+          <h3 class="bf__item-title">{{ section.settings.card_3_title | default: "A spot they choose." }}</h3>
+          <p class="bf__item-body">{{ section.settings.card_3_body | default: "Walled on three sides and soft all over — most cats claim it without any convincing." }}</p>
+        </div>
+      </li>
+
+      <li class="bf__item">
+        <span class="bf__item-num" aria-hidden="true">04</span>
+        <div class="bf__item-main">
+          <span class="bf__item-tag">{{ section.settings.card_4_tag | default: "Eye-level perch" }}</span>
+          <h3 class="bf__item-title">{{ section.settings.card_4_title | default: "Less guilt, fewer goodbyes." }}</h3>
+          <p class="bf__item-body">{{ section.settings.card_4_body | default: "No more shutting the door. They stay close and content while you actually focus." }}</p>
+        </div>
+      </li>
+
+      <li class="bf__item">
+        <span class="bf__item-num" aria-hidden="true">05</span>
+        <div class="bf__item-main">
+          <span class="bf__item-tag">{{ section.settings.card_5_tag | default: "60-second setup" }}</span>
+          <h3 class="bf__item-title">{{ section.settings.card_5_title | default: "On in a minute, no tools." }}</h3>
+          <p class="bf__item-body">{{ section.settings.card_5_body | default: "It hand-tightens onto most desk edges and holds firm. Move it whenever you like." }}</p>
+        </div>
+      </li>
+
+      <li class="bf__item">
+        <span class="bf__item-num" aria-hidden="true">06</span>
+        <div class="bf__item-main">
+          <span class="bf__item-tag">{{ section.settings.card_6_tag | default: "Quiet by design" }}</span>
+          <h3 class="bf__item-title">{{ section.settings.card_6_title | default: "It looks like it belongs." }}</h3>
+          <p class="bf__item-body">{{ section.settings.card_6_body | default: "Warm materials and clean lines made for a real home office — not a plastic gadget." }}</p>
+        </div>
+      </li>
+
+    </ol>
+
   </div>
 
-  <div class="bn-grid">
-
-    {%- assign tags = "card_1_tag,card_2_tag,card_3_tag,card_4_tag,card_5_tag,card_6_tag" | split: "," -%}
-
-    <article class="bn-card reveal">
-      <span class="bn-card__num" aria-hidden="true">01</span>
-      <span class="bn-card__tag">{{ section.settings.card_1_tag | default: "Desk-edge clamp" }}</span>
-      <span class="bn-card__line" aria-hidden="true"></span>
-      <h3 class="bn-card__title"><span class="bn-card__title-i">{{ section.settings.card_1_title | default: "Right beside you." }}</span></h3>
-      <p class="bn-card__body">{{ section.settings.card_1_body | default: "They settle in at your elbow — close enough to pet, never on the keys." }}</p>
-    </article>
-
-    <article class="bn-card reveal">
-      <span class="bn-card__num" aria-hidden="true">02</span>
-      <span class="bn-card__tag">{{ section.settings.card_2_tag | default: "Keyboard, cleared" }}</span>
-      <span class="bn-card__line" aria-hidden="true"></span>
-      <h3 class="bn-card__title"><span class="bn-card__title-i">{{ section.settings.card_2_title | default: "Your desk stays yours." }}</span></h3>
-      <p class="bn-card__body">{{ section.settings.card_2_body | default: "Keys, notes, and mouse stay clear. Their spot is the nest — not your workspace." }}</p>
-    </article>
-
-    <article class="bn-card reveal">
-      <span class="bn-card__num" aria-hidden="true">03</span>
-      <span class="bn-card__tag">{{ section.settings.card_3_tag | default: "Deep sherpa nest" }}</span>
-      <span class="bn-card__line" aria-hidden="true"></span>
-      <h3 class="bn-card__title"><span class="bn-card__title-i">{{ section.settings.card_3_title | default: "A spot they choose." }}</span></h3>
-      <p class="bn-card__body">{{ section.settings.card_3_body | default: "Walled on three sides and soft all over — most cats claim it without any convincing." }}</p>
-    </article>
-
-    <article class="bn-card reveal">
-      <span class="bn-card__num" aria-hidden="true">04</span>
-      <span class="bn-card__tag">{{ section.settings.card_4_tag | default: "Eye-level perch" }}</span>
-      <span class="bn-card__line" aria-hidden="true"></span>
-      <h3 class="bn-card__title"><span class="bn-card__title-i">{{ section.settings.card_4_title | default: "Less guilt, fewer goodbyes." }}</span></h3>
-      <p class="bn-card__body">{{ section.settings.card_4_body | default: "No more shutting the door. They stay close and content while you actually focus." }}</p>
-    </article>
-
-    <article class="bn-card reveal">
-      <span class="bn-card__num" aria-hidden="true">05</span>
-      <span class="bn-card__tag">{{ section.settings.card_5_tag | default: "60-second setup" }}</span>
-      <span class="bn-card__line" aria-hidden="true"></span>
-      <h3 class="bn-card__title"><span class="bn-card__title-i">{{ section.settings.card_5_title | default: "On in a minute, no tools." }}</span></h3>
-      <p class="bn-card__body">{{ section.settings.card_5_body | default: "It hand-tightens onto most desk edges and holds firm. Move it whenever you like." }}</p>
-    </article>
-
-    <article class="bn-card reveal">
-      <span class="bn-card__num" aria-hidden="true">06</span>
-      <span class="bn-card__tag">{{ section.settings.card_6_tag | default: "Quiet by design" }}</span>
-      <span class="bn-card__line" aria-hidden="true"></span>
-      <h3 class="bn-card__title"><span class="bn-card__title-i">{{ section.settings.card_6_title | default: "It looks like it belongs." }}</span></h3>
-      <p class="bn-card__body">{{ section.settings.card_6_body | default: "Warm materials and clean lines made for a real home office — not a plastic gadget." }}</p>
-    </article>
-
-  </div>
-
-  <div class="benefits-bottom reveal">
-    <p class="benefits-bottom-copy">{{ section.settings.cta_copy | default: "&ldquo;Now I have to remind myself to pet her — because she&rsquo;s not on my keyboard.&rdquo;" }}</p>
-    <a href="{{ section.settings.cta_url | default: '/products/desk-paws-place-for-your-cat-co-worker' }}" class="btn-benefits-cta" data-buy-drawer>
-      {{ section.settings.cta_label | default: "Give Them Their Spot &rarr;" }}
-    </a>
-  </div>
+  {%- if section.settings.cta_copy != blank -%}
+    <p class="bf__quote reveal">{{ section.settings.cta_copy }}</p>
+  {%- endif -%}
 
 </section>
 
@@ -81,31 +91,31 @@
     { "type": "text",     "id": "eyebrow", "label": "Eyebrow",  "default": "Why it works" },
     { "type": "text",     "id": "heading", "label": "Heading",  "default": "Closeness, without the chaos." },
     { "type": "textarea", "id": "intro",   "label": "Intro",    "default": "Every part of DeskPaws does one quiet job — keep your cat happily beside you, while your desk stays entirely yours." },
-    { "type": "header",   "content": "Card 1 — tag is the feature, title is the outcome" },
+    { "type": "header",   "content": "Item 1 — tag is the feature, title is the outcome" },
     { "type": "text",     "id": "card_1_tag",   "label": "Feature tag", "default": "Desk-edge clamp" },
     { "type": "text",     "id": "card_1_title", "label": "Benefit title", "default": "Right beside you." },
     { "type": "textarea", "id": "card_1_body",  "label": "Body" },
-    { "type": "header",   "content": "Card 2" },
+    { "type": "header",   "content": "Item 2" },
     { "type": "text",     "id": "card_2_tag",   "label": "Feature tag", "default": "Keyboard, cleared" },
     { "type": "text",     "id": "card_2_title", "label": "Benefit title", "default": "Your desk stays yours." },
     { "type": "textarea", "id": "card_2_body",  "label": "Body" },
-    { "type": "header",   "content": "Card 3" },
+    { "type": "header",   "content": "Item 3" },
     { "type": "text",     "id": "card_3_tag",   "label": "Feature tag", "default": "Deep sherpa nest" },
     { "type": "text",     "id": "card_3_title", "label": "Benefit title", "default": "A spot they choose." },
     { "type": "textarea", "id": "card_3_body",  "label": "Body" },
-    { "type": "header",   "content": "Card 4" },
+    { "type": "header",   "content": "Item 4" },
     { "type": "text",     "id": "card_4_tag",   "label": "Feature tag", "default": "Eye-level perch" },
     { "type": "text",     "id": "card_4_title", "label": "Benefit title", "default": "Less guilt, fewer goodbyes." },
     { "type": "textarea", "id": "card_4_body",  "label": "Body" },
-    { "type": "header",   "content": "Card 5" },
+    { "type": "header",   "content": "Item 5" },
     { "type": "text",     "id": "card_5_tag",   "label": "Feature tag", "default": "60-second setup" },
     { "type": "text",     "id": "card_5_title", "label": "Benefit title", "default": "On in a minute, no tools." },
     { "type": "textarea", "id": "card_5_body",  "label": "Body" },
-    { "type": "header",   "content": "Card 6" },
+    { "type": "header",   "content": "Item 6" },
     { "type": "text",     "id": "card_6_tag",   "label": "Feature tag", "default": "Quiet by design" },
     { "type": "text",     "id": "card_6_title", "label": "Benefit title", "default": "It looks like it belongs." },
     { "type": "textarea", "id": "card_6_body",  "label": "Body" },
-    { "type": "header",   "content": "Bottom strip" },
+    { "type": "header",   "content": "Closing line" },
     { "type": "textarea", "id": "cta_copy",  "label": "Italic quote", "default": "\"Now I have to remind myself to pet her — because she's not on my keyboard.\"" },
     { "type": "text",     "id": "cta_label", "label": "Button text",  "default": "Give Them Their Spot →" },
     { "type": "url",      "id": "cta_url",   "label": "Button link" }

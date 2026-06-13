@@ -194,6 +194,40 @@
     });
   })();
 
+  /* ── Benefits: scroll-focus storytelling ───────────────── */
+  (function () {
+    var section = document.getElementById('benefits');
+    if (!section) return;
+    var items = Array.prototype.slice.call(section.querySelectorAll('.bf__item'));
+    if (!items.length) return;
+
+    var idxEl  = section.querySelector('.bf__idx-now');
+    var fillEl = section.querySelector('.bf__track-fill');
+    section.classList.add('bf--js');
+
+    var current = -1;
+    function setActive(i) {
+      if (i === current) return;
+      current = i;
+      items.forEach(function (it, j) { it.classList.toggle('is-active', j === i); });
+      if (idxEl)  idxEl.textContent = ('0' + (i + 1)).slice(-2);
+      if (fillEl) fillEl.style.transform = 'scaleX(' + ((i + 1) / items.length) + ')';
+    }
+
+    // The item crossing the centre 12% band of the viewport becomes active.
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          var i = items.indexOf(e.target);
+          if (i >= 0) setActive(i);
+        }
+      });
+    }, { rootMargin: '-44% 0px -44% 0px', threshold: 0 });
+
+    items.forEach(function (it) { io.observe(it); });
+    setActive(0);
+  })();
+
   /* ── Smooth scroll for anchor links ────────────────────── */
   document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach((link) => {
     link.addEventListener('click', (e) => {
@@ -239,7 +273,6 @@
     markList('.steps-list li', 0.1);
     markList('.review-item', 0.1);
     markList('.spec-row', 0.07);
-    markList('.bn-card', 0.07);
     markList('.review-card', 0.08);
     markList('.comparison-table tbody tr', 0.06);
     markList('.cwr-reason', 0.1);
@@ -249,7 +282,7 @@
     [
       '.pull-quote', '.stat-bar', '.price-row', '.guarantee-strip',
       '.product-section__cta', '.buy-block', '.tip-callout',
-      '.benefits-top-rule', '.benefits-section-label', '.benefits-bottom',
+      '.bf__eyebrow', '.bf__heading', '.bf__intro', '.bf__meter', '.bf__cta', '.bf__quote',
       '.reviews-section__header',
       '.comparison-section__header', '.reviews-cta', '.comparison-cta',
       '.guarantee-hero', '.big-image__content', '.cat-wall__left', '.cwr-hdl', '.cwr-body',
