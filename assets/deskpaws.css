@@ -2925,84 +2925,179 @@ a, button, label, [role="button"] { touch-action: manipulation; }
    BENEFIT COLUMNS  (Section 3)
 ═══════════════════════════════════════════════════════════ */
 .benefits-section {
-  background: #faf8f5;
-  padding: clamp(4rem, 6vw, 5.5rem) clamp(3rem, 7vw, 7rem) clamp(4rem, 6vw, 5.5rem);
+  background: var(--color-cream);
+  padding: clamp(4.5rem, 7vw, 7rem) clamp(1.5rem, 7vw, 7rem);
 }
 
-.benefits-top-rule {
+.bn-rule {
+  background: #d8cdbd;
+  height: 1px;
+  margin-bottom: clamp(2.5rem, 4vw, 3.75rem);
   width: 100%;
-  height: 0.5px;
-  background: #c9b9a8;
-  margin-bottom: 3.5rem;
 }
 
-.benefits-section-label {
-  font-family: var(--font-sans);
-  font-size: 0.625rem;
-  font-weight: 400;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: #8a7a6a;
-  margin-bottom: 3rem;
-  display: block;
-}
-
-.benefits-grid {
+/* ── Header — editorial two-column ──────────────────────── */
+.bn-head {
+  align-items: end;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  row-gap: 3rem;
+  gap: clamp(1.25rem, 4vw, 3rem);
+  grid-template-columns: 1.2fr 1fr;
+  margin-bottom: clamp(3rem, 5vw, 4.5rem);
 }
 
-.benefit-col {
-  border-right: 0.5px solid #c9b9a8;
-  margin-right: 2.5rem;
-  padding-right: 2.5rem;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.benefit-col:hover { transform: translateY(-4px); }
-
-.benefit-col:hover .benefit-num { color: var(--color-gold); }
-
-@media (prefers-reduced-motion: reduce) {
-  .benefit-col, .benefit-col:hover { transform: none; }
-}
-
-.benefit-col:nth-child(3n) {
-  border-right: none;
-  padding-right: 0;
-  margin-right: 0;
-}
-
-.benefit-num {
+.bn-eyebrow {
+  color: #8a7a6a;
+  display: block;
   font-family: var(--font-sans);
   font-size: 0.625rem;
-  font-weight: 400;
-  letter-spacing: 0.18em;
-  color: #a09080;
+  font-weight: 600;
+  letter-spacing: 0.22em;
   margin-bottom: 1.25rem;
-  transition: color 0.35s ease;
-  display: block;
+  text-transform: uppercase;
 }
 
-.benefit-title {
-  font-family: var(--font-serif);
-  font-size: 1.375rem;
-  font-weight: 400;
-  line-height: 1.25;
+.bn-heading {
   color: #2d2620;
-  margin: 0 0 1rem;
-  letter-spacing: -0.01em;
+  font-family: var(--font-serif);
+  font-size: clamp(2.125rem, 3.6vw, 3.25rem);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  margin: 0;
+  max-width: 16ch;
 }
 
-.benefit-body {
+.bn-intro {
+  color: #7a6a5e;
+  font-family: var(--font-sans);
+  font-size: clamp(0.9375rem, 1.1vw, 1.0625rem);
+  line-height: 1.8;
+  margin: 0 0 0.4rem;
+  max-width: 42ch;
+}
+
+/* ── Card grid ──────────────────────────────────────────── */
+.bn-grid {
+  display: grid;
+  gap: clamp(0.75rem, 1.4vw, 1.25rem);
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.bn-card {
+  border: 1px solid transparent;
+  border-bottom: 1px solid #e7ded1;
+  border-radius: 18px;
+  overflow: hidden;
+  padding: clamp(1.75rem, 2.5vw, 2.5rem) clamp(1.5rem, 2vw, 2rem) clamp(2rem, 3vw, 2.75rem);
+  position: relative;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease;
+}
+
+/* Reveal uses the `translate` property so `transform` stays free for hover */
+.bn-card.reveal { opacity: 0; }
+.bn-card.reveal.in {
+  animation: bnCardIn 0.75s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0s) both;
+}
+@keyframes bnCardIn {
+  from { opacity: 0; translate: 0 22px; }
+  to   { opacity: 1; translate: 0 0; }
+}
+
+.bn-card:hover {
+  background: var(--color-sand);
+  border-color: rgba(44, 26, 17, 0.08);
+  box-shadow: 0 24px 48px -28px rgba(44, 26, 17, 0.42);
+  transform: translateY(-6px);
+}
+
+.bn-card__num {
+  color: #ece3d5;
+  font-family: var(--font-serif);
+  font-size: clamp(2.75rem, 5vw, 4.25rem);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  pointer-events: none;
+  position: absolute;
+  right: clamp(1rem, 2vw, 1.5rem);
+  top: clamp(0.75rem, 1.5vw, 1.25rem);
+  transition: color 0.45s ease;
+  z-index: 0;
+}
+.bn-card:hover .bn-card__num { color: rgba(200, 116, 79, 0.22); }
+
+.bn-card__tag {
+  color: var(--color-gold);
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  margin-bottom: 1rem;
+  position: relative;
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+/* The accent line draws out on reveal, extends on hover */
+.bn-card__line {
+  background: var(--color-gold);
+  border-radius: 2px;
+  display: block;
+  height: 2px;
+  margin-bottom: 1.25rem;
+  position: relative;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: width 0.45s ease;
+  width: 28px;
+  z-index: 1;
+}
+.bn-card.in .bn-card__line {
+  animation: bnLine 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--reveal-delay, 0s) + 0.2s);
+}
+@keyframes bnLine { to { transform: scaleX(1); } }
+.bn-card:hover .bn-card__line { width: 44px; }
+
+.bn-card__title {
+  color: #2d2620;
+  font-family: var(--font-serif);
+  font-size: clamp(1.375rem, 1.8vw, 1.625rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin: 0 0 0.875rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Benefit headline wipes in like ink being laid down */
+.bn-card__title-i {
+  clip-path: inset(0 110% 0 0);
+  display: inline-block;
+}
+.bn-card.in .bn-card__title-i {
+  animation: bnWipe 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--reveal-delay, 0s) + 0.14s);
+}
+@keyframes bnWipe { to { clip-path: inset(0 0 0 0); } }
+
+.bn-card__body {
+  color: #6a5c50;
   font-family: var(--font-sans);
   font-size: 0.9375rem;
-  font-weight: 400;
-  line-height: 1.85;
-  color: #6a5c50;
+  line-height: 1.8;
   margin: 0;
+  max-width: 30ch;
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bn-card, .bn-card:hover { transform: none; }
+  .bn-card__title-i { animation: none; clip-path: none; }
+  .bn-card__line { animation: none; transform: scaleX(1); }
 }
 
 .benefits-bottom {
@@ -3625,41 +3720,12 @@ a, button, label, [role="button"] { touch-action: manipulation; }
 
 /* ─── New components responsive ───────────────────────────── */
 @media (max-width: 1024px) {
-  .benefits-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .benefit-col:nth-child(3n) {
-    border-right: 0.5px solid #c9b9a8;
-    padding-right: 2.5rem;
-    margin-right: 2.5rem;
-  }
-  .benefit-col:nth-child(2n) {
-    border-right: none;
-    padding-right: 0;
-    margin-right: 0;
-  }
+  .bn-grid { grid-template-columns: repeat(2, 1fr); }
+  .bn-head { grid-template-columns: 1fr; }
 }
 @media (max-width: 767px) {
-  .benefits-section {
-    padding-inline: 1.5rem;
-  }
-  .benefits-grid {
-    grid-template-columns: 1fr;
-    row-gap: 2rem;
-  }
-  .benefit-col,
-  .benefit-col:nth-child(3n),
-  .benefit-col:nth-child(2n) {
-    border-right: none;
-    padding-right: 0;
-    margin-right: 0;
-    padding-bottom: 2rem;
-    border-bottom: 0.5px solid #c9b9a8;
-  }
-  .benefit-col:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-  }
+  .benefits-section { padding-inline: 1.5rem; }
+  .bn-grid { grid-template-columns: 1fr; }
   .benefits-bottom {
     flex-direction: column;
     align-items: flex-start;

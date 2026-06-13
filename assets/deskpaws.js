@@ -239,7 +239,7 @@
     markList('.steps-list li', 0.1);
     markList('.review-item', 0.1);
     markList('.spec-row', 0.07);
-    markList('.benefit-col', 0.08);
+    markList('.bn-card', 0.07);
     markList('.review-card', 0.08);
     markList('.comparison-table tbody tr', 0.06);
     markList('.cwr-reason', 0.1);
