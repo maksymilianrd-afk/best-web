@@ -228,6 +228,35 @@
     setActive(0);
   })();
 
+  /* ── Claimed Spots Wall: cursor-tilt depth ─────────────── */
+  (function () {
+    if (!window.matchMedia) return;
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var cards = document.querySelectorAll('.cw__card');
+    if (!cards.length) return;
+    var MAX = 6; // degrees
+
+    cards.forEach(function (card) {
+      var raf = null, rx = 0, ry = 0;
+      function apply() {
+        card.style.transform =
+          'perspective(900px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) translateY(-8px)';
+        raf = null;
+      }
+      card.addEventListener('mousemove', function (e) {
+        var r = card.getBoundingClientRect();
+        ry = ((e.clientX - r.left) / r.width - 0.5) * MAX * 2;
+        rx = -((e.clientY - r.top) / r.height - 0.5) * MAX * 2;
+        if (!raf) raf = requestAnimationFrame(apply);
+      });
+      card.addEventListener('mouseleave', function () {
+        if (raf) { cancelAnimationFrame(raf); raf = null; }
+        card.style.transform = '';
+      });
+    });
+  })();
+
   /* ── Smooth scroll for anchor links ────────────────────── */
   document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach((link) => {
     link.addEventListener('click', (e) => {

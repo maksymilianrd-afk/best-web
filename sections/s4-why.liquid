@@ -16,10 +16,18 @@
 
   {%- if section.blocks.size > 0 -%}
 
-    <div class="cw__meta reveal" style="--reveal-delay:.16s">
-      <span class="cw__meta-label">{{ section.settings.registry_label | default: "The DeskPaws Registry" }}</span>
-      <span class="cw__meta-line" aria-hidden="true"></span>
-      <span class="cw__meta-count">{{ section.blocks.size }} claimed</span>
+    <div class="cw__registry reveal" style="--reveal-delay:.16s">
+      <span class="cw__registry-label">{{ section.settings.registry_label | default: "The DeskPaws Registry" }}</span>
+      <div class="cw__ticker" aria-hidden="true">
+        <div class="cw__ticker-track">
+          {%- for i in (1..2) -%}
+            {%- for block in section.blocks -%}
+              <span class="cw__ticker-item">{{ block.settings.name | default: "Cat" }}{%- if block.settings.role != blank -%}<em> — {{ block.settings.role }}</em>{%- endif -%}</span>
+              <span class="cw__ticker-sep">&#10022;</span>
+            {%- endfor -%}
+          {%- endfor -%}
+        </div>
+      </div>
     </div>
 
     <div class="cw__wall reveal">

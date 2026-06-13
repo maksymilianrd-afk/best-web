@@ -2463,20 +2463,49 @@ a, button, label, [role="button"] { touch-action: manipulation; }
   max-width: 40ch;
 }
 
-/* ── Registry meta line ─────────────────────────────────── */
-.cw__meta {
+/* ── Registry ticker — a living members list ────────────── */
+.cw__registry {
   align-items: center;
-  color: #9a8a7a;
   display: flex;
+  gap: clamp(1rem, 2vw, 2rem);
+  margin: 0 auto clamp(1.75rem, 2.5vw, 2.5rem);
+  max-width: 1320px;
+}
+.cw__registry-label {
+  color: #8a7a6a;
+  flex-shrink: 0;
   font-family: var(--font-sans);
   font-size: 0.625rem;
-  gap: 1rem;
+  font-weight: 600;
   letter-spacing: 0.22em;
-  margin: 0 auto clamp(1.5rem, 2.5vw, 2.25rem);
-  max-width: 1320px;
   text-transform: uppercase;
 }
-.cw__meta-line { background: #d8cdbd; flex: 1; height: 1px; }
+.cw__ticker {
+  flex: 1;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  overflow: hidden;
+}
+.cw__ticker-track {
+  align-items: center;
+  animation: cwTicker 42s linear infinite;
+  display: flex;
+  gap: 1.25rem;
+  width: max-content;
+}
+.cw__ticker:hover .cw__ticker-track { animation-play-state: paused; }
+@keyframes cwTicker { to { transform: translateX(-50%); } }
+.cw__ticker-item {
+  color: #6a5c50;
+  font-family: var(--font-serif);
+  font-size: 0.9375rem;
+  white-space: nowrap;
+}
+.cw__ticker-item em { color: #a89a8a; font-style: italic; }
+.cw__ticker-sep { color: var(--color-gold); font-size: 0.5625rem; }
+@media (prefers-reduced-motion: reduce) {
+  .cw__ticker-track { animation: none; }
+}
 
 /* ── The wall — editorial asymmetric grid ───────────────── */
 .cw__wall {
@@ -2615,9 +2644,13 @@ a, button, label, [role="button"] { touch-action: manipulation; }
 }
 
 .cw__card {
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), z-index 0s;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), filter 0.45s ease, z-index 0s;
 }
 .cw__card:hover { transform: translateY(-8px); z-index: 4; }
+.cw__card:hover .cw__seal { background: rgba(28, 18, 10, 0.3); color: rgba(242, 203, 120, 1); }
+
+/* Spotlight — focusing one cat softly recedes the rest */
+.cw__wall:hover .cw__card:not(:hover) { filter: brightness(0.95) saturate(0.82); }
 
 html.no-js .cw__card, html.no-js .cw__seal { opacity: 1 !important; }
 
