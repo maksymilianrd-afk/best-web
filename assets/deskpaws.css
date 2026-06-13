@@ -3975,8 +3975,9 @@ a, button, label, [role="button"] { touch-action: manipulation; }
     linear-gradient(to bottom, rgb(16 8 3 / 0.045) 0, rgb(16 8 3 / 0) clamp(5.5rem, 9vw, 9rem)),
     #f5f0e8;
   overflow: hidden;
-  /* bottom padding reserves the letter-pile's landing zone */
-  padding-bottom: calc(clamp(2rem, 4vw, 4rem) + 2.6 * var(--tp-row-fs));
+  /* min-height reserves the trail + landing zone, nothing more */
+  min-height: calc(clamp(3.5rem, 6vw, 6.5rem) + 16.5 * var(--tp-row-fs));
+  padding-bottom: clamp(3rem, 5vw, 5rem);
   padding-top: clamp(3.5rem, 6vw, 6.5rem);
   position: relative;
 }
@@ -4063,15 +4064,16 @@ html.no-js .tp .reveal { opacity: 1; }
    so the fall always connects to the mound, whatever the story
    height; the mound itself is fs-sized and sits on the floor. */
 .tp__pile {
-  bottom: clamp(0.75rem, 1.5vw, 1.5rem);
   font-family: var(--font-serif);
-  /* centred under the breakaway: zone midpoint sits at ~69% of the page,
-     matching the reference's full-width drop position */
-  left: calc(69% - 4.5 * var(--tp-row-fs));
+  /* tight, fixed-height zone pinned right under the trail's last word so
+     the rain stays short and the mound lands close to the drop; centred
+     at ~69% of the page like the reference */
+  height: calc(7 * var(--tp-row-fs));
+  left: calc(69% - 5.5 * var(--tp-row-fs));
   pointer-events: none;
   position: absolute;
-  top: calc(clamp(3.5rem, 6vw, 6.5rem) + 11.3 * var(--tp-row-fs));
-  width: calc(9 * var(--tp-row-fs));
+  top: calc(clamp(3.5rem, 6vw, 6.5rem) + 9 * var(--tp-row-fs));
+  width: calc(11 * var(--tp-row-fs));
   z-index: 1;
 }
 
@@ -4234,7 +4236,17 @@ html.no-js .tp .reveal { opacity: 1; }
 .tp__close.reveal.in { animation-duration: 1.1s; }
 
 @media (max-width: 768px) {
-  .tp { --sq: 0.68; }
+  .tp {
+    --sq: 0.68;
+    /* story flows past the zone on phones: pin the pile to the
+       section's foot and reserve its landing room instead */
+    padding-bottom: calc(2.5rem + 3.6 * var(--tp-row-fs));
+  }
+  .tp__pile {
+    bottom: clamp(0.75rem, 1.5vw, 1.5rem);
+    height: calc(7.5 * var(--tp-row-fs));
+    top: auto;
+  }
   .tp__w3 { display: none; }
   .tp__note { display: none; }
   .tp__story { margin-right: var(--container-inset); }
