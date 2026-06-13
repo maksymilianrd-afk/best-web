@@ -1,208 +1,108 @@
-<section class="cat-wall" id="will-my-cat-use-it">
+{%- comment -%}
+  Will My Cat Use It? — "The Claimed Spots Wall"
+  An editorial registry of real cats that assembles itself on scroll.
+  Cats are added as section blocks (photo / name / role / caption).
+{%- endcomment -%}
 
-  <!-- LEFT: photo mosaic -->
-  <div class="cat-wall__left">
+<section class="cw" id="will-my-cat-use-it">
 
-    <div class="cat-wall__mosaic-header">
-      <span class="cwm-title">{{ section.settings.photo_wall_title | default: "Cats who claimed their spot" }}</span>
-      {%- if section.settings.photo_wall_count != blank -%}
-        <span class="cwm-count">{{ section.settings.photo_wall_count }}</span>
-      {%- endif -%}
+  <div class="cw__head">
+    <div class="cw__head-lead reveal">
+      <span class="cw__eyebrow">{{ section.settings.eyebrow | default: "Will they actually use it?" }}</span>
+      <h2 class="cw__title">{{ section.settings.heading | default: "Meet the cats who claimed their spot." }}</h2>
     </div>
-
-    <div class="cat-wall__mosaic">
-
-      {%- assign t1 = section.settings.cat_1_handle | default: "Chief nap officer" -%}
-      <div class="cwt cwt--a">
-        {%- if section.settings.photo_1 -%}
-          {{ section.settings.photo_1 | image_url: width: 600 | image_tag: loading: 'lazy', class: 'cwt__img', alt: section.settings.cat_1_name | default: 'Customer cat photo' }}
-        {%- endif -%}
-        <div class="cwt__overlay">
-          <span class="cwt__name">{{ section.settings.cat_1_name | default: "Luna" }}</span>
-          <span class="cwt__time{% if t1 contains 'min' or t1 contains 'hour' %} cwt__time--fast{% endif %}">{{ t1 }}</span>
-        </div>
-      </div>
-
-      {%- assign t2 = section.settings.cat_2_handle | default: "Meeting supervisor" -%}
-      <div class="cwt cwt--b">
-        {%- if section.settings.photo_2 -%}
-          {{ section.settings.photo_2 | image_url: width: 600 | image_tag: loading: 'lazy', class: 'cwt__img', alt: section.settings.cat_2_name | default: 'Customer cat photo' }}
-        {%- endif -%}
-        <div class="cwt__overlay">
-          <span class="cwt__name">{{ section.settings.cat_2_name | default: "Biscuit" }}</span>
-          <span class="cwt__time{% if t2 contains 'min' or t2 contains 'hour' %} cwt__time--fast{% endif %}">{{ t2 }}</span>
-        </div>
-      </div>
-
-      {%- assign t3 = section.settings.cat_3_handle | default: "Senior loaf" -%}
-      <div class="cwt cwt--c">
-        {%- if section.settings.photo_3 -%}
-          {{ section.settings.photo_3 | image_url: width: 600 | image_tag: loading: 'lazy', class: 'cwt__img', alt: section.settings.cat_3_name | default: 'Customer cat photo' }}
-        {%- endif -%}
-        <div class="cwt__overlay">
-          <span class="cwt__name">{{ section.settings.cat_3_name | default: "Mochi" }}</span>
-          <span class="cwt__time{% if t3 contains 'min' or t3 contains 'hour' %} cwt__time--fast{% endif %}">{{ t3 }}</span>
-        </div>
-      </div>
-
-      {%- assign t4 = section.settings.cat_4_handle | default: "Keyboard — retired" -%}
-      <div class="cwt cwt--d">
-        {%- if section.settings.photo_4 -%}
-          {{ section.settings.photo_4 | image_url: width: 600 | image_tag: loading: 'lazy', class: 'cwt__img', alt: section.settings.cat_4_name | default: 'Customer cat photo' }}
-        {%- endif -%}
-        <div class="cwt__overlay">
-          <span class="cwt__name">{{ section.settings.cat_4_name | default: "Gus" }}</span>
-          <span class="cwt__time{% if t4 contains 'min' or t4 contains 'hour' %} cwt__time--fast{% endif %}">{{ t4 }}</span>
-        </div>
-      </div>
-
-      {%- assign t5 = section.settings.cat_5_handle | default: "Window analyst" -%}
-      <div class="cwt cwt--e">
-        {%- if section.settings.photo_5 -%}
-          {{ section.settings.photo_5 | image_url: width: 600 | image_tag: loading: 'lazy', class: 'cwt__img', alt: section.settings.cat_5_name | default: 'Customer cat photo' }}
-        {%- endif -%}
-        <div class="cwt__overlay">
-          <span class="cwt__name">{{ section.settings.cat_5_name | default: "Oliver" }}</span>
-          <span class="cwt__time{% if t5 contains 'min' or t5 contains 'hour' %} cwt__time--fast{% endif %}">{{ t5 }}</span>
-        </div>
-      </div>
-
-      {%- assign t6 = section.settings.cat_6_handle | default: "Head of morale" -%}
-      <div class="cwt cwt--f">
-        {%- if section.settings.photo_6 -%}
-          {{ section.settings.photo_6 | image_url: width: 600 | image_tag: loading: 'lazy', class: 'cwt__img', alt: section.settings.cat_6_name | default: 'Customer cat photo' }}
-        {%- endif -%}
-        <div class="cwt__overlay">
-          <span class="cwt__name">{{ section.settings.cat_6_name | default: "Noodle" }}</span>
-          <span class="cwt__time{% if t6 contains 'min' or t6 contains 'hour' %} cwt__time--fast{% endif %}">{{ t6 }}</span>
-        </div>
-      </div>
-
-      {%- assign t7 = section.settings.cat_7_handle | default: "Currently on break" -%}
-      <div class="cwt cwt--g">
-        {%- if section.settings.photo_7 -%}
-          {{ section.settings.photo_7 | image_url: width: 600 | image_tag: loading: 'lazy', class: 'cwt__img', alt: section.settings.cat_7_name | default: 'Customer cat photo' }}
-        {%- endif -%}
-        <div class="cwt__overlay">
-          <span class="cwt__name">{{ section.settings.cat_7_name | default: "Pepper" }}</span>
-          <span class="cwt__time{% if t7 contains 'min' or t7 contains 'hour' %} cwt__time--fast{% endif %}">{{ t7 }}</span>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="cat-wall__mosaic-footer">
-      <span class="cwm-dot"></span>
-      <span class="cwm-footer-text">{{ section.settings.photo_wall_note | default: "Every cat settles in their own time — most take a day or two." }}</span>
-    </div>
-
+    <p class="cw__intro reveal" style="--reveal-delay:.1s">{{ section.settings.intro | default: "Cats are drawn to height, warmth, and you — and DeskPaws offers all three: a soft, enclosed nest at desk level, right where they already want to be." }}</p>
   </div>
 
-  <!-- RIGHT: content -->
-  <div class="cat-wall__right">
+  {%- if section.blocks.size > 0 -%}
 
-    <p class="cwr-lbl">{{ section.settings.eyebrow | default: "The question everyone asks" }}</p>
-
-    <h2 class="cwr-hdl">
-      {%- if section.settings.heading != blank -%}
-        {{ section.settings.heading }}
-      {%- else -%}
-        Will my cat<br><em>actually</em> use it?
-      {%- endif -%}
-    </h2>
-
-    <p class="cwr-body">{{ section.settings.body | default: "Most cats claim it within 24 hours. Not because we convinced them — because the shape does the convincing." }}</p>
-
-    <div class="cwr-rule"></div>
-
-    <div class="cwr-reasons">
-
-      <div class="cwr-reason">
-        <span class="cwr-reason__num">01</span>
-        <div>
-          <span class="cwr-reason__title">{{ section.settings.reason_1_title | default: "The bowl shape works with cat psychology" }}</span>
-          <p class="cwr-reason__body">{{ section.settings.reason_1_body | default: "Cats don&rsquo;t want an open flat surface — they want walls around them. The deep nest says &ldquo;this is yours, stay here.&rdquo; They do." }}</p>
-        </div>
-      </div>
-
-      <div class="cwr-reason">
-        <span class="cwr-reason__num">02</span>
-        <div>
-          <span class="cwr-reason__title">{{ section.settings.reason_2_title | default: "It&rsquo;s right where they want to be anyway" }}</span>
-          <p class="cwr-reason__body">{{ section.settings.reason_2_body | default: "They&rsquo;re not going to a floor bed across the room. They want you. DeskPaws gives them your presence and their own space — the exact combination that makes them stay." }}</p>
-        </div>
-      </div>
-
-      <div class="cwr-reason">
-        <span class="cwr-reason__num">03</span>
-        <div>
-          <span class="cwr-reason__title">{{ section.settings.reason_3_title | default: "For the stubborn ones: one pinch of catnip" }}</span>
-          <p class="cwr-reason__body">{{ section.settings.reason_3_body | default: "A warm enclosed nest plus catnip on day one. We&rsquo;ve yet to meet a cat who said no to that combination." }}</p>
-        </div>
-      </div>
-
+    <div class="cw__meta reveal" style="--reveal-delay:.16s">
+      <span class="cw__meta-label">{{ section.settings.registry_label | default: "The DeskPaws Registry" }}</span>
+      <span class="cw__meta-line" aria-hidden="true"></span>
+      <span class="cw__meta-count">{{ section.blocks.size }} claimed</span>
     </div>
 
-    <a href="{{ section.settings.cta_url | default: '/products/desk-paws-place-for-your-cat-co-worker' }}" class="cwr-cta">
-      {{ section.settings.cta_label | default: "Claim Their Spot &rarr;" }}
-    </a>
+    <div class="cw__wall reveal">
+      {%- for block in section.blocks -%}
+        {%- assign cat_name = block.settings.name | default: "Cat" -%}
+        <article class="cw__card" style="--i:{{ forloop.index0 }};--rot:{% cycle 'rot': '-2.5deg','2deg','-1.5deg','2.5deg','-3deg','1.5deg','-2deg','3deg' %}" {{ block.shopify_attributes }}>
+          <div class="cw__frame">
+            {%- if block.settings.image -%}
+              {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', class: 'cw__img', alt: cat_name }}
+            {%- else -%}
+              <span class="cw__mono" aria-hidden="true">{{ cat_name | slice: 0 | upcase }}</span>
+            {%- endif -%}
 
+            <span class="cw__seal" aria-hidden="true">
+              <span class="cw__seal-top">Spot</span>
+              <span class="cw__seal-bot">Claimed</span>
+            </span>
+
+            <div class="cw__plate">
+              <span class="cw__name">{{ cat_name }}</span>
+              {%- if block.settings.role != blank -%}<span class="cw__role">{{ block.settings.role }}</span>{%- endif -%}
+              {%- if block.settings.caption != blank -%}<p class="cw__caption">{{ block.settings.caption }}</p>{%- endif -%}
+            </div>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+
+  {%- else -%}
+    <p class="cw__empty reveal">Add a cat in the theme editor to start the registry.</p>
+  {%- endif -%}
+
+  <div class="cw__foot">
+    {%- if section.settings.tip != blank -%}
+      <p class="cw__tip reveal">{{ section.settings.tip }}</p>
+    {%- endif -%}
+    {%- if section.settings.cta_label != blank -%}
+      <a href="{{ section.settings.cta_url | default: '/products/desk-paws-place-for-your-cat-co-worker' }}" class="btn-benefits-cta cw__cta reveal" data-buy-drawer>
+        {{ section.settings.cta_label }}
+      </a>
+    {%- endif -%}
   </div>
 
 </section>
 
 {% schema %}
 {
-  "name": "4 — Will My Cat Use It?",
+  "name": "4 — Claimed Spots Wall",
   "tag": "section",
+  "max_blocks": 12,
   "settings": [
-    { "type": "header",       "content": "Photo wall" },
-    { "type": "text",         "id": "photo_wall_title", "label": "Wall title",    "default": "Cats who claimed their spot" },
-    { "type": "text",         "id": "photo_wall_count", "label": "Count label (leave blank unless you have a real number)" },
-    { "type": "text",         "id": "photo_wall_note",  "label": "Footer note",   "default": "Every cat settles in their own time — most take a day or two." },
-    { "type": "header",       "content": "Photo 1 (tall left tile)" },
-    { "type": "image_picker", "id": "photo_1",          "label": "Cat photo 1" },
-    { "type": "text",         "id": "cat_1_name",       "label": "Cat name",      "default": "Luna" },
-    { "type": "text",         "id": "cat_1_handle",     "label": "Caption",       "default": "Chief nap officer" },
-    { "type": "header",       "content": "Photo 2 (top centre)" },
-    { "type": "image_picker", "id": "photo_2",          "label": "Cat photo 2" },
-    { "type": "text",         "id": "cat_2_name",       "label": "Cat name",      "default": "Biscuit" },
-    { "type": "text",         "id": "cat_2_handle",     "label": "Caption",       "default": "Meeting supervisor" },
-    { "type": "header",       "content": "Photo 3 (tall right tile)" },
-    { "type": "image_picker", "id": "photo_3",          "label": "Cat photo 3" },
-    { "type": "text",         "id": "cat_3_name",       "label": "Cat name",      "default": "Mochi" },
-    { "type": "text",         "id": "cat_3_handle",     "label": "Caption",       "default": "Senior loaf" },
-    { "type": "header",       "content": "Photo 4 (centre)" },
-    { "type": "image_picker", "id": "photo_4",          "label": "Cat photo 4" },
-    { "type": "text",         "id": "cat_4_name",       "label": "Cat name",      "default": "Gus" },
-    { "type": "text",         "id": "cat_4_handle",     "label": "Caption",       "default": "Keyboard — retired" },
-    { "type": "header",       "content": "Photo 5 (bottom left)" },
-    { "type": "image_picker", "id": "photo_5",          "label": "Cat photo 5" },
-    { "type": "text",         "id": "cat_5_name",       "label": "Cat name",      "default": "Oliver" },
-    { "type": "text",         "id": "cat_5_handle",     "label": "Caption",       "default": "Window analyst" },
-    { "type": "header",       "content": "Photo 6 (bottom centre)" },
-    { "type": "image_picker", "id": "photo_6",          "label": "Cat photo 6" },
-    { "type": "text",         "id": "cat_6_name",       "label": "Cat name",      "default": "Noodle" },
-    { "type": "text",         "id": "cat_6_handle",     "label": "Caption",       "default": "Head of morale" },
-    { "type": "header",       "content": "Photo 7 (bottom right)" },
-    { "type": "image_picker", "id": "photo_7",          "label": "Cat photo 7" },
-    { "type": "text",         "id": "cat_7_name",       "label": "Cat name",      "default": "Pepper" },
-    { "type": "text",         "id": "cat_7_handle",     "label": "Caption",       "default": "Currently on break" },
-    { "type": "header",       "content": "Right column" },
-    { "type": "text",         "id": "eyebrow",          "label": "Eyebrow",       "default": "The question everyone asks" },
-    { "type": "textarea",     "id": "heading",          "label": "Heading (use <em> for italic)" },
-    { "type": "textarea",     "id": "body",             "label": "Body paragraph" },
-    { "type": "header",       "content": "Reasons (01–03)" },
-    { "type": "text",         "id": "reason_1_title",   "label": "Reason 1 title", "default": "The bowl shape works with cat psychology" },
-    { "type": "textarea",     "id": "reason_1_body",    "label": "Reason 1 body" },
-    { "type": "text",         "id": "reason_2_title",   "label": "Reason 2 title", "default": "It's right where they want to be anyway" },
-    { "type": "textarea",     "id": "reason_2_body",    "label": "Reason 2 body" },
-    { "type": "text",         "id": "reason_3_title",   "label": "Reason 3 title", "default": "For the stubborn ones: one pinch of catnip" },
-    { "type": "textarea",     "id": "reason_3_body",    "label": "Reason 3 body" },
-    { "type": "header",       "content": "CTA button" },
-    { "type": "text",         "id": "cta_label",        "label": "Button text",   "default": "Claim Their Spot →" },
-    { "type": "url",          "id": "cta_url",          "label": "Button link" }
+    { "type": "text",     "id": "eyebrow", "label": "Eyebrow", "default": "Will they actually use it?" },
+    { "type": "text",     "id": "heading", "label": "Heading", "default": "Meet the cats who claimed their spot." },
+    { "type": "textarea", "id": "intro",   "label": "Intro",   "default": "Cats are drawn to height, warmth, and you — and DeskPaws offers all three: a soft, enclosed nest at desk level, right where they already want to be." },
+    { "type": "text",     "id": "registry_label", "label": "Registry label", "default": "The DeskPaws Registry" },
+    { "type": "textarea", "id": "tip",     "label": "Reassurance tip", "default": "New to it? A familiar blanket or a pinch of catnip on day one is usually all it takes." },
+    { "type": "text",     "id": "cta_label", "label": "CTA text", "default": "Give Them Their Spot — $79" },
+    { "type": "url",      "id": "cta_url",   "label": "CTA link" }
   ],
-  "presets": [{ "name": "Will My Cat Use It?" }]
+  "blocks": [
+    {
+      "type": "cat",
+      "name": "Cat",
+      "settings": [
+        { "type": "image_picker", "id": "image",   "label": "Cat photo (portrait, ~4:5 works best)" },
+        { "type": "text",         "id": "name",    "label": "Cat name",        "default": "Biscuit" },
+        { "type": "text",         "id": "role",    "label": "Role / subtitle", "default": "Meeting supervisor" },
+        { "type": "textarea",     "id": "caption", "label": "Caption / quote (optional)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Claimed Spots Wall",
+      "blocks": [
+        { "type": "cat", "settings": { "name": "Biscuit", "role": "Meeting supervisor", "caption": "Attends every call. Contributes nothing. Beloved regardless." } },
+        { "type": "cat", "settings": { "name": "Luna",    "role": "Chief nap officer",  "caption": "Clocked in before me. Hasn't clocked out since." } },
+        { "type": "cat", "settings": { "name": "Mochi",   "role": "Senior loaf",        "caption": "Perfected the art of being nearby and entirely unbothered." } },
+        { "type": "cat", "settings": { "name": "Pepper",  "role": "Keyboard retiree",   "caption": "Twelve years on the keys. Now happily off the clock." } },
+        { "type": "cat", "settings": { "name": "Gus",     "role": "Window analyst",     "caption": "Monitors the birds. Reports back rarely." } },
+        { "type": "cat", "settings": { "name": "Noodle",  "role": "Head of morale",     "caption": "Purrs through deadlines. Surprisingly effective." } }
+      ]
+    }
+  ]
 }
 {% endschema %}

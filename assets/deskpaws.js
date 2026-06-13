@@ -275,7 +275,6 @@
     markList('.spec-row', 0.07);
     markList('.review-card', 0.08);
     markList('.comparison-table tbody tr', 0.06);
-    markList('.cwr-reason', 0.1);
     markList('.setup-step', 0.1);
 
     // One-off elements
@@ -285,7 +284,7 @@
       '.bf__eyebrow', '.bf__heading', '.bf__intro', '.bf__meter', '.bf__cta', '.bf__quote',
       '.reviews-section__header',
       '.comparison-section__header', '.reviews-cta', '.comparison-cta',
-      '.guarantee-hero', '.big-image__content', '.cat-wall__left', '.cwr-hdl', '.cwr-body',
+      '.guarantee-hero', '.big-image__content', '.cw__head-lead', '.cw__intro', '.cw__meta', '.cw__tip', '.cw__cta',
       '.final-cta__eyebrow', '.final-cta__heading', '.final-cta__sub'
     ].forEach(function (sel) {
         document.querySelectorAll(sel).forEach(function (el) { el.classList.add('reveal'); });
@@ -366,7 +365,7 @@
       overlay.setAttribute('aria-hidden', 'true');
     }
 
-    var buySelectors = '.btn-benefits-cta, .cwr-cta, .reviews-cta__btn, .sticky-cta__btn, .hero__button a, [data-buy-drawer]';
+    var buySelectors = '.btn-benefits-cta, .reviews-cta__btn, .sticky-cta__btn, .hero__button a, [data-buy-drawer]';
     document.addEventListener('click', function (e) {
       if (e.target.closest(buySelectors)) {
         e.preventDefault();
