@@ -59,6 +59,7 @@
     "meet": {
       "type": "s2-problem",
       "settings": {
+        "image_caption": "Sherpa nest · clamp-on",
         "eyebrow": "Meet DeskPaws",
         "heading": "A nest that belongs on your desk.",
         "body": "",
