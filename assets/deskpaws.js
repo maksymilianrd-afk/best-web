@@ -257,6 +257,70 @@
     });
   })();
 
+  /* ── How It Works: the 60-second setup sequencer ───────── */
+  (function () {
+    var section = document.getElementById('how-it-works');
+    if (!section) return;
+    var frames = Array.prototype.slice.call(section.querySelectorAll('.sw__frame'));
+    var steps  = Array.prototype.slice.call(section.querySelectorAll('.sw__step'));
+    if (steps.length < 2) return;
+
+    var fillEl = section.querySelector('.sw__dial-fill');
+    var timeEl = section.querySelector('.sw__dial-time');
+    var numEl  = section.querySelector('.sw__dial-now');
+    var n = steps.length;
+    var INTERVAL = 4600; // ms per step
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    section.classList.add('sw--js');
+    section.style.setProperty('--sw-interval', (INTERVAL / 1000) + 's');
+
+    var current = -1, timer = null;
+
+    function fmt(sec) {
+      var m = Math.floor(sec / 60), s = sec % 60;
+      return m + ':' + (s < 10 ? '0' + s : s);
+    }
+
+    function setActive(i) {
+      current = i;
+      frames.forEach(function (f, j) { f.classList.toggle('is-active', j === i); });
+      steps.forEach(function (s, j) {
+        s.classList.toggle('is-active', j === i);
+        var pf = s.querySelector('.sw__step-prog-fill');
+        if (pf) {
+          pf.classList.remove('is-running');
+          void pf.offsetWidth;            // reflow so the bar restarts cleanly
+          if (j === i && !reduce) pf.classList.add('is-running');
+        }
+      });
+      var p = (i + 1) / n;
+      if (fillEl) fillEl.style.strokeDashoffset = (100 - p * 100).toFixed(2);
+      if (timeEl) timeEl.textContent = fmt(Math.round(p * 60));
+      if (numEl)  numEl.textContent = ('0' + (i + 1)).slice(-2);
+    }
+
+    function advance() { setActive((current + 1) % n); }
+    function start() { if (reduce) return; clearInterval(timer); timer = setInterval(advance, INTERVAL); }
+    function stop()  { clearInterval(timer); timer = null; }
+
+    steps.forEach(function (s, i) {
+      var btn = s.querySelector('.sw__step-btn');
+      if (btn) btn.addEventListener('click', function () { setActive(i); start(); });
+    });
+
+    section.addEventListener('mouseenter', stop);
+    section.addEventListener('mouseleave', start);
+
+    // Only run the reel while it's on screen
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) start(); else stop(); });
+    }, { threshold: 0.25 });
+    io.observe(section);
+
+    setActive(0);
+  })();
+
   /* ── Smooth scroll for anchor links ────────────────────── */
   document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach((link) => {
     link.addEventListener('click', (e) => {
@@ -304,7 +368,6 @@
     markList('.spec-row', 0.07);
     markList('.review-card', 0.08);
     markList('.comparison-table tbody tr', 0.06);
-    markList('.setup-step', 0.1);
 
     // One-off elements
     [

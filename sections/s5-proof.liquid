@@ -1,93 +1,101 @@
-<section class="setup-section" id="how-it-works">
+{%- comment -%}
+  How It Works — "The 60-Second Setup"
+  A cinematic product film: the minute-dial sweeps 0:20 → 0:40 → 1:00
+  as three steps auto-play (and are clickable), the product photo
+  crossfading per step. Falls back to a static, readable stage.
+{%- endcomment -%}
 
-  <!-- LEFT: image panel -->
-  <div class="setup-left">
+{%- assign img1 = section.settings.step_1_image -%}
+{%- assign img2 = section.settings.step_2_image -%}
+{%- assign img3 = section.settings.step_3_image -%}
 
-    <div class="setup-img-card">
-      {%- if section.settings.image_1 -%}
-        {{ section.settings.image_1 | image_url: width: 800 | image_tag: id: 'setup-main-img', loading: 'lazy', alt: section.settings.image_1.alt | default: 'DeskPaws clamp close-up' }}
-      {%- else -%}
-        <p class="setup-img-placeholder">Clamp<br>close-up<br>photo here</p>
-      {%- endif -%}
+<section class="sw" id="how-it-works">
+
+  <div class="sw__head">
+    <span class="sw__eyebrow reveal">{{ section.settings.eyebrow | default: "Setup" }}</span>
+    <h2 class="sw__title reveal" style="--reveal-delay:.06s">{{ section.settings.heading | default: "Three steps. Sixty seconds." }}</h2>
+    <p class="sw__sub reveal" style="--reveal-delay:.12s">{{ section.settings.body | default: "No tools. No drilling. No manual at midnight." }}</p>
+  </div>
+
+  <div class="sw__stage">
+
+    <!-- Cinematic viewer + minute dial -->
+    <div class="sw__viewer reveal">
+      <div class="sw__frames">
+        <div class="sw__frame is-active" data-step="0">
+          {%- if img1 -%}{{ img1 | image_url: width: 1200 | image_tag: class: 'sw__img', loading: 'lazy', alt: 'Clamping DeskPaws onto a desk edge' }}
+          {%- else -%}<img class="sw__img" src="{{ 'clamp-detail.jpeg' | asset_url }}" alt="Clamping DeskPaws onto a desk edge" loading="lazy">{%- endif -%}
+        </div>
+        <div class="sw__frame" data-step="1">
+          {%- if img2 -%}{{ img2 | image_url: width: 1200 | image_tag: class: 'sw__img', loading: 'lazy', alt: 'A cat settling into the DeskPaws nest' }}
+          {%- else -%}<img class="sw__img" src="{{ 'cat-curled.png' | asset_url }}" alt="A cat settling into the DeskPaws nest" loading="lazy">{%- endif -%}
+        </div>
+        <div class="sw__frame" data-step="2">
+          {%- if img3 -%}{{ img3 | image_url: width: 1200 | image_tag: class: 'sw__img', loading: 'lazy', alt: 'Cat resting beside a clear, usable desk' }}
+          {%- else -%}<img class="sw__img" src="{{ 'product-on-desk.png' | asset_url }}" alt="Cat resting beside a clear, usable desk" loading="lazy">{%- endif -%}
+        </div>
+      </div>
+
+      <div class="sw__dial" aria-hidden="true">
+        <svg class="sw__dial-svg" viewBox="0 0 100 100">
+          <circle class="sw__dial-track" cx="50" cy="50" r="46" pathLength="100"></circle>
+          <circle class="sw__dial-fill" cx="50" cy="50" r="46" pathLength="100"></circle>
+        </svg>
+        <span class="sw__dial-read">
+          <span class="sw__dial-time">0:20</span>
+          <span class="sw__dial-num"><b class="sw__dial-now">01</b>&thinsp;/&thinsp;03</span>
+        </span>
+      </div>
     </div>
 
-    <div class="setup-thumbs gallery-thumbs">
-      {%- if section.settings.image_1 -%}
-        <button class="setup-thumb product-thumb active" data-target="setup-main-img" data-src="{{ section.settings.image_1 | image_url: width: 800 }}" aria-label="View image 1">
-          {{ section.settings.image_1 | image_url: width: 120 | image_tag: loading: 'lazy', alt: '' }}
+    <!-- Step sequencer -->
+    <ol class="sw__steps reveal" style="--reveal-delay:.1s">
+      <li class="sw__step is-active" data-step="0">
+        <button class="sw__step-btn" type="button" aria-label="Step 1">
+          <span class="sw__step-num">01</span>
+          <span class="sw__step-main">
+            <span class="sw__step-title">{{ section.settings.step_1_title | default: "Clamp it on" }}</span>
+            <span class="sw__step-body">{{ section.settings.step_1_body | default: "Slide the padded clamp onto any straight desk edge and hand-tighten the knob until it holds firm. No tools, no drilling, no marks." }}</span>
+          </span>
         </button>
-      {%- else -%}
-        <div class="setup-thumb setup-thumb--empty active"></div>
-      {%- endif -%}
-
-      {%- if section.settings.image_2 -%}
-        <button class="setup-thumb product-thumb" data-target="setup-main-img" data-src="{{ section.settings.image_2 | image_url: width: 800 }}" aria-label="View image 2">
-          {{ section.settings.image_2 | image_url: width: 120 | image_tag: loading: 'lazy', alt: '' }}
+        <span class="sw__step-prog" aria-hidden="true"><span class="sw__step-prog-fill"></span></span>
+      </li>
+      <li class="sw__step" data-step="1">
+        <button class="sw__step-btn" type="button" aria-label="Step 2">
+          <span class="sw__step-num">02</span>
+          <span class="sw__step-main">
+            <span class="sw__step-title">{{ section.settings.step_2_title | default: "Let them settle in" }}</span>
+            <span class="sw__step-body">{{ section.settings.step_2_body | default: "Set it where your cat already likes to perch and add a pinch of catnip. Then step back and let instinct do the rest." }}</span>
+          </span>
         </button>
-      {%- else -%}
-        <div class="setup-thumb setup-thumb--empty"></div>
-      {%- endif -%}
-
-      {%- if section.settings.image_3 -%}
-        <button class="setup-thumb product-thumb" data-target="setup-main-img" data-src="{{ section.settings.image_3 | image_url: width: 800 }}" aria-label="View image 3">
-          {{ section.settings.image_3 | image_url: width: 120 | image_tag: loading: 'lazy', alt: '' }}
+        <span class="sw__step-prog" aria-hidden="true"><span class="sw__step-prog-fill"></span></span>
+      </li>
+      <li class="sw__step" data-step="2">
+        <button class="sw__step-btn" type="button" aria-label="Step 3">
+          <span class="sw__step-num">03</span>
+          <span class="sw__step-main">
+            <span class="sw__step-title">{{ section.settings.step_3_title | default: "Get back to work" }}</span>
+            <span class="sw__step-body">{{ section.settings.step_3_body | default: "Cat settled, keyboard clear — one hand free to reach over and scratch an ear between emails." }}</span>
+          </span>
         </button>
-      {%- else -%}
-        <div class="setup-thumb setup-thumb--empty"></div>
-      {%- endif -%}
-    </div>
+        <span class="sw__step-prog" aria-hidden="true"><span class="sw__step-prog-fill"></span></span>
+      </li>
+    </ol>
 
   </div>
 
-  <!-- RIGHT: content -->
-  <div class="setup-right">
-
-    <p class="setup-lbl">{{ section.settings.eyebrow | default: "Setup" }}</p>
-    <h2 class="setup-hdl">{{ section.settings.heading | default: "Three steps.<br>Sixty seconds." }}</h2>
-    <p class="setup-subhdl">{{ section.settings.body | default: "No tools. No drilling. No reading a manual at midnight." }}</p>
-
-    <div class="setup-steps">
-
-      <div class="setup-step">
-        <span class="setup-step__num">01</span>
-        <div class="setup-step__content">
-          <span class="setup-step__title">{{ section.settings.step_1_title | default: "Clamp it on" }}</span>
-          <p class="setup-step__body">{{ section.settings.step_1_body | default: "Slide the padded G-clamp onto any straight desk edge. Hand-tighten the knob until it holds firm. That&rsquo;s it — no tools, no marks on your desk. Done in 60 seconds." }}</p>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <span class="setup-step__num">02</span>
-        <div class="setup-step__content">
-          <span class="setup-step__title">{{ section.settings.step_2_title | default: "Let them discover it" }}</span>
-          <p class="setup-step__body">{{ section.settings.step_2_body | default: "Position it where your cat already likes to sit. Drop a pinch of catnip inside. Then step back. <em>Let instinct do the rest.</em>" }}</p>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <span class="setup-step__num">03</span>
-        <div class="setup-step__content">
-          <span class="setup-step__title">{{ section.settings.step_3_title | default: "Get back to work" }}</span>
-          <p class="setup-step__body">{{ section.settings.step_3_body | default: "Cat settled. Keyboard clear. One hand free to reach over and scratch an ear whenever you want." }}</p>
-        </div>
-      </div>
-
+  <div class="sw__compat reveal">
+    <div class="sw__compat-items">
+      <span class="sw__compat-item">Solid wood</span>
+      <span class="sw__compat-item">Wooden panel</span>
+      <span class="sw__compat-item">Marble</span>
+      <span class="sw__compat-item">Metal</span>
+      <span class="sw__compat-item">Edges up to 2&Prime;</span>
     </div>
-
-    <div class="setup-compat">
-      <div class="setup-compat__items">
-        <span class="setup-compat__item"><span class="setup-compat__check">&#10003;</span> Solid wood</span>
-        <span class="setup-compat__item"><span class="setup-compat__check">&#10003;</span> Wooden panel</span>
-        <span class="setup-compat__item"><span class="setup-compat__check">&#10003;</span> Marble</span>
-        <span class="setup-compat__item"><span class="setup-compat__check">&#10003;</span> Metal</span>
-        <span class="setup-compat__item"><span class="setup-compat__check">&#10003;</span> Up to 2&Prime; thick</span>
-      </div>
-      <p class="setup-compat__warning">
-        {{ section.settings.compat_warning | default: "Not suitable for thin glass or desks with curved edges. Not sure?" }}
-        <a href="mailto:{{ section.settings.contact_email | default: 'hello@deskpaws.com' }}" class="setup-compat__link">{{ section.settings.contact_label | default: "Email us before you order." }}</a>
-      </p>
-    </div>
-
+    <p class="sw__compat-note">
+      {{ section.settings.compat_warning | default: "Not suitable for thin glass or curved edges. Not sure about your desk?" }}
+      <a href="mailto:{{ section.settings.contact_email | default: 'hello@deskpaws.com' }}" class="sw__compat-link">{{ section.settings.contact_label | default: "Email us before you order." }}</a>
+    </p>
   </div>
 
 </section>
@@ -97,27 +105,25 @@
   "name": "5 — How It Works",
   "tag": "section",
   "settings": [
-    { "type": "header",       "content": "Images" },
-    { "type": "image_picker", "id": "image_1",        "label": "Main image (thumbnail 1)" },
-    { "type": "image_picker", "id": "image_2",        "label": "Thumbnail 2" },
-    { "type": "image_picker", "id": "image_3",        "label": "Thumbnail 3" },
-    { "type": "header",       "content": "Text" },
-    { "type": "text",         "id": "eyebrow",        "label": "Label",       "default": "Setup" },
-    { "type": "text",         "id": "heading",        "label": "Heading",     "default": "Three steps. Sixty seconds." },
-    { "type": "textarea",     "id": "body",           "label": "Sub-headline" },
-    { "type": "header",       "content": "Step 1" },
-    { "type": "text",         "id": "step_1_title",   "label": "Title",       "default": "Clamp it on" },
-    { "type": "textarea",     "id": "step_1_body",    "label": "Body" },
-    { "type": "header",       "content": "Step 2" },
-    { "type": "text",         "id": "step_2_title",   "label": "Title",       "default": "Let them discover it" },
-    { "type": "textarea",     "id": "step_2_body",    "label": "Body" },
-    { "type": "header",       "content": "Step 3" },
-    { "type": "text",         "id": "step_3_title",   "label": "Title",       "default": "Get back to work" },
-    { "type": "textarea",     "id": "step_3_body",    "label": "Body" },
-    { "type": "header",       "content": "Compatibility note" },
-    { "type": "textarea",     "id": "compat_warning", "label": "Warning text" },
-    { "type": "text",         "id": "contact_email",  "label": "Contact email",  "default": "hello@deskpaws.com" },
-    { "type": "text",         "id": "contact_label",  "label": "Contact link text", "default": "Email us before you order." }
+    { "type": "text",     "id": "eyebrow", "label": "Label",       "default": "Setup" },
+    { "type": "text",     "id": "heading", "label": "Heading",     "default": "Three steps. Sixty seconds." },
+    { "type": "textarea", "id": "body",    "label": "Sub-headline" },
+    { "type": "header",   "content": "Step 1 (clamp close-up photo)" },
+    { "type": "image_picker", "id": "step_1_image", "label": "Step 1 image" },
+    { "type": "text",     "id": "step_1_title", "label": "Title", "default": "Clamp it on" },
+    { "type": "textarea", "id": "step_1_body",  "label": "Body" },
+    { "type": "header",   "content": "Step 2 (cat settling photo)" },
+    { "type": "image_picker", "id": "step_2_image", "label": "Step 2 image" },
+    { "type": "text",     "id": "step_2_title", "label": "Title", "default": "Let them settle in" },
+    { "type": "textarea", "id": "step_2_body",  "label": "Body" },
+    { "type": "header",   "content": "Step 3 (clear desk / lifestyle photo)" },
+    { "type": "image_picker", "id": "step_3_image", "label": "Step 3 image" },
+    { "type": "text",     "id": "step_3_title", "label": "Title", "default": "Get back to work" },
+    { "type": "textarea", "id": "step_3_body",  "label": "Body" },
+    { "type": "header",   "content": "Compatibility note" },
+    { "type": "textarea", "id": "compat_warning", "label": "Warning text" },
+    { "type": "text",     "id": "contact_email",  "label": "Contact email",  "default": "hello@deskpaws.com" },
+    { "type": "text",     "id": "contact_label",  "label": "Contact link text", "default": "Email us before you order." }
   ],
   "presets": [{ "name": "How It Works" }]
 }
