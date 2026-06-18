@@ -449,40 +449,60 @@
     var closeBtn = document.getElementById('bd-close');
     if (!overlay || !drawer) return;
 
-    /* Gallery — auto-playing image stage with thumbs + dots */
-    var gFrames = Array.prototype.slice.call(drawer.querySelectorAll('.bd-frame'));
+    /* Gallery — swipeable track, auto-scrolls every 8s until the user takes over */
+    var gTrack  = drawer.querySelector('.bd-gallery__track');
+    var gFrames = gTrack ? Array.prototype.slice.call(gTrack.querySelectorAll('.bd-frame')) : [];
     var gThumbs = Array.prototype.slice.call(drawer.querySelectorAll('.bd-thumb'));
     var gDots   = Array.prototype.slice.call(drawer.querySelectorAll('.bd-dot'));
     var gReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var gCur = 0, gTimer = null;
+    var gCur = 0, gTimer = null, gUserDone = false;
+    var GAP = 8000; // 8s per image
 
-    function gShow(i) {
-      gCur = (i + gFrames.length) % gFrames.length;
-      gFrames.forEach(function (f, j) { f.classList.toggle('is-active', j === gCur); });
-      gThumbs.forEach(function (t, j) { t.classList.toggle('is-active', j === gCur); });
-      gDots.forEach(function (d, j) { d.classList.toggle('is-active', j === gCur); });
+    function gMark(i) {
+      gCur = i;
+      gThumbs.forEach(function (t, j) { t.classList.toggle('is-active', j === i); });
+      gDots.forEach(function (d, j) { d.classList.toggle('is-active', j === i); });
+    }
+    function gGo(i, smooth) {
+      if (!gTrack || !gFrames.length) return;
+      i = (i + gFrames.length) % gFrames.length;
+      gTrack.scrollTo({ left: gTrack.clientWidth * i, behavior: smooth === false ? 'auto' : 'smooth' });
     }
     function gStart() {
-      if (gReduce || gFrames.length < 2) return;
+      if (gReduce || gUserDone || gFrames.length < 2) return;
       clearInterval(gTimer);
-      gTimer = setInterval(function () { gShow(gCur + 1); }, 3600);
+      gTimer = setInterval(function () { gGo(gCur + 1); }, GAP);
     }
     function gStop() { clearInterval(gTimer); gTimer = null; }
+    function gUserStop() { gUserDone = true; gStop(); }   // first real touch ends autoplay
 
-    gThumbs.forEach(function (t, i) {
-      t.addEventListener('click', function () { gShow(i); gStop(); gStart(); });
-    });
-    var gStage = drawer.querySelector('.bd-gallery__stage');
-    if (gStage) {
-      gStage.addEventListener('mouseenter', gStop);
-      gStage.addEventListener('mouseleave', function () { if (document.body.classList.contains('bd-open')) gStart(); });
+    if (gTrack && gFrames.length > 1) {
+      // active dot/thumb follows whichever frame is centred (manual or auto)
+      var gio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            var i = gFrames.indexOf(e.target);
+            if (i >= 0) gMark(i);
+          }
+        });
+      }, { root: gTrack, threshold: 0.6 });
+      gFrames.forEach(function (f) { gio.observe(f); });
+
+      ['wheel', 'touchstart', 'pointerdown', 'keydown'].forEach(function (ev) {
+        gTrack.addEventListener(ev, gUserStop, { passive: true });
+      });
+      gThumbs.forEach(function (t, i) {
+        t.addEventListener('click', function () { gUserStop(); gGo(i); });
+      });
     }
 
     function openDrawer() {
       document.body.classList.add('bd-open');
       drawer.setAttribute('aria-hidden', 'false');
       overlay.setAttribute('aria-hidden', 'false');
-      gShow(0);
+      gUserDone = false;
+      gMark(0);
+      gGo(0, false);   // reset to first image instantly
       gStart();
       if (closeBtn) closeBtn.focus();
     }

@@ -28,11 +28,13 @@
 
     <!-- Gallery -->
     <div class="bd-gallery bd-reveal" style="--d:.05s">
-      <div class="bd-gallery__stage" id="bd-gallery">
-        {%- for u in urls -%}{%- assign uu = u | strip -%}{%- if uu != blank -%}
-          <img class="bd-frame{% if forloop.first %} is-active{% endif %}" data-idx="{{ forloop.index0 }}"
-               src="{{ uu }}" alt="{{ dp.title | default: 'DeskPaws' }} — view {{ forloop.index }}" loading="lazy">
-        {%- endif -%}{%- endfor -%}
+      <div class="bd-gallery__stage">
+        <div class="bd-gallery__track" id="bd-gallery">
+          {%- for u in urls -%}{%- assign uu = u | strip -%}{%- if uu != blank -%}
+            <img class="bd-frame" data-idx="{{ forloop.index0 }}"
+                 src="{{ uu }}" alt="{{ dp.title | default: 'DeskPaws' }} — view {{ forloop.index }}" loading="lazy" draggable="false">
+          {%- endif -%}{%- endfor -%}
+        </div>
         {%- if urls.size > 1 -%}
           <span class="bd-gallery__dots" aria-hidden="true">
             {%- for u in urls -%}{%- assign uu = u | strip -%}{%- if uu != blank -%}<span class="bd-dot{% if forloop.first %} is-active{% endif %}"></span>{%- endif -%}{%- endfor -%}
