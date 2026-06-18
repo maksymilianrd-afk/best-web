@@ -2755,30 +2755,51 @@ html.no-js .cw__card, html.no-js .cw__seal { opacity: 1 !important; }
   max-width: 1280px;
 }
 
-/* Cinematic viewer */
+/* Schematic viewer */
 .sw__viewer {
+  align-items: center;
   aspect-ratio: 4 / 3;
+  background:
+    radial-gradient(120% 100% at 50% 30%, rgba(242, 203, 120, 0.05), transparent 70%),
+    #181208;
   border: 1px solid rgba(243, 236, 225, 0.08);
   border-radius: 20px;
+  display: flex;
+  justify-content: center;
   overflow: hidden;
   position: relative;
 }
-.sw__frames { inset: 0; position: absolute; }
-.sw__frame {
-  inset: 0;
-  opacity: 0;
-  position: absolute;
-  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+.sw__diagram { height: auto; width: 84%; max-width: 540px; }
+.sw__diagram path,
+.sw__diagram line,
+.sw__diagram circle {
+  fill: none;
+  stroke: #ece3d3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.2;
 }
-.sw__frame.is-active { opacity: 1; }
-.sw__img {
-  height: 100%;
-  object-fit: cover;
-  width: 100%;
+.sw__d-accent { stroke: var(--butter) !important; }
+.sw__fill { fill: rgba(242, 203, 120, 0.08); opacity: 0; stroke: none; transition: opacity 0.9s ease; }
+
+/* Draw-on only when JS sequences; otherwise the full schematic shows */
+.sw--js .sw__diagram path:not(.sw__fill),
+.sw--js .sw__diagram line,
+.sw--js .sw__diagram circle {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 0.85s cubic-bezier(0.16, 1, 0.3, 1);
 }
-/* slow Ken Burns drift on the active frame */
-.sw--js .sw__frame.is-active .sw__img { animation: swKen 7s ease-out both; }
-@keyframes swKen { from { transform: scale(1.06); } to { transform: scale(1); } }
+.sw--js .sw__d.is-drawn path:not(.sw__fill),
+.sw--js .sw__d.is-drawn line,
+.sw--js .sw__d.is-drawn circle { stroke-dashoffset: 0; }
+.sw--js .sw__d.is-drawn .sw__fill { opacity: 1; }
+/* light hand-drawn cascade within a step */
+.sw--js .sw__d.is-drawn *:nth-child(2) { transition-delay: 0.08s; }
+.sw--js .sw__d.is-drawn *:nth-child(3) { transition-delay: 0.16s; }
+.sw--js .sw__d.is-drawn *:nth-child(4) { transition-delay: 0.24s; }
+.sw--js .sw__d.is-drawn *:nth-child(5) { transition-delay: 0.32s; }
+.sw--js .sw__d.is-drawn *:nth-child(n + 6) { transition-delay: 0.4s; }
 
 /* Minute dial overlay */
 .sw__dial {
@@ -2942,9 +2963,8 @@ html.no-js .cw__card, html.no-js .cw__seal { opacity: 1 !important; }
 .sw__compat-link:hover { text-decoration: underline; text-underline-offset: 2px; }
 
 @media (prefers-reduced-motion: reduce) {
-  .sw--js .sw__frame.is-active .sw__img { animation: none; }
+  .sw__diagram path, .sw__diagram line, .sw__diagram circle { transition: none !important; }
   .sw__step-prog-fill { transition: none !important; }
-  .sw__frame { transition: opacity 0.2s linear; }
 }
 
 @media (max-width: 900px) {

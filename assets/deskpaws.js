@@ -261,7 +261,7 @@
   (function () {
     var section = document.getElementById('how-it-works');
     if (!section) return;
-    var frames = Array.prototype.slice.call(section.querySelectorAll('.sw__frame'));
+    var groups = Array.prototype.slice.call(section.querySelectorAll('.sw__d'));
     var steps  = Array.prototype.slice.call(section.querySelectorAll('.sw__step'));
     if (steps.length < 2) return;
 
@@ -272,26 +272,31 @@
     var INTERVAL = 4600; // ms per step
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    section.classList.add('sw--js');
-    section.style.setProperty('--sw-interval', (INTERVAL / 1000) + 's');
-
-    var current = -1, timer = null;
-
     function fmt(sec) {
       var m = Math.floor(sec / 60), s = sec % 60;
       return m + ':' + (s < 10 ? '0' + s : s);
     }
 
+    // Reduced motion: leave the full static schematic + all steps open.
+    if (reduce) return;
+
+    section.classList.add('sw--js');
+    section.style.setProperty('--sw-interval', (INTERVAL / 1000) + 's');
+
+    var current = -1, timer = null;
+
     function setActive(i) {
       current = i;
-      frames.forEach(function (f, j) { f.classList.toggle('is-active', j === i); });
+      groups.forEach(function (g) {
+        g.classList.toggle('is-drawn', parseInt(g.getAttribute('data-step'), 10) <= i);
+      });
       steps.forEach(function (s, j) {
         s.classList.toggle('is-active', j === i);
         var pf = s.querySelector('.sw__step-prog-fill');
         if (pf) {
           pf.classList.remove('is-running');
           void pf.offsetWidth;            // reflow so the bar restarts cleanly
-          if (j === i && !reduce) pf.classList.add('is-running');
+          if (j === i) pf.classList.add('is-running');
         }
       });
       var p = (i + 1) / n;
@@ -301,7 +306,7 @@
     }
 
     function advance() { setActive((current + 1) % n); }
-    function start() { if (reduce) return; clearInterval(timer); timer = setInterval(advance, INTERVAL); }
+    function start() { clearInterval(timer); timer = setInterval(advance, INTERVAL); }
     function stop()  { clearInterval(timer); timer = null; }
 
     steps.forEach(function (s, i) {
