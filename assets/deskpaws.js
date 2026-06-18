@@ -449,10 +449,41 @@
     var closeBtn = document.getElementById('bd-close');
     if (!overlay || !drawer) return;
 
+    /* Gallery — auto-playing image stage with thumbs + dots */
+    var gFrames = Array.prototype.slice.call(drawer.querySelectorAll('.bd-frame'));
+    var gThumbs = Array.prototype.slice.call(drawer.querySelectorAll('.bd-thumb'));
+    var gDots   = Array.prototype.slice.call(drawer.querySelectorAll('.bd-dot'));
+    var gReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var gCur = 0, gTimer = null;
+
+    function gShow(i) {
+      gCur = (i + gFrames.length) % gFrames.length;
+      gFrames.forEach(function (f, j) { f.classList.toggle('is-active', j === gCur); });
+      gThumbs.forEach(function (t, j) { t.classList.toggle('is-active', j === gCur); });
+      gDots.forEach(function (d, j) { d.classList.toggle('is-active', j === gCur); });
+    }
+    function gStart() {
+      if (gReduce || gFrames.length < 2) return;
+      clearInterval(gTimer);
+      gTimer = setInterval(function () { gShow(gCur + 1); }, 3600);
+    }
+    function gStop() { clearInterval(gTimer); gTimer = null; }
+
+    gThumbs.forEach(function (t, i) {
+      t.addEventListener('click', function () { gShow(i); gStop(); gStart(); });
+    });
+    var gStage = drawer.querySelector('.bd-gallery__stage');
+    if (gStage) {
+      gStage.addEventListener('mouseenter', gStop);
+      gStage.addEventListener('mouseleave', function () { if (document.body.classList.contains('bd-open')) gStart(); });
+    }
+
     function openDrawer() {
       document.body.classList.add('bd-open');
       drawer.setAttribute('aria-hidden', 'false');
       overlay.setAttribute('aria-hidden', 'false');
+      gShow(0);
+      gStart();
       if (closeBtn) closeBtn.focus();
     }
 
@@ -460,6 +491,7 @@
       document.body.classList.remove('bd-open');
       drawer.setAttribute('aria-hidden', 'true');
       overlay.setAttribute('aria-hidden', 'true');
+      gStop();
     }
 
     var buySelectors = '.btn-benefits-cta, .reviews-cta__btn, .sticky-cta__btn, .hero__button a, [data-buy-drawer]';

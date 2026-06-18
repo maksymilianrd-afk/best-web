@@ -1,12 +1,22 @@
 {%- assign dp = all_products[section.settings.product_handle] -%}
 {%- assign first_v = dp.variants.first -%}
 
+{%- comment -%} Build the gallery URL list: custom uploads → product images → theme assets {%- endcomment -%}
+{%- assign has_custom = false -%}
+{%- for i in (1..5) -%}{%- assign k = 'image_' | append: i -%}{%- if section.settings[k] -%}{%- assign has_custom = true -%}{%- endif -%}{%- endfor -%}
+{%- assign asset_fallbacks = 'product-floating.png,product-on-desk.png,product-topdown.png,cat-curled.png,clamp-detail.jpeg' | split: ',' -%}
+{%- capture urlcsv -%}{%- if has_custom -%}{%- for i in (1..5) -%}{%- assign k = 'image_' | append: i -%}{%- if section.settings[k] -%}{{ section.settings[k] | image_url: width: 1000 }}|{%- endif -%}{%- endfor -%}{%- elsif dp.images.size > 0 -%}{%- for img in dp.images limit: 5 -%}{{ img | image_url: width: 1000 }}|{%- endfor -%}{%- else -%}{%- for a in asset_fallbacks -%}{{ a | asset_url }}|{%- endfor -%}{%- endif -%}{%- endcapture -%}
+{%- assign urls = urlcsv | split: '|' -%}
+
 <div class="bd-overlay" id="bd-overlay" aria-hidden="true"></div>
 
 <aside class="buy-drawer" id="buy-drawer" role="dialog" aria-modal="true" aria-labelledby="bd-title-text" aria-hidden="true">
 
   <div class="bd-header">
-    <h2 class="bd-title" id="bd-title-text">{{ section.settings.drawer_title | default: "Give them their spot" }}</h2>
+    <div class="bd-header__lead">
+      <span class="bd-eyebrow">DeskPaws</span>
+      <h2 class="bd-title" id="bd-title-text">{{ section.settings.drawer_title | default: "Give them their spot" }}</h2>
+    </div>
     <button class="bd-close" id="bd-close" aria-label="Close drawer">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -16,17 +26,31 @@
 
   <div class="bd-scroller">
 
-    {%- if dp.featured_image -%}
-      <div class="bd-image-wrap">
-        {{ dp.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'bd-image', alt: dp.title }}
+    <!-- Gallery -->
+    <div class="bd-gallery bd-reveal" style="--d:.05s">
+      <div class="bd-gallery__stage" id="bd-gallery">
+        {%- for u in urls -%}{%- assign uu = u | strip -%}{%- if uu != blank -%}
+          <img class="bd-frame{% if forloop.first %} is-active{% endif %}" data-idx="{{ forloop.index0 }}"
+               src="{{ uu }}" alt="{{ dp.title | default: 'DeskPaws' }} — view {{ forloop.index }}" loading="lazy">
+        {%- endif -%}{%- endfor -%}
+        {%- if urls.size > 1 -%}
+          <span class="bd-gallery__dots" aria-hidden="true">
+            {%- for u in urls -%}{%- assign uu = u | strip -%}{%- if uu != blank -%}<span class="bd-dot{% if forloop.first %} is-active{% endif %}"></span>{%- endif -%}{%- endfor -%}
+          </span>
+        {%- endif -%}
       </div>
-    {%- else -%}
-      <div class="bd-image-wrap bd-image-wrap--empty">
-        <span>{{ dp.title | default: "DeskPaws bed" }}</span>
-      </div>
-    {%- endif -%}
+      {%- if urls.size > 1 -%}
+        <div class="bd-thumbs">
+          {%- for u in urls -%}{%- assign uu = u | strip -%}{%- if uu != blank -%}
+            <button class="bd-thumb{% if forloop.first %} is-active{% endif %}" data-idx="{{ forloop.index0 }}" type="button" aria-label="View image {{ forloop.index }}">
+              <img src="{{ uu }}" alt="" loading="lazy">
+            </button>
+          {%- endif -%}{%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
 
-    <div class="bd-price-block">
+    <div class="bd-price-block bd-reveal" style="--d:.12s">
       <span class="bd-price-current" id="bd-price-display">
         {{- first_v.price | money_without_trailing_zeros | default: "$79" -}}
       </span>
@@ -37,7 +61,7 @@
     </div>
 
     {%- if section.settings.rating != blank -%}
-      <div class="bd-stars-row">
+      <div class="bd-stars-row bd-reveal" style="--d:.16s">
         <span class="bd-stars">★★★★★</span>
         <span class="bd-rating">{{ section.settings.rating }}</span>
         {%- if section.settings.review_count != blank -%}
@@ -47,24 +71,24 @@
       </div>
     {%- endif -%}
 
-    <p class="bd-pack-label">Choose your pack</p>
+    {%- if dp.variants.size > 1 -%}<p class="bd-pack-label bd-reveal" style="--d:.2s">Choose your pack</p>{%- endif -%}
 
-    <div class="bd-variants" id="bd-variants">
+    <div class="bd-variants bd-reveal" id="bd-variants" style="--d:.24s">
       {%- if dp != blank and dp.variants.size > 0 -%}
         {%- for variant in dp.variants -%}
           {%- assign sub_key = 'pack_' | append: forloop.index | append: '_subtitle' -%}
           {%- assign subtitle = section.settings[sub_key] -%}
-          <label class="bd-variant-card{% if forloop.first %} bd-variant-card--selected{% endif %}"
+          {%- assign vname = variant.title -%}
+          {%- if vname == 'Default Title' -%}{%- assign vname = dp.title | default: 'One DeskPaws' -%}{%- endif -%}
+          <label class="bd-variant-card{% if forloop.first %} bd-variant-card--selected{% endif %}{% if dp.variants.size == 1 %} bd-variant-card--solo{% endif %}"
             data-variant-id="{{ variant.id }}"
             data-price="{{ variant.price | money_without_trailing_zeros }}"
             data-compare="{{ variant.compare_at_price | money_without_trailing_zeros }}"
             data-save="{% if variant.compare_at_price > variant.price %}Save {{ variant.compare_at_price | minus: variant.price | money_without_trailing_zeros }}{% endif %}">
             <input type="radio" name="bd-variant" value="{{ variant.id }}"{% if forloop.first %} checked{% endif %} class="bd-variant-radio">
             <div class="bd-variant-info">
-              <span class="bd-variant-name">{{ variant.title }}</span>
-              {%- if subtitle != blank -%}
-                <span class="bd-variant-sub">{{ subtitle }}</span>
-              {%- endif -%}
+              <span class="bd-variant-name">{{ vname }}</span>
+              {%- if subtitle != blank -%}<span class="bd-variant-sub">{{ subtitle }}</span>{%- endif -%}
             </div>
             <div class="bd-variant-prices">
               <span class="bd-variant-price">{{ variant.price | money_without_trailing_zeros }}</span>
@@ -72,24 +96,23 @@
                 <span class="bd-variant-compare">{{ variant.compare_at_price | money_without_trailing_zeros }}</span>
               {%- endif -%}
             </div>
-            {%- if section.settings.popular_variant == forloop.index -%}
+            {%- if section.settings.popular_variant == forloop.index and dp.variants.size > 1 -%}
               <span class="bd-popular-badge">Popular</span>
             {%- endif -%}
           </label>
         {%- endfor -%}
       {%- else -%}
-        <label class="bd-variant-card bd-variant-card--selected" data-variant-id="" data-price="$79" data-compare="" data-save="">
+        <label class="bd-variant-card bd-variant-card--selected bd-variant-card--solo" data-variant-id="" data-price="" data-compare="" data-save="">
           <input type="radio" name="bd-variant" checked class="bd-variant-radio">
           <div class="bd-variant-info">
-            <span class="bd-variant-name">One DeskPaws</span>
+            <span class="bd-variant-name">{{ dp.title | default: "DeskPaws" }}</span>
             <span class="bd-variant-sub">{{ section.settings.pack_1_subtitle | default: "For one lucky cat" }}</span>
           </div>
-          <div class="bd-variant-prices"><span class="bd-variant-price">$79</span></div>
         </label>
       {%- endif -%}
     </div>
 
-    <div class="bd-qty-row">
+    <div class="bd-qty-row bd-reveal" style="--d:.3s">
       <span class="bd-qty-label">Quantity</span>
       <div class="bd-qty-stepper">
         <button class="bd-qty-btn" data-dir="down" aria-label="Decrease quantity">−</button>
@@ -98,11 +121,12 @@
       </div>
     </div>
 
-    <button class="bd-atc-btn" id="bd-atc-btn" type="button">
-      Add to cart &mdash; <span id="bd-atc-price">{{ first_v.price | money_without_trailing_zeros | default: "$79" }}</span>
+    <button class="bd-atc-btn bd-reveal" id="bd-atc-btn" type="button" style="--d:.36s">
+      <span class="bd-atc-label">Add to cart &mdash; <span id="bd-atc-price">{{ first_v.price | money_without_trailing_zeros | default: "$79" }}</span></span>
+      <svg class="bd-atc-arrow" width="20" height="10" viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M19.6293 4.46929C15.1122 2.22992 14.0195 0 14.0195 0V5.05512H0V6.94488H14.0098V12H14.0195C14.0195 12 15.1122 9.75118 19.6293 7.52126C21.0732 6.80315 22.5561 6.33071 24 6C22.5561 5.66929 21.0732 5.19685 19.6293 4.47874V4.46929Z" fill="currentColor"/></svg>
     </button>
 
-    <ul class="bd-trust">
+    <ul class="bd-trust bd-reveal" style="--d:.42s">
       <li class="bd-trust-item">
         <svg class="bd-trust-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
           <path d="M8 1.5 2 4.5v4c0 3.2 2.5 6.1 6 7 3.5-.9 6-3.8 6-7v-4L8 1.5z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
@@ -137,6 +161,12 @@
   "settings": [
     { "type": "text",   "id": "product_handle",  "label": "Product handle",      "default": "desk-paws-place-for-your-cat-co-worker" },
     { "type": "text",   "id": "drawer_title",     "label": "Drawer title",        "default": "Give them their spot" },
+    { "type": "header", "content": "Gallery — up to 5 images (falls back to product photos)" },
+    { "type": "image_picker", "id": "image_1", "label": "Image 1" },
+    { "type": "image_picker", "id": "image_2", "label": "Image 2" },
+    { "type": "image_picker", "id": "image_3", "label": "Image 3" },
+    { "type": "image_picker", "id": "image_4", "label": "Image 4" },
+    { "type": "image_picker", "id": "image_5", "label": "Image 5" },
     { "type": "header", "content": "Pack subtitles" },
     { "type": "text",   "id": "pack_1_subtitle",  "label": "Pack 1 subtitle",     "default": "For one lucky cat" },
     { "type": "text",   "id": "pack_2_subtitle",  "label": "Pack 2 subtitle",     "default": "Save 12% — most popular" },

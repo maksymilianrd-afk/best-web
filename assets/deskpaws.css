@@ -4683,16 +4683,26 @@ body.bd-open .buy-drawer {
 /* Header */
 .bd-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   padding: 1.25rem 1.5rem;
   border-bottom: 0.5px solid #ddd5c8;
   flex-shrink: 0;
 }
+.bd-eyebrow {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.5625rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 0.375rem;
+}
 
 .bd-title {
   font-family: var(--font-serif);
-  font-size: 1.25rem;
+  font-size: 1.375rem;
   font-weight: 400;
   color: #2d2620;
   letter-spacing: -0.01em;
@@ -4710,11 +4720,11 @@ body.bd-open .buy-drawer {
   justify-content: center;
   cursor: pointer;
   color: #6a5c50;
-  transition: background 0.18s, color 0.18s;
+  transition: background 0.18s, color 0.18s, transform 0.18s;
   flex-shrink: 0;
 }
 
-.bd-close:hover { background: #f0ebe3; color: #2d2620; }
+.bd-close:hover { background: #f0ebe3; color: #2d2620; transform: rotate(90deg); }
 
 /* Scrollable body */
 .bd-scroller {
@@ -4727,30 +4737,68 @@ body.bd-open .buy-drawer {
   gap: 1.125rem;
 }
 
-/* Product image */
-.bd-image-wrap {
+/* Choreographed entrance — contents settle in as the drawer slides */
+.bd-reveal { opacity: 0; translate: 0 16px; }
+body.bd-open .bd-reveal {
+  opacity: 1;
+  translate: 0 0;
+  transition: opacity 0.55s ease var(--d, 0s), translate 0.6s cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0s);
+}
+
+/* ── Gallery ────────────────────────────────────────────── */
+.bd-gallery { display: flex; flex-direction: column; gap: 0.625rem; }
+.bd-gallery__stage {
+  position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
-  border-radius: 10px;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
   overflow: hidden;
   background: #ede7de;
 }
-
-.bd-image-wrap--empty {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-sans);
-  font-size: 0.8125rem;
-  color: #9a8a7a;
-}
-
-.bd-image {
+.bd-frame {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
+  opacity: 0;
+  transform: scale(1.05);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 4.5s ease-out;
 }
+.bd-frame.is-active { opacity: 1; transform: scale(1); }
+
+.bd-gallery__dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+}
+.bd-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(44, 26, 17, 0.3);
+  transition: width 0.3s, background 0.3s, border-radius 0.3s;
+}
+.bd-dot.is-active { background: #2d2620; width: 16px; border-radius: 3px; }
+
+.bd-thumbs { display: flex; gap: 8px; }
+.bd-thumb {
+  flex: 1;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid transparent;
+  background: #ede7de;
+  padding: 0;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.bd-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.bd-thumb:hover { transform: translateY(-2px); }
+.bd-thumb.is-active { border-color: #2d2620; }
 
 /* Price */
 .bd-price-block {
@@ -4976,6 +5024,8 @@ body.bd-open .buy-drawer {
   padding: 0 0.25rem;
 }
 
+.bd-variant-card--solo .bd-variant-radio { display: none; }
+
 /* ATC button */
 .bd-atc-btn {
   width: 100%;
@@ -4989,8 +5039,13 @@ body.bd-open .buy-drawer {
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s, transform 0.15s;
-  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
 }
+.bd-atc-arrow { transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+.bd-atc-btn:hover .bd-atc-arrow { transform: translateX(5px); }
 
 .bd-atc-btn:hover {
   background: #b5633e;
@@ -5030,6 +5085,13 @@ body.bd-open .buy-drawer {
 @media (max-width: 480px) {
   .buy-drawer { border-radius: 12px 0 0 12px; }
   .bd-scroller { padding: 1rem 1.25rem 2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bd-reveal { opacity: 1; translate: 0; }
+  body.bd-open .bd-reveal { transition: none; }
+  .bd-frame { transition: opacity 0.25s linear; transform: none; }
+  .bd-frame.is-active { transform: none; }
 }
 
 /* ═══════════════════════════════════════════════════════════
